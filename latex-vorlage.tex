@@ -13,21 +13,17 @@
 \begin{document}
 %%% Deckblatt einbinden %%% 
 % Anpassungen nötig (Name, Titel etc.)
-\input{includes/deckblatt.tex}
+\input{includes/001_deckblatt.tex}
 
 %%% Umstellung der Seiten-Nummerierung auf i, ii, iii ... %%%
 \pagenumbering{Roman} 
-
-%%% Abstract einbinden (optionale Kurzfassung Ihrer Arbeit) %%%
-\input{includes/abstract.tex}
-\cleardoublepage
 
 %%% Inhalts-, Abbildungs-, Tabellenverzeichnisse %%%
 % sollen einzeilig gesetzt werden, um Platz zu sparen 
 \begin{spacing}{1}
 \tableofcontents
 \clearpage
-\input{includes/abkuerzungen.tex}
+\input{includes/001_abkuerzungen.tex}
 
 \clearpage
 \thispagestyle{kapitelkopfzeile}
@@ -50,12 +46,12 @@
 % und binden Sie diese hier mit \input{includes/dateiname.tex} ein
 
 \input{includes/01_Einleitung.tex}
-\blinddocument
-\input{includes/text_mit_zitaten.tex}
-\input{includes/abbildungen_und_tabellen.tex}
-
-\input{includes/anhang.tex}
-\input{includes/release_notes.tex}
+\input{includes/02_Aktueller Stand der Forschung und Praxis.tex}
+\input{includes/03_Hardwarebeschleuniger.tex}
+\input{includes/04_Implementierung_Laborexperiment der Simulator Pipeline.tex}
+\input{includes/05_Evaluation der BM auf dem physikinspiriertem Hardwarebeschleuniger.tex}
+\input{includes/06_Kritische Reflexion und Ausblick.tex}
+\input{includes/07_anhang.tex}
 %%% Ende des eigentlichen Inhalts %%%
 
 

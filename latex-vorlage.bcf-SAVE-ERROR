@@ -2357,6 +2357,6 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex">includes/literatur-datenbank.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex">includes/literatur.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
