@@ -3,6 +3,120 @@
 
 \section{Motivation}
 \section{Problemstellung}
+
+In der Forschung und Entwicklung von Generativen KI-Modellen rückt die
+Rechengeschwindigkeit und Energieeffizienz zunehmend in den Fokus. [Quelle 5,
+S.1]. Die Autor*innen von Open AI bestätigen, dass die Wachstumsrate von
+Machine-Learning-Modellen die Effizienzrate von Computerchips schon längst
+übertroffen hat. So verdoppeln sich jede 3-4 Monate der Rechenbedarf dieser
+Modelle jedoch verdoppeln sich nach Moore’s Law die Leistung der Computerchips
+nur jede 2 Jahre. [Quelle 9, S. 1]
+Angesichts der Probleme des steigenden Energieverbrauchs von Rechenzentren
+und den damit verbundenen Treibhausgasemissionen dieser, ist die Suche nach
+effizienteren Lösungen essenziell für die Zukunft. Weltweit steigern Datenzentren
+ihren Energieverbrauch jährlich um 20-40\%, wodurch sie 2022 etwa 1,3\% des
+globalen Energieverbrauchs und 1\% der energiebedingten globalen
+Treibhausgasemissionen verursacht haben. [Quelle 6, S.1]. Jedoch ist hier nicht zu
+erkennen, wie groß dabei der KI-Anteil zur Grundgesamtheit beiträgt.
+
+Ein bereits bekannter Ansatz ist die Benutzung von KI-Beschleunigern basierend auf
+ASICs (Application-specific Integrated Circuits) - also Schaltungen, die
+anwendungsspezifisch verwendet werden, wie zum Beispiel Google TPUs (Tensor
+Processing Unit). [Quelle 8, S.39] Dies ist auch sinnvoll, da die Verwendung von
+Mehrzweckmodellen für diskriminierende Aufgaben im Vergleich zu
+aufgabenspezifischen Modellen energieintensiver ist. [Quelle 5, S.13] Ein
+alternatives vielversprechendes Konzept in der Forschung ist die Verwendung von
+physikinspirierten Hardwarebeschleunigern, die primär bei Optimierungsalgorithmen
+eingesetzt werden aufgrund ihrer Fähigkeit Probleme schneller und effizienter als
+GPUs lösen zu können. [Quelle 11. S.1]
+Ein skalierbarer physikinspirierter Hardwarebeschleuniger (auch Ising-Maschine
+genannt), der die Leistung bestehender Standard-Digitalrechner übertrifft, könnte
+einen großen Einfluss auf praktische Anwendungen für eine Vielzahl von
+Optimierungsproblemen haben. [Quelle 11. S. 1]
+
+Solche physikinspirierten Hardwarebeschleuniger bieten durch ihre besondere
+Berechnungsweise Potenzial für eine effizientere Verarbeitung von
+rechenintensiven Aufgaben. Konkret wird die Beschleunigung, anders als es bei
+digitalen Computern der Fall ist, durch die Berechnung rechenintensiver Aufgaben
+mit analogen Signalen erreicht. Die Implementierung auf dedizierter Hardware bietet
+darüber hinaus die Möglichkeit, die Parallelisierung von digitalen
+Hardwarebeschleunigern und analogem Rechnen auszunutzen. [Quelle 11. S.4].
+
+Interessanterweise zeigen die Energiefunktionen von Hardwarebeschleunigern, die
+in Ising-Maschinen verwendet werden, große Parallelen zu denen in Boltzmann
+Maschinen, trotz ihrer unterschiedlichen Anwendungen, daher liegt es nahe, dass
+Ising Maschinen auch für KI gut funktionieren. [Quelle 2, S.10]. Ising-Maschinen
+zielen darauf ab, ihre Energie zu minimieren, wobei sie Energie als eine paarweise
+Interaktion von binären Variablen „Spins“ definieren. [Quelle 13, S.1] BoltzmannMaschinen hingegen sind energiebasierte neuronale Netzwerke, die
+Klassifizierungen durchführen, indem sie jeder Konfiguration der Variablen eine
+skalare Energie zuordnen. Die Netzwerkenergie zu minimieren ist hierbei
+vergleichbar mit der Lösung des Optimierungsproblems [Quelle 12. S.2] Aktuelle
+Probleme mit Boltzmann-Maschinen umfassen die hohe Komplexität und
+Anforderungen an die All-to-All-Kommunikation zwischen Verarbeitungseinheiten,
+was ihre Implementierung auf herkömmlichen digitalen Computern ineffizient macht,
+sowie eine inhärent langsame Konvergenz in bestimmten Prozessen wie Simulated
+Annealing. [Quelle 12, S1] Diese Herausforderungen erschweren das Training und
+die Anwendung von Boltzmann-Maschinen insbesondere für große Datenmengen
+und komplexe Optimierungsaufgaben. [Quelle 12, S.2] Nichtsdestotrotz impliziert die
+Ähnlichkeit der beiden, dass Ising-Maschinen in der Lage sein könnten, dieses
+spezielle KI-Modell, energieeffizienter und mit höherer Rechengeschwindigkeit
+auszuführen. Aktuell existieren nur wenige Konzepte eine Implementierung von
+Boltzmann Maschinen auf Ising-Maschinen zu erreichen. Quelle 2 ist hier ein
+vielversprechender Ansatz, jedoch konnte nicht gezeigt werden, wie es auf einem
+richtigen Beschleunigerchip funktionieren würde.
+
+Vor diesem Hintergrund ergeben sich folgende zentrale Forschungsfragen:
+
+\begin{enumerate}
+    \item {Können Boltzmann Maschinen auf physikinspiriertenHardwarebeschleunigern durch analoge Rauschinjektion effizient implementiert werden?}
+        \begin{itemize}
+            \item Wie ist die Genauigkeit des KI-Modells im Hardwarebeschleuniger? Metrik: Prediction Accuracy
+
+            \item ergleichen mit anderen Hardwarebeschleuniger, FPGA, GPU oderCPU aus der Literatur (gute und schlechte) in Bezug auf Energieeffizienz und Rechengeschwindigkeit – Metriken: Troughput(Samples/Sec), Energieverbrauch (Energy/Operation)
+        \end{itemize}  
+\end{enumerate}
+
+Daher gilt es zu testen, ob dieses generative KI-Modell mit Ising Maschinen
+kompatibel ist und ob diese Lösung effizient ist oder nicht.
+
+
 \section{Zielsetzung(ohne gneaue Metriken nennen, generell halten)}
+
+Das primäre Ziel dieser Bachelorarbeit ist die Erforschung und Erweiterung eines
+bestehenden physikinspirierten Hardwarebeschleunigers (ISING Maschine) zur
+Implementierung und Evaluation von Boltzmann Maschinen, einem
+energiebasierten KI-Modell. Dabei sollen die aufgestellten Forschungsfragen
+beantwortet werden.
+
+Hierzu ist es zu Beginn nötig eine Simulator Pipeline zu konstruieren mit der
+Boltzmann Maschinen auf dem Hardwarebeschleuniger übersetzt werden. Die
+Simulator Pipeline besteht dabei aus einer bestehender KI-Bibliothek und
+bestehenden Hardwarebeschleuniger, die miteinander verbunden werden. Mit der
+Simulator Pipeline soll gezeigt werden, dass der Hardwaresimulator die Boltzmann
+Maschinen umsetzen kann. Aus der Simulator Pipeline heraus werden die
+Aktivierungswahrscheinlichkeiten der einzelnen Neuronen auf der simulierten
+Hardware gemessen und bei Erfolg bis zu einem vollständigen Neuronalen
+Netzwerk erweitert. Finaler Schritt ist, dass der Hardwarebeschleuniger für Training
+und Interferenz genutzt werden kann und dabei vergleichbar mit herkömmlichen MLLibraries ist. Diese Phase umfasst die sorgfältige Anpassung und möglicherweise
+Erweiterung des bestehenden Beschleunigers, um die spezifischen Anforderungen
+der Boltzmann Maschinen zu erfüllen.
+
+Wenn die Simulator Pipeline validiert werden kann, wird ein Workload auf ein
+Standarddatenset zur Handschrifterkennung getestet. Dabei werden die Prediction
+Accuracy, Troughput (Samples/Sec) und der Energieverbrauch (Energy/Operation)
+der Boltzmann Maschinen auf dem ISING Hardwarebeschleuniger untersucht und
+dadurch die aufgestellten Forschungsfragen beantwortet.
+
 \section{Forschungsmethodik}
+
+Design Science Research
+
+\begin{enumerate}
+    \item \textbf{Problemorientierung:} DSR fokussiert auf die Lösung praktischer Probleme, wie die Forschung zur Steigerung der Effizienz und Rechengeschwindigkeit in KI-Modellen.
+    \item \textbf{Artefakt Entwicklung:} Zentral in DSR ist die Entwicklung innovativer Artefakte. Die Arbeit zielt darauf ab, ein solches Artefakt in Form des physikinspirierten Hardwarebeschleunigers weiterzuentwickeln und für KI-Modelle einzusetzen.
+    \item \textbf{Iterative Evaluation:} Durch die iterative Vorgehensweise in DSR kann die Ausarbeitung der Lösung fortlaufend verbessert und angepasst werden, was für die Entwicklung und Optimierung von KI-Systemen entscheidend ist (ebenfalls das Konzept).
+    \item \textbf{Beitrag zur Wissensbasis und Praxisrelevanz:} DSR unterstützt die Generierung neuer Erkenntnisse und stellt sicher, dass Forschungsergebnisse sowohl theoretisch fundiert als auch praktisch anwendbar sind, was mit den Zielen Ihres Projekts im Einklang steht. Untermethodik könnte hierbei eine Simulation sein. Variabel, je nach Verlauf der Forschung.
+\end{enumerate}
+
+
 \section{Aufbau der Arbeit}
