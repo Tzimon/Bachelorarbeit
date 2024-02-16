@@ -5,34 +5,34 @@
 \section{Problemstellung}
 
 In der Forschung und Entwicklung von Generativen KI-Modellen rückt die
-Rechengeschwindigkeit und Energieeffizienz zunehmend in den Fokus. [Quelle 5,
-S.1]. Die Autor*innen von Open AI bestätigen, dass die Wachstumsrate von
+Rechengeschwindigkeit und Energieeffizienz zunehmend in den Fokus\footcite[Vgl.][1]{luccioniPowerHungryProcessing2023}
+Die Autor*innen von Open AI bestätigen, dass die Wachstumsrate von
 Machine-Learning-Modellen die Effizienzrate von Computerchips schon längst
 übertroffen hat. So verdoppeln sich jede 3-4 Monate der Rechenbedarf dieser
 Modelle jedoch verdoppeln sich nach Moore’s Law die Leistung der Computerchips
-nur jede 2 Jahre. [Quelle 9, S. 1]
+nur jede 2 Jahre.\footcite[Vgl.][1]{darioamodeiAICompute}
 Angesichts der Probleme des steigenden Energieverbrauchs von Rechenzentren
 und den damit verbundenen Treibhausgasemissionen dieser, ist die Suche nach
 effizienteren Lösungen essenziell für die Zukunft. Weltweit steigern Datenzentren
 ihren Energieverbrauch jährlich um 20-40\%, wodurch sie 2022 etwa 1,3\% des
 globalen Energieverbrauchs und 1\% der energiebedingten globalen
-Treibhausgasemissionen verursacht haben. [Quelle 6, S.1]. Jedoch ist hier nicht zu
-erkennen, wie groß dabei der KI-Anteil zur Grundgesamtheit beiträgt.
+Treibhausgasemissionen verursacht haben.\footcite[Vgl.][1]{hintemannDataCenters20212022} 
+Jedoch ist hier nicht zu erkennen, wie groß dabei der KI-Anteil zur Grundgesamtheit beiträgt.
 
 Ein bereits bekannter Ansatz ist die Benutzung von KI-Beschleunigern basierend auf
 ASICs (Application-specific Integrated Circuits) - also Schaltungen, die
 anwendungsspezifisch verwendet werden, wie zum Beispiel Google TPUs (Tensor
-Processing Unit). [Quelle 8, S.39] Dies ist auch sinnvoll, da die Verwendung von
-Mehrzweckmodellen für diskriminierende Aufgaben im Vergleich zu
-aufgabenspezifischen Modellen energieintensiver ist. [Quelle 5, S.13] Ein
-alternatives vielversprechendes Konzept in der Forschung ist die Verwendung von
+Processing Unit).\footcite[Vgl.][39]{wittpahlKuenstlicheIntelligenzTechnologie2019} 
+Dies ist auch sinnvoll, da die Verwendung von Mehrzweckmodellen für diskriminierende Aufgaben im Vergleich zu
+aufgabenspezifischen Modellen energieintensiver ist.\footcite[Vgl.][5]{luccioniPowerHungryProcessing2023}
+Ein alternatives vielversprechendes Konzept in der Forschung ist die Verwendung von
 physikinspirierten Hardwarebeschleunigern, die primär bei Optimierungsalgorithmen
 eingesetzt werden aufgrund ihrer Fähigkeit Probleme schneller und effizienter als
-GPUs lösen zu können. [Quelle 11. S.1]
+GPUs lösen zu können.\footcite[Vgl.][1]{mohseniIsingMachinesHardware2022}
 Ein skalierbarer physikinspirierter Hardwarebeschleuniger (auch Ising-Maschine
 genannt), der die Leistung bestehender Standard-Digitalrechner übertrifft, könnte
 einen großen Einfluss auf praktische Anwendungen für eine Vielzahl von
-Optimierungsproblemen haben. [Quelle 11. S. 1]
+Optimierungsproblemen haben.\footcite[Vgl.][1]{mohseniIsingMachinesHardware2022}
 
 Solche physikinspirierten Hardwarebeschleuniger bieten durch ihre besondere
 Berechnungsweise Potenzial für eine effizientere Verarbeitung von
@@ -40,28 +40,29 @@ rechenintensiven Aufgaben. Konkret wird die Beschleunigung, anders als es bei
 digitalen Computern der Fall ist, durch die Berechnung rechenintensiver Aufgaben
 mit analogen Signalen erreicht. Die Implementierung auf dedizierter Hardware bietet
 darüber hinaus die Möglichkeit, die Parallelisierung von digitalen
-Hardwarebeschleunigern und analogem Rechnen auszunutzen. [Quelle 11. S.4].
+Hardwarebeschleunigern und analogem Rechnen auszunutzen.\footcite[Vgl.][4]{mohseniIsingMachinesHardware2022}
 
 Interessanterweise zeigen die Energiefunktionen von Hardwarebeschleunigern, die
 in Ising-Maschinen verwendet werden, große Parallelen zu denen in Boltzmann
 Maschinen, trotz ihrer unterschiedlichen Anwendungen, daher liegt es nahe, dass
-Ising Maschinen auch für KI gut funktionieren. [Quelle 2, S.10]. Ising-Maschinen
-zielen darauf ab, ihre Energie zu minimieren, wobei sie Energie als eine paarweise
-Interaktion von binären Variablen „Spins“ definieren. [Quelle 13, S.1] BoltzmannMaschinen hingegen sind energiebasierte neuronale Netzwerke, die
+Ising Maschinen auch für KI gut funktionieren.\footcite[Vgl.][10]{caiHarnessingIntrinsicNoise2019}
+Ising-Maschinen zielen darauf ab, ihre Energie zu minimieren, wobei sie Energie als eine paarweise
+Interaktion von binären Variablen „Spins“ definieren.\footcite[Vgl.][1]{wangOscillatorbasedIsingMachine2017} 
+BoltzmannMaschinen hingegen sind energiebasierte neuronale Netzwerke, die
 Klassifizierungen durchführen, indem sie jeder Konfiguration der Variablen eine
 skalare Energie zuordnen. Die Netzwerkenergie zu minimieren ist hierbei
-vergleichbar mit der Lösung des Optimierungsproblems [Quelle 12. S.2] Aktuelle
-Probleme mit Boltzmann-Maschinen umfassen die hohe Komplexität und
+vergleichbar mit der Lösung des Optimierungsproblems. \footcite[Vgl.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+Aktuelle Probleme mit Boltzmann-Maschinen umfassen die hohe Komplexität und
 Anforderungen an die All-to-All-Kommunikation zwischen Verarbeitungseinheiten,
 was ihre Implementierung auf herkömmlichen digitalen Computern ineffizient macht,
 sowie eine inhärent langsame Konvergenz in bestimmten Prozessen wie Simulated
-Annealing. [Quelle 12, S1] Diese Herausforderungen erschweren das Training und
-die Anwendung von Boltzmann-Maschinen insbesondere für große Datenmengen
-und komplexe Optimierungsaufgaben. [Quelle 12, S.2] Nichtsdestotrotz impliziert die
-Ähnlichkeit der beiden, dass Ising-Maschinen in der Lage sein könnten, dieses
+Annealing.\footcite[Vgl.][1]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+Diese Herausforderungen erschweren das Training und die Anwendung von Boltzmann-Maschinen insbesondere für große Datenmengen
+und komplexe Optimierungsaufgaben.\footcite[Vgl.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+Nichtsdestotrotz impliziert die Ähnlichkeit der beiden, dass Ising-Maschinen in der Lage sein könnten, dieses
 spezielle KI-Modell, energieeffizienter und mit höherer Rechengeschwindigkeit
 auszuführen. Aktuell existieren nur wenige Konzepte eine Implementierung von
-Boltzmann Maschinen auf Ising-Maschinen zu erreichen. Quelle 2 ist hier ein
+Boltzmann Maschinen auf Ising-Maschinen zu erreichen. Das Paper der Autoren Mahdi Nazm BojnordiEngin und Engin Ipek ist hier ein
 vielversprechender Ansatz, jedoch konnte nicht gezeigt werden, wie es auf einem
 richtigen Beschleunigerchip funktionieren würde.
 
