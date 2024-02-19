@@ -158,6 +158,22 @@
   file = {C:\Users\simon\Zotero\storage\LW5E6CXF\ai-and-compute.html}
 }
 
+@online{duModelBasedPlanning2021,
+  title = {Model {{Based Planning}} with {{Energy Based Models}}},
+  author = {Du, Yilun and Lin, Toru and Mordatch, Igor},
+  date = {2021-03-08},
+  eprint = {1909.06878},
+  eprinttype = {arxiv},
+  eprintclass = {cs, stat},
+  doi = {10.48550/arXiv.1909.06878},
+  url = {http://arxiv.org/abs/1909.06878},
+  urldate = {2024-02-19},
+  abstract = {Model-based planning holds great promise for improving both sample efficiency and generalization in reinforcement learning (RL). We show that energy-based models (EBMs) are a promising class of models to use for model-based planning. EBMs naturally support inference of intermediate states given start and goal state distributions. We provide an online algorithm to train EBMs while interacting with the environment, and show that EBMs allow for significantly better online learning than corresponding feed-forward networks. We further show that EBMs support maximum entropy state inference and are able to generate diverse state space plans. We show that inference purely in state space - without planning actions - allows for better generalization to previously unseen obstacles in the environment and prevents the planner from exploiting the dynamics model by applying uncharacteristic action sequences. Finally, we show that online EBM training naturally leads to intentionally planned state exploration which performs significantly better than random exploration.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Computer Science - Robotics,Statistics - Machine Learning,ungelesen,zitiert},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\VJYEAH2U\\Du et al_2021_Model Based Planning with Energy Based Models.pdf;C\:\\Users\\simon\\Zotero\\storage\\TVYW9SDL\\1909.html}
+}
+
 @book{fahlmanMassivelyParallelArchitectures1983,
   title = {Massively {{Parallel Architectures}} for {{AI}}: {{NETL}}, {{Thistle}}, and {{Boltzmann Machines}}.},
   shorttitle = {Massively {{Parallel Architectures}} for {{AI}}},
@@ -189,6 +205,24 @@
   langid = {ngerman},
   keywords = {ungelesen},
   file = {C:\Users\simon\Zotero\storage\F8N7CZ5G\Künstliche Intelligenz zwischen Utopie und Realitä.pdf}
+}
+
+@inproceedings{gustafssonEnergyBasedModelsDeep2020,
+  title = {Energy-{{Based Models}} for {{Deep Probabilistic Regression}}},
+  booktitle = {Computer {{Vision}} – {{ECCV}} 2020},
+  author = {Gustafsson, Fredrik K. and Danelljan, Martin and Bhat, Goutam and Schön, Thomas B.},
+  editor = {Vedaldi, Andrea and Bischof, Horst and Brox, Thomas and Frahm, Jan-Michael},
+  date = {2020},
+  series = {Lecture {{Notes}} in {{Computer Science}}},
+  pages = {325--343},
+  publisher = {{Springer International Publishing}},
+  location = {{Cham}},
+  doi = {10.1007/978-3-030-58565-5_20},
+  abstract = {While deep learning-based classification is generally tackled using standardized approaches, a wide variety of techniques are employed for regression. In computer vision, one particularly popular such technique is that of confidence-based regression, which entails predicting a confidence value for each input-target pair (x,~y). While this approach has demonstrated impressive results, it requires important task-dependent design choices, and the predicted confidences lack a natural probabilistic meaning. We address these issues by proposing a general and conceptually simple regression method with a clear probabilistic interpretation. In our proposed approach, we create an energy-based model of the conditional target density p(y|x), using a deep neural network to predict the un-normalized density from (x,~y). This model of p(y|x) is trained by directly minimizing the associated negative log-likelihood, approximated using Monte Carlo sampling. We perform comprehensive experiments on four computer vision regression tasks. Our approach outperforms direct regression, as well as other probabilistic and confidence-based methods. Notably, our model achieves a \$\$2.2\textbackslash\%\$\$2.2\%AP improvement over Faster-RCNN for object detection on the COCO dataset, and sets a new state-of-the-art on visual tracking when applied for bounding box estimation. In contrast to confidence-based methods, our approach is also shown to be directly applicable to more general tasks such as age and head-pose estimation. Code is available at https://github.com/fregu856/ebms\_regression.},
+  isbn = {978-3-030-58565-5},
+  langid = {english},
+  keywords = {ungelesen},
+  file = {C:\Users\simon\Zotero\storage\NAN4GFF3\Gustafsson et al_2020_Energy-Based Models for Deep Probabilistic Regression.pdf}
 }
 
 @online{hernandezMeasuringAlgorithmicEfficiency2020,
@@ -272,6 +306,23 @@
   file = {C:\Users\simon\Zotero\storage\UWNBRWXG\Hizzani et al. - 2023 - Memristor-based hardware and algorithms for higher.pdf}
 }
 
+@article{hopfieldNeuralNetworksPhysical1982,
+  title = {Neural Networks and Physical Systems with Emergent Collective Computational Abilities.},
+  author = {Hopfield, J J},
+  date = {1982-04},
+  journaltitle = {Proceedings of the National Academy of Sciences},
+  volume = {79},
+  number = {8},
+  pages = {2554--2558},
+  publisher = {{Proceedings of the National Academy of Sciences}},
+  doi = {10.1073/pnas.79.8.2554},
+  url = {https://www.pnas.org/doi/10.1073/pnas.79.8.2554},
+  urldate = {2024-02-19},
+  abstract = {Computational properties of use of biological organisms or to the construction of computers can emerge as collective properties of systems having a large number of simple equivalent components (or neurons). The physical meaning of content-addressable memory is described by an appropriate phase space flow of the state of a system. A model of such a system is given, based on aspects of neurobiology but readily adapted to integrated circuits. The collective properties of this model produce a content-addressable memory which correctly yields an entire memory from any subpart of sufficient size. The algorithm for the time evolution of the state of the system is based on asynchronous parallel processing. Additional emergent collective properties include some capacity for generalization, familiarity recognition, categorization, error correction, and time sequence retention. The collective properties are only weakly sensitive to details of the modeling or the failure of individual devices.},
+  keywords = {ungelesen},
+  file = {C:\Users\simon\Zotero\storage\BF4BJIPP\Hopfield_1982_Neural networks and physical systems with emergent collective computational.pdf}
+}
+
 @article{huembeliPhysicsEnergybasedModels2022,
   title = {The Physics of Energy-Based Models},
   author = {Huembeli, Patrick and Arrazola, Juan Miguel and Killoran, Nathan and Mohseni, Masoud and Wittek, Peter},
@@ -287,7 +338,7 @@
   urldate = {2024-02-19},
   abstract = {Energy-based models (EBMs) are experiencing a resurgence of interest in both the physics community and the machine learning community. This article provides an intuitive introduction to EBMs, without requiring any background in machine learning, connecting elementary concepts from physics with basic concepts and tools in generative models, and finally giving a perspective where current research in the field is heading. This article, in its original form, was written as an online lecture note in HTML and Javascript and contains interactive graphics. We recommend the reader to also visit the interactive version.},
   langid = {english},
-  keywords = {Energy-based models,Gibbs sampling,Machine learning,Spin glasses,ungelesen},
+  keywords = {Energy-based models,gelesen,Gibbs sampling,Machine learning,Spin glasses,ungelesen,zitiert},
   file = {C:\Users\simon\Zotero\storage\5SE9BGQ4\The physics of energy-based models.pdf}
 }
 
@@ -462,6 +513,21 @@
   file = {C:\Users\simon\Zotero\storage\JAGD4W2N\An Overview of Restricted Boltzmann Machines.pdf}
 }
 
+@online{verdonQuantumHamiltonianBasedModels2019,
+  title = {Quantum {{Hamiltonian-Based Models}} and the {{Variational Quantum Thermalizer Algorithm}}},
+  author = {Verdon, Guillaume and Marks, Jacob and Nanda, Sasha and Leichenauer, Stefan and Hidary, Jack},
+  date = {2019-10-04},
+  eprint = {1910.02071},
+  eprinttype = {arxiv},
+  eprintclass = {quant-ph},
+  url = {http://arxiv.org/abs/1910.02071},
+  urldate = {2024-02-19},
+  abstract = {We introduce a new class of generative quantum-neural-network-based models called Quantum Hamiltonian-Based Models (QHBMs). In doing so, we establish a paradigmatic approach for quantum-probabilistic hybrid variational learning, where we efficiently decompose the tasks of learning classical and quantum correlations in a way which maximizes the utility of both classical and quantum processors. In addition, we introduce the Variational Quantum Thermalizer (VQT) for generating the thermal state of a given Hamiltonian and target temperature, a task for which QHBMs are naturally well-suited. The VQT can be seen as a generalization of the Variational Quantum Eigensolver (VQE) to thermal states: we show that the VQT converges to the VQE in the zero temperature limit. We provide numerical results demonstrating the efficacy of these techniques in illustrative examples. We use QHBMs and the VQT on Heisenberg spin systems, we apply QHBMs to learn entanglement Hamiltonians and compression codes in simulated free Bosonic systems, and finally we use the VQT to prepare thermal Fermionic Gaussian states for quantum simulation.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Quantum Physics,ungelesen,zitiert},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\3HTPGVXD\\Verdon et al_2019_Quantum Hamiltonian-Based Models and the Variational Quantum Thermalizer.pdf;C\:\\Users\\simon\\Zotero\\storage\\5WMRJVH6\\1910.html}
+}
+
 @online{wangOscillatorbasedIsingMachine2017,
   title = {Oscillator-Based {{Ising Machine}}},
   author = {Wang, Tianshi and Roychowdhury, Jaijeet},
@@ -492,6 +558,23 @@
   langid = {ngerman},
   keywords = {Arbeitswelt 4.0,Breitbandausbau,Datenaufbereitung,Digitale Geschäftsmodelle,Digitales Lernen,Echtzeitvernetzung,Gesellschaftlicher Wandel,Industrie 4.0,Open Access,ungelesen,Wertschöpfung und Arbeitsmarkt,zitiert},
   file = {C:\Users\simon\Zotero\storage\IVHYC2WF\Künstliche Intelligenz.pdf}
+}
+
+@inproceedings{zhaiDeepStructuredEnergy2016,
+  title = {Deep {{Structured Energy Based Models}} for {{Anomaly Detection}}},
+  booktitle = {Proceedings of {{The}} 33rd {{International Conference}} on {{Machine Learning}}},
+  author = {Zhai, Shuangfei and Cheng, Yu and Lu, Weining and Zhang, Zhongfei},
+  date = {2016-06-11},
+  pages = {1100--1109},
+  publisher = {{PMLR}},
+  issn = {1938-7228},
+  url = {https://proceedings.mlr.press/v48/zhai16.html},
+  urldate = {2024-02-19},
+  abstract = {In this paper, we attack the anomaly detection problem by directly modeling the data distribution with deep architectures. We hence propose deep structured energy based models (DSEBMs), where the energy function is the output of a deterministic deep neural network with structure. We develop novel model architectures to integrate EBMs with different types of data such as static data, sequential data, and spatial data, and apply appropriate model architectures to adapt to the data structure. Our training algorithm is built upon the recent development of score matching (Hyvarinen, 2005), which connects an EBM with a regularized autoencoder, eliminating the need for complicated sampling method. Statistically sound decision criterion can be derived for anomaly detection purpose from the perspective of the energy landscape of the data distribution. We investigate two decision criteria for performing anomaly detection: the energy score and the reconstruction error. Extensive empirical studies on benchmark anomaly detection tasks demonstrate that our proposed model consistently matches or outperforms all the competing methods.},
+  eventtitle = {International {{Conference}} on {{Machine Learning}}},
+  langid = {english},
+  keywords = {ungelesen,zitiert},
+  file = {C:\Users\simon\Zotero\storage\Y4E93TJV\Deep Structured Energy Based Models for Anomaly Detection.pdf}
 }
 
 @article{zhangOverviewRestrictedBoltzmann2018,
