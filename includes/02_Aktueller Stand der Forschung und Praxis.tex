@@ -23,11 +23,13 @@ Durch Gleichung 3 kann erklärt werden wieso es nicht berechenbar ist.
 
 ->RBMs einführen und sagen warum Training vereinfacht ist
 
+\subsection{Energy-based models}
+
 
 An \ac{EBM} is a type of statistical model where the likelihood of a particular state is determined by an energy function.\footcite[Vgl.][2]{huembeliPhysicsEnergybasedModels2022}
 Since 1982, those models have been continuously emerging in the machine learning field when J.J. Hopfield introduced the Hopfield Network.\footcite[Vgl.][]{hopfieldNeuralNetworksPhysical1982}
 Current developments include their use in reinforcement learning, potential replacements for discriminators in generative adversarial networks and for quantum \ac{EBM}s.\footnote{Vgl.\cite{verdonQuantumHamiltonianBasedModels2019}, p. 1; Vgl.\cite{duModelBasedPlanning2021}, p. 1}
-The underlying idea behind this \ac{EBM}s is to establish a probabilistic physical system that is able to learn and memorize patterns but most importantly generalize it.\footcite[Vgl.][2]{huembeliPhysicsEnergybasedModels2022} 
+The underlying idea behind \ac{EBM}s is to establish a probabilistic physical system that is able to learn and memorize patterns but most importantly generalize it.\footcite[Vgl.][2]{huembeliPhysicsEnergybasedModels2022} 
 Specifically it involes learning an energy function \(E_{\theta}(x) \in \mathbb{R}\) and assigning the low energy to the observed data \(x_i\) and high energy to other values \(x\).\footcite[Vgl.][330]{gustafssonEnergyBasedModelsDeep2020}
 The total energy \( E(x) \) of any given state of the system can be expressed through the following equation: 
 \begin{equation}
@@ -46,10 +48,10 @@ The `partition function', \( Z \), is given by summing over all possible pairs o
     Z = \sum_x \exp\left(-\frac{E(x)}{T}\right)
 \end{equation}
 
-The use of the maximum likelihood estimator for \( Z \) is impractical due to the requirement of summing over all possible states, which leads to an exponential increase in the number of states for larger systems.\footcite[Vgl.][2-3]{zhaiDeepStructuredEnergy2016}
+It is worth mentioning that using the maximum likelihood estimator for \( Z \) is impractical due to the requirement of summing over all possible states, which leads to an exponential increase in the number of states for larger systems.\footcite[Vgl.][2-3]{zhaiDeepStructuredEnergy2016}
 
 
-\subsection{Konzept und Anwendung des Modells }
+\subsection{Konzept und Anwendung des Modells}
 
 A \ac{BM} is a symmetrical energy-based network consisting of neurons.\footcite[Vgl.][260]{amariInformationGeometryBoltzmann1992}
 The neurons of the network can be split into two functional groups, a set of visible neurons and a set of hidden neurons.\footcite[Vgl.][154]{ackleyLearningAlgorithmBoltzmann1985}
@@ -82,11 +84,7 @@ As early as 1985, one of the founding fathers of artificial intelligence, ``Geof
 In the next step, it is possible to generate examples with the same probability distribution as the examples shown.
 
 
-\subsection{Energiefunktion}
-\subsection{Training von BMs}
-
-
-
+\subsection{Energiefunktion, Training von BMs}
 
 
 If the diagonal elements \( L \) and \( J \) of the general \ac{BM} introduced earlier, are set to 0 the known model of a \ac{RBM} establishes shown in fig.2.\footcite[Vgl.][449]{salakhutdinovDeepBoltzmannMachines2009}
@@ -103,6 +101,8 @@ E(v, h) = - \sum_{i \in \text{visible}} a_i v_i - \sum_{j \in \text{hidden}} b_j
 \end{equation}
 
 where \( v_i, h_j \) are the binary states of visible unit \( i \) and hidden unit \( j \), \( a_i, b_j \) are their biases and \( w_{ij} \) is the weight between them.\footcite[Vgl.][3-4]{hintonPracticalGuideTraining2012a}
+
+\subsection{Restriced Boltzmann Machine}
 
 
 \subsubsection{Markov-Chain-Monte-Carlo-Verfahren}
