@@ -38,6 +38,9 @@ Since 1982, those models have been continuously emerging in the machine learning
 Current developments include their use in reinforcement learning, potential replacements for discriminators in generative adversarial networks and for quantum \ac{EBM}s.\footnote{Vgl.\cite{verdonQuantumHamiltonianBasedModels2019}, p. 1; Vgl.\cite{duModelBasedPlanning2021}, p. 1}
 The underlying idea behind \ac{EBM}s is to establish a probabilistic physical system that is able to learn and memorize patterns but most importantly generalize it.\footcite[Vgl.][2]{huembeliPhysicsEnergybasedModels2022} 
 Specifically it involes learning an energy function \(E_{\theta}(x) \in \mathbb{R}\) and assigning the low energy to the observed data \(x_i\) and high energy to other values \(x\).\footcite[Vgl.][330]{gustafssonEnergyBasedModelsDeep2020}
+
+EINFÜGEN VON EINER ENERGIELANDSCHAFT UND ERKLÄREN
+
 The assumption of the underlying distribution function \( P(x) \)  is equal to the solution of the optimization problem:
 \begin{equation}
     P(x) = \frac{1}{Z} \exp\left(-\frac{E(x)}{T}\right),
@@ -74,17 +77,34 @@ In the following figure \ref{fig1}, a general \ac{BM} is depicted, where the upp
     \caption{figure of a general Boltzmann Machine}
     \label{fig1}
 \end{figure}
-It contains a set of visible units \( v \in \{0, 1\}^D \), and a set of hidden units \( h \in \{0, 1\}^P \) (see Fig. 1). The energy of the state \( \{v, h\} \) is defined as:
-
+It contains a set of visible units \( v \in \{0, 1\} \), and a set of hidden units \( h \in \{0, 1\} \) (see Fig. 1). The energy of the state \( \{v, h\} \) is defined as:
 \begin{equation}
 E(v, h; \theta) = -\frac{1}{2} v^T L v - \frac{1}{2} h^T J h - v^T W h
 \end{equation}
 
-where \( \theta = \{W, L, J\} \) are the model parameters.\footcite[448][Vgl.]{salakhutdinovDeepBoltzmannMachines2009}
+where \( \theta = \{W, L, J\} \) are the model parameters.\footcite[Vgl.][448]{salakhutdinovDeepBoltzmannMachines2009}
 \( W, L, J \) represent visible-to-hidden, visible-to-visible and hidden-to-hidden weights.
- 
+The individual neurons can be made to try to minimize the global energy by setting the right assumptions.\footcite[Vgl.][150]{ackleyLearningAlgorithmBoltzmann1985}
+Entering a particular input to the machine, the system will find the minimum energy configuration that can illustrate the input.\footcite[Vgl.][150]{ackleyLearningAlgorithmBoltzmann1985}
+A simple method to find a local energy minimum is to switch into wichever of the two states of a neuron hold the lower energy given the current state of the other neurons.\footcite[Vgl.][110]{fahlmanMassivelyParallelArchitectures1983}  
+The exact reason for this is the following: ``If all the connection strengths are
+symmetrical, which is typically the case for constraint satisfaction
+problems, each unit can compute its effect on the total energy from
+information that is locally available.''\footcite[110]{fahlmanMassivelyParallelArchitectures1983}  
+By inserting the function 2.4 into the earlier introduced KL-divergence 2.2 and doing gradient descend the following learning rule to update the weights and biases results\footcite[Vgl.][5]{hintonPracticalGuideTraining2012}:
 
-The network can update the weights ``W'' that exist between the neurons through specific training rules based on the observations that served as input.\footcite[Vgl.][1-2]{barraEquivalenceHopfieldNetworks2012}
+\begin{equation}
+    \Delta w_{ij} = \epsilon ( \langle v_i h_j \rangle_{\text{data}} - \langle v_i h_j \rangle_{\text{model}} )
+\end{equation}
+
+---
+Deep Boltzmnn Machines, Kann nicht trainiert werden da exponentiell
+
+---
+
+The network can now update the weights ``W'' that exist between the neurons through the training rule based on the observations that served as input.\footcite[Vgl.][1-2]{barraEquivalenceHopfieldNetworks2012}
+
+Performing exact maximum likelihood learning in this model is intractable because exact computation of the data predictions and the model predictions takes a time that is exponential in the number of hidden units.\footcite[Vgl.][449]{salakhutdinovDeepBoltzmannMachines2009}
 
 As early as 1985, one of the founding fathers of artificial intelligence, ``Geoffrey Hinton'', was aware that an \ac{BM} is able to learn its underlying features by looking at data from a domain and developing a generative internal model.\footcite[Vgl.][148]{ackleyLearningAlgorithmBoltzmann1985}
 In the next step, it is possible to generate examples with the same probability distribution as the examples shown.
