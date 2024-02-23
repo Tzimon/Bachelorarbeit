@@ -1,28 +1,39 @@
-\chapter{Aktueller Stand der Forschung und Praxis (generell auch wiedergeben von aktuell existierenden Lösungsmustern)}
+\chapter{Aktueller Stand der Forschung und Praxis}
 
 \section{Ressourcenverbrauch bei KI-Modellen}
 \subsection{Ressourcenverbrauch bei KI-Modellen}
+
+substantial challenges in high consumption of computational, memory, energy, and financial resources, especially in environments with limited resource capabilities\footcite[Vgl.][1-2]{baiEfficiencySystematicSurvey2024}
+
 \subsubsection{Nachhaltigkeit}
 \subsubsection{Stromverbrauch}
 \subsubsection{Rechenleistung begrenzt, KI-Modelle wachsen schneller als verfügbare Leistung}
 
-\section{Deep Neural Network - Boltzmann Maschinen (Erstmal DNN erklären generell)}
+\section{Neural Networks - Boltzmann Machines}
 
-(Erklären von Deep Neurol Network und Neurol Network) -> Anwendungsbereiche Spracherkennung, Image recognition
-Solche Deep Neural Networks, sind sehr ressourceneffizient und möglicher Forschungsbereich für Nutzung des Hardwarebeschleunigers
-Idee dabei, die repräsentationspower von energybased model höher als bei LLMs, mit weniger Neuronen besser als LLMs 
+In recent years, artificial neural networks have first revolutionised computer vision but also other fields, such as natural
+language processing, controling and planning (playing games: e.g., Atari and Go), and navigational tasks (finding the shortest path on a map).\footcite[Vgl.][305]{cichyDeepNeuralNetworks2019}
+Nowadays, neural networks have reached nearly every feld of science and are a crucial part of various real world applications.\footcite[Vgl.][1513]{gawlikowskiSurveyUncertaintyDeep2023}
+Particularly in the last two years, artificial intelligence has also garnered widespread interest from the public, especially regarding chatbots like ChatGPT and Google Bard.\footcite[Vgl.][1-2]{singhChatGPTGoogle2023}  
+The most impoortant feature of a neural network-based system that are inspired by our brain, is that they can learn and adapt to data.\footcite[Vgl.][305]{cichyDeepNeuralNetworks2019}
 
+Internally, neural networks are computational models that consist of many simple processing units, called neurons that work together in parallel within interconnected layers.\footcite[Vgl.][305]{cichyDeepNeuralNetworks2019}
+They consist out of a network architecture, which describes the layout and how the neurons are wired. Secondly, they have a optimization function which specifies the goals persued in the learning process.\footcite[Vgl.][1583]{durstewitzDeepNeuralNetworks2019}
+Lastly, there is a training algorithm that varies all of the hyperparameters, like connection strengths between neurons, training iterations, the learning rate, etc..\footcite[Vgl.][1583]{durstewitzDeepNeuralNetworks2019}
+When these interconnected layers are stacked on top of each other the network is called deep.\footcite[Vgl.][305]{cichyDeepNeuralNetworks2019}
+Currently, \ac{DNN}s can have up to 1200 interconnected layers that equal to more than 16 million neurons inside the network.\footcite[Vgl.][2]{mallComprehensiveReviewDeep2023}
+In genreal, Deep learning methods can be seen as subset of machine learning methods and are today's fundament of artificial intelligence.\footcite[Vgl.][1583]{durstewitzDeepNeuralNetworks2019}
+For example some regression tasks within computer vision in \ac{DNN} include object detection, medical image registration, head- and body-pose estimation, age estimation and visual tracking.\footcite[Vgl.][325-326]{gustafssonEnergyBasedModelsDeep2020}
+Such models can make use of the availability of the recent results in the field of neural networks and deep learning, leading to highly performing, yet very large neural networks with millions of parameters.\footcite[Vgl.][152]{marinoDeepNeuralNetworks2023}
+As a result, such models often have a negative effect on the environment in terms of unnecessary energy consumption and a limitation to their deployment on low-resource devices because they are excessively oversized and redundant.\footcite[Vgl.][152]{marinoDeepNeuralNetworks2023}
 
-Some regression tasks within computer vision in \ac{DNN} include object detection, medical image registration, head- and body-pose estimation, age estimation and visual tracking.\footcite[Vgl.][325-326]{gustafssonEnergyBasedModelsDeep2020}
-
-->RBMs einführen und sagen warum Training vereinfacht ist
 
 \subsection{Energy-based models}
 
-
 An \ac{EBM} is a type of statistical model where the likelihood of a particular state is determined by an energy function.\footcite[Vgl.][2]{huembeliPhysicsEnergybasedModels2022}
-Since 1982, those models have been continuously emerging in the machine learning field when J.J. Hopfield introduced the Hopfield Network.\footcite[Vgl.][]{hopfieldNeuralNetworksPhysical1982}
+Since 1982, those statistical neural network models have been continuously emerging in the machine learning field when J.J. Hopfield introduced the Hopfield Network.\footcite[Vgl.][]{hopfieldNeuralNetworksPhysical1982}
 Current developments include their use in reinforcement learning, potential replacements for discriminators in generative adversarial networks and for quantum \ac{EBM}s.\footnote{Vgl.\cite{verdonQuantumHamiltonianBasedModels2019}, p. 1; Vgl.\cite{duModelBasedPlanning2021}, p. 1}
+In addition to that, Open AI showed that \ac{EBM}s are useful models across a wide variety of tasks loike achieving state-of-the-art out-of-distribution classification and continual online class learning to name a few.\footcite[Vgl.][1-2]{duImplicitGenerationGeneralization2020}
 The underlying idea behind \ac{EBM}s is to establish a probabilistic physical system that is able to learn and memorize patterns but most importantly generalize it.\footcite[Vgl.][2]{huembeliPhysicsEnergybasedModels2022} 
 Especially, it involes learning an energy function \(E_{\theta}(x) \in \mathbb{R}\) and assigning the low energy to observed data \(x_i\) and high energy to other values \(x\).\footcite[Vgl.][330]{gustafssonEnergyBasedModelsDeep2020}
 \begin{figure}[H]
@@ -184,8 +195,8 @@ Often the process can be stopped after only sampling a very small number of step
 One general problem that occurs in the learning process of a \ac{BM} is that it is both time-consuming and difficult.\footcite[Vgl.][1-2]{fischerIntroductionRestrictedBoltzmann2012}
 This is because sampling from an undirected graphical model is not straightforward and therefore \ac{RBM}s can make use
 of \ac{MCMC} proposed methods like Contrastive Divergence and Metropolis Hastings.\footcite[Vgl.][2]{fischerIntroductionRestrictedBoltzmann2012}
-In addition to that the selection of hyperparameters can be difficult since for the training a practical model the a large hyper-parameter space needs to be explored.\footcite[Vgl.][536]{larochelleClassificationUsingDiscriminative2008}
-Especially finding the right size of the hidden layer, the learning rate and number of training iteration but also the method for calculating activation probabilities(Contrastive Divergence, Metropolis Hastings, etc.) can be seen as art.
+In addition to that, the selection of hyperparameters can be difficult since for the training of a practical model a large hyper-parameter space needs to be explored.\footcite[Vgl.][536]{larochelleClassificationUsingDiscriminative2008}
+Especially finding the right size of the hidden layer, the learning rate and number of training iterations but also the method for calculating activation probabilities(Contrastive Divergence, Metropolis Hastings, etc.) can be seen as art.
 Furthermore, training can become unstable due to the system's low temperature, which impacts the training negatively.\footcite[Vgl.][3-4]{huembeliPhysicsEnergybasedModels2022}
 A lower temperature reduces the system's possbility to explore the energy landscape thoroughly, leading to the false selection of local minima instead of finding the global minimum.
 
