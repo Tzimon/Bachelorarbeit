@@ -188,7 +188,40 @@ What this means is initializing the visible units with a real data input for exa
 Often the process can be stopped after only sampling a very small number of steps (often only one).\footcite[Vgl.][646]{larochelleLearningAlgorithmsClassification2012}
 
 
-\textbf{Metropolis Hastings:}
+\textbf{Metropolis-Hastings:} The Metropolis-Hastings algorithm, often only called Metropolis algorithm, is a technique out of \ac{MCMC} class techniques.\footcite[Vgl.][1]{patronOptimalRelaxationRate2024}
+The Metropolis-Hastings method was inveted by Metropolis et al. in 1953 when he noticed, that for an intractable distribution with too many states can be seen as a limiting distribution of Markov chains.\footcite[Vgl.][1087-1092]{metropolisEquationStateCalculations1953}
+The goal of the technique is to create a sequence of correlated steps from a random walk that, after enough iterations, makes it possible to sample a desired target probability distribution.\footcite[Vgl.][1]{patronOptimalRelaxationRate2024} 
+The intractable distribution to handle with the Metropolis-Hastings technique in the case of \ac{RBM}s is equation 2.3.
+An Interpretation of the method can be expressed as: "A visitor to a museum is forced by a general blackout to watch
+a painting with a small torch.
+Due to the narrow beam of the torch, the person cannot get a global view of the painting but can proceed along this painting until all parts have been seen."\footcite[Vgl.][2]{robertMetropolisHastingsAlgorithm2016}
+The version already adjusted for \ac{RBM}s incorporates the following functionality of the Metropolis technique:
+
+First, select a random or given configuarion $x_{\text{old}}$ of a \ac{RBM} that sets holds the states of all visible and hidden neurons.\footcite[Vgl.][65]{beichlMetropolisAlgorithm2000}
+Secondly, the energy of the configuration, noted as  $E_{\text{old}}$, must be calculated using Equation 2.6, as previously introduced. Subsequently, this energy value is stored.
+Thirdly, the configuration gets slightly updated by picking one random neuron and changing the state of it from 0 to 1 or vice versa.\footcite[Vgl.][1]{rosenthalOptimalProposalDistributions2009}
+This new state is stored as $x_{\text{new}}$. Following that the energy of the new configuration $E_{\text{new}}$ is calculated and stored.
+Now the two energy values are compared and if $E_{\text{new}}$ < $E_{\text{old}}$ the new configuration will be accepted and $x_{\text{old}}$ = $x_{\text{new}}$.\footcite[Vgl.][1-2]{patronOptimalRelaxationRate2024}
+If $E_{\text{new}}$ > $E_{\text{old}}$ then there are some extra steps to be followed: 
+
+The flip probability is calculated as $p=\exp\left(-\frac{E_{\text{new}}-E_{\text{old}}}{kT}\right)$.
+\( KT \) is interpreted as the temperature in the network and with higher temperature it increases
+the acitivation probability leading to an faster exploration through the landscape but with less details.\footcite[Vgl.][1-9]{liTemperatureBasedRestricted2016}
+For \ac{RBM}s \( KT \) is assumed to be 1. (FOOTCITE von Fabian fehlt). In the following figure 5 the resulting probability function is shown.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{graphics/Exponential flip probability function.png}
+    \caption{Figure of the exponential flip probability function}
+\end{figure}
+
+In the next step a uniform random number $r$ between 0 and 1 is generated.
+After generating $r$ the configuration will be accepted if $r \leq p$ (i.e., $x_{\text{old}}=x_{\text{new}}$).\footcite[Vgl.][2-3]{patronOptimalRelaxationRate2024}
+Otherwise, a rejection takes place if $r > P$ (i.e., $x_{\text{old}}=x_{\text{old}}$).
+
+Finally, the configuration $x_{\text{old}}$ can be stored and the process repeats beginning from step 2 on.\footcite[Vgl.][17]{patronOptimalRelaxationRate2024}
+After repeating enough times the activation probability for each neuron can be calculated by summing over all samples $(x_1+x_2+x_3+\ldots)$ and the result is divided by the total number of samples.
+
 
 \subsection{Current Problems witht BMs and RBMs}
 
