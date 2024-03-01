@@ -246,6 +246,65 @@ A lower temperature reduces the system's possbility to explore the energy landsc
 \section{Memristor Hopfield Network}
 \subsection{Memristor}
 \subsection{Hopfield Network}
+
+A Hopfield Network is also an \ac{EBM} and belongs to the field of recurrent neural networks.\footcite[Vgl.][35]{dramschChapterOne702020}
+The structure of the network consists of only one single layer with binary valued neurons inside.\footcite[Vgl.][7]{ahadNeuralNetworksWireless2016}
+Therefore, the neurons state can either be \{ 1, 0 \} or \{ 1, -1 \}.
+The connections between the neurons are symmetrical, which means that the weights of the connections are them same in either direction.\footcite[Vgl.][7]{ahadNeuralNetworksWireless2016}
+Initially, the primary applications of this type of network were to serve as storage for associative patterns and to facilitate pattern retrieval.\footcite[Vgl.][2]{ramsauerHopfieldNetworksAll2021}
+In practive given a query pattern a Hopfield Network can retrive a pattern that is most similar or an is an average of similar patterns.\footcite[Vgl.][2]{ramsauerHopfieldNetworksAll2021}
+Surprisingly, since Hopfield networks were introduced by J.J Hopfield in 1982 the storage capacity got increased over time but the fundamentals stayed the same.\footnote{Vgl.\cite{hopfieldNeuralNetworksPhysical1982}, p. 2554-2558; Vgl.\cite{ramsauerHopfieldNetworksAll2021}, p. 2}
+In following figure 6 an example of a Hopfield Network can be seen.\footcite[Vgl.][1-2]{yaoMassivelyParallelAssociative2013}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\linewidth]{graphics/Hopfield_Netzwerk.png}
+    \caption{Figure of a hopfield network}
+\end{figure}
+The exemplary network has 6 neurons and bidirectional weigths \( W_{ij} \) between the neurons. 
+In addition to that, a Hopfield network has no input or output layer.\footcite[Vgl.][3]{yaoMassivelyParallelAssociative2013}
+The main goal is to find the values for each neuron in the network given a specific input that minimizes the total energy of the system.\footcite[Vgl.][7]{ahadNeuralNetworksWireless2016}
+The minimum energy is then equal to the state where the network is able to perform as a memory item.\footcite[Vgl.][7]{ahadNeuralNetworksWireless2016}
+This energy state can be calculated with the following energy equation\footcite[Vgl.][2556]{hopfieldNeuralNetworksPhysical1982}: 
+
+\begin{equation}
+    E = -\frac{1}{2} \sum_{i \neq j} T_{ij} V_i V_j .
+\end{equation}
+
+This energy function invented by Hopfield has big similarities with a \ac{BM} when comparing to the
+equation 2.4. When comparing a Hopfield Network, they seek to achieve the effect of changing node activation
+on the overall energy of the network but \ac{BM}s replace this with the
+probability of a certain node being activated on the network energy.\footcite[Vgl.][7]{ahadNeuralNetworksWireless2016}
+
+
+Dasselbe wie eine BM - Energiefunktion gleich und Zustände sind diesselbe (0 und 1)
+
+Training von Hopfield Netzwerken - Hebbeian Learning (nicht relevant)
+
+Wie benutzen das Hopfield Netzwerk um die RBM zu implementieren,
+
+Keine Layer Struktur beim Hopfield Netzwerk, traditionell nicht
+
+Relevant: Algorhitmus mit dem Mann Hopfield Netzwerke updated interessant, Update algorhitmus Nutzen zum trainieren
+von einem RBM - Updaten der Zustände (0, 1) 
+
+-> Konzeptionell Art des Updates mit keiner Temperatur wie bei MCMC 
+Unterschied von MCMC zu Hopfield Netzwerk -> Zufällige Konfiguration und minimale Energie finden. Jedoch hat ein Hopfield
+Netzwerk keine Temperatur 
+
+-> Starte zufällige Konfiguration
+-> Wähle ein Neuron aus und Berechne Summe und vergleiche mit Bias, 
+-> Update wenn thresshold überschritten 1 und dann auf 0 
+-> Speichern der neuen Konfuguration 
+-> Starte iteration von gespeicherter Konfiguration 
+-> Am Ende habe ich 10000 Vektoren (Die Konfigurationen) -> V1 Neuron wurde so und so oft aktiviert und ich muss average
+über das neuron und habe dadurch die Aktivierungswarscheinlichkeit.
+
+
+-Testen der Aktivierungsfunktion, wenn ich ein Neuron trainiere und dann Mitteln 
+- Von vornerein auf Netzwerk Basis arbeiten mit mehren Neuron, jedoch für 1 Neuron testen
+
+
 \subsection{Crossbar}
-\subsection{Output Hopfield Networtk}
+\subsection{Output Hopfield Network}
 \subsection{Noisy HNN}
