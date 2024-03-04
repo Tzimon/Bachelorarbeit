@@ -1,4 +1,28 @@
 \chapter{Implementierung/Laborexperiment der Simulator Pipeline}
+
+Hopfield Netzwerk aktivierungsfunktion der Updating methode
+
+-> Konzeptionell Art des Updates mit keiner Temperatur wie bei MCMC 
+Unterschied von MCMC zu Hopfield Netzwerk -> Zufällige Konfiguration und minimale Energie finden. Jedoch hat ein Hopfield
+Netzwerk keine Temperatur 
+
+-> Starte zufällige Konfiguration
+-> Wähle ein Neuron aus und Berechne Summe und addiere mit Bias, 
+-> Update wenn thresshold überschritten 1 und dann auf 0 
+-> Speichern der neuen Konfuguration 
+-> Starte iteration von gespeicherter Konfiguration 
+-> Am Ende habe ich 10000 Vektoren (Die Konfigurationen) -> V1 Neuron wurde so und so oft aktiviert und ich muss average
+über das neuron und habe dadurch die Aktivierungswarscheinlichkeit.
+
+-Aktivierungsfunktion einfügen (Binary Step und verfleich zu sigmoid von Abb.4)
+
+
+-Testen der Aktivierungsfunktion, wenn ich ein Neuron trainiere und dann Mitteln 
+- Von vornerein auf Netzwerk Basis arbeiten mit mehren Neuron, jedoch für 1 Neuron testen
+
+
+
+
 \section{Zielsetzung und Forschungsmethodik}
 \section{Aufbau der Simulator Pipeline}
 \section{KI-Bibliothek Scikit-Learn}
