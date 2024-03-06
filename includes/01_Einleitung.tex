@@ -2,113 +2,107 @@
 
 
 \section{Motivation}
-\section{Problemstellung}
 
-In der Forschung und Entwicklung von Generativen KI-Modellen rückt die
-Rechengeschwindigkeit und Energieeffizienz zunehmend in den Fokus\footcite[Vgl.][1]{luccioniPowerHungryProcessing2023}
-Die Autor*innen von Open AI bestätigen, dass die Wachstumsrate von
-Machine-Learning-Modellen die Effizienzrate von Computerchips schon längst
-übertroffen hat. So verdoppeln sich jede 3-4 Monate der Rechenbedarf dieser
-Modelle jedoch verdoppeln sich nach Moore’s Law die Leistung der Computerchips
-nur jede 2 Jahre.\footcite[Vgl.][1]{darioamodeiAICompute}
-Angesichts der Probleme des steigenden Energieverbrauchs von Rechenzentren
-und den damit verbundenen Treibhausgasemissionen dieser, ist die Suche nach
-effizienteren Lösungen essenziell für die Zukunft. Weltweit steigern Datenzentren
-ihren Energieverbrauch jährlich um 20-40\%, wodurch sie 2022 etwa 1,3\% des
-globalen Energieverbrauchs und 1\% der energiebedingten globalen
-Treibhausgasemissionen verursacht haben.\footcite[Vgl.][1]{hintemannDataCenters20212022} 
-Jedoch ist hier nicht zu erkennen, wie groß dabei der KI-Anteil zur Grundgesamtheit beiträgt.
+In the research and development of generative AI models, the computing speed and energy efficiency
+are increasingly becoming the focus\footcite[Vgl.][1]{luccioniPowerHungryProcessing2023}
+The authors of Open AI confirm, that the growth rate of machine learning models 
+surpassed the growth of efficiency within computerchips.
+The required computing power of the models double each 3-4 months but the power of computerchips, after Moore’s Law 
+double only every 2 years.\footcite[Vgl.][1]{darioamodeiAICompute}
+Focusing on current problems like rising energy consumption of datacenters and the associated
+greenhouse gas emissions, the search for more efficient solutions is essential for the future.
+Worldwide energy consumption of datacaenters increase yearly around 20-40\%, which
+means that in 2022 about 1,3\% of the total global energy consumption and about 1\%
+of energy-related global greenhouse gas emissions was caused by them.\footcite[Vgl.][1]{hintemannDataCenters20212022} 
+However, it is not clear how large the AI share contributed to the total numbers.
 
-Ein bereits bekannter Ansatz ist die Benutzung von KI-Beschleunigern basierend auf
-ASICs (Application-specific Integrated Circuits) - also Schaltungen, die
-anwendungsspezifisch verwendet werden, wie zum Beispiel Google TPUs (Tensor
-Processing Unit).\footcite[Vgl.][39]{wittpahlKuenstlicheIntelligenzTechnologie2019} 
-Dies ist auch sinnvoll, da die Verwendung von Mehrzweckmodellen für diskriminierende Aufgaben im Vergleich zu
-aufgabenspezifischen Modellen energieintensiver ist.\footcite[Vgl.][5]{luccioniPowerHungryProcessing2023}
-Ein alternatives vielversprechendes Konzept in der Forschung ist die Verwendung von
-physikinspirierten Hardwarebeschleunigern, die primär bei Optimierungsalgorithmen
-eingesetzt werden aufgrund ihrer Fähigkeit Probleme schneller und effizienter als
-GPUs lösen zu können.\footcite[Vgl.][1]{mohseniIsingMachinesHardware2022}
-Ein skalierbarer physikinspirierter Hardwarebeschleuniger (auch Ising-Maschine
-genannt), der die Leistung bestehender Standard-Digitalrechner übertrifft, könnte
-einen großen Einfluss auf praktische Anwendungen für eine Vielzahl von
-Optimierungsproblemen haben.\footcite[Vgl.][1]{mohseniIsingMachinesHardware2022}
+\section{Problem statement}
 
-Solche physikinspirierten Hardwarebeschleuniger bieten durch ihre besondere
-Berechnungsweise Potenzial für eine effizientere Verarbeitung von
-rechenintensiven Aufgaben. Konkret wird die Beschleunigung, anders als es bei
-digitalen Computern der Fall ist, durch die Berechnung rechenintensiver Aufgaben
-mit analogen Signalen erreicht. Die Implementierung auf dedizierter Hardware bietet
-darüber hinaus die Möglichkeit, die Parallelisierung von digitalen
-Hardwarebeschleunigern und analogem Rechnen auszunutzen.\footcite[Vgl.][4]{mohseniIsingMachinesHardware2022}
+One approach that is already well known is the use of AI accelerators based on
+ASICs (application-specific integrated circuits) - i.e. circuits that are used application specific,
+such as Google TPUs (Tensor Processing Unit).\footcite[Vgl.][39]{wittpahlKuenstlicheIntelligenzTechnologie2019} 
+This is useful because the usage of multimodels for discirminating tasks compared to
+task specific models are more energy intense.\footcite[Vgl.][5]{luccioniPowerHungryProcessing2023}
+One promissing alternative concept in research is the usage on physics-inspired hardware accelerators, that are primarly used for optimization problems
+because of their ability to solve problems faster and more efficient than GPUs.\footcite[Vgl.][1]{mohseniIsingMachinesHardware2022}
+A scalable physics-inspired hardware accelerator (also called Ising-machine),
+that surpasses the power of existing standard digital computers, could have a large influence
+on practical applications for a variety of optimization problems.\footcite[Vgl.][1]{mohseniIsingMachinesHardware2022}
 
-Interessanterweise zeigen die Energiefunktionen von Hardwarebeschleunigern, die
-in Ising-Maschinen verwendet werden, große Parallelen zu denen in Boltzmann
-Maschinen, trotz ihrer unterschiedlichen Anwendungen, daher liegt es nahe, dass
-Ising Maschinen auch für KI gut funktionieren.\footcite[Vgl.][10]{caiHarnessingIntrinsicNoise2019}
-Ising-Maschinen zielen darauf ab, ihre Energie zu minimieren, wobei sie Energie als eine paarweise
-Interaktion von binären Variablen „Spins“ definieren.\footcite[Vgl.][1]{wangOscillatorbasedIsingMachine2017} 
-BoltzmannMaschinen hingegen sind energiebasierte neuronale Netzwerke, die
-Klassifizierungen durchführen, indem sie jeder Konfiguration der Variablen eine
-skalare Energie zuordnen. Die Netzwerkenergie zu minimieren ist hierbei
-vergleichbar mit der Lösung des Optimierungsproblems. \footcite[Vgl.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
-Aktuelle Probleme mit Boltzmann-Maschinen umfassen die hohe Komplexität und
-Anforderungen an die All-to-All-Kommunikation zwischen Verarbeitungseinheiten,
-was ihre Implementierung auf herkömmlichen digitalen Computern ineffizient macht,
-sowie eine inhärent langsame Konvergenz in bestimmten Prozessen wie Simulated
-Annealing.\footcite[Vgl.][1]{nazmbojnordiMemristiveBoltzmannMachine2016} 
-Diese Herausforderungen erschweren das Training und die Anwendung von Boltzmann-Maschinen insbesondere für große Datenmengen
-und komplexe Optimierungsaufgaben.\footcite[Vgl.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
-Nichtsdestotrotz impliziert die Ähnlichkeit der beiden, dass Ising-Maschinen in der Lage sein könnten, dieses
-spezielle KI-Modell, energieeffizienter und mit höherer Rechengeschwindigkeit
-auszuführen. Aktuell existieren nur wenige Konzepte eine Implementierung von
-Boltzmann Maschinen auf Ising-Maschinen zu erreichen. Das Paper der Autoren Mahdi Nazm BojnordiEngin und Engin Ipek ist hier ein
-vielversprechender Ansatz, jedoch konnte nicht gezeigt werden, wie es auf einem
-richtigen Beschleunigerchip funktionieren würde.
+Such physics-inspired hardware accelerator offer, due to their special calculation method,
+potential for efficient processing of computationally intensive tasks. 
+Specifically, the acceleration in contrast to digital computers is achieved by calculating
+the computationally intense tasks with analog signals.
+On top of that the implementation on dedicated hardware offers the possibility to exlpoit the parallelization
+of digitwal hardware accelerators and analog computation.\footcite[Vgl.][4]{mohseniIsingMachinesHardware2022}
 
-Vor diesem Hintergrund ergeben sich folgende zentrale Forschungsfragen:
+Interesting enough, despite their different applications, the energy function of the hardware accelerator that is used
+in Ising-machines shows big parallels to those used in \ac{BM}, therefore it can be suggested that Ising-machines could work well for AI.\footcite[Vgl.][10]{caiHarnessingIntrinsicNoise2019}
+Ising-machines strive to minimize their energy, which is defined by the pairwise 
+interaction of binary variables (Spins).\footcite[Vgl.][1]{wangOscillatorbasedIsingMachine2017} 
+In contrast, \ac{BM}s are energy-based neuronal networks that are used for classification tasks by 
+acllocating a skalar energy for each configuration of variables.
+Minimizing the total network energy is therefore equal with the solution of a optimization problem.\footcite[Vgl.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+Current problems with \ac{BM}s are the high complexity and high requirements for the all-to-allcommunication between the processing units,
+which causes the implemention on conventional digital computers to be inefficient, but also 
+an inherently slow convergence in certain processes such as simulated annealing.\footcite[Vgl.][1]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+Theese challenges complicate the training and the usage of \ac{BM}s, especially for large data volumes and complex optimization tasksl.\footcite[Vgl.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+Nevertheless the similaritis of both models implicate, that Ising-machines could be able to execute this 
+specific AI-model with higher energy efficiency and with higher computing speed.
+Currently there are only few concepts that exists on how to achieve a implementation of a \ac{BM} within on a Ising-machine.
+The paper of the authors Mahdi, Nazm, BojnordiEngin and Engin Ipek is a promissing approach,
+However it could not be shown how a implementation on a real accelerator chip could function.
+
+With the given background, the following central research question for this theis arises:
 
 \begin{enumerate}
-    \item {Können Boltzmann Maschinen auf physikinspiriertenHardwarebeschleunigern durch analoge Rauschinjektion effizient implementiert werden?}
+    \item Can Boltzmann Machines be efficiently implemented on physics-inspired Hardware accelerators by analog noise injection?
         \begin{itemize}
-            \item Wie ist die Genauigkeit des KI-Modells im Hardwarebeschleuniger? Metrik: Prediction Accuracy
-
-            \item ergleichen mit anderen Hardwarebeschleuniger, FPGA, GPU oderCPU aus der Literatur (gute und schlechte) in Bezug auf Energieeffizienz und Rechengeschwindigkeit – Metriken: Troughput(Samples/Sec), Energieverbrauch (Energy/Operation)
+            \item What is the accuracy of the AI-model on the hardware accelerator?
+                \begin{itemize}
+                    \item Metric: Prediction accuracy and negative Likelihood
+                \end{itemize}
+            \item Comparison between other hardware accelerators, FPGA, GPU, or CPU within the literature in terms of energy efficiency and computing speed.
+                \begin{itemize}
+                    \item Metrics: Throughput (Samples/Sec), Energy usage (Energy/Operation)
+                \end{itemize}
         \end{itemize}  
 \end{enumerate}
 
-Daher gilt es zu testen, ob dieses generative KI-Modell mit Ising Maschinen
-kompatibel ist und ob diese Lösung effizient ist oder nicht.
+It is therefore necessary to test whether this generative AI model is compatible with Ising machines
+machines and whether this solution is efficient or not.
 
 
-\section{Zielsetzung(ohne gneaue Metriken nennen, generell halten)}
+\section{Objective}
 
-Das primäre Ziel dieser Bachelorarbeit ist die Erforschung und Erweiterung eines
-bestehenden physikinspirierten Hardwarebeschleunigers (ISING Maschine) zur
-Implementierung und Evaluation von Boltzmann Maschinen, einem
-energiebasierten KI-Modell. Dabei sollen die aufgestellten Forschungsfragen
-beantwortet werden.
+The primary objective of this bachelor thesis ist the research and extension of a existing physics-inspired
+hardware accelerator(Ising machine) for the implementation and evaluation of \ac{BM}s as an energy based 
+AI-model. The aim is to answer the posed research question. 
+In addition to that, it would be beneficial if rules for the influence of hyperparameters could be established
+since there is no data available for this new method.
 
-Hierzu ist es zu Beginn nötig eine Simulator Pipeline zu konstruieren mit der
-Boltzmann Maschinen auf dem Hardwarebeschleuniger übersetzt werden. Die
-Simulator Pipeline besteht dabei aus einer bestehender KI-Bibliothek und
-bestehenden Hardwarebeschleuniger, die miteinander verbunden werden. Mit der
-Simulator Pipeline soll gezeigt werden, dass der Hardwaresimulator die Boltzmann
-Maschinen umsetzen kann. Aus der Simulator Pipeline heraus werden die
-Aktivierungswahrscheinlichkeiten der einzelnen Neuronen auf der simulierten
-Hardware gemessen und bei Erfolg bis zu einem vollständigen Neuronalen
-Netzwerk erweitert. Finaler Schritt ist, dass der Hardwarebeschleuniger für Training
-und Interferenz genutzt werden kann und dabei vergleichbar mit herkömmlichen MLLibraries ist. Diese Phase umfasst die sorgfältige Anpassung und möglicherweise
-Erweiterung des bestehenden Beschleunigers, um die spezifischen Anforderungen
-der Boltzmann Maschinen zu erfüllen.
+To initially accomplish this objective it is necessary to establish a simulator pipeline to the
+hardware accelerator that translates \ac{BM} on top of it. Die
+The simulator pipeline consists of an existing machine learning library and an existing hardware accelerator
+that are connected to each other.
+With the simulator pipeline it needs to be shown that it is possible for the hardware accelerator
+to realize \ac{BM}s.
 
-Wenn die Simulator Pipeline validiert werden kann, wird ein Workload auf ein
-Standarddatenset zur Handschrifterkennung getestet. Dabei werden die Prediction
-Accuracy, Troughput (Samples/Sec) und der Energieverbrauch (Energy/Operation)
-der Boltzmann Maschinen auf dem ISING Hardwarebeschleuniger untersucht und
-dadurch die aufgestellten Forschungsfragen beantwortet.
+Within the simulator pipeline, the activation probabilities of individual neurons are measured on the simulated hardware.
+If this process proves successful, it is then expanded to simulate a complete neuronal network.
+The final step is that the hardware accelerator can be used for training and iterference
+and is comparable to conventional machine learning libraries.
+This phase includes a carefully adjustment and possibly extension of the existing accelerator to be compliant 
+with the specific requirements of \ac{BM}s.
 
-\section{Forschungsmethodik}
+If the simulator pipeline can be validated a workload consisting of a standard data set
+to recognize handwritten digits will be tested.
+The prediction accuracy, throughput (samples/sec) and the energy consumption (energy/operation)
+of the Boltzmann machines on the Ising hardware accelerator will be investigated as metrics in order to
+thereby answering the second part of the posed research questions.
+
+
+\section{Research method}
 
 Design Science Research
 
