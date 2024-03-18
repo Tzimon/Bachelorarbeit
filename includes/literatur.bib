@@ -34,6 +34,40 @@
   file = {C:\Users\simon\Zotero\storage\I74EW2SD\S1084804516300492.html}
 }
 
+@article{ahmadOptimizingHardwareAccelerated2020,
+  title = {Optimizing {{Hardware Accelerated General Matrix-Matrix Multiplication}} for {{CNNs}} on {{FPGAs}}},
+  author = {Ahmad, Afzal and Pasha, Muhammad Adeel},
+  date = {2020-11},
+  journaltitle = {IEEE Transactions on Circuits and Systems II: Express Briefs},
+  volume = {67},
+  number = {11},
+  pages = {2692--2696},
+  issn = {1558-3791},
+  doi = {10.1109/TCSII.2020.2965154},
+  url = {https://ieeexplore.ieee.org/abstract/document/8954788?casa_token=FflZ-99s30MAAAAA:l-4hcDRIsH2x9gRN3bGMy8BAo1nbQbrJEhqZpdRnAR5IJSe2naviSLmKFiAuYV_yuWVlAPPPdbs},
+  urldate = {2024-03-18},
+  abstract = {Convolution is inarguably the most complex operation utilized in Convolutional Neural Networks (convnets). Owing to the billions of independent multiply-adds involved, convolution is being massively parallelized by the simultaneous utilization of many cores of Graphical Processing Units (GPUs). Although GPUs have shown significant performance improvements in both training and inference stages, they are not well-suited for mobile vision applications where both energy and real-time constraints need to be satisfied. In contrast, Field Programmable Gate Arrays (FPGAs) have demonstrated massive parallelization capabilities, with fast DSPs and on-chip memory, at a lower energy cost than GPUs. Hence, they are being utilized to design convnet accelerators for embedded applications. In this brief, we design an FPGA-based accelerator for general matrix-matrix multiplication (GeMM) to improve the efficiency of convolutional layers of Shufflenet, an efficient convnet architecture. Experimental results show significant performance improvements against the state-of-the-art FPGA-based implementations of both efficient convnets that are tailored towards mobile vision applications, and complex convnets that are used in traditional applications.},
+  eventtitle = {{{IEEE Transactions}} on {{Circuits}} and {{Systems II}}: {{Express Briefs}}},
+  keywords = {Complexity theory,Computer architecture,convnets,Convolution,FPGAs,Hardware,Hardware acceleration,Kernel,Shape,Tensors},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\RWTCIR59\\Ahmad_Pasha_2020_Optimizing Hardware Accelerated General Matrix-Matrix Multiplication for CNNs.pdf;C\:\\Users\\simon\\Zotero\\storage\\GN8KR79F\\8954788.html}
+}
+
+@inproceedings{albreemGreenInternetThings2017,
+  title = {Green Internet of Things ({{IoT}}): {{An}} Overview},
+  shorttitle = {Green Internet of Things ({{IoT}})},
+  booktitle = {2017 {{IEEE}} 4th {{International Conference}} on {{Smart Instrumentation}}, {{Measurement}} and {{Application}} ({{ICSIMA}})},
+  author = {Albreem, Mahmoud A. M. and El-Saleh, Ayman A. and Isa, Muzamir and Salah, Wael and Jusoh, M. and Azizan, M.M and Ali, A},
+  date = {2017-11},
+  pages = {1--6},
+  doi = {10.1109/ICSIMA.2017.8312021},
+  url = {https://ieeexplore.ieee.org/abstract/document/8312021},
+  urldate = {2024-03-10},
+  abstract = {Internet of Things (IoT) connects everything in the smart world, and thus, energy consumption of IoT technology is a challenge and attractive research area. Motivated by achieving a low power consumption IoT, a green IoT is proposed. This paper provides an overview regarding green IoT. It also discusses the life cycle of green IoT which contains green design, green production, green utilization, and green recycling. Furthermore, green IoT technologies such as green tags, green sensing networks and green internet technologies are discussed. In addition, studies of IoT in 5G and IoT for smart cities are presented. Finally, future research directions and open challenges about green IoT are presented.},
+  eventtitle = {2017 {{IEEE}} 4th {{International Conference}} on {{Smart Instrumentation}}, {{Measurement}} and {{Application}} ({{ICSIMA}})},
+  keywords = {5G,5G mobile communication,Air pollution,cloud computing,energy efficiency,green IoT,Green products,Internet of Things,Internet of Things (IoT),RFID tags,smart cities,wireless sensor networks,Wireless sensor networks},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\JHMUDGWT\\Albreem et al_2017_Green internet of things (IoT).pdf;C\:\\Users\\simon\\Zotero\\storage\\4ZXVN2YF\\8312021.html}
+}
+
 @article{amariInformationGeometryBoltzmann1992,
   title = {Information Geometry of {{Boltzmann}} Machines},
   author = {Amari, S. and Kurata, K. and Nagaoka, H.},
@@ -121,6 +155,34 @@
   file = {C:\Users\simon\Zotero\storage\WJ9HX4VX\Bai et al. - 2024 - Beyond Efficiency A Systematic Survey of Resource.pdf}
 }
 
+@online{baischerLearningHardwareTutorial2021,
+  title = {Learning on {{Hardware}}: {{A Tutorial}} on {{Neural Network Accelerators}} and {{Co-Processors}}},
+  shorttitle = {Learning on {{Hardware}}},
+  author = {Baischer, Lukas and Wess, Matthias and TaheriNejad, Nima},
+  date = {2021-04-19},
+  eprint = {2104.09252},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2104.09252},
+  url = {http://arxiv.org/abs/2104.09252},
+  urldate = {2024-03-18},
+  abstract = {Deep neural networks (DNNs) have the advantage that they can take into account a large number of parameters, which enables them to solve complex tasks. In computer vision and speech recognition, they have a better accuracy than common algorithms, and in some tasks, they boast an even higher accuracy than human experts. With the progress of DNNs in recent years, many other fields of application such as diagnosis of diseases and autonomous driving are taking advantage of them. The trend at DNNs is clear: The network size is growing exponentially, which leads to an exponential increase in computational effort and required memory size. For this reason, optimized hardware accelerators are used to increase the performance of the inference of neuronal networks. However, there are various neural network hardware accelerator platforms, such as graphics processing units (GPUs), application specific integrated circuits (ASICs) and field programmable gate arrays (FPGAs). Each of these platforms offer certain advantages and disadvantages. Also, there are various methods for reducing the computational effort of DNNs, which are differently suitable for each hardware accelerator. In this article an overview of existing neural network hardware accelerators and acceleration methods is given. Their strengths and weaknesses are shown and a recommendation of suitable applications is given. In particular, we focus on acceleration of the inference of convolutional neural networks (CNNs) used for image recognition tasks. Given that there exist many different hardware architectures. FPGA-based implementations are well-suited to show the effect of DNN optimization methods on accuracy and throughput. For this reason, the focus of this work is more on FPGA-based implementations.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Hardware Architecture,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\PDJA9RTT\\Baischer et al_2021_Learning on Hardware.pdf;C\:\\Users\\simon\\Zotero\\storage\\KSCY6NQ4\\2104.html}
+}
+
+@article{bankFAQDigitalEuro2024,
+  title = {{{FAQ}} on a Digital Euro},
+  author = {Bank, European Central},
+  date = {2024-02-14},
+  url = {https://www.ecb.europa.eu/paym/digital_euro/faqs/html/ecb.faq_digital_euro.en.html},
+  urldate = {2024-03-13},
+  abstract = {The European Central Bank (ECB) is the central bank of the European Union countries which have adopted the euro. Our main task is to maintain price stability in the euro area and so preserve the purchasing power of the single currency.},
+  langid = {english},
+  file = {C:\Users\simon\Zotero\storage\GP6EBKJT\ecb.faq_digital_euro.en.html}
+}
+
 @article{barraEquivalenceHopfieldNetworks2012,
   title = {On the Equivalence of {{Hopfield}} Networks and {{Boltzmann Machines}}},
   author = {Barra, Adriano and Bernacchia, Alberto and Santucci, Enrica and Contucci, Pierluigi},
@@ -154,6 +216,37 @@
   eventtitle = {Computing in {{Science}} \& {{Engineering}}},
   keywords = {Computational complexity,Computational modeling,Distributed computing,Distribution functions,Hospitals,Monte Carlo methods,Physics computing,Probability distribution,Sampling methods},
   file = {C\:\\Users\\simon\\Zotero\\storage\\HWDNSHCW\\Beichl_Sullivan_2000_The Metropolis Algorithm.pdf;C\:\\Users\\simon\\Zotero\\storage\\ZTYBSUIQ\\814660.html}
+}
+
+@incollection{berrouOverviewGreenFinance2019,
+  title = {An {{Overview}} of {{Green Finance}}},
+  booktitle = {The {{Rise}} of {{Green Finance}} in {{Europe}}: {{Opportunities}} and {{Challenges}} for {{Issuers}}, {{Investors}} and {{Marketplaces}}},
+  author = {Berrou, Romain and Dessertine, Philippe and Migliorelli, Marco},
+  editor = {Migliorelli, Marco and Dessertine, Philippe},
+  date = {2019},
+  series = {Palgrave {{Studies}} in {{Impact Finance}}},
+  pages = {3--29},
+  publisher = {Springer International Publishing},
+  location = {Cham},
+  doi = {10.1007/978-3-030-22510-0_1},
+  url = {https://doi.org/10.1007/978-3-030-22510-0_1},
+  urldate = {2024-03-09},
+  abstract = {This chapter aims at giving an overview of the key characteristics of the green finance market as it stands today. To this extent, the chapter first recalls the main roots of the role of ethics in finance. Hence, it deals with the political process culminating with the Paris Agreement and the adoption of the Sustainable Development Goals as well as highlights the role of green finance in such a process. Hence, it provides a detailed picture of the market by describing the types of existing green securities and financial products and showing the recent investment trends. Finally, the chapter summarises the key challenges still ahead for green finance in order to be considered a stable component of the modern financial landscape.},
+  isbn = {978-3-030-22510-0},
+  langid = {english},
+  file = {C:\Users\simon\Zotero\storage\HCVB75GU\Berrou et al_2019_An Overview of Green Finance.pdf}
+}
+
+@article{bohBuildingDigitalResilience2023,
+  title = {Building {{Digital Resilience Against Major Shocks}}},
+  author = {Boh, Wai and Constantinides, Panos and Padmanabhan, Balaji and Viswanathan, Siva},
+  date = {2023-02-13},
+  journaltitle = {MIS Quarterly},
+  shortjournal = {MIS Quarterly},
+  volume = {47},
+  pages = {343--361},
+  abstract = {Major shocks such as the COVID-19 pandemic create unique and exceptional challenges for different entities, including individuals, groups, and organizations. In this special issue editorial, we introduce the concept of digital resilience, which refers to the capabilities developed through the use of digital technologies to absorb major shocks, adapt to disruptions caused by the shocks, and transform to a new stable state, where entities are more prepared to deal with major shocks. The individual papers in this special issue offer compelling examples of how digital resilience is exhibited and how the process of digital resilience can unfold in response to specific major shocks. Drawing upon and extending these papers, we present an integrated framework of how digital technology can help build resilience capabilities, which is missing in past research but needed to mitigate and manage future major shocks, including financial recessions and climate change. We conclude with four important themes for future IS research.},
+  file = {C:\Users\simon\Zotero\storage\AQ28KTPG\Boh et al_2023_Building Digital Resilience Against Major Shocks.pdf}
 }
 
 @article{bohmNoiseinjectedAnalogIsing2022,
@@ -254,6 +347,23 @@
   file = {C:\Users\simon\Zotero\storage\VZMMDAK3\Grand Challenges.pdf}
 }
 
+@online{daiOutsourcingClimateChange2021,
+  type = {SSRN Scholarly Paper},
+  title = {Outsourcing {{Climate Change}}},
+  author = {Dai, Rui and Duan, Rui and Liang, Hao and Ng, Lilian},
+  date = {2021-01-07},
+  number = {3765485},
+  location = {Rochester, NY},
+  doi = {10.2139/ssrn.3765485},
+  url = {https://papers.ssrn.com/abstract=3765485},
+  urldate = {2024-03-10},
+  abstract = {This paper examines how firms combat climate change and the motivations behind their strategies. Using firm-level carbon emissions and import volume data, we find pervasive evidence of firms outsourcing their emissions to foreign suppliers rather than investing in abatement—a strategy not fully explained by production offshoring, regulatory arbitrage, and supply chain shocks.  Instead,  our findings reveal that agency problems play a significant role in facilitating corporate carbon outsourcing.  While the outsourcing strategy improves short-term profitability, it adversely affects firm value and increases the cost of equity capital, suggesting that investors demand compensation for their exposure to such transition risks.},
+  langid = {english},
+  pubstate = {preprint},
+  keywords = {Carbon Premium,Green Technologies,Imports,Outsourcing Emissions,Reputational Risk,Stakeholders},
+  file = {C:\Users\simon\Zotero\storage\N5B7L2HQ\Dai et al_2021_Outsourcing Climate Change.pdf}
+}
+
 @online{darioamodeiAICompute,
   title = {{{AI}} and Compute},
   author = {{Dario Amodei} and {Danny Hernandez}},
@@ -336,6 +446,50 @@
   file = {C:\Users\simon\Zotero\storage\RHCV9KWS\Durstewitz et al_2019_Deep neural networks in psychiatry.pdf}
 }
 
+@online{EmissionsobergrenzenUndZertifikate,
+  title = {Emissionsobergrenzen und ‑zertifikate - Europäische Kommission},
+  url = {https://climate.ec.europa.eu/eu-action/eu-emissions-trading-system-eu-ets/emissions-cap-and-allowances_de},
+  urldate = {2024-03-10},
+  abstract = {StrategieDas Gesamtvolumen der Treibhausgasemissionen, die von unter das Emissionshandelssystem der EU (EU-EHS) fallenden Kraftwerken, Fabriken und...},
+  langid = {ngerman},
+  file = {C:\Users\simon\Zotero\storage\6QYRJ8ME\emissions-cap-and-allowances_de.html}
+}
+
+@online{EnvironmentallyResponsibleETF,
+  title = {Environmentally {{Responsible ETF List}}},
+  url = {https://etfdb.com/esg-investing/environmental-issues/},
+  urldate = {2024-03-13},
+  abstract = {Click to see more information on Environmentally Responsible ETFs including historical performance, dividends, holdings, expense ratios, ESG scores, technicals and more.},
+  organization = {ETF Database},
+  file = {C:\Users\simon\Zotero\storage\YRV6YH4F\environmental-issues.html}
+}
+
+@online{EnvironmentallyResponsibleETFa,
+  title = {Environmentally {{Responsible ETF List}}},
+  url = {https://etfdb.com/esg-investing/environmental-issues/},
+  urldate = {2024-03-13},
+  abstract = {Click to see more information on Environmentally Responsible ETFs including historical performance, dividends, holdings, expense ratios, ESG scores, technicals and more.},
+  organization = {ETF Database},
+  file = {C:\Users\simon\Zotero\storage\Q3YTEKPN\environmental-issues.html}
+}
+
+@online{EUCarbonPermits,
+  title = {{{EU Carbon Permits}} - {{Price}} - {{Chart}} - {{Historical Data}} - {{News}}},
+  url = {https://tradingeconomics.com/commodity/carbon},
+  urldate = {2024-03-10},
+  file = {C:\Users\simon\Zotero\storage\6Q6LIZPW\carbon.html}
+}
+
+@online{EuropaeischerGruenerDeal2023,
+  title = {Ein europäischer Grüner Deal},
+  date = {2023-12-20},
+  url = {https://www.consilium.europa.eu/de/policies/green-deal/},
+  urldate = {2024-03-10},
+  abstract = {Was ist der europäische Grüne Deal und welche Initiativen gehören dazu? Der Grüne Deal ist die Strategie, mit der die EU ihr Ziel erreichen will, bis~2050 klimaneutral zu werden.},
+  langid = {ngerman},
+  file = {C:\Users\simon\Zotero\storage\DM9GJCUA\green-deal.html}
+}
+
 @book{fahlmanMassivelyParallelArchitectures1983,
   title = {Massively {{Parallel Architectures}} for {{AI}}: {{NETL}}, {{Thistle}}, and {{Boltzmann Machines}}.},
   shorttitle = {Massively {{Parallel Architectures}} for {{AI}}},
@@ -386,6 +540,25 @@
   file = {C:\Users\simon\Zotero\storage\39QQTBNQ\Gawlikowski et al_2023_A survey of uncertainty in deep neural networks.pdf}
 }
 
+@article{georgeDigitalSustainabilityEntrepreneurship2021,
+  title = {Digital {{Sustainability}} and {{Entrepreneurship}}: {{How Digital Innovations Are Helping Tackle Climate Change}} and {{Sustainable Development}}},
+  shorttitle = {Digital {{Sustainability}} and {{Entrepreneurship}}},
+  author = {George, Gerard and Merrill, Ryan K. and Schillebeeckx, Simon J. D.},
+  date = {2021-09-01},
+  journaltitle = {Entrepreneurship Theory and Practice},
+  volume = {45},
+  number = {5},
+  pages = {999--1027},
+  publisher = {SAGE Publications Inc},
+  issn = {1042-2587},
+  doi = {10.1177/1042258719899425},
+  url = {https://doi.org/10.1177/1042258719899425},
+  urldate = {2024-03-09},
+  abstract = {We explore how digital technologies are helping address grand challenges to tackle climate change and promote sustainable development. With digital technologies, entrepreneurial organizations have adopted innovative approaches to tackle seemingly intractable societal challenges. We refer to these broadly as digital sustainability activities. By focusing on the digital toolbox employed by pioneering organizations, we propose a research agenda that generates novel questions for entrepreneurship, business models, and ecosystems as well as new ways of thinking about trust and institutional logics. We believe that digital sustainability can spur empirical advances in entrepreneurship, innovation, and strategy with potential for positive impact on society.},
+  langid = {english},
+  file = {C:\Users\simon\Zotero\storage\VU94C4B5\George et al_2021_Digital Sustainability and Entrepreneurship.pdf}
+}
+
 @incollection{gerthKuenstlicheIntelligenzZwischen2023,
   title = {Künstliche Intelligenz zwischen Utopie und Realität: Aktuelle und zukünftige Entwicklungen von KI am Beispiel von Human-Machine-Interaction, Blockchain, Green Tech und Mobilität},
   shorttitle = {Künstliche Intelligenz zwischen Utopie und Realität},
@@ -421,6 +594,26 @@
   abstract = {Generative models have been in existence for many decades. In the field of machine learning, we come across many scenarios when directly learning a target is intractable through discriminative models, and in such cases the joint distribution of the target and the training data is approximated and generated. These generative models help us better represent or model a set of data by generating data in the form of Markov chains or simply employing a generative iterative process to do the same. With the recent innovation of Generative Adversarial Networks (GANs), it is now possible to make use of AI to generate pieces of art, music, etc. with a high extent of realism. In this paper, we review and analyse critically all the generative models, namely Gaussian Mixture Models (GMM), Hidden Markov Models (HMM), Latent Dirichlet Allocation (LDA), Restricted Boltzmann Machines (RBM), Deep Belief Networks (DBN), Deep Boltzmann Machines (DBM), and GANs. We study their algorithms and implement each of the models to provide the reader some insights on which generative model to pick from while dealing with a problem. We also provide some noteworthy contributions done in the past to these models from the literature.},
   keywords = {Bayesian inference,Deep learning,Generative models,Machine learning,Neural networks},
   file = {C:\Users\simon\Zotero\storage\RASD8WLC\S1574013720303853.html}
+}
+
+@article{gomberDigitalFinanceFinTech2017,
+  title = {Digital {{Finance}} and {{FinTech}}: Current Research and Future Research Directions},
+  shorttitle = {Digital {{Finance}} and {{FinTech}}},
+  author = {Gomber, Peter and Koch, Jascha-Alexander and Siering, Michael},
+  date = {2017-07-01},
+  journaltitle = {Journal of Business Economics},
+  shortjournal = {J Bus Econ},
+  volume = {87},
+  number = {5},
+  pages = {537--580},
+  issn = {1861-8928},
+  doi = {10.1007/s11573-017-0852-x},
+  url = {https://doi.org/10.1007/s11573-017-0852-x},
+  urldate = {2024-03-09},
+  abstract = {Since decades, the financial industry has experienced a continuous evolution in service delivery due to digitalization. This evolution is characterized by expanded connectivity and enhanced speed of information processing both at the customer interface and in back-office processes. Recently, there has been a shift in the focus of digitalization from improving the delivery of traditional tasks to introducing fundamentally new business opportunities and models for financial service companies. Digital Finance encompasses a magnitude of new financial products, financial businesses, finance-related software, and novel forms of customer communication and interaction—delivered by FinTech companies and innovative financial service providers. Against this backdrop, the research on finance and information systems has started to analyze these changes and the impact of digital progress on the financial sector. Therefore, this article reviews the current state of research in Digital Finance that deals with these novel and innovative business functions. Moreover, it gives an outlook on potential future research directions. As a conceptual basis for reviewing this field, the Digital Finance Cube, which embraces three key dimensions of Digital Finance and FinTech, i.e., the respective business functions, the technologies and technological concepts applied as well as the institutions concerned, is introduced. This conceptualization supports researchers and practitioners when orientating in the field of Digital Finance, allows for the arrangement of academic research relatively to each other, and enables for the revelation of the gaps in research.},
+  langid = {english},
+  keywords = {Digital Finance,e-Finance,FinTech,Future research opportunities,G10,G21,G22,G23,G24,G28,Literature review,State of the art},
+  file = {C:\Users\simon\Zotero\storage\FB29HGAG\Gomber et al_2017_Digital Finance and FinTech.pdf}
 }
 
 @inproceedings{gustafssonEnergyBasedModelsDeep2020,
@@ -479,6 +672,24 @@
   abstract = {The energy consumption of data centers continues to increase. At 17 billion kWh, data centers consumed 6.5 \% more electricity in 2021 than in 2020. The main reason for the growth in energy consumption is the expansion of cloud data centers in Germany and the associated increase in the number of large data centers. However, traditional data centers operated by companies themselves also continue to have a high share of data center capacities in Germany.},
   keywords = {ungelesen,zitiert},
   file = {C:\Users\simon\Zotero\storage\8S6LNT75\Data centers 2021 Data center boom in Germany continues.pdf}
+}
+
+@incollection{hintonBoltzmannMachines2014,
+  title = {Boltzmann {{Machines}}},
+  booktitle = {Encyclopedia of {{Machine Learning}} and {{Data Mining}}},
+  author = {Hinton, Geoffrey},
+  editor = {Sammut, Claude and Webb, Geoffrey I.},
+  date = {2014},
+  pages = {1--7},
+  publisher = {Springer US},
+  location = {Boston, MA},
+  doi = {10.1007/978-1-4899-7502-7_31-1},
+  url = {https://link.springer.com/10.1007/978-1-4899-7502-7_31-1},
+  urldate = {2024-03-16},
+  isbn = {978-1-4899-7502-7},
+  langid = {english},
+  keywords = {gelesen,ungelesen,zitiert},
+  file = {C:\Users\simon\Zotero\storage\4JUU99AL\Hinton - 2014 - Boltzmann Machines.pdf}
 }
 
 @incollection{hintonPracticalGuideTraining2012,
@@ -599,6 +810,52 @@
   file = {C:\Users\simon\Zotero\storage\5SE9BGQ4\The physics of energy-based models.pdf}
 }
 
+@online{InternationalerCO2MarktEuropaeische,
+  title = {Internationaler CO2-Markt - Europäische Kommission},
+  url = {https://climate.ec.europa.eu/eu-action/eu-emissions-trading-system-eu-ets/international-carbon-market_de},
+  urldate = {2024-03-10},
+  abstract = {StrategieInternationale CO2-Märkte können bei der kosteneffizienten Verringerung der weltweiten Treibhausgasemissionen eine wesentliche Rolle spielen...},
+  langid = {ngerman},
+  file = {C:\Users\simon\Zotero\storage\M7E6LAZ5\international-carbon-market_de.html}
+}
+
+@article{javaidReviewBlockchainTechnology2022,
+  title = {A Review of {{Blockchain Technology}} Applications for Financial Services},
+  author = {Javaid, Mohd and Haleem, Abid and Singh, Ravi Pratap and Suman, Rajiv and Khan, Shahbaz},
+  date = {2022-07-01},
+  journaltitle = {BenchCouncil Transactions on Benchmarks, Standards and Evaluations},
+  shortjournal = {BenchCouncil Transactions on Benchmarks, Standards and Evaluations},
+  volume = {2},
+  number = {3},
+  pages = {100073},
+  issn = {2772-4859},
+  doi = {10.1016/j.tbench.2022.100073},
+  url = {https://www.sciencedirect.com/science/article/pii/S2772485922000606},
+  urldate = {2024-03-10},
+  abstract = {Financial service providers find blockchain technology useful to enhance authenticity, security, and risk management. Several institutions are adopting blockchain in trade and finance systems to build smart contracts between participants, improve efficiency and transparency, and open up newer revenue opportunities. Blockchain’s unique recording capabilities make the existing clearing and settlement process redundant. Banks and other financial entities are adopting blockchain-enabled IDs to identify people. Better results come from organisations’ capacity to foresee emerging trends in financial blockchain applications and develop blockchain functionality. The transfer of asset ownership and addressing the maintenance of a precise financial ledger. Measurement, communication, and analysis of financial information are three significant areas to be focussed on by accounting professionals. Blockchain clarifies asset ownership and the existence of obligations for accountants, and it has the potential to improve productivity. This paper identifies and studies relevant articles related to blockchain for finance. This paper focuses on Blockchain technology and its importance for financial services. Further takes up various tools, strategies, and featured services in Blockchain-based financial services. Finally, the paper identifies and evaluates the significant applications of Blockchain technology in financial services. Credit reports significantly impact the financial lives of customers. Recent data breaches demonstrate the superior security of blockchain-based credit reporting over conventional server-based reporting. Blockchain-based systems enable the faster, more cost-effective, and more customised issuance of digital securities. With its adoption, the market for investors can be expanded, costs for issuers can be reduced, and counterparty risk can be reduced due to the ability to customise digital financial instruments to the demands of investors. It uses mutualised standards, protocols, and shared procedures to give network users a single common source of truth. Participants in the business network can now more easily collaborate, manage data, and agree with this technology’s application.},
+  keywords = {Banking,Blockchain,Customer,Finance,Transaction},
+  file = {C:\Users\simon\Zotero\storage\E7JKABT2\S2772485922000606.html}
+}
+
+@article{kikstraIPCCSixthAssessment2022,
+  title = {The {{IPCC Sixth Assessment Report WGIII}} Climate Assessment of Mitigation Pathways: From Emissions to Global Temperatures},
+  shorttitle = {The {{IPCC Sixth Assessment Report WGIII}} Climate Assessment of Mitigation Pathways},
+  author = {Kikstra, Jarmo S. and Nicholls, Zebedee R. J. and Smith, Christopher J. and Lewis, Jared and Lamboll, Robin D. and Byers, Edward and Sandstad, Marit and Meinshausen, Malte and Gidden, Matthew J. and Rogelj, Joeri and Kriegler, Elmar and Peters, Glen P. and Fuglestvedt, Jan S. and Skeie, Ragnhild B. and Samset, Bjørn H. and Wienpahl, Laura and family=Vuuren, given=Detlef P., prefix=van, useprefix=true and family=Wijst, given=Kaj-Ivar, prefix=van der, useprefix=true and Al Khourdajie, Alaa and Forster, Piers M. and Reisinger, Andy and Schaeffer, Roberto and Riahi, Keywan},
+  date = {2022-12-20},
+  journaltitle = {Geoscientific Model Development},
+  volume = {15},
+  number = {24},
+  pages = {9075--9109},
+  publisher = {Copernicus GmbH},
+  issn = {1991-959X},
+  doi = {10.5194/gmd-15-9075-2022},
+  url = {https://gmd.copernicus.org/articles/15/9075/2022/},
+  urldate = {2024-03-10},
+  abstract = {While the Intergovernmental Panel on Climate Change (IPCC) physical science reports usually assess a handful of future scenarios, the Working Group III contribution on climate mitigation to the IPCC's Sixth Assessment Report (AR6 WGIII) assesses hundreds to thousands of future emissions scenarios. A key task in WGIII is to assess the global mean temperature outcomes of these scenarios in a consistent manner, given the challenge that the emissions scenarios from different integrated assessment models (IAMs) come with different sectoral and gas-to-gas coverage and cannot all be assessed consistently by complex Earth system models. In this work, we describe the “climate-assessment” workflow and its methods, including infilling of missing emissions and emissions harmonisation as applied to 1202 mitigation scenarios in AR6 WGIII. We evaluate the global mean temperature projections and effective radiative forcing (ERF) characteristics of climate emulators FaIRv1.6.2 and MAGICCv7.5.3 and use the CICERO simple climate model (CICERO-SCM) for sensitivity analysis. We discuss the implied overshoot severity of the mitigation pathways using overshoot degree years and look at emissions and temperature characteristics of scenarios compatible with one possible interpretation of the Paris Agreement. We find that the lowest class of emissions scenarios that limit global warming to “1.5 ∘C (with a probability of greater than 50 \%) with no or limited overshoot” includes 97 scenarios for MAGICCv7.5.3 and 203 for FaIRv1.6.2. For the MAGICCv7.5.3 results, “limited overshoot” typically implies exceedance of median temperature projections of up to about 0.1 ∘C for up to a few decades before returning to below 1.5 ∘C by or before the year 2100. For more than half of the scenarios in this category that comply with three criteria for being “Paris-compatible”, including net-zero or net-negative greenhouse gas (GHG) emissions, median temperatures decline by about 0.3–0.4 ∘C after peaking at 1.5–1.6 ∘C in 2035–2055. We compare the methods applied in AR6 with the methods used for SR1.5 and discuss their implications. This article also introduces a “climate-assessment” Python package which allows for fully reproducing the IPCC AR6 WGIII temperature assessment. This work provides a community tool for assessing the temperature outcomes of emissions pathways and provides a basis for further work such as extending the workflow to include downscaling of climate characteristics to a regional level and calculating impacts.},
+  langid = {english},
+  file = {C:\Users\simon\Zotero\storage\MH8EWX2X\Kikstra et al_2022_The IPCC Sixth Assessment Report WGIII climate assessment of mitigation pathways.pdf}
+}
+
 @inproceedings{larochelleClassificationUsingDiscriminative2008,
   title = {Classification Using Discriminative Restricted {{Boltzmann}} Machines},
   booktitle = {Proceedings of the 25th International Conference on {{Machine}} Learning},
@@ -628,6 +885,60 @@
   abstract = {Recent developments have demonstrated the capacity of restricted Boltzmann machines (RBM) to be powerful generative models, able to extract useful features from input data or construct deep artificial neural networks. In such settings, the RBM only yields a preprocessing or an initialization for some other model, instead of acting as a complete supervised model in its own right. In this paper, we argue that RBMs can provide a self-contained framework for developing competitive classifiers. We study the Classification RBM (ClassRBM), a variant on the RBM adapted to the classification setting. We study different strategies for training the ClassRBM and show that competitive classification performances can be reached when appropriately combining discriminative and generative training objectives. Since training according to the generative objective requires the computation of a generally intractable gradient, we also compare different approaches to estimating this gradient and address the issue of obtaining such a gradient for problems with very high dimensional inputs. Finally, we describe how to adapt the ClassRBM to two special cases of classification problems, namely semi-supervised and multitask learning.},
   keywords = {gelesen,ungelesen},
   file = {C:\Users\simon\Zotero\storage\BE788SPH\Larochelle et al_2012_Learning algorithms for the classification restricted Boltzmann machine.pdf}
+}
+
+@article{leeDigitalizationAchieveTechnology2022,
+  title = {Digitalization to {{Achieve Technology Innovation}} in {{Climate Technology Transfer}}},
+  author = {Lee, Woo-Jin and Mwebaza, Rose},
+  date = {2022-01},
+  journaltitle = {Sustainability},
+  volume = {14},
+  number = {1},
+  pages = {63},
+  publisher = {Multidisciplinary Digital Publishing Institute},
+  issn = {2071-1050},
+  doi = {10.3390/su14010063},
+  url = {https://www.mdpi.com/2071-1050/14/1/63},
+  urldate = {2024-03-09},
+  abstract = {Technology Innovation has the potential to play a strategic role in improving the effectiveness and efficiency of national efforts to address climate change. The United Nations (UN) Climate Technology Centre and Network (CTCN) is mandated to support developing countries’ climate change responses through innovative technologies to achieve the goals of the Paris Agreement. In order to enhance the role of the CTCN as an innovation matchmaker, it is important to explore and leverage the implementation potential of new digital technologies and their transformational impact. Thus, in this research, to engage digitalization as an innovative tool with the environment, we first explored digitalization during the climate technology transfer processes by comprehensively reviewing CTCN Technical Assistance (Digitalization Technical Assistance, D-TA) activities in three climate sectors of risk prediction, policy decision making, and resource optimization. Then, by applying analytical methodologies of in-depth interviews with major digital-climate stakeholders and a staged model for technology innovation, we propose future strategies for enhancing the role of CTCN as an innovation matchmaker in the three digitalization cases of digital collection, digital analysis, and digital diffusion.},
+  issue = {1},
+  langid = {english},
+  keywords = {digitalization,matchmaker,technology innovation,technology transfer},
+  file = {C:\Users\simon\Zotero\storage\CNEQZUHN\Lee_Mwebaza_2022_Digitalization to Achieve Technology Innovation in Climate Technology Transfer.pdf}
+}
+
+@article{lehnertMostResourceEfficient2023,
+  title = {Most {{Resource Efficient Matrix Vector Multiplication}} on {{FPGAs}}},
+  author = {Lehnert, Alexander and Holzinger, Philipp and Pfenning, Simon and Müller, Ralf and Reichenbach, Marc},
+  date = {2023},
+  journaltitle = {IEEE Access},
+  volume = {11},
+  pages = {3881--3898},
+  issn = {2169-3536},
+  doi = {10.1109/ACCESS.2023.3234622},
+  url = {https://ieeexplore.ieee.org/document/10007836?denied=},
+  urldate = {2024-03-16},
+  abstract = {Fast and resource-efficient inference in artificial neural networks (ANNs) is of utmost importance and drives many new developments in the area of new hardware architectures, e.g., by means of systolic arrays or algorithmic optimization such as pruning. In this paper, we present a novel method for lowering the computation effort for ANN inference utilizing ideas from information theory. Weight matrices are sliced into submatrices of logarithmic aspect ratios. These slices are then factorized. This reduces the number of required computations without compromising on fully parallel processing. We create a new hardware architecture for this dedicated purpose. We also provide a tool to map these sliced and factorized matrices efficiently to reconfigurable hardware. By comparing to the state of the art FPGA implementations, we can prove our claim by lowering hardware resources measured in look-up-tables (LUTs) by a factor of three to six. Our method does not rely on any particular property of the weight matrices of the ANN. It works for the general task of multiplying an input vector with a constant matrix and is also suitable for digital signal processing beyond ANNs.},
+  eventtitle = {{{IEEE Access}}},
+  keywords = {computational efficiency,Computational efficiency,computer architecture,Computer architecture,Constant matrix multiplication,Encoding,Field programmable gate arrays,Matrix decomposition,neural networks,Neural networks,reconfigurable architectures,Reconfigurable architectures,Signal processing algorithms,Sparse matrices},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\YJ8M8N3A\\Lehnert et al_2023_Most Resource Efficient Matrix Vector Multiplication on FPGAs.pdf;C\:\\Users\\simon\\Zotero\\storage\\YXM7AXQA\\10007836.html}
+}
+
+@article{lehnertMostResourceEfficient2023a,
+  title = {Most {{Resource Efficient Matrix Vector Multiplication}} on {{FPGAs}}},
+  author = {Lehnert, Alexander and Holzinger, Philipp and Pfenning, Simon and Müller, Ralf and Reichenbach, Marc},
+  date = {2023},
+  journaltitle = {IEEE Access},
+  volume = {11},
+  pages = {3881--3898},
+  issn = {2169-3536},
+  doi = {10.1109/ACCESS.2023.3234622},
+  url = {https://ieeexplore.ieee.org/document/10007836?denied=},
+  urldate = {2024-03-16},
+  abstract = {Fast and resource-efficient inference in artificial neural networks (ANNs) is of utmost importance and drives many new developments in the area of new hardware architectures, e.g., by means of systolic arrays or algorithmic optimization such as pruning. In this paper, we present a novel method for lowering the computation effort for ANN inference utilizing ideas from information theory. Weight matrices are sliced into submatrices of logarithmic aspect ratios. These slices are then factorized. This reduces the number of required computations without compromising on fully parallel processing. We create a new hardware architecture for this dedicated purpose. We also provide a tool to map these sliced and factorized matrices efficiently to reconfigurable hardware. By comparing to the state of the art FPGA implementations, we can prove our claim by lowering hardware resources measured in look-up-tables (LUTs) by a factor of three to six. Our method does not rely on any particular property of the weight matrices of the ANN. It works for the general task of multiplying an input vector with a constant matrix and is also suitable for digital signal processing beyond ANNs.},
+  eventtitle = {{{IEEE Access}}},
+  keywords = {computational efficiency,Computational efficiency,computer architecture,Computer architecture,Constant matrix multiplication,Encoding,Field programmable gate arrays,Matrix decomposition,neural networks,Neural networks,reconfigurable architectures,Reconfigurable architectures,Signal processing algorithms,Sparse matrices},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\5AEW7SML\\Lehnert et al_2023_Most Resource Efficient Matrix Vector Multiplication on FPGAs.pdf;C\:\\Users\\simon\\Zotero\\storage\\V7IMZZHP\\10007836.html}
 }
 
 @article{liTemperatureBasedRestricted2016,
@@ -769,6 +1080,46 @@
   file = {C:\Users\simon\Zotero\storage\VWIC5SI6\Ising machines Hardware solvers for combinatorial.pdf}
 }
 
+@article{mololothBlockchainMachineLearning2023,
+  title = {Blockchain and {{Machine Learning}} for {{Future Smart Grids}}: {{A Review}}},
+  shorttitle = {Blockchain and {{Machine Learning}} for {{Future Smart Grids}}},
+  author = {Mololoth, Vidya Krishnan and Saguna, Saguna and Åhlund, Christer},
+  date = {2023-01},
+  journaltitle = {Energies},
+  volume = {16},
+  number = {1},
+  pages = {528},
+  publisher = {Multidisciplinary Digital Publishing Institute},
+  issn = {1996-1073},
+  doi = {10.3390/en16010528},
+  url = {https://www.mdpi.com/1996-1073/16/1/528},
+  urldate = {2024-03-12},
+  abstract = {Developments such as the increasing electrical energy demand, growth of renewable energy sources, cyber–physical security threats, increased penetration of electric vehicles (EVs), and unpredictable behavior of prosumers and EV users pose a range of challenges to the electric power system. To address these challenges, a decentralized system using blockchain technology and machine learning techniques for secure communication, distributed energy management and decentralized energy trading between prosumers is required. Blockchain enables secure distributed trust platforms, addresses optimization and reliability challenges, and allows P2P distributed energy exchange as well as flexibility services between customers. On the other hand, machine learning techniques enable intelligent smart grid operations by using prediction models and big data analysis. Motivated from these facts, in this review, we examine the potential of combining blockchain technology and machine learning techniques in the development of smart grid and investigate the benefits achieved by using both techniques for the future smart grid scenario. Further, we discuss research challenges and future research directions of applying blockchain and machine learning techniques for smart grids both individually as well as combining them together. The identified areas that require significant research are demand management in power grids, improving the security of grids with better consensus mechanisms, electric vehicle charging systems, scheduling of the entire grid system, designing secure microgrids, and the interconnection of different blockchain networks.},
+  issue = {1},
+  langid = {english},
+  keywords = {blockchain,demand response management,electric vehicles,energy trading,machine learning,security,smart grids},
+  file = {C:\Users\simon\Zotero\storage\SF54GLAS\Mololoth et al_2023_Blockchain and Machine Learning for Future Smart Grids.pdf}
+}
+
+@article{monevaSustainabilityReportingView2023,
+  title = {Sustainability Reporting in View of the {{European}} Sustainable Finance Taxonomy: {{Is}} the Financial Sector Ready to Disclose Circular Economy?},
+  shorttitle = {Sustainability Reporting in View of the {{European}} Sustainable Finance Taxonomy},
+  author = {Moneva, José M. and Scarpellini, Sabina and Aranda-Usón, Alfonso and Alvarez Etxeberria, Igor},
+  date = {2023},
+  journaltitle = {Corporate Social Responsibility and Environmental Management},
+  volume = {30},
+  number = {3},
+  pages = {1336--1347},
+  issn = {1535-3966},
+  doi = {10.1002/csr.2423},
+  url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/csr.2423},
+  urldate = {2024-03-13},
+  abstract = {The European sustainable finance taxonomy requires financial and nonfinancial companies to provide investors with information about the environmental performance of their assets and economic activities. For financial institutions, making socially and environmentally responsible investments visible through a common label that guarantees specific standards for the entire European Union is crucial. Against this background, this study analyzes the evolution of sustainability reporting practices and their assurance in a sample of European financial institutions. To this end, we used a double qualitative methodological approach, based on (a) an external analysis of nonfinancial information and its relationship with the main economic-financial variables of the sample companies, and (b) a case study of a bank carried out through semi-structured interviews. This study provides an external measurement analysis of nonfinancial information in entities from different countries, which can contribute to broadening the scope and level of sustainability and circular economy accountability.},
+  langid = {english},
+  keywords = {assurance,circular economy,CSR,financial institutions,sustainability accounting,sustainability reporting,sustainable finance},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\C9EG5RFV\\Moneva et al_2023_Sustainability reporting in view of the European sustainable finance taxonomy.pdf;C\:\\Users\\simon\\Zotero\\storage\\6JXXMVCA\\csr.html}
+}
+
 @online{montufarRestrictedBoltzmannMachines2018,
   title = {Restricted {{Boltzmann Machines}}: {{Introduction}} and {{Review}}},
   shorttitle = {Restricted {{Boltzmann Machines}}},
@@ -784,6 +1135,18 @@
   pubstate = {preprint},
   keywords = {Computer Science - Information Theory,Computer Science - Machine Learning,Mathematics - Probability,Mathematics - Statistics Theory,Statistics - Machine Learning,ungelesen},
   file = {C:\Users\simon\Zotero\storage\3DLWASIX\Montufar - 2018 - Restricted Boltzmann Machines Introduction and Re.pdf}
+}
+
+@online{MostResourceEfficient,
+  title = {Most {{Resource Efficient Matrix Vector Multiplication}} on {{FPGAs}} | {{IEEE Journals}} \& {{Magazine}} | {{IEEE Xplore}}},
+  url = {https://ieeexplore.ieee.org/document/10007836?denied=},
+  urldate = {2024-03-16}
+}
+
+@online{MostResourceEfficienta,
+  title = {Most {{Resource Efficient Matrix Vector Multiplication}} on {{FPGAs}} | {{IEEE Journals}} \& {{Magazine}} | {{IEEE Xplore}}},
+  url = {https://ieeexplore.ieee.org/document/10007836?denied=},
+  urldate = {2024-03-16}
 }
 
 @book{nazmbojnordiMemristiveBoltzmannMachine2016,
@@ -821,6 +1184,13 @@
   file = {C:\Users\simon\Zotero\storage\WPJ3SWAN\9783031508868.html}
 }
 
+@online{ParisAgreementUNFCCC,
+  title = {The {{Paris Agreement}} | {{UNFCCC}}},
+  url = {https://unfccc.int/process-and-meetings/the-paris-agreement},
+  urldate = {2024-03-10},
+  file = {C:\Users\simon\Zotero\storage\BNSASL6V\the-paris-agreement.html}
+}
+
 @online{patronOptimalRelaxationRate2024,
   title = {On the Optimal Relaxation Rate for the {{Metropolis}} Algorithm in One Dimension},
   author = {Patrón, A. and Chepelianskii, A. D. and Prados, A. and Trizac, E.},
@@ -852,6 +1222,20 @@
   pubstate = {preprint},
   keywords = {Computer Science - Machine Learning,ungelesen},
   file = {C:\Users\simon\Zotero\storage\AG7EV9DE\Pedretti et al. - 2024 - X-TIME An in-memory engine for accelerating machi.pdf}
+}
+
+@article{raiEditorCommentsCOVID192020,
+  title = {Editor’s {{Comments}}:  {{The COVID-19 Pandemic}}:  {{Building Resilience}} with {{IS Research}}},
+  shorttitle = {Editor’s {{Comments}}},
+  author = {Rai, Arun},
+  date = {2020-06-01},
+  journaltitle = {Management Information Systems Quarterly},
+  volume = {44},
+  number = {2},
+  pages = {iii-vii},
+  issn = {ISSN 0276-7783/ISSN 2162-9730},
+  url = {https://aisel.aisnet.org/misq/vol44/iss2/2},
+  file = {C:\Users\simon\Zotero\storage\XTMNXLI9\2.html}
 }
 
 @online{ramsauerHopfieldNetworksAll2021,
@@ -964,6 +1348,33 @@
   keywords = {gelesen,Physics,Quantum physics,ungelesen,zitiert}
 }
 
+@online{ScopeEUEmissions,
+  title = {Scope of the {{EU Emissions Trading System}} - {{European Commission}}},
+  url = {https://climate.ec.europa.eu/eu-action/eu-emissions-trading-system-eu-ets/scope-eu-emissions-trading-system_en},
+  urldate = {2024-03-10},
+  abstract = {What countries, sectors and gases does the EU ETS cover?},
+  langid = {english},
+  file = {C:\Users\simon\Zotero\storage\7DWUCWV4\scope-eu-emissions-trading-system_en.html}
+}
+
+@article{shaikhEnablingTechnologiesGreen2017,
+  title = {Enabling {{Technologies}} for {{Green Internet}} of {{Things}}},
+  author = {Shaikh, Faisal Karim and Zeadally, Sherali and Exposito, Ernesto},
+  date = {2017-06},
+  journaltitle = {IEEE Systems Journal},
+  volume = {11},
+  number = {2},
+  pages = {983--994},
+  issn = {1937-9234},
+  doi = {10.1109/JSYST.2015.2415194},
+  url = {https://ieeexplore.ieee.org/abstract/document/7088546?casa_token=GN6mC9f9qGQAAAAA:yWX7AfSZgxtMd5n09pMmE6c4pXmpd7jdqDAea73K-3rkGpQzPrpseprX3dE4A-YpoZt5HcrCfQw},
+  urldate = {2024-03-10},
+  abstract = {Recent technological advances have led to an increase in the carbon footprint. Energy efficiency in the Internet of Things (IoT) has been attracting a lot of attention from researchers and designers over the last couple of years, paving the way for an emerging area called green IoT. There are various aspects (such as key enablers, communications, services, and applications) of IoT, where efficient utilization of energy is needed to enable a green IoT environment. We explore and discuss how the various enabling technologies (such as the Internet, smart objects, sensors, etc.) can be efficiently deployed to achieve a green IoT. Furthermore, we also review various IoT applications, projects and standardization efforts that are currently under way. Finally, we identify some of the emerging challenges that need to be addressed in the future to enable a green IoT.},
+  eventtitle = {{{IEEE Systems Journal}}},
+  keywords = {Air pollution,Cloud computing,green Internet of Things (IoT),Green products,Internet,machine-to-machine (M2M),Monitoring,near-field communication (NFC),radio-frequency identification (RFID),Radiofrequency identification,Wireless sensor networks,wireless sensor networks (WSNs)},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\J5ZTRDVP\\Shaikh et al_2017_Enabling Technologies for Green Internet of Things.pdf;C\:\\Users\\simon\\Zotero\\storage\\9IQY6YUP\\7088546.html}
+}
+
 @inproceedings{singhChatGPTGoogle2023,
   title = {Chat {{GPT}} \& {{Google Bard AI}}: {{A Review}}},
   shorttitle = {Chat {{GPT}} \& {{Google Bard AI}}},
@@ -1015,6 +1426,23 @@
   abstract = {Neuromorphic computation is one of the axes of parallel distributed processing, and memristor-based synaptic weight is considered as a key component of this type of computation. However, the material properties of memristors, including material related physics, are not yet matured. In parallel with memristors, CMOS based Graphics Processing Unit, Field Programmable Gate Array, and Application Specific Integrated Circuit are also being developed as dedicated artificial intelligence (AI) chips for fast computation. Therefore, it is necessary to analyze the competitiveness of the memristor-based neuromorphic device in order to position the memristor in the appropriate position of the future AI ecosystem. In this article, the status of memristor-based neuromorphic computation was analyzed on the basis of papers and patents to identify the competitiveness of the memristor properties by reviewing industrial trends and academic pursuits. In addition, material issues and challenges are discussed for implementing the memristor-based neural processor.},
   keywords = {ungelesen},
   file = {C:\Users\simon\Zotero\storage\78YATYXK\Sung et al. - 2018 - Perspective A review on memristive hardware for n.pdf}
+}
+
+@online{SustainableFinanceInvestment,
+  title = {Sustainable Finance and Investment: {{Review}} and Research Agenda - {{Cunha}} - 2021 - {{Business Strategy}} and the {{Environment}} - {{Wiley Online Library}}},
+  url = {https://onlinelibrary.wiley.com/doi/full/10.1002/bse.2842},
+  urldate = {2024-03-13},
+  file = {C:\Users\simon\Zotero\storage\BKBGD3N9\bse.html}
+}
+
+@online{UebereinkommenParisRat,
+  title = {Übereinkommen von Paris: Rat übermittelt aktualisierten NDC im Namen der EU und der Mitgliedstaaten},
+  shorttitle = {Übereinkommen von Paris},
+  url = {https://www.consilium.europa.eu/de/press/press-releases/2023/10/16/paris-agreement-council-submits-updated-ndc-on-behalf-of-eu-and-member-states/},
+  urldate = {2024-03-10},
+  abstract = {Der Rat hat heute die Vorlage eines aktualisierten national festgelegten Beitrags (NDC) der EU zum UNFCCC gebilligt.},
+  langid = {ngerman},
+  file = {C:\Users\simon\Zotero\storage\9UJ8WPGB\paris-agreement-council-submits-updated-ndc-on-behalf-of-eu-and-member-states.html}
 }
 
 @article{upadhyaOverviewRestrictedBoltzmann2019,
@@ -1093,6 +1521,16 @@
   file = {C:\Users\simon\Zotero\storage\EYETDMNB\Wang et al_2021_Research on the Application of Gradient Descent Algorithm in Machine Learning.pdf}
 }
 
+@online{WhatEUETS,
+  title = {What Is the {{EU ETS}}? - {{European Commission}}},
+  shorttitle = {What Is the {{EU ETS}}?},
+  url = {https://climate.ec.europa.eu/eu-action/eu-emissions-trading-system-eu-ets/what-eu-ets_en},
+  urldate = {2024-03-10},
+  abstract = {A ‘cap and trade’ system to reduce emissions via a carbon market.},
+  langid = {english},
+  file = {C:\Users\simon\Zotero\storage\97AF6AJM\what-eu-ets_en.html}
+}
+
 @book{wittpahlKuenstlicheIntelligenzTechnologie2019,
   title = {Künstliche Intelligenz: Technologie | Anwendung | Gesellschaft},
   shorttitle = {Künstliche Intelligenz},
@@ -1149,4 +1587,45 @@
   abstract = {The Restricted Boltzmann Machine (RBM) has aroused wide interest in machine learning fields during the past decade. This review aims to report the recent developments in theoretical research and applications of the RBM. We first give an overview of the general RBM from the theoretical perspective, including stochastic approximation methods, stochastic gradient methods, and preventing overfitting methods. And then this review focuses on the RBM variants which further improve the learning ability of the RBM under general or specific applications. The RBM has recently been extended for representational learning, document modeling, multi-label learning, weakly supervised learning and many other tasks. The RBM and RBM variants provide powerful tools for representing dependency in the data, and they can be used as the basic building blocks to create deep networks. Apart from the Deep Belief Network (DBN) and the Deep Boltzmann Machine (DBM), the RBM can also be combined with the Convolutional Neural Network (CNN) to create deep networks. This review provides a comprehensive view of these advances in the RBM together with its future perspectives.},
   keywords = {Classification,Deep networks,Representational learning,Restricted Boltzmann Machine,ungelesen},
   file = {C:\Users\simon\Zotero\storage\739QIQAV\Zhang et al. - 2018 - An overview on Restricted Boltzmann Machines.pdf}
+}
+
+@article{zhouPhotonicMatrixMultiplication2022,
+  title = {Photonic Matrix Multiplication Lights up Photonic Accelerator and Beyond},
+  author = {Zhou, Hailong and Dong, Jianji and Cheng, Junwei and Dong, Wenchan and Huang, Chaoran and Shen, Yichen and Zhang, Qiming and Gu, Min and Qian, Chao and Chen, Hongsheng and Ruan, Zhichao and Zhang, Xinliang},
+  date = {2022-02-03},
+  journaltitle = {Light: Science \& Applications},
+  shortjournal = {Light Sci Appl},
+  volume = {11},
+  number = {1},
+  pages = {30},
+  publisher = {Nature Publishing Group},
+  issn = {2047-7538},
+  doi = {10.1038/s41377-022-00717-8},
+  url = {https://www.nature.com/articles/s41377-022-00717-8},
+  urldate = {2024-03-18},
+  abstract = {Matrix computation, as a fundamental building block of information processing in science and technology, contributes most of the computational overheads in modern signal processing and artificial intelligence algorithms. Photonic accelerators are designed to accelerate specific categories of computing in the optical domain, especially matrix multiplication, to address the growing demand for computing resources and capacity. Photonic matrix multiplication has much potential to expand the domain of telecommunication, and artificial intelligence benefiting from its superior performance. Recent research in photonic matrix multiplication has flourished and may provide opportunities to develop applications that are unachievable at present by conventional electronic processors. In this review, we first introduce the methods of photonic matrix multiplication, mainly including the plane light conversion method, Mach–Zehnder interferometer method and wavelength division multiplexing method. We also summarize the developmental milestones of photonic matrix multiplication and the related applications. Then, we review their detailed advances in applications to optical signal processing and artificial neural networks in recent years. Finally, we comment on the challenges and perspectives of photonic matrix multiplication and photonic acceleration.},
+  langid = {english},
+  keywords = {Integrated optics,Optoelectronic devices and components,Photonic devices},
+  file = {C:\Users\simon\Zotero\storage\3KLKSXS8\Zhou et al_2022_Photonic matrix multiplication lights up photonic accelerator and beyond.pdf}
+}
+
+@article{zioloHowDesignMore2019,
+  title = {How to {{Design More Sustainable Financial Systems}}: {{The Roles}} of {{Environmental}}, {{Social}}, and {{Governance Factors}} in the {{Decision-Making Process}}},
+  shorttitle = {How to {{Design More Sustainable Financial Systems}}},
+  author = {Ziolo, Magdalena and Filipiak, Beata Zofia and Bąk, Iwona and Cheba, Katarzyna},
+  date = {2019-01},
+  journaltitle = {Sustainability},
+  volume = {11},
+  number = {20},
+  pages = {5604},
+  publisher = {Multidisciplinary Digital Publishing Institute},
+  issn = {2071-1050},
+  doi = {10.3390/su11205604},
+  url = {https://www.mdpi.com/2071-1050/11/20/5604},
+  urldate = {2024-03-13},
+  abstract = {A literature review showed that finance is a driver of sustainability. However, to achieve sustainability through finance, it is necessary to rebuild and adapt the financial system to the specifics of sustainable development. Modern financial systems can be described as one-dimensional, focusing on ensuring the economic security of transactions. Meanwhile, the growing role of risk related to non-financial factors means that the factors referred to as ESG (environmental, social, governance) become the main source threatening the stability of financial systems. Adaptation activities toward the design of so-called three-dimensional financial systems rely on incorporating ESG risk into the financial decisions of the financial institutions that make up the financial system. This is found, among other factors, in the risk assessment methodology. The general goal of the paper is to investigate which ESG criteria are incorporated into the decision-making process of financial institutions and to verify the level of sustainability of financial systems in selected OECD (Organization for Economic Cooperation and Development) countries. The main research hypothesis assumes that incorporating ESG factors into the decision-making process of financial institutions makes financial systems more sustainable. A two-stage research procedure was used to achieve the research goal. In the first stage, to determine the ESG factors that affect the level of sustainability of financial systems and identify dependencies between ESG factors incorporated by financial institutions into the decision-making process, a fuzzy cognitive map (FCM) was used. The collective map elaborating on the basis of the opinions of experts participating in the study was built using the software FCMapper\_bugfix\_27.1.2016. In the second stage, based on multiple-criteria decision analysis (MCDA) using the PROMETHEE method (Preference Ranking Organization Method of Enrichment Evaluation), 23 OECD countries that respect the Equator Principles were ranked according to seven groups of criteria defined for financial system assessment (financial depth, development, vulnerability, soundness, fragility, stability, and sustainability), based on a literature review. The ranking confirmed the strong position of Scandinavian countries for assuring best sustainability practices in financial institutions and in the economy. The added value of this paper can be considered at two levels: theoretical and empirical. From the theoretical point of view, it should be noted that it is the first of this kind of analysis which prioritizes ESG factors in financial decisions and ranks financial systems according to fulfilling sustainability criteria. The original empirical approach based on the two-stage research procedure provided analysis of 62 factors, of which 21 represented the environmental scope, 25 the social scope, and 16 the governance scope, which is the main advantage of the empirical study presented in the paper.},
+  issue = {20},
+  langid = {english},
+  keywords = {ESG factors,fuzzy cognitive mapping,MCDA,PROMETHEE,risk,sustainable finance,sustainable financial systems},
+  file = {C:\Users\simon\Zotero\storage\JCBAZLWL\Ziolo et al_2019_How to Design More Sustainable Financial Systems.pdf}
 }

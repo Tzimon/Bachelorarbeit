@@ -128,21 +128,26 @@ Consequently, this leads to the specific learning rule\footcite[cf.][5]{hintonPr
     \Delta w_{ij} = \epsilon ( \langle v_i h_j \rangle_{\text{data}} - \langle v_i h_j \rangle_{\text{model}} )
 \end{equation}
 
-The network can now update the weights ``W'' that exist between the neurons through the training rule based on the observations that served as input and modified by the learning rate \(\epsilon\).\footcite[cf.][1-2]{barraEquivalenceHopfieldNetworks2012}
+The network can now update the weights ``W'' that exist between the neurons through the training rule based on the observations that served as input. \footcite[cf.][1-2]{barraEquivalenceHopfieldNetworks2012}
+In this case, the square brackets represent expected values, as the training is based on the activation probability.
+In addition to that, the step sizes of updates to the weights are influenced by the learning rate \(\epsilon\) within the iterative training process.
 
-Performing exact maximum likelihood learning in this model is intractable because exact computation of the data predictions and the model predictions takes a time that is exponential in the number of hidden units.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
+Performing exact training in this model is intractable because exact computation of the data predictions and the model predictions takes a time that is exponential in the number of hidden units.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
 When the number of hidden units is large compared to the number of visible units it is impossible to achieve a perfect model because of the totally connected network and the resulting \( 2^n \) possbilities.\footcite[cf.][154]{ackleyLearningAlgorithmBoltzmann1985}
+Hereby, \( n\) represents the number of neurons in the network with each neuron being in one of the two states, the total sum of possibilities are \( 2^n \).
 This leads back to the briefly mentioned constraint of equation 2.3, that is needed to calculate an activation probability of a neuron, which is required to update a weight in the training process shown in 2.5.
 
-A specific example to demonstrate why it is intractable to calculate a activiation of a \ac{BM} is the following. A fictional \ac{BM} has 80 visible nodes and 120 hidden nodes and therefore the possbilities of states of neurons are \( 2^{200} \), which is \( 1.61 \times 10^{60}\). 
-To put this in perspective the toal atoms that exist on earth are only estimated to be around \( 1.33 \times 10^{50}\).\footnote{cf.\cite{helmenstineHowManyAtoms2022}, p. 478-480; cf.\cite{schlammingerCoolWayMeasure2014}, p. 1}
+A specific example to demonstrate why it is intractable to calculate an activiation of a \ac{BM} is the following. A fictional \ac{BM} has 80 visible nodes and 120 hidden nodes and therefore the possbilities of states of neurons are \( 2^{200} \), which is \( 1.61 \times 10^{60}\). 
+To put this into perspective, the total atoms that exist on earth are only estimated to be around \( 1.33 \times 10^{50}\).\footnote{cf.\cite{helmenstineHowManyAtoms2022}, p. 478-480; cf.\cite{schlammingerCoolWayMeasure2014}, p. 1}
 That means even if it would be possible to store one information per atom it would just not be enough. 
 
-\subsection{Training of Restriced Boltzmann Machines}
+As a result, instead of directly trying to train the model sampling methods are used that are able to estimate these activation probabiliies.
+This enables the training of \ac{BM}s and \ac{RBM}s.
+\subsection{Restriced Boltzmann Machines}
 
-As a solution for the training problem Hinton and Sejnowski proposed Gibbs sampling as an algorithm to aporoximate both expectations.\footcite[cf.][158-165]{ackleyLearningAlgorithmBoltzmann1985}
+As a simplification of the training problem Hinton and Sejnowski proposed Gibbs sampling as an algorithm to aporoximate both expectations.\footcite[cf.][158-165]{ackleyLearningAlgorithmBoltzmann1985}
 Furthermore, the intralayer connections of the model got removed and the result is the so called \ac{RBM}.
-To transform an \ac{BM} into a \ac{RBM} the diagonal elements \( L \) and \( J \)  introduced earlier, are set to 0 and as a result the well-known model of a \ac{RBM} establishes shown in fig.2.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
+To transform an \ac{BM} into a \ac{RBM} the diagonal elements \( L \) and \( J \)  introduced earlier, are set to 0 and as a result the well-known model of a \ac{RBM} establishes shown in fig.5.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
 
 \begin{figure}[H]
     \centering
@@ -154,36 +159,59 @@ The configuration of the visible and hidden units \( (v, h) \) therefore has als
 \begin{equation}
 E(v, h) = - \sum_{i \in \text{visible}} a_i v_i - \sum_{j \in \text{hidden}} b_j h_j - \sum_{i,j} v_i h_j w_{ij},
 \end{equation}
-where \( v_i, h_j \) are the binary states of a visible unit \( i \) and hidden unit \( j \), \( a_i, b_j \) are their biases and \( w_{ij} \) is the weight between them.\footcite[cf.][3-4]{hintonPracticalGuideTraining2012a}
-Despite, compared to the fully connected \ac{BM}, the \ac{RBM} is less complex but the advantages of training surpasses the loss in expressivity.\footcite[cf.][4]{huembeliPhysicsEnergybasedModels2022}
+where \( v_i, h_j \) are the binary states of a visible unit \( i \) and hidden unit \( j \), \( a_i \) and  \(  b_j \) are their biases and \( w_{ij} \) is the weight between them.\footcite[cf.][3-4]{hintonPracticalGuideTraining2012a}
+Despite, compared to the fully connected \ac{BM}, the \ac{RBM} is less complex but the advantages of training surpasses the loss in expressivity possibilities.\footcite[cf.][4]{huembeliPhysicsEnergybasedModels2022}
 The \ac{RBM} has recently been drawing attention in the machine learning community beceause of its adaption and extention for various tasks such as representational learning, document modeling, image recognition and for
 serving as foundational components for deep networks including Deep Boltzmann Machines, Deep Belief Networks and hybrid models with CNNs.\footcite[cf.][1186]{zhangOverviewRestrictedBoltzmann2018}
-The training of the model can be split up into the following steps:
+
+\subsubsection{Training of \ac{RBM}s}
+
+The training of \ac{RBM}s can be established with the use of sampling methods that estimate the activation probabilities, which are needed to update the weights.
+There are currently two methods that can be chosen from: contrastive divergence and the Metropolis-Hastings algorithm. 
+The goal of the techniques is to create a sequence of correlated steps from a random walk that, after enough iterations, makes it possible to sample a desired target probability distribution.\footcite[cf.][1]{patronOptimalRelaxationRate2024}
+In the following part both methods will be explained in depth.
+Especially, they are interesting since they serve as baselines to compare against the new sampling method of a hopfield network that is to be achieved in the practical part of the thesis.
+
+\textbf{Contrastive Divergence:} Contrastive divergence is a special Gibbs Sampling training method
+developed by Geoffrey Hinton for the efficient training of \ac{RBM}s.\footcite[cf.][4-5]{hintonPracticalGuideTraining2012}
+In traditional, Gibbs sampling would have to generate a long chain of samples, until
+independent samples are obtained from the observed data distribution of the model.\footcite[cf.][5-6]{huembeliPhysicsEnergybasedModels2022}
+The samples are needed for each iteration of the gradient ascent on the log-likelihood
+resulting in large computational costs.\footcite[cf.][7-8]{upadhyaOverviewRestrictedBoltzmann2019}
+To solve this issue contrastive divergence minimizes an approximation of the Kullback-Leibler divergence between the empirical distribution of the training data and the distribution generated by the model.\footcite[cf.][246]{mocanuTopologicalInsightRestricted2016}
+They way to achieve this is by initializing the Markov chain with the samples from the data distributon.\footcite[cf.][7-8]{upadhyaOverviewRestrictedBoltzmann2019}
+The outcome has been shown to heavily decrease the training time while only adding a small bias.\footcite[cf.][537]{larochelleClassificationUsingDiscriminative2008}
+This allows to calculate the probabilities of equation 2.5. 
+This entails initializing the visible units using an actual data input, such as an MNIST sample, and then commencing the subsequent steps with the hidden states.
+Often the process can be stopped after only sampling a very small number of steps.\footcite[cf.][646]{larochelleLearningAlgorithmsClassification2012}
+
 
 \textbf{1. Forward Pass (positive phase)}
 
 During the forward pass using the Gibbs Sampling method, the visible units are set to a completely random state. Next up the hidden units are computed.
 The computation of the hidden units involves calculating their acitivation probabilities and performing an actual sampling with their calculated activation probabilities.
-With the \ac{RBM} it is now easy to get an analytical calculated unbiased sample of $(\textbf{v}_i\textbf{h}_j)_{data}$.\footcite[cf.][5]{hintonPracticalGuideTraining2012}
+With the \ac{RBM} it is now easy to get an analytical calculated sample of $(\textbf{v}_i\textbf{h}_j)_{data}$.\footcite[cf.][5]{hintonPracticalGuideTraining2012}
 Given an input data out of the training images, \( v \), the binary state, \( j \), of each hidden unit,  \( h_j \), is set to 1 with following probability:
 
 \begin{equation}
 p(h_j = 1 | \textbf{v}) = \sigma(b_j + \sum_i v_i w_{ij}),
 \end{equation}
-where $\sigma(x)$ is the logistic sigmoid function with an unbiased sample. The sigmoid function is defined as $\sigma(x) = \frac{1}{1 + \exp(-x)}$ and shown in figure 4:
+where $\sigma(x)$ is the logistic sigmoid function with an unbiased sample. The sigmoid function is defined as $\sigma(x) = \frac{1}{1 + \exp(-x)}$ and is needed because it is the underlying activation function of each neuron.
+A visual representation is shown in figure 6:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\linewidth]{graphics/logistic_sigmoid.png}
     \caption{Figure of a logistic sigmoid function \ac{RBM}}
 \end{figure}
-The result is a set of probabilities that reflect how likely it is for each hidden unit to be on or off given the input data.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022}
+The result is a set of probabilities that reflect how likely it is for each hidden unit to be on, wich stands for \( 1 \), or, which stands for \( 0 \), given the input data.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022}
 The sampling part of the positive phase uses the just calculated acitivation probabiliy of each hidden unit and performs a random experiment with it.
-Afterwards, the hidden unit is either activated or not activated and the training process continues with the new state of the hidden units (activated or not activated).
+That random experiment generates a uniform random number between 1 and 0 and if the random number is greater than the just calculated activiation probability the hidden unit is set to activated.
+Afterwards, the hidden unit is either activated or not activated and the training process continues with the new state of the hidden units.
 
 \textbf{2. Reconstruction (negative phase)}
 
 In this phase, the sampled hidden states are used to reconstruct the visible units. 
-This is essentially a prediction of the input, which is calulated with following probability:\footcite[cf.][6]{hintonPracticalGuideTraining2012}
+This is essentially a prediction of the input, which is how the model sees the input based on the just updated hidden units and is calulated with following probability:\footcite[cf.][6]{hintonPracticalGuideTraining2012}
 \begin{equation}
     p(v_i = 1 | \mathbf{h}) = \sigma(a_i + \sum_j h_j w_{ij})
 \end{equation}
@@ -194,30 +222,14 @@ Afterwards, a half forward pass is made to calculate the activation probability 
 
 \textbf{3. Updating the weights}
 
-Meanwhile, all the requirements to update the weights are satisfied and can be used within the equation 2.5. 
-The delta that results is summed to the current weight and therefore the internal model gets closer to prediciting the observed data.
-Therefore, one training iteration consisting out of 1 Forward Pass, 1 Reconstruction and 0.5 Forward Pass again is accomplished.
+Now, all the requirements to update the weights are satisfied and can be used within the equation 2.5. 
+The delta that results is summed to the current weight and the internal model gets closer to prediciting the observed data.
+In total, one training iteration consists out of 1 Forward Pass, 1 Reconstruction and 0.5 Forward Pass again is accomplished.
 Repeating this training steps \( N \) times for a suitable chosen \( N \) the model learns better, since more steps of alternating Gibbs sampling were performed.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022}
 
 
-\subsubsection{Markov-Chain-Monte-Carlo-Verfahren}
-
-\textbf{Contrastive Divergence:} Contrastive divergence is a special Gibbs Sampling training method
-developed by Geoffrey Hinton for the efficient training of Boltzmann Machines, especially \ac{RBM}s.\footcite[cf.][4-5]{hintonPracticalGuideTraining2012}
-In traditional Gibbs sampling would have to generate a long chain of samples, until
-independent samples are obtained from the observed data distribution of the model.\footcite[cf.][5-6]{huembeliPhysicsEnergybasedModels2022}
-The samples are needed for each iteration of the gradient ascent on the log-likelihood
-resulting in large computational costs.\footcite[cf.][7-8]{upadhyaOverviewRestrictedBoltzmann2019}
-To solve this issue contrastive divergence minimizes an approximation of the Kullback-Leibler divergence between the empirical distribution of the training data and the distribution generated by the model.\footcite[cf.][246]{mocanuTopologicalInsightRestricted2016}
-They way to achieve this is by initializing the Markov chain with the samples from the data distributon.\footcite[cf.][7-8]{upadhyaOverviewRestrictedBoltzmann2019}
-The outcome has been shown to heavily increase the training time while only adding a small bias.\footcite[cf.][537]{larochelleClassificationUsingDiscriminative2008}
-What this means is initializing the visible units with a real data input for example a MNIST sample and starting the proposed steps with the underlying states.
-Often the process can be stopped after only sampling a very small number of steps (often only one).\footcite[cf.][646]{larochelleLearningAlgorithmsClassification2012}
-
-
 \textbf{Metropolis-Hastings:} The Metropolis-Hastings algorithm, often only called Metropolis algorithm, is a technique out of \ac{MCMC} class techniques.\footcite[cf.][1]{patronOptimalRelaxationRate2024}
-The Metropolis-Hastings method was invented by Metropolis et al. in 1953 when he noticed, that for an intractable distribution with too many states it can be seen as a limiting distribution of Markov chains.\footcite[cf.][1087-1092]{metropolisEquationStateCalculations1953}
-The goal of the technique is to create a sequence of correlated steps from a random walk that, after enough iterations, makes it possible to sample a desired target probability distribution.\footcite[cf.][1]{patronOptimalRelaxationRate2024} 
+The Metropolis-Hastings method was invented by Metropolis et al. in 1953 when they noticed, that for an intractable distribution with too many states it can be seen as a limiting distribution of Markov chains.\footcite[cf.][1087-1092]{metropolisEquationStateCalculations1953} 
 The intractable distribution to handle with the Metropolis-Hastings technique in the case of \ac{RBM}s is equation 2.3.
 An Interpretation of the method can be expressed as: "A visitor to a museum that is forced by a general blackout to watch
 a painting with a small torch.
@@ -228,18 +240,18 @@ First, select a random or given configuarion $x_{\text{old}}$ of a \ac{RBM} that
 Secondly, the energy of the configuration, noted as  $E_{\text{old}}$, must be calculated using Equation 2.6, as previously introduced. Subsequently, this energy value is stored.
 Thirdly, the configuration gets updated by picking one random neuron and changing the state of it from 0 to 1 or vice versa.\footcite[cf.][1]{rosenthalOptimalProposalDistributions2009}
 This new configuration is stored as $x_{\text{new}}$. Following that the energy of the new configuration $E_{\text{new}}$ is calculated and stored.
-Now the two energy values are compared and if $E_{\text{new}}$ < $E_{\text{old}}$ the new configuration will be accepted and $x_{\text{old}}$ = $x_{\text{new}}$.\footcite[cf.][1-2]{patronOptimalRelaxationRate2024}
+Now the two energy values are compared and if $E_{\text{new}}$ <= $E_{\text{old}}$ the new configuration will be accepted and $x_{\text{old}}$ = $x_{\text{new}}$.\footcite[cf.][1-2]{patronOptimalRelaxationRate2024}
 If $E_{\text{new}}$ > $E_{\text{old}}$ then there are some extra steps to be followed: 
 
 The flip probability is calculated as $p=\exp\left(-\frac{E_{\text{new}}-E_{\text{old}}}{kT}\right)$.
 \( KT \) is interpreted as the temperature in the network and with higher temperature it increases
-the acitivation probability leading to an faster exploration through the landscape but with less details.\footcite[cf.][1-9]{liTemperatureBasedRestricted2016}
-For \ac{RBM}s \( KT \) is assumed to be 1. (FOOTCITE von Fabian fehlt). In the following figure 5 the resulting probability function is shown.
+the activation probability leading to an faster exploration through the landscape but with less details.\footcite[cf.][1-9]{liTemperatureBasedRestricted2016}
+For \ac{RBM}s \( KT \) is assumed to be 1.\footcite[cf.][3]{hintonBoltzmannMachines2014} In the following figure 7 the resulting probability function is shown.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{graphics/Exponential flip probability function.png}
-    \caption{Figure of the exponential flip probability function}
+    \includegraphics[width=0.7\linewidth]{graphics/Flip Probability Function in Metropolis-Hastings Algorithm2.png}
+    \caption{Flip Probability Function in Metropolis-Hastings Algorithm}
 \end{figure}
 
 In the next step a uniform random number $r$ between 0 and 1 is generated.
@@ -249,18 +261,32 @@ Otherwise, a rejection takes place if $r > P$ (i.e., $x_{\text{old}}=x_{\text{ol
 Finally, the configuration $x_{\text{old}}$ can be stored and the process repeats beginning from step 2 on.\footcite[cf.][17]{patronOptimalRelaxationRate2024}
 After repeating enough times the activation probability for each neuron can be calculated by summing over all samples $(x_1+x_2+x_3+\ldots)$ and the result is divided by the total number of samples.
 
-
 \subsection{Current Problems witht BMs and RBMs}
 
 One general problem that occurs in the learning process of a \ac{BM} is that it is both time-consuming and difficult.\footcite[cf.][1-2]{fischerIntroductionRestrictedBoltzmann2012}
-This is because sampling from an undirected graphical model is not straightforward and therefore \ac{RBM}s can make use
+This is because sampling from an undirected graphical model is not straightforward and therefore \ac{RBM}s make use
 of \ac{MCMC} proposed methods like Contrastive Divergence and Metropolis Hastings.\footcite[cf.][2]{fischerIntroductionRestrictedBoltzmann2012}
 In addition to that, the selection of hyperparameters can be difficult since for the training of a practical model a large hyper-parameter space needs to be explored.\footcite[cf.][536]{larochelleClassificationUsingDiscriminative2008}
-Especially finding the right size of the hidden layer, the learning rate and number of training iterations but also the method for calculating activation probabilities(Contrastive Divergence, Metropolis Hastings, etc.) can be seen as art.
-Furthermore, training can become unstable due to the system's low temperature, which impacts the training negatively.\footcite[cf.][3-4]{huembeliPhysicsEnergybasedModels2022}
+Hyperparmeters are: the learning rate, size of the hidden layer, number of training iterations iteration count per bias (sampling step size), initializing the weight sizes in the beginning but also the method for calculating activation probabilities (Contrastive Divergence, Metropolis Hastings, etc.).
+As a result, establishing a \ac{RBM} with perfect hyperparameters is time consuming and can be seen as art.
+Furthermore, training can become unstable and predictions become inaccurate due to an incompatible selected temperature.\footcite[cf.][3-4]{huembeliPhysicsEnergybasedModels2022}
 A lower temperature reduces the system's possbility to explore the energy landscape thoroughly, leading to the false selection of local minima instead of finding the global minimum.
+Vice versa a too high temperature can cause that the energy landscape is not explored enough and has gaps between it missing some minima or skipping the global maxima. 
+Luckily, the temperature for \ac{RBM}s is expected to be \( 1 \) and only for specific use cases it makes sense to adjust internal temperature.
+
+To accelerate the training process of a \ac{RBM}, it is crucial to address the most computationally demanding aspect: the matrix-vector multiplication involved in the sampling process.
+A possbilty of achieving this is using dedicated hardware, so called hardware accelerators for this problem. 
+They are designed to tackle a specific task very efficiently, like matrix vector multiplications, which are widely used within most of the neural networks.\footcite[cf.][3881-3882]{lehnertMostResourceEfficient2023}
+That is the reason why they are significant for the acceleration of this thesis and an interesting technology to look at.  
+
 
 \section{Hardwarebeschleuniger}
+
+Since Neural Networks and \ac{DNN}s are growing their parameters at rapid rates they constantly achieve better and better resutls and are able to solv even more complex tasks.\footcite[cf.][1]{baischerLearningHardwareTutorial2021}
+This upcoming trend of growing network sizes exponetially also brings a dark side with it: An excessive increase in computational effort and memory size.\footcite[cf.][1-2]{baischerLearningHardwareTutorial2021}
+As a result \ac{CPU}s can barely satisfy the required performance and specialized hardware accelerators are used to increase the performance of these Neural Networks.\footnote{cf.\cite{zhouPhotonicMatrixMultiplication2022}, p. 1-2; cf.\cite{baischerLearningHardwareTutorial2021}, p. 2}
+In addition to that for many use cases, like autonomous driving, there are high energy and real-time computation constraints these hardware accelerators need to meet.\footcite[cf.][2692]{ahmadOptimizingHardwareAccelerated2020}
+There are different approches such as \ac{GPU}s, \ac{ASICS}, \ac{FPGA} but also new approaches like 
 \subsection{Aktuelle Ansätze im Bereich KI und weitere Lösungen}
 \subsubsection{Asics}
 \subsubsection{Quantencomputing}
@@ -318,7 +344,7 @@ Since every neuron's output is an input to all the other neurons the order of th
 There is the possbility to update all neurons synchronous or asynchronous. 
 There is no study that shows what update method leads to better results.
 Therefore, this paper follows the asynchronous option and ensures to do enough iterations, so that every neuron has at least updated once before moving on.
-In addition to that, the idea of the updating method of the accelerator is slightly different. The idea behind this is to inject noise into the system so that the acitivation function could work together with the activation function that a \ac{RBM} needs to perform. 
+In addition to that, the idea of the updating method of the accelerator is slightly different. The idea behind this is to inject noise into the system so that the activation function could work together with the activation function that a \ac{RBM} needs to perform. 
 In detail the idea is to add a normal gaussian distribution \( g(x) \) on top of the activation function.\footcite[cf.][4-5]{bohmNoiseinjectedAnalogIsing2022}
 As a result the new statistical updating function looks like the following:
 \[
