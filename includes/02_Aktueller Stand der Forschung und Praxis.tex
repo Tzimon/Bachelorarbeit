@@ -280,23 +280,40 @@ They are designed to tackle a specific task very efficiently, like matrix vector
 That is the reason why they are significant for the acceleration of this thesis and an interesting technology to look at.  
 
 
-\section{Hardwarebeschleuniger}
-
+\section{Hardware accelerators}
+\subsection{Current approaches in the field of AI and other solutions}
 Since Neural Networks and \ac{DNN}s are growing their parameters at rapid rates they constantly achieve better and better resutls and are able to solv even more complex tasks.\footcite[cf.][1]{baischerLearningHardwareTutorial2021}
-This upcoming trend of growing network sizes exponetially also brings a dark side with it: An excessive increase in computational effort and memory size.\footcite[cf.][1-2]{baischerLearningHardwareTutorial2021}
+This upcoming trend of growing network sizes exponentially also brings a dark side with it: An excessive increase in computational effort and memory size.\footcite[cf.][1-2]{baischerLearningHardwareTutorial2021}
 As a result \ac{CPU}s can barely satisfy the required performance and specialized hardware accelerators are used to increase the performance of these Neural Networks.\footnote{cf.\cite{zhouPhotonicMatrixMultiplication2022}, p. 1-2; cf.\cite{baischerLearningHardwareTutorial2021}, p. 2}
-In addition to that for many use cases, like autonomous driving, there are high energy and real-time computation constraints these hardware accelerators need to meet.\footcite[cf.][2692]{ahmadOptimizingHardwareAccelerated2020}
-There are different approches such as \ac{GPU}s, \ac{ASICS}, \ac{FPGA} but also new approaches like 
-\subsection{Aktuelle Ansätze im Bereich KI und weitere Lösungen}
-\subsubsection{Asics}
-\subsubsection{Quantencomputing}
-\subsection{ISING Maschine/ Physikinspirierter Hardwarebeschleuniger}
+In addition to that for many use cases, like autonomous driving, there are high energy, latency, and runtime predictability constraints \ac{CPU}s are not able to meet.\footcite[cf.][2692]{ahmadOptimizingHardwareAccelerated2020}
+There are different approches such as \ac{GPU}s, \ac{ASIC}s, \ac{FPGA}s, but also new approaches like Quantum Computations or Photonic matrix multiplication are researched.\footnote{\cite{zhouPhotonicMatrixMultiplication2022}, p. 1-2; cf.\cite{baischerLearningHardwareTutorial2021}, p. 2}
+All of these methods have different use cases and get more and more application specific. The list of the sequence, sorted by application-unspecific to specific for established approches looks the following:
+\[
+\text{CPU} \xrightarrow{\text{less flexible}} \text{GPU} \xrightarrow{\text{specialized}} \text{FPGA} \xrightarrow{\text{more customized}} \text{ASIC}
+\]
+Currently the approaches can be segmented into three categories:
+\textbf{Firstly}, the design of data-driven digital circuits.
+It consits the shift from general-purpose GPUs to specialized dataflow architectures like systolic arrays, which are used in Google’s Tensor Processing Units (TPUs).
+These architectures are noted for their efficiency in performing deep learning operations by reducing control hardware and keeping data movement local.\footcite[cf.][3883]{lehnertMostResourceEfficient2023}
+\textbf{Secondly}, network structure optimizations. 
+Hereby modifications to the neural networks themselves are made to improve hardware efficiency.
+One method is quantization, which simplifies arithmetic operations and reduces memory needs by using fixed-point representations of data and weights instad of using for example 32 bit floating points.
+The other one is pruning, which involves setting certain weights to zero to reduce the complexity of operations.\footcite[cf.][3883]{lehnertMostResourceEfficient2023}
+\textbf{Thirdly}, technology-driven designs.
+Current research into using novel circuitry and memory cells include memristive memory cells and silicon photonics, to further enhance performance and energy efficiency.
+They work by storing the network weighs and calculating the vector multiplications with analaog signals with technologies like crossbar arrays.
+While these technologies promise significant advantages, their practical application is still being explored.\footcite[cf.][3883]{lehnertMostResourceEfficient2023}
+\subsection{Asics}
+\subsection{FPGA}
+\section{Memristor Hopfield Network - ist ein spezielle ISING Maschine}
+
+The so called Memristor Hopfield Network, which is a totally new approach, is a hardware accelerator that uses analog signals in combination with electronical signals.
+Background is the current slow down or failure of Moore's law which causes issues improving performance and energy efficiency of conventional semiconductor electronical technology.\footcite[cf.][2]{zhouPhotonicMatrixMultiplication2022}
+
 \subsubsection{Konzept (mit Energiefunktion), Probleme der Digitalrechner bzw. Unterschied zu Digitalrechner}
 \subsubsection{Aktuelle Anwendung}
 \subsubsection{Potentielle Einsatzgebiete für KI-Modelle}
 \subsubsection{Parallelen Energiefunktion BM und ISING Maschine}
-
-\section{Memristor Hopfield Network}
 \subsection{Memristor}
 \subsection{Hopfield Network}
 

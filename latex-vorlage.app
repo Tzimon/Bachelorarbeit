@@ -1,2 +1,2 @@
-\contentsline {section}{\numberline {Anhang 1}So funktioniert's}{26}{section*.35}%
-\contentsline {subsection}{\numberline {Anhang 1/1}Wieder mal eine Abbildung}{26}{section*.36}%
+\contentsline {section}{\numberline {Anhang 1}So funktioniert's}{27}{section*.31}%
+\contentsline {subsection}{\numberline {Anhang 1/1}Wieder mal eine Abbildung}{27}{section*.32}%
