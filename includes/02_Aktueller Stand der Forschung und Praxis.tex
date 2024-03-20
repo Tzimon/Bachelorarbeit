@@ -286,6 +286,13 @@ Since Neural Networks and \ac{DNN}s are growing their parameters at rapid rates 
 This upcoming trend of growing network sizes exponentially also brings a dark side with it: An excessive increase in computational effort and memory size.\footcite[cf.][1-2]{baischerLearningHardwareTutorial2021}
 As a result \ac{CPU}s can barely satisfy the required performance and specialized hardware accelerators are used to increase the performance of these Neural Networks.\footnote{cf.\cite{zhouPhotonicMatrixMultiplication2022}, p. 1-2; cf.\cite{baischerLearningHardwareTutorial2021}, p. 2}
 In addition to that for many use cases, like autonomous driving, there are high energy, latency, and runtime predictability constraints \ac{CPU}s are not able to meet.\footcite[cf.][2692]{ahmadOptimizingHardwareAccelerated2020}
+
+The concept of developing hardware accelerators is not new.
+However, their limited adoption and the fast obsolescence of even the most outstanding accelerators have made the investment in them uneconomical compared to general-purpose processors that surpassed them.\footcite[cf.][2]{peccerilloSurveyHardwareAccelerators2022}
+At present, however they are seen as promising driving force of computer architecture since they are the optimal solution to satisfy the growing computation-hungry demands of businesses, especially within machine learning workloads.\footcite[cf.][2-3]{peccerilloSurveyHardwareAccelerators2022}
+An hardware accelerator can be defined as "a separate architectural substructure that is architected using a different set of objectives than the base processor, where these objectives are derived from the needs of a special class of applications".\footcite[cf.][2]{peccerilloSurveyHardwareAccelerators2022}
+Broken down, they are specialized hardware, expertly optimized for the unique demands of certain application categories, freeing them from the restrictions usually placed on general-purpose processors.
+Moreover, a hardware accelerator doesn't replace the conventional processor, which is still used for the operating system, it rather enables specific workloads to be executed on it very efficiently.\footcite[cf.][2-3]{peccerilloSurveyHardwareAccelerators2022}
 There are different approches such as \ac{GPU}s, \ac{ASIC}s, \ac{FPGA}s, but also new approaches like Quantum Computations or Photonic matrix multiplication are researched.\footnote{\cite{zhouPhotonicMatrixMultiplication2022}, p. 1-2; cf.\cite{baischerLearningHardwareTutorial2021}, p. 2}
 All of these methods have different use cases and get more and more application specific. The list of the sequence, sorted by application-unspecific to specific for established approches looks the following:
 \[
@@ -293,18 +300,56 @@ All of these methods have different use cases and get more and more application 
 \]
 Currently the approaches can be segmented into three categories:
 \textbf{Firstly}, the design of data-driven digital circuits.
-It consits the shift from general-purpose GPUs to specialized dataflow architectures like systolic arrays, which are used in Google’s Tensor Processing Units (TPUs).
+It consists the shift from general-purpose GPUs to specialized dataflow architectures like systolic arrays, which are used in Google’s Tensor Processing Units (TPUs).
 These architectures are noted for their efficiency in performing deep learning operations by reducing control hardware and keeping data movement local.\footcite[cf.][3883]{lehnertMostResourceEfficient2023}
 \textbf{Secondly}, network structure optimizations. 
 Hereby modifications to the neural networks themselves are made to improve hardware efficiency.
-One method is quantization, which simplifies arithmetic operations and reduces memory needs by using fixed-point representations of data and weights instad of using for example 32 bit floating points.
+One method is quantization, which simplifies arithmetic operations and reduces memory needs by using fixed-point representations of data and weights instad of using for example 32-bit floating points.
 The other one is pruning, which involves setting certain weights to zero to reduce the complexity of operations.\footcite[cf.][3883]{lehnertMostResourceEfficient2023}
 \textbf{Thirdly}, technology-driven designs.
 Current research into using novel circuitry and memory cells include memristive memory cells and silicon photonics, to further enhance performance and energy efficiency.
-They work by storing the network weighs and calculating the vector multiplications with analaog signals with technologies like crossbar arrays.
+They work by storing the network weights and calculating the vector multiplications with analaog signals with technologies like crossbar arrays.
 While these technologies promise significant advantages, their practical application is still being explored.\footcite[cf.][3883]{lehnertMostResourceEfficient2023}
-\subsection{Asics}
-\subsection{FPGA}
+The following three accelerator approaches can be categorized into the first category:
+
+\subsection{GPU}
+The \ac{GPU}, is by far the most common accelerator in the market with a focus at computational-complex workloads.
+Also \ac{GPU}s enabled great achievements in \ac{DNN}s due to their massive parallelization potential of computations and their high troughputs compared to \ac{FPGA}s and \ac{ASIC}s.\footcite[cf.][16]{baischerLearningHardwareTutorial2021}
+A \ac{GPU} is a manycore unit that features up to hundreds of multi-processors that consist of in-order cores which are able to exploit massive threadlevel parallelism.\footcite[cf.][2]{peccerilloSurveyHardwareAccelerators2022}
+They excel at performing numerous floating-point arithmetic operations for vector processing on large datasets with high degrees of data-parallelism.
+In practice this works by breaking down workloads into small tasks that can be processed by the enormous amount of cores in parallel.\footcite[cf.][101]{huSurveyConvolutionalNeural2022} 
+With development of real-time graphics \ac{GPU}s became programmable too. The combination of programmability and floating-point performance
+make them very attractice for machine learning workloads and is the reson for their dominance in the market.\footcite[cf.][42]{dallyEvolutionGraphicsProcessing2021}
+On top of that, the widespread adoption of \ac{GPU}s has led to extensive support across numerous frameworks and high-level APIs commonly used in Machine Learning.\footcite[cf.][16]{baischerLearningHardwareTutorial2021}
+Well-known frameworks would be PyTorch or TensorFlow.
+However, compared to the other two accelerator apporaches the \ac{GPU} is not as flexible and has higher latency and energy consumption.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
+
+\subsection{Field programmable gate arrays}
+In contrast, \ac{FPGA}s have also demonstrated enormous parallelization capabilities due to their fast digital signal processors and on-chip
+memory which result in lower energy cost than GPUs.\footcite[cf.][2693]{ahmadOptimizingHardwareAccelerated2020}
+They offer the possibility of using reconfigurable logic blocks that can be interconnected using routing tracks with configurable switches in between.\footcite[cf.][144]{babuReconfigurableFPGAArchitectures2021}
+This combined with the use of many digital signal processors and local storage of data in the hardware enables the development of the exact hardware needed for a workload.\footcite[cf.][19]{baischerLearningHardwareTutorial2021}
+As a side note it is worth mentioning that the most energy-consuming task of a workload is the data transfer and not the computation iself.
+In the context of \ac{FPGA}s, they use their on-chip memory to reduce the data transfer significantly and therefore achieve a sweet spot between computation speed and energy efficiency.\footcite[cf.][101-102]{huSurveyConvolutionalNeural2022}
+Hence, they are utilized to design a specialized processor tailored for executing specific workloads, like machine learning, effectively.\footcite[cf.][322]{sipolaArtificialIntelligenceIoT2022}
+Furthermore, due to their reprogrammable nature they have a lower engineering cost and faster time-to-market compared to \ac{ASIC}s.\footcite[cf.][4]{boutrosFPGAArchitecturePrinciples2021}
+With \ac{FPGA}s the implementation time could only be a matter of weeks and also allows to support continious upgrades and bug fixes even after the deployment which is not possible within \ac{ASIC}s\footcite[cf.][4]{boutrosFPGAArchitecturePrinciples2021}
+Even though the \ac{FPGA} possesses all these advantages with their high flexibility, latency and low energy consumption, they are inferior in throughput compared to a \ac{GPU}.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
+
+\subsection{ASIC}
+ASIC, due to targeted design, is
+advanced in performance and energy consumption. However, it
+is highly inflexible.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
+
+FPGA’s
+programmable logic blocks average 35# larger and 4#
+slower than corresponding ASIC implementations. A
+more recent study [12] shows that for full-featured designs which heavily utilize the other FPGA blocks (e.g.
+RAMs and DSPs), this area gap is reduced but is still
+9#. FPGA architects seek to reduce this efficiency gap
+as much as possible while maintaining the programmability that makes FPGAs useful across a wide range
+of applications.\footcite[cf.][5]{boutrosFPGAArchitecturePrinciples2021}
+
 \section{Memristor Hopfield Network - ist ein spezielle ISING Maschine}
 
 The so called Memristor Hopfield Network, which is a totally new approach, is a hardware accelerator that uses analog signals in combination with electronical signals.
