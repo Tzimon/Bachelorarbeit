@@ -327,7 +327,7 @@ However, compared to the other two accelerator apporaches the \ac{GPU} is not as
 \subsection{Field programmable gate arrays}
 In contrast, \ac{FPGA}s have also demonstrated enormous parallelization capabilities due to their fast digital signal processors and on-chip
 memory which result in lower energy cost than GPUs.\footcite[cf.][2693]{ahmadOptimizingHardwareAccelerated2020}
-They offer the possibility of using reconfigurable logic blocks that can be interconnected using routing tracks with configurable switches in between.\footcite[cf.][144]{babuReconfigurableFPGAArchitectures2021}
+They offer the possibility of using reconfigurable logic blocks that can be interconnected using routing tracks with configurable switches at the intersections.\footcite[cf.][144]{babuReconfigurableFPGAArchitectures2021}
 This combined with the use of many digital signal processors and local storage of data in the hardware enables the development of the exact hardware needed for a workload.\footcite[cf.][19]{baischerLearningHardwareTutorial2021}
 As a side note it is worth mentioning that the most energy-consuming task of a workload is the data transfer and not the computation iself.
 In the context of \ac{FPGA}s, they use their on-chip memory to reduce the data transfer significantly and therefore achieve a sweet spot between computation speed and energy efficiency.\footcite[cf.][101-102]{huSurveyConvolutionalNeural2022}
@@ -336,19 +336,18 @@ Furthermore, due to their reprogrammable nature they have a lower engineering co
 With \ac{FPGA}s the implementation time could only be a matter of weeks and also allows to support continious upgrades and bug fixes even after the deployment which is not possible within \ac{ASIC}s\footcite[cf.][4]{boutrosFPGAArchitecturePrinciples2021}
 Even though the \ac{FPGA} possesses all these advantages with their high flexibility, latency and low energy consumption, they are inferior in throughput compared to a \ac{GPU}.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
 
-\subsection{ASIC}
-ASIC, due to targeted design, is
-advanced in performance and energy consumption. However, it
-is highly inflexible.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
+\subsection{Application specific integrated circuit}
+\ac{ASIC}s can be distinguished from \ac{FPGA}s because they are not programmable. 
+In addition to that, they offer the highest degree of customization and are designed to execute a specific application with the utmost efficiency.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
+So the attributes of \ac{ASIC}s are the focus on specific tasks and the strong design freedom.
+Nowadays, the most common type of \ac{ASIC}s are \ac{TPU}s because of their matrix vector multiplications abilities that are needed within machine learning but conventional \ac{ASIC}s work by mapping neurons directly to the hardware.\footcite[cf.][104]{huSurveyConvolutionalNeural2022}
+Their design architecture enable them to outperform \ac{GPU}s and \ac{FPGA}s in terms of their small size, greater computation speed and high power efficiency.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
+Specifically when compared to corresponding \ac{FPGA} circuits they are 35x smaller and 4x slower. 
+A more current study could show that this gap is reduced but they still are 9x larger and also faster.\footcite[cf.][5]{boutrosFPGAArchitecturePrinciples2021}
 
-FPGA’s
-programmable logic blocks average 35 larger and 4
-slower than corresponding ASIC implementations. A
-more recent study [12] shows that for full-featured designs which heavily utilize the other FPGA blocks (e.g.
-RAMs and DSPs), this area gap is reduced but is still
-9. FPGA architects seek to reduce this efficiency gap
-as much as possible while maintaining the programmability that makes FPGAs useful across a wide range
-of applications.\footcite[cf.][5]{boutrosFPGAArchitecturePrinciples2021}
+Nonetheless, developing an \ac{ASIC} requires expert knowledge in chip design, neural networks and takes a lot of time.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
+Out of the three approaches, they provide the most efficient solution, yet it comes at the expense of lacking reconfigurability, no programmability, and incurring high engineering costs.\footnote{cf. \cite{peccerilloSurveyHardwareAccelerators2022}, p. 4; cf.\cite{huSurveyConvolutionalNeural2022}, p. 100}
+With a sustainability and climate-change aspect in mind, they are the by far the best option since they represent the most power efficient approach with also the best computation speed.
 
 \section{Memristor Hopfield Network - ist ein spezielle ISING Maschine}
 
