@@ -340,25 +340,77 @@ Even though the \ac{FPGA} possesses all these advantages with their high flexibi
 \ac{ASIC}s can be distinguished from \ac{FPGA}s because they are not programmable. 
 In addition to that, they offer the highest degree of customization and are designed to execute a specific application with the utmost efficiency.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
 So the attributes of \ac{ASIC}s are the focus on specific tasks and the strong design freedom.
-Nowadays, the most common type of \ac{ASIC}s are \ac{TPU}s because of their matrix vector multiplications abilities that are needed within machine learning but conventional \ac{ASIC}s work by mapping neurons directly to the hardware.\footcite[cf.][104]{huSurveyConvolutionalNeural2022}
-Their design architecture enable them to outperform \ac{GPU}s and \ac{FPGA}s in terms of their small size, greater computation speed and high power efficiency.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
-Specifically when compared to corresponding \ac{FPGA} circuits they are 35x smaller and 4x slower. 
-A more current study could show that this gap is reduced but they still are 9x larger and also faster.\footcite[cf.][5]{boutrosFPGAArchitecturePrinciples2021}
+Nowadays, the most common type of \ac{ASIC}s are \ac{TPU}s because of their matrix vector multiplications abilities that are needed within machine learning. But conventional \ac{ASIC}s work by mapping neurons directly to the hardware.\footcite[cf.][104]{huSurveyConvolutionalNeural2022}
+Their design architecture enables them to outperform \ac{GPU}s and \ac{FPGA}s in terms of their small size, greater computation speed and high power efficiency.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
+Specifically when compared to corresponding \ac{FPGA} circuits  \ac{ASIC}s are 35x smaller and 4x faster. 
+A more current study could show that this gap is reduced but they still are 9x smaller and also faster.\footcite[cf.][5]{boutrosFPGAArchitecturePrinciples2021}
 
-Nonetheless, developing an \ac{ASIC} requires expert knowledge in chip design, neural networks and takes a lot of time.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
+Nonetheless, developing an \ac{ASIC} requires expert knowledge in chip design but also within neural networks and takes a lot of time.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
 Out of the three approaches, they provide the most efficient solution, yet it comes at the expense of lacking reconfigurability, no programmability, and incurring high engineering costs.\footnote{cf. \cite{peccerilloSurveyHardwareAccelerators2022}, p. 4; cf.\cite{huSurveyConvolutionalNeural2022}, p. 100}
 With a sustainability and climate-change aspect in mind, they are the by far the best option since they represent the most power efficient approach with also the best computation speed.
 
-\section{Memristor Hopfield Network - ist ein spezielle ISING Maschine}
 
-The so called Memristor Hopfield Network, which is a totally new approach, is a hardware accelerator that uses analog signals in combination with electronical signals.
-Background is the current slow down or failure of Moore's law which causes issues improving performance and energy efficiency of conventional semiconductor electronical technology.\footcite[cf.][2]{zhouPhotonicMatrixMultiplication2022}
+\section{Memristor Hopfield Neural Network}
+
+The so called \ac{mem-HNN} is a a hardware accelerator that uses an emerging approach of combining analog signals and electronical signals to solve complex optimization problems.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}
+It can be categorized into the \ac{ASIC} family of hardware accelerators and its specific purpose is to solve Ising problems. 
+In 1925 Ernst Ising, a german physicist, invented the Ising model which explained the interaction between ferromagnets.\footcite[cf.][253-258]{isingBeitragZurTheorie1925}
+This statistical model focuses on the state of a spin \( s_{i} \) (up and down; \( +1 \) and \( -1 \)) representing their mangetical behaviour. 
+With the so called Hamiltonian function the Ising model calculates the total energy of a system through the following energy equation:
+\begin{equation}
+    H(\mathbf{s}) = \sum_{i } h_i s_i + \sum_{i,j} J_{ij}s_{i}s_{j}, \quad s_i = \pm 1,
+\end{equation}
+where \( i \) is the label of the spins \( s_{i} \), with \( h_{i} \) representing the external magetic field  interacting with each spin, and \( J_{ij} \) is the interaction strength between pairs of spins that are connected by an edge \( (ij) \).\footcite[cf.][2]{tanahashiApplicationIsingMachines2019}
+Both values \( h_{i} \) and  \( J_{ij} \) are real-valued allowing for a wide range of possible magnetic field intensities and vary in interaction strength.\footcite[cf.][1-2]{wangOscillatorbasedIsingMachine2017}
+Nowadays, the Ising modell is also attractive in other fields to describe the energy of a system and to transform them into an Ising problem.\footcite[cf.][2-3]{tanahashiApplicationIsingMachines2019}
+Ising problems are equal to finding the minimum energy state of a system.
+Hence, in practice transforming optimzation probelms into Ising problems, the optimal solution is equal to the minima of the Ising energy function. 
+
+Direct symmetries between the energy function of a \ac{mem-HNN} and the energy function of a \ac{RBM} can be shown here.
+The energy function of the \ac{mem-HNN} works by using the binary states of \( +1 \) and \( -1 \) while the \ac{RBM} uses \( +1 \) and \( 0 \) but otherwise they are completely equal.
+To transform the \ac{RBM} into the binary states of the \ac{mem-HNN} its energy function from 2.6 needs to be modified using \(\frac{x + 1}{2}\) with  \( x \) representing the energy function.
+
+Comming back to the Ising machine, the background for the development is the current slow down or failure of Moore's law which causes slow improving computation speed, energy efficiency and computation latency of conventional semiconductor electronical technology.\footcite[cf.][1]{caiHarnessingIntrinsicNoise2019}
+Since the \ac{mem-HNN} is engineered to solve Ising problems, therefore also called Ising machine, it can tackle various problems that fall under the category of Ising problems. 
+Originally the mem-HNN was experimental tested by the team of researches to solve the nondeterministic polynomial-time hard, or NP-hard for short, Ising problems directly on the hardware.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}
+NP-hard problems are amoung the toughest problems to solve and have an expontential- or even factioral time to solve (\( 2^{n} \), \( n{!} \)) with no efficient solution, are slow to solve and to verify.\footcite[cf.][497-500]{izadkhahNPNPCompleteNPHard2022}
+Well-known examples would be the salesman problem, the maximum clique problem or the calculation of the partition function of the earlier mentioned \ac{BM} with \( 2^{n} \) possibilities.
+
+The name \ac{mem-HNN} already indicates that the Ising machine is based on the concept of a Hopfield Network.
+In simple terms, the Ising machine is able to efficiently find the global minima of energy functions (sometimes called cost functions) that are the underlying structure of an Ising problem. 
+All this is possible beause of the update formula of the Hopfield Network that is implemented within the hardware of the Ising machine.
+
+
+
+Chip ist dafür gemacht ISING Probleme zu lösen, ein Anwendungsfall wären dies NP Hard Max Cut problems, Kostenfunktion 
+soll am geringsten sein, Kostenfunktion kann als Ising Maschine ausgedrückt werden, 
+
+Chip kann effizient Grundzustände eines ISING Modells zu finden, Kann verschiedene Optimierungsprobleme finden.,
+kann verschiedene Energiezusände von Ising Modellen zu finden. 
+
+
+Zusätzlicher Strom auf leiterbahn ist equivalent zum Bias. 
+
+Größer gleich ist mit dem Komperator initialisiert. 
+
+Anfangen mit der Update Funktion -> Dadurch wird Energiefunktion auch implementiert, mit jedem Update wird Energie gesenkt.
+Ising Modell ist ne Energiefunktion. Update funktion sorgt dafür, dass lokale minimas der Energiefunktion gefunden werden. 
+Für Optimierungsprobleme ist die Lösung dadurch gut genug. 
+
+Ich benutze Sampling mit Rauschen, sodass ich auch mehere Minimas erkennen kann. Wir sind an mehreren Minimas interesiert. 
+System starten, iterativ herunterlaufen, in nächstes Minima springen durch rauschen, dadurch Sampling möglcih 
+
+Gewichte werden digital geupdated und ein Eingangssignal mitgegeben 
 
 \subsubsection{Konzept (mit Energiefunktion), Probleme der Digitalrechner bzw. Unterschied zu Digitalrechner}
 \subsubsection{Aktuelle Anwendung}
+
+
+
+
 \subsubsection{Potentielle Einsatzgebiete für KI-Modelle}
 \subsubsection{Parallelen Energiefunktion BM und ISING Maschine}
-\subsection{Memristor}
+
 \subsection{Hopfield Network}
 
 A Hopfield Network is an \ac{EBM} and belongs to the field of recurrent neural networks.\footcite[cf.][35]{dramschChapterOne702020}
@@ -419,9 +471,46 @@ s_i \leftarrow
 Now the system could potentially be used to update the states of the neurons within a \ac{RBM}.
 Since the success of this method is not guaranteed or tested in literature yet the practical part first needs to validate if this concept is feasible.
 
-\subsection{Crossbar}
+\subsection{Memristor Crossbar Array}
+
+Eher Synapsen interessant
+-Wie programmiere ich den elektrischen Widerstand - dieses Konzept kurz erläutern
+-Filoment Iformation, wie Plattenkondensator, Wasserleitung mit Ventil, dass man einstellen kann wie viel Wasser durchfließt
+- Wie kann man schaffen, dass dieser Widerstand geändert wird?
+- Bei hoher Spannung -V reset -> Wenn Hoch genug kann man anfangen Memristor zu verändern 
+- 2 Operationsmodi, Programmierphase ermöglicht Wiederstandseinstellen, adere Phase -> Gewichtsmatrix, Strom durchschickeen, also 
+geringe Spannung Inferenz. 
+-Filament sind Ionen, geladen Teilchen die Srom leiten, bilden gemeinsam Filament (Equivalent wie ein Faden) 
+-Spannung wird beim V reset umgedreht, dadurch bricht Verbindung ab. Keine Verbindung mehr da, denn Spannung umgedreht. 
+Filament kann auch größer und kleiner werden (Mehr Ionen zusammen), Mehrere Verbindungen möglich,
+-Lege Spannng für bestimmte Zeit an und dann lege ich eine Spannung ab und Filament ist gebildet
+-Non volatile Memory - im Betrieb, permamenter Speicher, Trainingsschritt trainieren mit V Set, dann -v Reset und V Set für neue Trainingsiteration mit neuen Gewichten
+Memristor ist ein nicht volatiler Speicher
+---
+
+Kleine Graue Widerstände sind Memristoren,
+Das gannze ist das Crossbar Array
+
+Alles zusammen ist das Memristor Hopfield Neural Network
+
+
 \subsection{Output Hopfield Network}
+Alle anderen Bauteile 
+
+TIA, kein Multiplexer mehr = Strom in Spannung umwandeln 
+
+non-linear threshold = Komperator, ist es größer oder kleiner gleich 
+
+Erklärung der Restlichen Bauteile außerhalb des Crossbar arrays (Alles noch Analog)
+
+Hysteretic threshold ist gleich Komperator 
+
+Input/output buffer and driver = State register -> , Buffer = SPeicher und Driver = Sitzt am Anfang des Crossbar arrays als Verstärker 
+
 \subsection{Noisy HNN}
+
+Zwischen Bitline(BL) und TIA wird zusätzlich das rauschen noch eingefügt. 
+
 
 Picture is out of following paper.\footcite[cf.][3]{gmComprehensiveSurveyAnalysis2020}
 \begin{figure}[H]
