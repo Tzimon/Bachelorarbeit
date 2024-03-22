@@ -189,7 +189,7 @@ Often the process can be stopped after only sampling a very small number of step
 \textbf{1. Forward Pass (positive phase)}
 
 During the forward pass using the Gibbs Sampling method, the visible units are set to a completely random state. Next up the hidden units are computed.
-The computation of the hidden units involves calculating their acitivation probabilities and performing an actual sampling with their calculated activation probabilities.
+The computation of the hidden units involves calculating their activation probabilities and performing an actual sampling with their calculated activation probabilities.
 With the \ac{RBM} it is now easy to get an analytical calculated sample of $(\textbf{v}_i\textbf{h}_j)_{data}$.\footcite[cf.][5]{hintonPracticalGuideTraining2012}
 Given an input data out of the training images, \( v \), the binary state, \( j \), of each hidden unit,  \( h_j \), is set to 1 with following probability:
 
@@ -204,7 +204,7 @@ A visual representation is shown in figure 6:
     \caption{Figure of a logistic sigmoid function \ac{RBM}}
 \end{figure}
 The result is a set of probabilities that reflect how likely it is for each hidden unit to be on, wich stands for \( 1 \), or, which stands for \( 0 \), given the input data.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022}
-The sampling part of the positive phase uses the just calculated acitivation probabiliy of each hidden unit and performs a random experiment with it.
+The sampling part of the positive phase uses the just calculated activation probabiliy of each hidden unit and performs a random experiment with it.
 That random experiment generates a uniform random number between 1 and 0 and if the random number is greater than the just calculated activiation probability the hidden unit is set to activated.
 Afterwards, the hidden unit is either activated or not activated and the training process continues with the new state of the hidden units.
 
@@ -215,7 +215,7 @@ This is essentially a prediction of the input, which is how the model sees the i
 \begin{equation}
     p(v_i = 1 | \mathbf{h}) = \sigma(a_i + \sum_j h_j w_{ij})
 \end{equation}
-The sampling part of the negative phase uses the just calculated acitivation probabiliy
+The sampling part of the negative phase uses the just calculated activation probabiliy
 of each visible unit and performs a random experiment, like in the positive phase.
 Now, the result is a prediction of the input in the visible nodes.
 Afterwards, a half forward pass is made to calculate the activation probability of a hidden unit again based on the activated or not activated visible units.
@@ -327,14 +327,14 @@ However, compared to the other two accelerator apporaches the \ac{GPU} is not as
 \subsection{Field programmable gate arrays}
 In contrast, \ac{FPGA}s have also demonstrated enormous parallelization capabilities due to their fast digital signal processors and on-chip
 memory which result in lower energy cost than GPUs.\footcite[cf.][2693]{ahmadOptimizingHardwareAccelerated2020}
-They offer the possibility of using reconfigurable logic blocks that can be interconnected using routing tracks with configurable switches at the intersections.\footcite[cf.][144]{babuReconfigurableFPGAArchitectures2021}
+They work by using reconfigurable logic blocks that can be interconnected using routing tracks with configurable switches at the intersections.\footcite[cf.][144]{babuReconfigurableFPGAArchitectures2021}
 This combined with the use of many digital signal processors and local storage of data in the hardware enables the development of the exact hardware needed for a workload.\footcite[cf.][19]{baischerLearningHardwareTutorial2021}
 As a side note it is worth mentioning that the most energy-consuming task of a workload is the data transfer and not the computation iself.
 In the context of \ac{FPGA}s, they use their on-chip memory to reduce the data transfer significantly and therefore achieve a sweet spot between computation speed and energy efficiency.\footcite[cf.][101-102]{huSurveyConvolutionalNeural2022}
 Hence, they are utilized to design a specialized processor tailored for executing specific workloads, like machine learning, effectively.\footcite[cf.][322]{sipolaArtificialIntelligenceIoT2022}
 Furthermore, due to their reprogrammable nature they have a lower engineering cost and faster time-to-market compared to \ac{ASIC}s.\footcite[cf.][4]{boutrosFPGAArchitecturePrinciples2021}
 With \ac{FPGA}s the implementation time could only be a matter of weeks and also allows to support continious upgrades and bug fixes even after the deployment which is not possible within \ac{ASIC}s\footcite[cf.][4]{boutrosFPGAArchitecturePrinciples2021}
-Even though the \ac{FPGA} possesses all these advantages with their high flexibility, latency and low energy consumption, they are inferior in throughput compared to a \ac{GPU}.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
+Even though the \ac{FPGA} possesses all these advantages with their high flexibility, latency and low energy consumption, they are sometimes inferior in throughput compared to a \ac{GPU}.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
 
 \subsection{Application specific integrated circuit}
 \ac{ASIC}s can be distinguished from \ac{FPGA}s because they are not programmable. 
@@ -358,62 +358,40 @@ In 1925 Ernst Ising, a german physicist, invented the Ising model which explaine
 This statistical model focuses on the state of a spin \( s_{i} \) (up and down; \( +1 \) and \( -1 \)) representing their mangetical behaviour. 
 With the so called Hamiltonian function the Ising model calculates the total energy of a system through the following energy equation:
 \begin{equation}
-    H(\mathbf{s}) = \sum_{i } h_i s_i + \sum_{i,j} J_{ij}s_{i}s_{j}, \quad s_i = \pm 1,
+    E(\mathbf{s}) = \sum_{i } h_i s_i + \sum_{i,j} J_{ij}s_{i}s_{j}, \quad s_i = \pm 1,
 \end{equation}
 where \( i \) is the label of the spins \( s_{i} \), with \( h_{i} \) representing the external magetic field  interacting with each spin, and \( J_{ij} \) is the interaction strength between pairs of spins that are connected by an edge \( (ij) \).\footcite[cf.][2]{tanahashiApplicationIsingMachines2019}
 Both values \( h_{i} \) and  \( J_{ij} \) are real-valued allowing for a wide range of possible magnetic field intensities and vary in interaction strength.\footcite[cf.][1-2]{wangOscillatorbasedIsingMachine2017}
 Nowadays, the Ising modell is also attractive in other fields to describe the energy of a system and to transform them into an Ising problem.\footcite[cf.][2-3]{tanahashiApplicationIsingMachines2019}
 Ising problems are equal to finding the minimum energy state of a system.
 Hence, in practice transforming optimzation probelms into Ising problems, the optimal solution is equal to the minima of the Ising energy function. 
+This transformation works by mapping each variable of the problem to Ising spins and designing an Ising model whose ground state represents the solution.\footcite[cf.][2-3]{lucasIsingFormulationsMany2014}
 
-Direct symmetries between the energy function of a \ac{mem-HNN} and the energy function of a \ac{RBM} can be shown here.
+Equivalence between the energy function of a \ac{mem-HNN} and the energy function of a \ac{RBM} can be shown here.
 The energy function of the \ac{mem-HNN} works by using the binary states of \( +1 \) and \( -1 \) while the \ac{RBM} uses \( +1 \) and \( 0 \) but otherwise they are completely equal.
 To transform the \ac{RBM} into the binary states of the \ac{mem-HNN} its energy function from 2.6 needs to be modified using \(\frac{x + 1}{2}\) with  \( x \) representing the energy function.
+The fact, that both energy functions are equal implies that the neural network of a \ac{RBM} could possibly be trained on this Ising machine.
+Moreover, other artificial intelligence models could be compatible but currently there are no apporaches on how to transform them.
 
-Comming back to the Ising machine, the background for the development is the current slow down or failure of Moore's law which causes slow improving computation speed, energy efficiency and computation latency of conventional semiconductor electronical technology.\footcite[cf.][1]{caiHarnessingIntrinsicNoise2019}
-Since the \ac{mem-HNN} is engineered to solve Ising problems, therefore also called Ising machine, it can tackle various problems that fall under the category of Ising problems. 
-Originally the mem-HNN was experimental tested by the team of researches to solve the nondeterministic polynomial-time hard, or NP-hard for short, Ising problems directly on the hardware.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}
-NP-hard problems are amoung the toughest problems to solve and have an expontential- or even factioral time to solve (\( 2^{n} \), \( n{!} \)) with no efficient solution, are slow to solve and to verify.\footcite[cf.][497-500]{izadkhahNPNPCompleteNPHard2022}
-Well-known examples would be the salesman problem, the maximum clique problem or the calculation of the partition function of the earlier mentioned \ac{BM} with \( 2^{n} \) possibilities.
+Comming back to the Ising machine itself, the background for the development is the current slow down or failure of Moore's law which causes slow improving computation speed, energy efficiency and computation latency of conventional semiconductor electronical technology.\footcite[cf.][1]{caiHarnessingIntrinsicNoise2019}
+Since the \ac{mem-HNN} is engineered to solve Ising problems, therefore also called Ising machine, it can tackle various problems that fall under the category of Ising problems.\footcite[cf.][363]{mohseniIsingMachinesHardware2022a}
+Originally the mem-HNN was experimental tested by the team of researches to solve nondeterministic polynomial-time hard, or NP-hard for short, Ising problems directly on the hardware.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}
+NP-hard problems are amoung the toughest problems to solve and have an expontential- or even factioral time to solve (\( 2^{n} \), \( n{!} \)) with no efficient solution, slow to solve and to verify.\footcite[cf.][497-500]{izadkhahNPNPCompleteNPHard2022}
+Well-known examples would be the salesman problem, the maximum clique problem or the calculation of the partition function of the \ac{BM} with \( 2^{n} \) possibilities.
 
+In simple terms, the Ising machine is able to efficiently find the global minima of energy functions that are the underlying structure of an Ising problem. 
 The name \ac{mem-HNN} already indicates that the Ising machine is based on the concept of a Hopfield Network.
-In simple terms, the Ising machine is able to efficiently find the global minima of energy functions (sometimes called cost functions) that are the underlying structure of an Ising problem. 
-All this is possible beause of the update formula of the Hopfield Network that is implemented within the hardware of the Ising machine.
-
-
-
-Chip ist dafür gemacht ISING Probleme zu lösen, ein Anwendungsfall wären dies NP Hard Max Cut problems, Kostenfunktion 
-soll am geringsten sein, Kostenfunktion kann als Ising Maschine ausgedrückt werden, 
-
-Chip kann effizient Grundzustände eines ISING Modells zu finden, Kann verschiedene Optimierungsprobleme finden.,
-kann verschiedene Energiezusände von Ising Modellen zu finden. 
-
-
-Zusätzlicher Strom auf leiterbahn ist equivalent zum Bias. 
-
-Größer gleich ist mit dem Komperator initialisiert. 
-
-Anfangen mit der Update Funktion -> Dadurch wird Energiefunktion auch implementiert, mit jedem Update wird Energie gesenkt.
-Ising Modell ist ne Energiefunktion. Update funktion sorgt dafür, dass lokale minimas der Energiefunktion gefunden werden. 
-Für Optimierungsprobleme ist die Lösung dadurch gut genug. 
-
-Ich benutze Sampling mit Rauschen, sodass ich auch mehere Minimas erkennen kann. Wir sind an mehreren Minimas interesiert. 
-System starten, iterativ herunterlaufen, in nächstes Minima springen durch rauschen, dadurch Sampling möglcih 
-
-Gewichte werden digital geupdated und ein Eingangssignal mitgegeben 
-
-\subsubsection{Konzept (mit Energiefunktion), Probleme der Digitalrechner bzw. Unterschied zu Digitalrechner}
-\subsubsection{Aktuelle Anwendung}
-
-
-
-
-\subsubsection{Potentielle Einsatzgebiete für KI-Modelle}
-\subsubsection{Parallelen Energiefunktion BM und ISING Maschine}
-
+All this is possible beause of the update formula of the Hopfield Network, which is implemented directly on the hardware of the accelerator.
+A photograph \ac{mem-HNN} of the physical accelerator (left side) and a microscopic view (right side) can be seen in following figure: 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{graphics/Bilder_physische_beschleuniger.jpg}
+    \caption{Physical and microscopic view of \ac{mem-HNN}}
+\end{figure}
 \subsection{Hopfield Network}
 
 A Hopfield Network is an \ac{EBM} and belongs to the field of recurrent neural networks.\footcite[cf.][35]{dramschChapterOne702020}
+Because the Hopfield Network is the underlying structure of the physical \ac{mem-HNN} accelerator this model is explained first.
 The structure of the network consists of only one single layer with binary valued neurons inside.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
 Therefore, the neurons state can either be \{1, 0\} or \{1, -1\}.
 The connections between the neurons are symmetrical, which means that the weights of the connections are the same in either direction.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
@@ -438,10 +416,10 @@ This energy state can be calculated with the following energy equation\footcite[
     E = -\frac{1}{2} \sum_{i \neq j} T_{ij} V_i V_j .
 \end{equation}
 This energy function invented by Hopfield has big similarities with a \ac{BM} when comparing to the
-equation 2.4. This is one of the reasons why the execution on the Memristor Hopfield Network could work out.
+equation 2.4. This is one of the reasons why the execution on the \ac{mem-HNN} could work out.
 When comparing a Hopfield Network, they seek to achieve the effect of changing node activation on the overall energy of the network but \ac{BM}s replace this with the probability of a certain node being activated on the network energy.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
 The second important reason to research the hopfield networks is for their updating process.
-Approximately, the acitivity rule for each neuron is to update its state as if it were a single neuron with the threshold activation function.\footcite[cf.][506]{mackayInformationTheoryInference2003}
+Approximately, the activation rule for each neuron is to update its state as if it were a single neuron with the threshold activation function.\footcite[cf.][506]{mackayInformationTheoryInference2003}
 \[
 s_i \leftarrow 
 \begin{cases} 
@@ -456,7 +434,7 @@ In the case of our accelerator the threshold is set to 0 but in theory can be us
 Since every neuron's output is an input to all the other neurons the order of the updates need to be specified.\footcite[cf.][506]{mackayInformationTheoryInference2003}
 There is the possbility to update all neurons synchronous or asynchronous. 
 There is no study that shows what update method leads to better results.
-Therefore, this paper follows the asynchronous option and ensures to do enough iterations, so that every neuron has at least updated once before moving on.
+Therefore, this paper follows the asynchronous option first and ensures to do enough iterations, so that every neuron has at least updated once before moving on. 
 In addition to that, the idea of the updating method of the accelerator is slightly different. The idea behind this is to inject noise into the system so that the activation function could work together with the activation function that a \ac{RBM} needs to perform. 
 In detail the idea is to add a normal gaussian distribution \( g(x) \) on top of the activation function.\footcite[cf.][4-5]{bohmNoiseinjectedAnalogIsing2022}
 As a result the new statistical updating function looks like the following:
@@ -473,6 +451,61 @@ Since the success of this method is not guaranteed or tested in literature yet t
 
 \subsection{Memristor Crossbar Array}
 
+Having set the foundational knowledge about the function of a Hopfield Network the mode of operation can be tackled. 
+Since the \ac{mem-HNN} saw the light of day in 2021, a number of improvements have been made to it and at the end of 2023 the individual components can be seen in following figure\footcite[cf.][2]{hizzaniMemristorbasedHardwareAlgorithms2023}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{graphics/Mem_HNN_Modell.png}
+    \caption{Modell of the \ac{mem-HNN}}
+\end{figure}
+The green square symbolizes the memristor crossbar array, which has the task of performing the in-memory-vector matrix multiplication. 
+This is the core part of the architecture that is built around the update formula of the Hopfield Network. 
+The memristor crossbar array gets his name because it consists of \textbf{memristors} that connect orthogonal \textbf{electric tracks} with each other.
+The \( G \) stands for conductance and represents the inverse of the resistance \( R \) of the memristors since \( G = \frac{1}{R}\). On the other hand, \( BL \) (Bitline) and \( WL \) (Wordline) represent the electical tracks.
+All the other parts of the model are handled in subchapter 2.4.3, so for now the spotlight belongs to the memristor crossbar array.
+A better perspective of the memristor crossbar array gives following 3D model\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{graphics/memristor_crossbar_array.png}
+    \caption{3D modell of the memristor crossbar array}
+\end{figure}
+To understand how this crossbar array implements the Hopfield network, it helps to have another look at the update formula.
+\[
+s_i \leftarrow 
+\begin{cases} 
++1 & \text{if } \sum_j w_{ij} s_j + b \geq \theta_i, \\
+-1 & \text{otherwise}.
+\end{cases}
+\]
+First of all, on the green Wordline a voltage which either is \( +1 \) or \( -1 \) that represent the state of the neurons in the hopfield network is applied.
+Then, the current is flowing towards the memristors, which is an electronic device that functions as a resistor, but with the ability to dynamically change its resistanceas while the device is being used.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
+The memristors are suitable for matrix vector multiplication because they can use their dynamical resistance to act as weigths.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
+In addition to that, this is the reason why this kind of memory has the potential of high switching speeds, high energy efficiency and high endurance.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
+
+In eletrical terminology, if the resistence of a memristor is higher, the conductance is low since the current can barely flow into the lower bitlane.
+For each of the intersections, when a Wordline meets the crossbar it represents the multiplication of \(w_{ij}\) and \(s_j\) within the update formula.
+After the matrix vector multiplication the single currents flow in the same direction on the Bitline and are summed up together within their current strength.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
+The reason for this phenomenon is the 1. Kirchhoff'sche rule, which is not further explained here since it would be out of scope.
+To make an example for each output current \(i_{1}\) has for intput voltages \(V_{1}, V_{2}, V_{3}, V_{4}\).
+The current flowing into the lower Bitlane is now according to Ohm's rule \( i_{out} = \frac{1}{R_{memristor}} * V_{in}\).
+Since \( G = \frac{1}{R}\) and Kirchhoff'sche rule sums up each current \(i_{1}\) is \( i_{1} = G_{11}*V_1 + G_{12}*V_2 + \cdots + G_{14}*V_4\)
+As a result the first first part \(\sum_j w_{ij} s_j\) of the updating formula of the Hopfield Network is established.
+Adding the bias \(b\) to the sum is achieved by simply adding a current, which is worth the amount of the bias, to the the total Bitline current.
+
+
+Presently, the research on the application of memristor crossbar arrays in supervised learning is sparse, indicating a clear necessity for further investigative studies to understand their potential and usability.\footnote{cf.\cite{amirsoleimaniInMemoryVectorMatrixMultiplication2020}, p. 8; cf.\cite{sungPerspectiveReviewMemristive2018}, p. 124}
+In the practical part the \ac{mem-HNN} model exactuly this is put to the test and training data of the \ac{RBM}should be generate to give clearance about the feasibility of this idea.
+Each i is the output of the current vector and equal to a neuron within the Hopfield Network with all the memristors on this lane symbolizing the weights that all the other neurons connect to it.
+
+
+Memristor-based learning
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{graphics/Memristor_filoments.png}
+    \caption{Memristor-based learning}
+\end{figure}
+
+
 Eher Synapsen interessant
 -Wie programmiere ich den elektrischen Widerstand - dieses Konzept kurz erläutern
 -Filoment Iformation, wie Plattenkondensator, Wasserleitung mit Ventil, dass man einstellen kann wie viel Wasser durchfließt
@@ -486,6 +519,7 @@ Filament kann auch größer und kleiner werden (Mehr Ionen zusammen), Mehrere Ve
 -Lege Spannng für bestimmte Zeit an und dann lege ich eine Spannung ab und Filament ist gebildet
 -Non volatile Memory - im Betrieb, permamenter Speicher, Trainingsschritt trainieren mit V Set, dann -v Reset und V Set für neue Trainingsiteration mit neuen Gewichten
 Memristor ist ein nicht volatiler Speicher
+
 ---
 
 Kleine Graue Widerstände sind Memristoren,
@@ -506,6 +540,24 @@ Erklärung der Restlichen Bauteile außerhalb des Crossbar arrays (Alles noch An
 Hysteretic threshold ist gleich Komperator 
 
 Input/output buffer and driver = State register -> , Buffer = SPeicher und Driver = Sitzt am Anfang des Crossbar arrays als Verstärker 
+
+---
+
+Zusätzlicher Strom auf leiterbahn ist equivalent zum Bias. 
+
+Größer gleich ist mit dem Komperator initialisiert. 
+
+Anfangen mit der Update Funktion -> Dadurch wird Energiefunktion auch implementiert, mit jedem Update wird Energie gesenkt.
+Ising Modell ist ne Energiefunktion. Update funktion sorgt dafür, dass lokale minimas der Energiefunktion gefunden werden. 
+Für Optimierungsprobleme ist die Lösung dadurch gut genug. 
+
+Ich benutze Sampling mit Rauschen, sodass ich auch mehere Minimas erkennen kann. Wir sind an mehreren Minimas interesiert. 
+System starten, iterativ herunterlaufen, in nächstes Minima springen durch rauschen, dadurch Sampling möglcih 
+
+Gewichte werden digital geupdated und ein Eingangssignal mitgegeben 
+
+---
+
 
 \subsection{Noisy HNN}
 
