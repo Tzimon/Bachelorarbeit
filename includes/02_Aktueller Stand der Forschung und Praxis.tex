@@ -356,20 +356,20 @@ The so called \ac{mem-HNN} is a a hardware accelerator that uses an emerging app
 It can be categorized into the \ac{ASIC} family of hardware accelerators and its specific purpose is to solve Ising problems. 
 In 1925 Ernst Ising, a german physicist, invented the Ising model which explained the interaction between ferromagnets.\footcite[cf.][253-258]{isingBeitragZurTheorie1925}
 This statistical model focuses on the state of a spin \( s_{i} \) (up and down; \( +1 \) and \( -1 \)) representing their mangetical behaviour. 
-With the so called Hamiltonian function the Ising model calculates the total energy of a system through the following energy equation:
+The Ising model calculates the total energy of a system though the following energy function: 
 \begin{equation}
     E(\mathbf{s}) = \sum_{i } h_i s_i + \sum_{i,j} J_{ij}s_{i}s_{j}, \quad s_i = \pm 1,
 \end{equation}
 where \( i \) is the label of the spins \( s_{i} \), with \( h_{i} \) representing the external magetic field  interacting with each spin, and \( J_{ij} \) is the interaction strength between pairs of spins that are connected by an edge \( (ij) \).\footcite[cf.][2]{tanahashiApplicationIsingMachines2019}
 Both values \( h_{i} \) and  \( J_{ij} \) are real-valued allowing for a wide range of possible magnetic field intensities and vary in interaction strength.\footcite[cf.][1-2]{wangOscillatorbasedIsingMachine2017}
 Nowadays, the Ising modell is also attractive in other fields to describe the energy of a system and to transform them into an Ising problem.\footcite[cf.][2-3]{tanahashiApplicationIsingMachines2019}
-Ising problems are equal to finding the minimum energy state of a system.
+Solving Ising problems is equal to finding the minimum energy state of a system.
 Hence, in practice transforming optimzation probelms into Ising problems, the optimal solution is equal to the minima of the Ising energy function. 
 This transformation works by mapping each variable of the problem to Ising spins and designing an Ising model whose ground state represents the solution.\footcite[cf.][2-3]{lucasIsingFormulationsMany2014}
 
 Equivalence between the energy function of a \ac{mem-HNN} and the energy function of a \ac{RBM} can be shown here.
 The energy function of the \ac{mem-HNN} works by using the binary states of \( +1 \) and \( -1 \) while the \ac{RBM} uses \( +1 \) and \( 0 \) but otherwise they are completely equal.
-To transform the \ac{RBM} into the binary states of the \ac{mem-HNN} its energy function from 2.6 needs to be modified using \(\frac{x + 1}{2}\) with  \( x \) representing the energy function.
+To transform the \ac{RBM} into the binary states of the \ac{mem-HNN}, its energy function from 2.6 needs to be modified with \(\frac{x + 1}{2}\) where \( x \) represents the energy function.
 The fact, that both energy functions are equal implies that the neural network of a \ac{RBM} could possibly be trained on this Ising machine.
 Moreover, other artificial intelligence models could be compatible but currently there are no apporaches on how to transform them.
 
@@ -379,14 +379,14 @@ Originally the mem-HNN was experimental tested by the team of researches to solv
 NP-hard problems are amoung the toughest problems to solve and have an expontential- or even factioral time to solve (\( 2^{n} \), \( n{!} \)) with no efficient solution, slow to solve and to verify.\footcite[cf.][497-500]{izadkhahNPNPCompleteNPHard2022}
 Well-known examples would be the salesman problem, the maximum clique problem or the calculation of the partition function of the \ac{BM} with \( 2^{n} \) possibilities.
 
-In simple terms, the Ising machine is able to efficiently find the global minima of energy functions that are the underlying structure of an Ising problem. 
+In simple terms, this Ising machine is able to efficiently find the global minima of energy functions that are the underlying structure of an Ising problem. 
 The name \ac{mem-HNN} already indicates that the Ising machine is based on the concept of a Hopfield Network.
-All this is possible beause of the update formula of the Hopfield Network, which is implemented directly on the hardware of the accelerator.
-A photograph \ac{mem-HNN} of the physical accelerator (left side) and a microscopic view (right side) can be seen in following figure: 
+All this is possible beause the update formula of the Hopfield Network is directly implemented on the hardware of the accelerator.
+A photograph of the physical \ac{mem-HNN} accelerator (left side) and a microscopic view of it (right side) can be seen in following figure: 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\linewidth]{graphics/Bilder_physische_beschleuniger.jpg}
-    \caption{Physical and microscopic view of \ac{mem-HNN}}
+    \caption{Physical and microscopic view of the mem-HNN}
 \end{figure}
 \subsection{Hopfield Network}
 
@@ -456,20 +456,20 @@ Since the \ac{mem-HNN} saw the light of day in 2021, a number of improvements ha
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{graphics/Mem_HNN_Modell.png}
-    \caption{Modell of the \ac{mem-HNN}}
+    \caption{Modell of the mem-HNN}
 \end{figure}
 The green square symbolizes the memristor crossbar array, which has the task of performing the in-memory-vector matrix multiplication. 
 This is the core part of the architecture that is built around the update formula of the Hopfield Network. 
 The memristor crossbar array gets his name because it consists of \textbf{memristors} that connect orthogonal \textbf{electric tracks} with each other.
-The \( G \) stands for conductance and represents the inverse of the resistance \( R \) of the memristors since \( G = \frac{1}{R}\). On the other hand, \( BL \) (Bitline) and \( WL \) (Wordline) represent the electical tracks.
-All the other parts of the model are handled in subchapter 2.4.3, so for now the spotlight belongs to the memristor crossbar array.
+The \( G_{ij} \) stands for conductance and represents the inverse of the resistance \( R \) of the memristors since \( G = \frac{1}{R}\). On the other hand, \( BL \) (Bitline) and \( WL \) (Wordline) represent the electical tracks.
+All the other parts of the model are handled in subchapter 2.4.3, so for now the spotlight belongs to the memristor crossbar array (green square).
 A better perspective of the memristor crossbar array gives following 3D model\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\linewidth]{graphics/memristor_crossbar_array.png}
     \caption{3D modell of the memristor crossbar array}
 \end{figure}
-To understand how this crossbar array implements the Hopfield network, it helps to have another look at the update formula.
+To understand how this crossbar array implements the Hopfield network, it helps to have another look at the earlier introduced update formula.
 \[
 s_i \leftarrow 
 \begin{cases} 
@@ -478,24 +478,24 @@ s_i \leftarrow
 \end{cases}
 \]
 First of all, on the green Wordline a voltage which either is \( +1 \) or \( -1 \) that represent the state of the neurons in the hopfield network is applied.
-Then, the current is flowing towards the memristors, which is an electronic device that functions as a resistor, but with the ability to dynamically change its resistanceas while the device is being used.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
+Then, the current is flowing towards the memristors, which is an electronic device that functions as a resistor, but with the ability to dynamically change its resistance while the device is being used.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
+In this model the gray cylinders represent the memristors.
 The memristors are suitable for matrix vector multiplication because they can use their dynamical resistance to act as weigths.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
 In addition to that, this is the reason why this kind of memory has the potential of high switching speeds, high energy efficiency and high endurance.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
 
-In eletrical terminology, if the resistence of a memristor is higher, the conductance is low since the current can barely flow into the lower bitlane.
+In eletrical terminology, if the resistence of a memristor is higher, the conductance is low since the current can barely flow into the lower Bitlane.
 For each of the intersections, when a Wordline meets the crossbar it represents the multiplication of \(w_{ij}\) and \(s_j\) within the update formula.
-After the matrix vector multiplication the single currents flow in the same direction on the Bitline and are summed up together within their current strength.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
+After the matrix vector multiplication the single currents flow in the same direction on the Bitline and are summed up together with their individual current strength.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
 The reason for this phenomenon is the 1. Kirchhoff'sche rule, which is not further explained here since it would be out of scope.
 To make an example for each output current \(i_{1}\) has for intput voltages \(V_{1}, V_{2}, V_{3}, V_{4}\).
 The current flowing into the lower Bitlane is now according to Ohm's rule \( i_{out} = \frac{1}{R_{memristor}} * V_{in}\).
-Since \( G = \frac{1}{R}\) and Kirchhoff'sche rule sums up each current \(i_{1}\) is \( i_{1} = G_{11}*V_1 + G_{12}*V_2 + \cdots + G_{14}*V_4\)
+Since \( G = \frac{1}{R}\) and Kirchhoff'sche rule sums up each current \(i\) is \( i_{1} = G_{11}*V_1 + G_{12}*V_2 + \cdots + G_{14}*V_4\)
 As a result the first first part \(\sum_j w_{ij} s_j\) of the updating formula of the Hopfield Network is established.
-Adding the bias \(b\) to the sum is achieved by simply adding a current, which is worth the amount of the bias, to the the total Bitline current.
-
+Last but not least, adding the bias \(b\) to the sum is achieved by simply adding an intial current, which is worth the amount of the bias, to the the total Bitline current.
+Each i is the output of the current vector and equal to a neuron within the Hopfield Network with all the memristors on this lane symbolizing the weights that all the other neurons connect to it.
 
 Presently, the research on the application of memristor crossbar arrays in supervised learning is sparse, indicating a clear necessity for further investigative studies to understand their potential and usability.\footnote{cf.\cite{amirsoleimaniInMemoryVectorMatrixMultiplication2020}, p. 8; cf.\cite{sungPerspectiveReviewMemristive2018}, p. 124}
-In the practical part the \ac{mem-HNN} model exactuly this is put to the test and training data of the \ac{RBM}should be generate to give clearance about the feasibility of this idea.
-Each i is the output of the current vector and equal to a neuron within the Hopfield Network with all the memristors on this lane symbolizing the weights that all the other neurons connect to it.
+In the practical part the \ac{mem-HNN} model exactly this is put to the test and training data of the \ac{RBM} should be generated to give clearance about the feasibility of this idea.
 
 
 Memristor-based learning
