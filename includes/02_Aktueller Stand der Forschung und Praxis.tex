@@ -561,85 +561,67 @@ This completes the explanation of how the \ac{mem-HNN} implements the concept of
 
 \subsection{Noisy Hopfield Network}
 
-Currently, the \ac{mem-HNN} uses noise injection to ensure the chance of finding a low energy minima of the Ising problem.
+Currently, the \ac{mem-HNN} is also able to use noise injection to ensure the chance of finding a low energy minima of the Ising problem.
+This noise injection happens between the output of the Bitline and the \ac{TIA}. 
 The noise enables to escape local minmina of the energy landscape and to find lower energy minimas or even the global minima, which is equal to the solution of the optimization problem and therefore improves solution quality anf effciency.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020} 
-This is achieved by a pseudo random number generator in the hardware that creates a random array filled with digital signal (either \(1\) or \(0\)).\footcite[cf.][22]{caiHarnessingIntrinsicNoise2019}
+This is achieved by a pseudo random number generator in the hardware that creates a random array filled with digital signals (either \(1\) or \(0\)).\footcite[cf.][22]{caiHarnessingIntrinsicNoise2019}
 The length of the array is about the same size as the number of neurons in the network increasable in increments of 64. 
-Out of this array a \ac{DAC} takes a subset of this array, for example a length of 8-bit and converts them into floating point noise signal for each neuron.\footcite[cf.][3]{hizzaniMemristorbasedHardwareAlgorithms2023}
-This noise injection, also called simulated annealing, uses the created floating point noise signal and sums it to the update formula.
-Effectively the new noisy hopfield network updating function looks like the following: 
+Out of this array a \ac{DAC} takes a subset of this array, for example a length of 8-bit and converts them into a floating point noise signal for each neuron.\footcite[cf.][3]{hizzaniMemristorbasedHardwareAlgorithms2023}
+This noise injection, also called simulated annealing, uses the created floating point noise signal and adds it to the update formula.
+Effectively the new noisy hopfield network updating function now looks like the following: 
 \begin{equation}
     s_i \leftarrow 
     \begin{cases} 
-    +1 & \text{if } \sum_j w_{ij}  + b + n \geq \theta_i, \\
+    +1 & \text{if } \sum_j w_{ij}  + b + \mathbf{n} \geq \theta_i, \\
     -1 & \text{otherwise}.
     \end{cases}
 \end{equation}
 with \(n\) representing the noise.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020} 
-The Hopfield Network is only able to do perofrm optimization task and no sampling, which is needed to train a \ac{RBM}.
+The Hopfield Network is only able to do perform optimization tasks and no sampling, which is needed to train a \ac{RBM}.
 The difference between the \ac{RBM} and the Hopfield Network is the activation function.
-A simple Hopfield Network has no temperature and has a binary step function as activation function.
-In contrast an \ac{RBM} has a logistic sigmoid function as activation function shown in figure\ref{logistic_sigmoid}, which represents a temperature of \(1\) mentioned in 2.2.4.
-Therefore, to successfully implement an \ac{RBM} on the \ac{mem-HNN} the activation behavior of the neurons need to be compatible with the activation function of the \ac{mem-HNN}.
+A simple Hopfield Network has no temperature and has a binary step function as activation function which is completely deterministic.
+In contrast, a \ac{RBM} has a statistical logistic sigmoid function as activation function shown in figure \ref{logistic_sigmoid}, which uses a temperature of \(1\) mentioned in 2.2.4.
+Therefore, to successfully implement a \ac{RBM} on the \ac{mem-HNN} the activation behavior of the neurons need to be compatible with the activation function of the \ac{mem-HNN}.
 
-One idea...
-
-
-
-In addition to that, the idea of the updating method of the accelerator is slightly different. The idea behind this is to inject noise into the system so that the activation function could work together with the activation function that a \ac{RBM} needs to perform. 
-In detail the idea is to add a normal gaussian distribution \( g(x) \) on top of the activation function.\footcite[cf.][4-5]{bohmNoiseinjectedAnalogIsing2022}
-As a result :
-
-
-Now the system could potentially be used to update the states of the neurons within a \ac{RBM}.
-Since the success of this method is not guaranteed or tested in literature yet the practical part first needs to validate if this concept is feasible.
-
-
-
-
-
-
-Ich benutze Sampling mit Rauschen, sodass ich auch mehere Minimas erkennen kann. Wir sind an mehreren Minimas interesiert. 
-System starten, iterativ herunterlaufen, in nächstes Minima springen durch rauschen, dadurch Sampling möglcih 
-
-
-
-
-% Evtl. Anfangen mit Wie die Noise umgsetzt wurde als Übergang zum Noisy HNN 
-
-% Hopfield Neural network macht nur optimierung kein samplen
-
-um RBM umzusetzen und Aktivierungsfunktion kompatible zu machen wird ein rauschen benötigt (Fabians Paper)
-Eine Idee um Temperatur zu benutzen ist eine Normalverteilung zur Update formel hinzuzufügen
-Um RBM zu implementieren, verhalten der neuronen muss komlett wiedergegeben werden, Fig. 6
-
-HNN Aktivierungsfunktion nur Stufenfunktion, rei deterministisch nicht statistisch 
-
-Motivation erklären, dass dies Praktisch getestet werden soll, ob es möglich ist umzusetzen 
-
-
-
-
-
-
-
-
-
-
-
-
-Aktivierungsfunktion des 
-
-
-
-
-Zwischen Bitline(BL) und TIA wird zusätzlich das rauschen noch eingefügt. 
-
-
-Picture is out of following paper.\footcite[cf.][3]{gmComprehensiveSurveyAnalysis2020}
+A potential solution to address the issue of activation behavior and enhance compatibility involves utilizing noise from an analog noise source.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
+One relatively straightforward way to inject noise into the activation function is by adding a normal gaussian distribution \(g(x)\) on top of it\footcite[cf.][3]{bohmNoiseinjectedAnalogIsing2022}:
+\begin{equation}
+    g(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation}
+The visual representation of a gaussian distribution is shown in following figure:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\linewidth]{graphics/Gaussian_Normal_Distribution_edited.jpg}
-    \caption{Gaussian normal distribution}
-    \label{fig2}
+    \includegraphics[width=0.65\linewidth]{graphics/Gaussian_Normal_Distribution_edited.jpg}
+    \caption{Gaussian normal distribution\protect\footnotemark}
+    \label{normalGaussianDistribution}
 \end{figure}
+\footnotetext{modified from \cite[cf.][3]{gmComprehensiveSurveyAnalysis2020}}
+There are currently two known papers that each created a proof of concept on how to inject the noise and make a \ac{RBM} theoretically realizable.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
+In the paper by Böhm et al., they used analog singals for the neurons instead of digital signals like the \ac{mem-HNN} uses. 
+Furthermore, they used an Ising machine in combination with an \ac{FPGA} as accelerator which was not clock cycled and rather time continious.\footcite[cf.][1-11]{bohmNoiseinjectedAnalogIsing2022}
+
+The second paper by Mahmoodi/Preziosi and Strukov, also created a proof of concept in which they showed an implementation of a \ac{RBM} on a memristor crosbar array.
+The primary results showed that they were able to solve optimization problems with the \ac{RBM}.
+There is no state register or comparator involved, so all the calculations of comparing against a threshold, adding a bias and adding the noise were made by a external digital computer. 
+The hardware computes solely the sum component of the update formula.
+Hence, the additional required interfaces make the system slow and inefficient.\footcite[cf.][1-8]{mahmoodiVersatileStochasticDot2019}
+
+In contrast, this thesis wants to use these proof of concepts as a basis and go further to see if the concept
+is feasible on the complete \ac{ASIC} hardware accelerator like the \ac{mem-HNN} and does it bring an actual acceleration.
+The practical part is therefore using a current \ac{ASIC} with not only the memristor crossbar array but also all the other requried Hardware components.
+Furthermore, the thesis focuses on an actual training of a \ac{RBM} and also the interference of it to be able to answer the research question.
+Expanding upon the foundational work, this research explores the implementation of the N/2 synchronous update mechanism.
+This design choice emphasizes a expactation of higher sampling speeds and efficiency.
+
+As a result a complete performance model, including a comprehensive energy model and a latency model should be establihed.
+This model aims to measure the processing time required for data and the energy consumed.
+The results should be compared to other sampling methods, such as Gibbs and Metropolis sampling.
+Lastly, this thesis performs hyperparameter tuning in oder to gather new data on how these machines should be configured for optimal performance.
+Since, there is no data for hyperparameter tuning of such a concept in the literature yet this establishes foundational work on how to make use of artificial intelligence within such an accelerators.
+Through this process, the research seeks to determine the feasibility of a proper training with this setup, focusing on its practicality and efficiency.
+By benchmarking these aspects against traditional sampling methods, the thesis aims to underscore the potential of the \ac{mem-HNN} 
+in practical training of \ac{RBM}s.
+
+
+
+
