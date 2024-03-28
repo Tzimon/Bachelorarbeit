@@ -1,12 +1,36 @@
-\chapter{Zielspezifikation und Darlegung der Forschungsmethodik}
+\chapter{Objective specification and presentation of the research methodology}
 
 
-IDEE Komplettes System modellieren und alle Schritte mit Übergängen, Gewichte setzen, kompletter Flow erklären
+Having laid the groundwork with essential concepts necessary for this thesis,
+this chapter aims to outline the objectives of the practical segment as well as the research methodology employed to achieve them.
+In the first part, the specific objectives are defined. 
+Afterwards, in a second part the used reasearch methods Design Science Research and Prototyping are explained.
 
 
 
-\section{Zielspezifikation (genauer als in Einleitung, Metriken erwähnen, Erfolg meiner Methode bewerten, Welcher Teil der Forschungsfrage wird beantwortet?)}
+
+
+
+\section{Objective specification (genauer als in Einleitung, Metriken erwähnen, Erfolg meiner Methode bewerten, Welcher Teil der Forschungsfrage wird beantwortet?)}
+
+In contrast to the mentioned papers in 2.4.4, this thesis wants to use their proof of concepts as a basis and go further to see if the concept
+is feasible on the complete \ac{ASIC} hardware accelerator like the \ac{mem-HNN} and does it bring an actual acceleration.
+The practical part is therefore using a current \ac{ASIC} with not only the memristor crossbar array but also all the other requried hardware components.
+Furthermore, the thesis focuses on an actual training of a \ac{RBM} and also the interference of it to be able to answer the research question.
+Expanding upon the foundational work, this research explores the implementation of the N/2 synchronous update mechanism.
+This design choice emphasizes a expactation of higher sampling speeds and efficiency.
+
+At the beginning, the \ac{IT} artifact to be implemented is modeled and all components, transitions and processes of the overall solution are identified.
+As a result of the implementation a complete performance evaluation, including a comprehensive energy model and a latency model should be established.
+This evaluation aims to measure the processing time required for data and the energy consumed.
+The results should be compared to other sampling methods, such as Gibbs and Metropolis sampling.
+Lastly, this thesis performs hyperparameter tuning in oder to gather new data on how these machines should be configured for optimal performance.
+Since, there is no data for hyperparameter tuning of such a concept in the literature yet this establishes foundational work on how to make use of artificial intelligence within such an accelerator.
+Through this process, the research seeks to determine the feasibility of a proper training with this setup, focusing on its practicality and efficiency.
+By benchmarking these aspects against traditional sampling methods, the thesis aims to underscore the potential of the \ac{mem-HNN} 
+in practical training of \ac{RBM}s.
+
 \section{Design Science Research }
 \section{Zielsetzung(ohne gneaue Metriken nennen, generell halten)}
-\section{Laborexperiment für die Umsetzung}
+\section{Prototyping / Simulation}
 
