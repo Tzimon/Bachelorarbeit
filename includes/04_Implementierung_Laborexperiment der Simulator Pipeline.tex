@@ -182,11 +182,10 @@ into the next design iteration.
 
 \section{Second Design and Evaluation phase}
 
-This iteration focuses on the implementation of correctly using the Hopfield Network update algorithm. 
+This \textbf{design phase} iteration lays its focus on the implementation of correctly using the Hopfield Network update algorithm. 
 Following subfunctionalities need to be established: imitating the \ac{RBM} activation function, drawing random neurons to update,
 correct injection of the gaussian noise scale, calculating the weighted sum,
-comparing the weighted sum + bias + noise agaisnt the threshold,
-saving the new neuron configuration.
+comparing the weighted sum + bias + noise agaisnt the threshold and saving the new neuron configuration.
 Hence, this iteration is accessing new ground since the implementation of the simulator pipline is not validated yet. 
 
 First, a new \texttt{\_hopfield\_network\_v1.py} is created that aims to establish a noisy Hopfield Network with a single neuron 
@@ -220,28 +219,40 @@ As experimented the update formula for implementation of the Hopfield Network lo
     self.activationProbabilityPerNeuronDict[self.bias] = self.divide_array_elements(self.summedConfigurations, self.iterationcounter)
     self.bias += 0.025
 \end{lstlisting}
-In the beginnig a random neuron is drawn to be updated, which of course is everytime the same neuron if the network size is one. 
+In the beginnig a random neuron is drawn to be updated, which currently everytime is neuron number one because the network size is one. 
+This allows to meassure the activation probability and fast iteration time with a clear result on how the network behaves. 
 Calculating the weighted sum can be seen as the core of the update formula and is done first.
-Afterwards to compare against the threshold an bias is added, which ranges from \(-6; 6\) in step sizes of \(0.25\) after the set sampling iterations. 
+Afterwards to compare against the threshold an bias is added.
+The value of the bias ranges from \(-6; 6\) in step sizes of \(0.025\). After completing all samplin iterations beginning with \(-6\) the step size is added to that value until all iterations are made.
 This is sufficient for the neuron activation function of an ordinary Hopfield Network and results in the binary step. 
-The activation function is extracted by summing all configurations in places within one bias configuration. 
-In a next step, the configurations counted are divided by the number of total sampling iterations within the bias configuration.
-That results in the activation probability of the single neurons in places. 
-
-This may not be interesting for the binary step function but important for the desired logistic sigmoid acitivation function.
-Hence, the noise needs to be injected into the activation function to make it compatible with the sigmoid function of the \ac{RBM}.
-To achieve this behaviour, a gaussian normal distribution can be used to inject noise and modify the activation function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
-This is performed by adding \texttt{np.random.normal(0, scale=1.75)} to the weighted sum and the bias, with 0 beeing the mean of the distribuion and the scale representing the standard deviation. 
-Hereby, it is important to find a standard deviation that is very close to the true activation probability is important, otherwise the training of the RBM would not work.
-In addition to that, the standard deviation changes with neuron size and needs to be readjusted if changes are made to the networks structure.
-
-
+The resulting activation function is obtained by summing all configurations within a single bias configuration.
+In a next step, the configurations counted are divided by the number of total sampling iterations within the bias configuration (in this case 1500 iterations).
+That following figure \ref{Noisy_acitivation_function_bad} \textbf{evaluates} the resulting activation probability of the single neurons. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{graphics/Noisy_HNN.png}
-    \caption{Noisy activation function of the Hopfield Network}
-    \label{Noisy_acitivation_function}
+    \includegraphics[width=1\linewidth]{graphics/combined_noise_activation_plots.png}
+    \caption{Modification of the binary step activation function of the Hopfield Network}
+    \label{Noisy_acitivation_function_bad}
 \end{figure}
+In the left plot, visualized in blue, the activation probability of the neuron is shown without adding noise to the plot. 
+The behaviour is like sme would expect it; once the bias reaches 0 the neuron is activated all the time.
+Far more interesting is the red plot on the right side, which introduces some noise into the binary step function, bringing it closer to the logistic sigmoid activation function used in the \ac{RBM}.
+To achieve this behavior, injecting noise through a Gaussian normal distribution can modify the activation function, making it compatible with the sigmoid function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}"
+Technically this is performed by adding \texttt{np.random.normal(0, scale=1.75)} to the weighted sum and the bias, with 0 beeing the mean of the distribuion and the scale representing the standard deviation. 
+Hereby, it is important to find a standard deviation that is very close to the true activation probability is important, otherwise the training of the RBM would not work.
+In addition to that, the standard deviation changes with neuron size and needs to be readjusted if changes are made to the networks structure.
+So what is visible in the right plot that the sigmoid function is not correctly imitated but proves that the
+Concluding from this the sigmoid function is not achieved and the trainig of an \ac{RBM} probably fails. 
+Therefore, to completely evaluate and ensure that the injected noise fits to the logistic sigmoid function, the function itself is plotted 
+too, to have a visual comparision. Afterwards, finding the correct standard deviation is the goal. 
+In following figure\ref{Noisy_acitivation_function_good} the compatibility is verifired:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{graphics/Noisy_HNN_2.png}
+    \caption{Noisy activation function of the Hopfield Network imitating the \ac{RBM}}
+    \label{Noisy_acitivation_function_good}
+\end{figure}
+
 
 \section{Third Design and Evaluation phase}
 
