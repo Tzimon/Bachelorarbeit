@@ -1,3 +1,19 @@
+@inproceedings{aaditAcceleratingAdaptiveParallel2023,
+  title = {Accelerating {{Adaptive Parallel Tempering}} with {{FPGA-based}} p-Bits},
+  booktitle = {2023 {{IEEE Symposium}} on {{VLSI Technology}} and {{Circuits}} ({{VLSI Technology}} and {{Circuits}})},
+  author = {Aadit, Navid Anjum and Mohseni, Masoud and Camsari, Kerem Y.},
+  date = {2023-06},
+  pages = {1--2},
+  issn = {2158-9682},
+  doi = {10.23919/VLSITechnologyandCir57934.2023.10185207},
+  url = {https://ieeexplore.ieee.org/abstract/document/10185207},
+  urldate = {2024-04-10},
+  abstract = {Special-purpose hardware to solve optimization problems formulated as Ising models has generated great excitement recently. Despite a large diversity in hardware, most solvers employ standard variations of the classical (simulated) annealing (CA) algorithm. Here, we show how powerful replica-based Parallel Tempering (PT) algorithms can significantly outperform CA, using FPGA-based probabilistic computers. Using a massively parallel (graph-colored) architecture, we implement the Adaptive PT (APT) algorithm, generating problem-dependent temperature profiles to equalize replica swap probabilities. We benchmark our p-computer against analytical results from classical Ising theory and use our machine to solve spin-glass instances formulated as hard optimization problems. APT outperforms heuristic choices of temperature profiles used in conventional PT and a replica-based version of CA. Our machine provides 6,000X speedup over optimized CPU, with orders of magnitude further speedup projected for scaled implementations. The developed co-design techniques may be useful for a broad range of Ising machines beyond p-computers.},
+  eventtitle = {2023 {{IEEE Symposium}} on {{VLSI Technology}} and {{Circuits}} ({{VLSI Technology}} and {{Circuits}})},
+  keywords = {Computational modeling,Computer architecture,Computers,Probabilistic logic,Simulated annealing,Temperature distribution,Very large scale integration},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\UEWGDRCY\\Aadit et al_2023_Accelerating Adaptive Parallel Tempering with FPGA-based p-bits.pdf;C\:\\Users\\simon\\Zotero\\storage\\NMUS4SFU\\10185207.html}
+}
+
 @article{abarAgentBasedModelling2017,
   title = {Agent {{Based Modelling}} and {{Simulation}} Tools: {{A}} Review of the State-of-Art Software},
   shorttitle = {Agent {{Based Modelling}} and {{Simulation}} Tools},
@@ -313,6 +329,25 @@
   eventtitle = {Computing in {{Science}} \& {{Engineering}}},
   keywords = {Computational complexity,Computational modeling,Distributed computing,Distribution functions,Hospitals,Monte Carlo methods,Physics computing,Probability distribution,Sampling methods},
   file = {C\:\\Users\\simon\\Zotero\\storage\\HWDNSHCW\\Beichl_Sullivan_2000_The Metropolis Algorithm.pdf;C\:\\Users\\simon\\Zotero\\storage\\ZTYBSUIQ\\814660.html}
+}
+
+@article{bellettiJanusFPGABasedSystem2009,
+  title = {Janus: {{An FPGA-Based System}} for {{High-Performance Scientific Computing}}},
+  shorttitle = {Janus},
+  author = {Belletti, Francesco and Cotallo, Maria and Cruz, A and Fernandez, Luis Antonio and Gordillo-Guerrero, Antonio and Guidetti, Marco and Maiorano, Andrea and Mantovani, Filippo and Marinari, Enzo and Martin-Mayor, Victor and Munoz-Sudupe, Antonio and Navarro, Denis and Parisi, Giorgio and Perez-Gaviro, Sergio and Rossi, Mauro and Ruiz-Lorenzo, Juan J and Schifano, Sebastiano Fabio and Sciretti, Daniele and Tarancon, Alfonso and Tripiccione, Raffaele and Velasco, J Luis and Yllanes, David and Zanier, Gianpaolo},
+  date = {2009-01},
+  journaltitle = {Computing in Science \& Engineering},
+  volume = {11},
+  number = {1},
+  pages = {48--58},
+  issn = {1558-366X},
+  doi = {10.1109/MCSE.2009.11},
+  url = {https://ieeexplore.ieee.org/document/4720223},
+  urldate = {2024-04-10},
+  abstract = {Janus is a modular, massively parallel, and reconfigurable FPGA-based computing system. Each Janus module has one computational core and one host. Janus is tailored to, but not limited to, the needs of a class of hard scientific applications characterized by regular code structure, unconventional data-manipulation requirements, and a few Megabits database. The authors discuss this configurable system's architecture and focus on its use for Monte Carlo simulations of statistical mechanics, as Janus performs impressively on this class of application.},
+  eventtitle = {Computing in {{Science}} \& {{Engineering}}},
+  keywords = {Application software,Biology computing,Computational modeling,Computer simulation,field-programmable gate array,FPGA,Janus,Lattices,Monte Carlo methods,Monte Carlo simulations,Nobel Prize,Parallel processing,Pervasive computing,Physics computing,scientific computing,Scientific computing},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\5LLBIGEX\\Belletti et al_2009_Janus.pdf;C\:\\Users\\simon\\Zotero\\storage\\3HBRQPYB\\4720223.html}
 }
 
 @incollection{berrouOverviewGreenFinance2019,
@@ -1778,6 +1813,27 @@
   file = {C:\Users\simon\Zotero\storage\2LQHKEVN\Oesterle et al_2010_Memorandum zur gestaltungsorientierten Wirtschaftsinformatik.pdf}
 }
 
+@article{ortega-zamoranoFPGAHardwareAcceleration2016,
+  title = {{{FPGA Hardware Acceleration}} of {{Monte Carlo Simulations}} for the {{Ising Model}}},
+  author = {Ortega-Zamorano, Francisco and Montemurro, Marcelo A. and Cannas, Sergio A. and Jerez, José M. and Franco, Leonardo},
+  date = {2016-09-01},
+  journaltitle = {IEEE Transactions on Parallel and Distributed Systems},
+  shortjournal = {IEEE Trans. Parallel Distrib. Syst.},
+  volume = {27},
+  number = {9},
+  eprint = {1602.03016},
+  eprinttype = {arxiv},
+  eprintclass = {physics},
+  pages = {2618--2627},
+  issn = {1045-9219},
+  doi = {10.1109/TPDS.2015.2505725},
+  url = {http://arxiv.org/abs/1602.03016},
+  urldate = {2024-04-10},
+  abstract = {A two-dimensional Ising model with nearest-neighbors ferromagnetic interactions is implemented in a Field Programmable Gate Array (FPGA) board.Extensive Monte Carlo simulations were carried out using an efficient hardware representation of individual spins and a combined global-local LFSR random number generator. Consistent results regarding the descriptive properties of magnetic systems, like energy, magnetization and susceptibility are obtained while a speed-up factor of approximately 6 times is achieved in comparison to previous FPGA-based published works and almost \$10\^{}4\$ times in comparison to a standard CPU simulation. A detailed description of the logic design used is given together with a careful analysis of the quality of the random number generator used. The obtained results confirm the potential of FPGAs for analyzing the statistical mechanics of magnetic systems.},
+  keywords = {Computer Science - Hardware Architecture,Physics - Computational Physics},
+  file = {C\:\\Users\\simon\\Zotero\\storage\\VEEUL2RF\\Ortega-Zamorano et al_2016_FPGA Hardware Acceleration of Monte Carlo Simulations for the Ising Model.pdf;C\:\\Users\\simon\\Zotero\\storage\\TPMM7LBD\\1602.html}
+}
+
 @book{pandianIntelligentComputingOptimization,
   title = {Intelligent {{Computing}} and {{Optimization}}},
   author = {Pandian, Vasant and Vladimir Panchenko},
@@ -1962,6 +2018,16 @@
   file = {C:\Users\simon\Zotero\storage\A8TV6MPE\Raschka et al_2020_Machine Learning in Python.pdf}
 }
 
+@online{RestrictedBoltzmannMachine,
+  title = {Restricted {{Boltzmann Machine}} Features for Digit Classification},
+  url = {https://scikit-learn/stable/auto_examples/neural_networks/plot_rbm_logistic_classification.html},
+  urldate = {2024-04-10},
+  abstract = {For greyscale image data where pixel values can be interpreted as degrees of blackness on a white background, like handwritten digit recognition, the Bernoulli Restricted Boltzmann machine model ( ...},
+  langid = {english},
+  organization = {scikit-learn},
+  file = {C:\Users\simon\Zotero\storage\KZ4Q4B4G\plot_rbm_logistic_classification.html}
+}
+
 @online{ReviewComparativeAnalysis,
   title = {Review and Comparative Analysis of Machine Learning Libraries for Machine Learning},
   url = {https://cyberleninka.ru/article/n/review-and-comparative-analysis-of-machine-learning-libraries-for-machine-learning},
@@ -2127,6 +2193,16 @@
   eventtitle = {2022 31st {{Conference}} of {{Open Innovations Association}} ({{FRUCT}})},
   keywords = {Biological system modeling,Data models,Hardware,Microcontrollers,Program processors,Software,System-on-chip},
   file = {C\:\\Users\\simon\\Zotero\\storage\\64U7JGN4\\Sipola et al_2022_Artificial Intelligence in the IoT Era.pdf;C\:\\Users\\simon\\Zotero\\storage\\CGQ6GB2N\\9770931.html}
+}
+
+@online{SklearnDatasetsLoad_digits,
+  title = {Sklearn.Datasets.Load\_digits},
+  url = {https://scikit-learn/stable/modules/generated/sklearn.datasets.load_digits.html},
+  urldate = {2024-04-10},
+  abstract = {Examples using sklearn.datasets.load\_digits: Recognizing hand-written digits Recognizing hand-written digits A demo of K-Means clustering on the handwritten digits data A demo of K-Means clustering...},
+  langid = {english},
+  organization = {scikit-learn},
+  file = {C:\Users\simon\Zotero\storage\YB9N6MCW\sklearn.datasets.load_digits.html}
 }
 
 @article{spechtProbabilisticNeuralNetworks1990,

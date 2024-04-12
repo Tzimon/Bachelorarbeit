@@ -6,17 +6,22 @@ In the first part, the specific objectives are defined.
 Afterwards, in a second part the used reasearch framework \ac{DSR} and the two research methods Prototyping and the Simulation are explained.
 
 \section{Objective specification}
-
-In contrast to the mentioned papers in 2.4.4, this thesis wants to use their proof of concepts as a basis and go further to see if the concept
-is feasible on the complete \ac{ASIC} hardware accelerator like the \ac{mem-HNN} and does it bring an actual acceleration.
-The practical part is therefore using a current \ac{ASIC} with not only the memristor crossbar array but also all the other requried hardware components.
-Furthermore, the thesis focuses on an actual training of a \ac{RBM} and also the interference of it to be able to answer the research question.
+The mentioned papers in 2.4.4 showed that the acceleration of statistical sampling in \ac{BM}s theoretically work. 
+In order to answer the research question, this thesis wants to validate these proof of concepts in a first part and see if they are feasible on the complete \ac{ASIC} hardware accelerator like the \ac{mem-HNN}. 
+The second practical part goes further and has the goal of implementing a simulator pipeline with the workload of a \ac{BM}
+and meassure if it brings an actual acceleration. 
+Currently, such a simulation model does not exist and would be able to extract data for further research and fundamental insights.  
+Key metrics identified in the literature that demonstrate the performance of accelerators include throughput (samples/second) and energy consumption (energy/operation).\footnote{cf.\cite{caiPowerefficientCombinatorialOptimization2020}, p. 409-418; cf.\cite{ortega-zamoranoFPGAHardwareAcceleration2016}, p. 16-17; cf.\cite{aaditAcceleratingAdaptiveParallel2023}, p. 2; cf.\cite{bellettiJanusFPGABasedSystem2009}, p. 55}
+Therefore, this is the goal of the data acquisition in the second practical part.
+The practical part is therefore simulating a current \ac{ASIC} with not only the memristor crossbar array but also all the other requried hardware components.
+Furthermore, the thesis focuses on an actual training of a \ac{RBM} and also the interference of it to answer the research question.
 Expanding upon the foundational work, this research explores the implementation of the N/2 synchronous update mechanism.
-This design choice emphasizes a expactation of higher sampling speeds and efficiency.
+This sampling method emphasizes a expactation of higher sampling speeds and efficiency.
 
 At the beginning, the \ac{IT}-artifact to be implemented is modeled and all components, transitions and processes of the overall solution are identified.
+Upon this ideal overall solution a prototyp is developed that impelments a subset of the real hardware functionalities.
 As a result of the implementation a complete performance evaluation, including a comprehensive energy model and a latency model should be established.
-This evaluation aims to measure the metrics: required processing time (samples/sec) for data and the energy usage (energy/operation).
+The following simulation aims to measure the metrics: required processing time (samples/sec) for data and the energy usage (energy/operation).
 The results should be compared to other sampling methods, such as Gibbs and Metropolis sampling.
 Lastly, this thesis performs hyperparameter tuning in oder to gather new data on how these machines should be configured for optimal performance.
 Since, there is no data for hyperparameter tuning of such a concept in the literature yet this establishes foundational work on how to make use of artificial intelligence within such an accelerator.
@@ -86,6 +91,7 @@ Diffusion in practice also includes the implementation in companies and public a
 
 \section{Prototyping}
 
+Given that the aim of the implementation is to create a new \ac{IT}-artifact with a focus on rapid development, prototyping has been selected as the methodology.
 Generally, prototyping is a fundamental practice in designing tools, applications or user interfaces and defining requirements within the framework of agile software development.
 It belongs to the agile requirements engineering practice and allows to gather feedback on requirements in a light-weight fashion.\footcite[cf.][1]{bjarnasonModelSoftwarePrototyping2021a}
 Prototypes are created to assist in the analysis and design of proposed systems.
@@ -121,11 +127,14 @@ Therefore, the categorization of the prototype and afterwards the ``model synthe
 
 \section{Simulation}
 
+Simulation has been chosen as the methodology for the evaluation phase of the \ac{DSR} framework to collect data, due to the unavailability
+of accelerators and the fact that the current chip design can be modeled more quickly and still accurate in software when done properly.
 A simulation model can be defined as computerized representation of a given model capturing its dynamic behaviour.
 The primary motivations for establishing a simulation model or using any other modeling method like prototyping is that it is
 an cheap and fast way to gain important insights without being exposed to following constraints: costs, risks or logistics of manipulating the real system.\footcite[cf.][92]{kellnerSoftwareProcessSimulation1999}
 Furthermore, the gathered data helps with decision making for strategical and operational levels.\footcite[cf.][93]{kellnerSoftwareProcessSimulation1999}
 For example, with results of a simulation it can be decided if the new hardware works like expected and can be set up for production.
+This are the reasons why the simulation methodology is chosen for the evaluation phase of the prototype. 
 
 Computer simulation involves adjusting a computer-based model to better analyze how a system behaves and to evaluate approaches for their operation, either for descriptive or predictive purposes.\footcite[cf.][13-14]{abarAgentBasedModelling2017}
 In the case of th \ac{mem-HNN}, there is the need for the evaluation of software performance in combination with the hardware to gather proper data.
@@ -159,7 +168,7 @@ Furthermore, with one simulation mutiple result variables can be gathered simult
 Therefroe, all the processes, vital ressources, dependencies and iteration looops need to be considered to achieve the desired result variables and to answer the key quesions.\footcite[cf.][97]{kellnerSoftwareProcessSimulation1999}
 Lastly the \textbf{input parameters} consider all the parameters that are needed to produce vaulable outcomes. 
 This can range up to hundreds of data parameters achieve the desired results. 
-In theory, these parameters can also be extendetd to human ressources like software engineers that are needed for their skills in programming knowledge.\footcite[cf.][97]{kellnerSoftwareProcessSimulation1999}
+In theory, these parameters can also be extendetd to human ressources like software engineers that are needed for their skills in programming knowledge.\footcite[cf.][97-98]{kellnerSoftwareProcessSimulation1999}
 
 This general usable simulation model should is not only part of the \ac{DSR} evaluation phase but also part of the \ac{ASIC} design process. 
 Therefore, the model is modified to match the needs for a performance simlation of the \ac{mem-HNN}.
@@ -167,7 +176,3 @@ The simulation model is part of the architecture and high level design of the \a
 It involves selecting key components like processors, memory blocks, and communication interfaces and carrying out a functional verification through a suitable simulation.\footnote{cf.\cite{raoUltimateGuideASIC}, p. 1; cf.\cite{ASICDesignFlow}, p. 1}
 The modification to the model is expressed through the actual energy model of the \ac{mem-HNN}, which is added to the simulation model, that can compute energy usage per clock cycle. 
 Hence, depending on a specific input it can calculate how much energy was required to do computations that are the output and used for the next cycle. 
-This energy model is developed by HPE and the Forschungszentrum Jülich.
-The explanation for this model is out of scope for this thesis but core parameters are explained to understand the data generation for the energy values.
-A seperate paper will be published about the energy model in the near future but inoficially for this thesis the model can be used in advance.
-

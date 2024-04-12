@@ -19,6 +19,67 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{aaditAcceleratingAdaptiveParallel2023}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=39681f8bcd036ca61ec4e9bba00c64c5}{%
+           family={Aadit},
+           familyi={A\bibinitperiod},
+           given={Navid\bibnamedelima Anjum},
+           giveni={N\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=1,uniquepart=given,hash=3660f6bf9d4821aa4c362d0abd316e4f}{%
+           family={Mohseni},
+           familyi={M\bibinitperiod},
+           given={Masoud},
+           giveni={M\bibinitperiod},
+           givenun=1}}%
+        {{un=0,uniquepart=base,hash=fa3bcaa71e30612e4ba4ec7f556062ee}{%
+           family={Camsari},
+           familyi={C\bibinitperiod},
+           given={Kerem\bibnamedelima Y.},
+           giveni={K\bibinitperiod\bibinitdelim Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{901a91fe042285abc38152c0c5800b1e}
+      \strng{fullhash}{901a91fe042285abc38152c0c5800b1e}
+      \strng{bibnamehash}{901a91fe042285abc38152c0c5800b1e}
+      \strng{authorbibnamehash}{901a91fe042285abc38152c0c5800b1e}
+      \strng{authornamehash}{901a91fe042285abc38152c0c5800b1e}
+      \strng{authorfullhash}{901a91fe042285abc38152c0c5800b1e}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Special-purpose hardware to solve optimization problems formulated as Ising models has generated great excitement recently. Despite a large diversity in hardware, most solvers employ standard variations of the classical (simulated) annealing (CA) algorithm. Here, we show how powerful replica-based Parallel Tempering (PT) algorithms can significantly outperform CA, using FPGA-based probabilistic computers. Using a massively parallel (graph-colored) architecture, we implement the Adaptive PT (APT) algorithm, generating problem-dependent temperature profiles to equalize replica swap probabilities. We benchmark our p-computer against analytical results from classical Ising theory and use our machine to solve spin-glass instances formulated as hard optimization problems. APT outperforms heuristic choices of temperature profiles used in conventional PT and a replica-based version of CA. Our machine provides 6,000X speedup over optimized CPU, with orders of magnitude further speedup projected for scaled implementations. The developed co-design techniques may be useful for a broad range of Ising machines beyond p-computers.}
+      \field{booktitle}{2023 {{IEEE Symposium}} on {{VLSI Technology}} and {{Circuits}} ({{VLSI Technology}} and {{Circuits}})}
+      \field{eventtitle}{2023 {{IEEE Symposium}} on {{VLSI Technology}} and {{Circuits}} ({{VLSI Technology}} and {{Circuits}})}
+      \field{issn}{2158-9682}
+      \field{month}{6}
+      \field{title}{Accelerating {{Adaptive Parallel Tempering}} with {{FPGA-based}} p-Bits}
+      \field{urlday}{10}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 2}
+      \range{pages}{2}
+      \verb{doi}
+      \verb 10.23919/VLSITechnologyandCir57934.2023.10185207
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\simon\\Zotero\\storage\\UEWGDRCY\\Aadit et al_2023_Accelerating Adaptive Parallel Tempering with FPGA-based p-bits.pdf;C\:\\Users\\simon\\Zotero\\storage\\NMUS4SFU\\10185207.html
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/abstract/document/10185207
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/abstract/document/10185207
+      \endverb
+      \keyw{Computational modeling,Computer architecture,Computers,Probabilistic logic,Simulated annealing,Temperature distribution,Very large scale integration}
+    \endentry
     \entry{abarAgentBasedModelling2017}{article}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=7e15667358247d5e30b66b340af38fc2}{%
@@ -969,6 +1030,190 @@
       \endverb
       \keyw{Computational complexity,Computational modeling,Distributed computing,Distribution functions,Hospitals,Monte Carlo methods,Physics computing,Probability distribution,Sampling methods}
     \endentry
+    \entry{bellettiJanusFPGABasedSystem2009}{article}{}
+      \name{author}{23}{}{%
+        {{un=0,uniquepart=base,hash=9cd335cb01e09255ddd3ff4b754fa169}{%
+           family={Belletti},
+           familyi={B\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=80199e15f80b79d1897b8ebe2a965c27}{%
+           family={Cotallo},
+           familyi={C\bibinitperiod},
+           given={Maria},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c6a2c6b63e3cd3ddf29de8bfbe9b2b7c}{%
+           family={Cruz},
+           familyi={C\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5be93422797493b1a4ee9660a39063c6}{%
+           family={Fernandez},
+           familyi={F\bibinitperiod},
+           given={Luis\bibnamedelima Antonio},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f0c4d4fc18af6a47f50ec7c7c00e9481}{%
+           family={Gordillo-Guerrero},
+           familyi={G\bibinithyphendelim G\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=aad568f61a2fcd92e2dfff3d807319bd}{%
+           family={Guidetti},
+           familyi={G\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ab11961d38a2c704aa577a107c3dd2b9}{%
+           family={Maiorano},
+           familyi={M\bibinitperiod},
+           given={Andrea},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=760e0ca8b306c783b3ee6757496ce756}{%
+           family={Mantovani},
+           familyi={M\bibinitperiod},
+           given={Filippo},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c9b2035d21222b7902347a7cdedb3e64}{%
+           family={Marinari},
+           familyi={M\bibinitperiod},
+           given={Enzo},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e4bc695a482ec7436e89631c5f128e9a}{%
+           family={Martin-Mayor},
+           familyi={M\bibinithyphendelim M\bibinitperiod},
+           given={Victor},
+           giveni={V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7ae7b475fa0ded2cae183ceb821261a4}{%
+           family={Munoz-Sudupe},
+           familyi={M\bibinithyphendelim S\bibinitperiod},
+           given={Antonio},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=133d1681451004526b84ed93dd751b80}{%
+           family={Navarro},
+           familyi={N\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=633aedb846f931194e4d892bef86fdc0}{%
+           family={Parisi},
+           familyi={P\bibinitperiod},
+           given={Giorgio},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=98dd080db385f147d10fd0b56308654d}{%
+           family={Perez-Gaviro},
+           familyi={P\bibinithyphendelim G\bibinitperiod},
+           given={Sergio},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fc33afc625fb00ee149334581e84a09f}{%
+           family={Rossi},
+           familyi={R\bibinitperiod},
+           given={Mauro},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c647fb78d49b95f5e52cfdb7a10c5c85}{%
+           family={Ruiz-Lorenzo},
+           familyi={R\bibinithyphendelim L\bibinitperiod},
+           given={Juan\bibnamedelima J},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=eb6f250c21be472fa2766217361d10b6}{%
+           family={Schifano},
+           familyi={S\bibinitperiod},
+           given={Sebastiano\bibnamedelima Fabio},
+           giveni={S\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b7dc47e443a1ef5740622ab982e2711b}{%
+           family={Sciretti},
+           familyi={S\bibinitperiod},
+           given={Daniele},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a3783362f03ba0b471c284597bf48615}{%
+           family={Tarancon},
+           familyi={T\bibinitperiod},
+           given={Alfonso},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0518555b789a4716031aca30291e2c56}{%
+           family={Tripiccione},
+           familyi={T\bibinitperiod},
+           given={Raffaele},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d5249d17e3f781c6e904e70ca81f36b}{%
+           family={Velasco},
+           familyi={V\bibinitperiod},
+           given={J\bibnamedelima Luis},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8b2217c7de476fb598bf2d56d5ed93dd}{%
+           family={Yllanes},
+           familyi={Y\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2007d448e98f96f8d8e3d09476cb4a39}{%
+           family={Zanier},
+           familyi={Z\bibinitperiod},
+           given={Gianpaolo},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ae5e7f8727c4ee9f0e1bc4323d15b4c3}
+      \strng{fullhash}{83333503ee6b29f55a1254a7326d6485}
+      \strng{bibnamehash}{83333503ee6b29f55a1254a7326d6485}
+      \strng{authorbibnamehash}{83333503ee6b29f55a1254a7326d6485}
+      \strng{authornamehash}{ae5e7f8727c4ee9f0e1bc4323d15b4c3}
+      \strng{authorfullhash}{83333503ee6b29f55a1254a7326d6485}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Janus is a modular, massively parallel, and reconfigurable FPGA-based computing system. Each Janus module has one computational core and one host. Janus is tailored to, but not limited to, the needs of a class of hard scientific applications characterized by regular code structure, unconventional data-manipulation requirements, and a few Megabits database. The authors discuss this configurable system's architecture and focus on its use for Monte Carlo simulations of statistical mechanics, as Janus performs impressively on this class of application.}
+      \field{eventtitle}{Computing in {{Science}} \& {{Engineering}}}
+      \field{issn}{1558-366X}
+      \field{journaltitle}{Computing in Science \& Engineering}
+      \field{month}{1}
+      \field{number}{1}
+      \field{shorttitle}{Janus}
+      \field{title}{Janus: {{An FPGA-Based System}} for {{High-Performance Scientific Computing}}}
+      \field{urlday}{10}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{volume}{11}
+      \field{year}{2009}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{48\bibrangedash 58}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/MCSE.2009.11
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\simon\\Zotero\\storage\\5LLBIGEX\\Belletti et al_2009_Janus.pdf;C\:\\Users\\simon\\Zotero\\storage\\3HBRQPYB\\4720223.html
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/4720223
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/4720223
+      \endverb
+      \keyw{Application software,Biology computing,Computational modeling,Computer simulation,field-programmable gate array,FPGA,Janus,Lattices,Monte Carlo methods,Monte Carlo simulations,Nobel Prize,Parallel processing,Pervasive computing,Physics computing,scientific computing,Scientific computing}
+    \endentry
     \entry{bjarnasonModelSoftwarePrototyping2021a}{inproceedings}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=7122de7a9d5de51fcaf6c0ef57cf4d29}{%
@@ -1725,6 +1970,34 @@
       \endverb
       \keyw{ungelesen,zitiert}
     \endentry
+    \entry{DiscreteContinuousModels}{online}{}
+      \list{organization}{3}{%
+        {Discrete}%
+        {Continuous Models}%
+        {Applied Computational Science}%
+      }
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Discrete and Continuous Models and Applied Computational Science}
+      \field{langid}{english}
+      \field{title}{Discrete and {{Continuous Models}} and {{Applied Computational Science}}}
+      \field{urlday}{8}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb C:\Users\simon\Zotero\storage\GQEE2Q99\miph.html
+      \endverb
+      \verb{urlraw}
+      \verb http://journals.rudn.ru/miph
+      \endverb
+      \verb{url}
+      \verb http://journals.rudn.ru/miph
+      \endverb
+    \endentry
     \entry{dramschChapterOne702020}{incollection}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=37e4f276c87873863ef2a9602753a12d}{%
@@ -1980,6 +2253,37 @@
       \verb https://www.nature.com/articles/s41380-019-0365-9
       \endverb
       \keyw{gelesen,Neuroscience,Psychiatric disorders,ungelesen,zitiert}
+    \endentry
+    \entry{ebertSystematischesRequirementsEngineering2008}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0a42c5417e74c35afa6f539302ff2574}{%
+           family={Ebert},
+           familyi={E\bibinitperiod},
+           given={Christof},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{0a42c5417e74c35afa6f539302ff2574}
+      \strng{fullhash}{0a42c5417e74c35afa6f539302ff2574}
+      \strng{bibnamehash}{0a42c5417e74c35afa6f539302ff2574}
+      \strng{authorbibnamehash}{0a42c5417e74c35afa6f539302ff2574}
+      \strng{authornamehash}{0a42c5417e74c35afa6f539302ff2574}
+      \strng{authorfullhash}{0a42c5417e74c35afa6f539302ff2574}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{1}
+      \field{isbn}{978-3-89864-546-1}
+      \field{month}{1}
+      \field{title}{Systematisches {{Requirements Engineering}} Und {{Management}} - {{Anforderungen}} Ermitteln, Spezifizieren, Analysieren Und Verwalten (2. {{Aufl}}.).}
+      \field{year}{2008}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb C:\Users\simon\Zotero\storage\6CUJXR9S\Ebert_2008_Systematisches Requirements Engineering und Management - Anforderungen.pdf
+      \endverb
     \endentry
     \entry{fahlmanMassivelyParallelArchitectures1983}{book}{}
       \name{author}{3}{}{%
@@ -4265,12 +4569,12 @@
     \endentry
     \entry{mohseniIsingMachinesHardware2022}{online}{}
       \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=041d56d53dfb9a46f190fe0be2bb9750}{%
+        {{un=1,uniquepart=given,hash=041d56d53dfb9a46f190fe0be2bb9750}{%
            family={Mohseni},
            familyi={M\bibinitperiod},
            given={Naeimeh},
            giveni={N\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=039009cb81b7d29c91dfb85bc0c381d0}{%
            family={McMahon},
            familyi={M\bibinitperiod},
@@ -4330,12 +4634,12 @@
     \endentry
     \entry{mohseniIsingMachinesHardware2022a}{article}{}
       \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=041d56d53dfb9a46f190fe0be2bb9750}{%
+        {{un=1,uniquepart=given,hash=041d56d53dfb9a46f190fe0be2bb9750}{%
            family={Mohseni},
            familyi={M\bibinitperiod},
            given={Naeimeh},
            giveni={N\bibinitperiod},
-           givenun=0}}%
+           givenun=1}}%
         {{un=0,uniquepart=base,hash=039009cb81b7d29c91dfb85bc0c381d0}{%
            family={McMahon},
            familyi={M\bibinitperiod},
@@ -4604,6 +4908,87 @@
       \verb{file}
       \verb C:\Users\simon\Zotero\storage\2LQHKEVN\Oesterle et al_2010_Memorandum zur gestaltungsorientierten Wirtschaftsinformatik.pdf
       \endverb
+    \endentry
+    \entry{ortega-zamoranoFPGAHardwareAcceleration2016}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=5671bbae532acc1c3128337d2d5d1a51}{%
+           family={Ortega-Zamorano},
+           familyi={O\bibinithyphendelim Z\bibinitperiod},
+           given={Francisco},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fdbd3ca1e466f17755e8b7a8fd65cf4b}{%
+           family={Montemurro},
+           familyi={M\bibinitperiod},
+           given={Marcelo\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca0264ff981600b61ac05b44d32f43b6}{%
+           family={Cannas},
+           familyi={C\bibinitperiod},
+           given={Sergio\bibnamedelima A.},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c8f2b3ba14aac3967322d9462f14de1c}{%
+           family={Jerez},
+           familyi={J\bibinitperiod},
+           given={José\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fa903837ccc34b239ea1e75b81537016}{%
+           family={Franco},
+           familyi={F\bibinitperiod},
+           given={Leonardo},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{801d73da7665adb91f7253ec3e0da2b4}
+      \strng{fullhash}{16a68b322a4694d26e46d8a09175a2d2}
+      \strng{bibnamehash}{16a68b322a4694d26e46d8a09175a2d2}
+      \strng{authorbibnamehash}{16a68b322a4694d26e46d8a09175a2d2}
+      \strng{authornamehash}{801d73da7665adb91f7253ec3e0da2b4}
+      \strng{authorfullhash}{16a68b322a4694d26e46d8a09175a2d2}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A two-dimensional Ising model with nearest-neighbors ferromagnetic interactions is implemented in a Field Programmable Gate Array (FPGA) board.Extensive Monte Carlo simulations were carried out using an efficient hardware representation of individual spins and a combined global-local LFSR random number generator. Consistent results regarding the descriptive properties of magnetic systems, like energy, magnetization and susceptibility are obtained while a speed-up factor of approximately 6 times is achieved in comparison to previous FPGA-based published works and almost \$10\^{}4\$ times in comparison to a standard CPU simulation. A detailed description of the logic design used is given together with a careful analysis of the quality of the random number generator used. The obtained results confirm the potential of FPGAs for analyzing the statistical mechanics of magnetic systems.}
+      \field{day}{1}
+      \field{eprintclass}{physics}
+      \field{eprinttype}{arxiv}
+      \field{issn}{1045-9219}
+      \field{journaltitle}{IEEE Transactions on Parallel and Distributed Systems}
+      \field{month}{9}
+      \field{number}{9}
+      \field{shortjournal}{IEEE Trans. Parallel Distrib. Syst.}
+      \field{title}{{{FPGA Hardware Acceleration}} of {{Monte Carlo Simulations}} for the {{Ising Model}}}
+      \field{urlday}{10}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{volume}{27}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2618\bibrangedash 2627}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/TPDS.2015.2505725
+      \endverb
+      \verb{eprint}
+      \verb 1602.03016
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\simon\\Zotero\\storage\\VEEUL2RF\\Ortega-Zamorano et al_2016_FPGA Hardware Acceleration of Monte Carlo Simulations for the Ising Model.pdf;C\:\\Users\\simon\\Zotero\\storage\\TPMM7LBD\\1602.html
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1602.03016
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1602.03016
+      \endverb
+      \keyw{Computer Science - Hardware Architecture,Physics - Computational Physics}
     \endentry
     \entry{oesterleKonsortialforschung2010}{article}{}
       \name{author}{2}{}{%
@@ -5116,6 +5501,100 @@
       \verb https://www.wevolver.com/article/the-ultimate-guide-to-asic-design-from-concept-to-production,%20https://www.wevolver.com/article/the-ultimate-guide-to-asic-design-from-concept-to-production
       \endverb
     \endentry
+    \entry{raschkaMachineLearningPython2020}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bb679961e3f3f4bba79fc1cf3aa7df1c}{%
+           family={Raschka},
+           familyi={R\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7b6fb0cc7f06bfa0742ff02f5d1ddf92}{%
+           family={Patterson},
+           familyi={P\bibinitperiod},
+           given={Joshua},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b2f90678fc4237a20d5caac00bb6ef37}{%
+           family={Nolet},
+           familyi={N\bibinitperiod},
+           given={Corey},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Multidisciplinary Digital Publishing Institute}%
+      }
+      \strng{namehash}{98dca74dbbcc1bbd27b5f39fc5afbb71}
+      \strng{fullhash}{98dca74dbbcc1bbd27b5f39fc5afbb71}
+      \strng{bibnamehash}{98dca74dbbcc1bbd27b5f39fc5afbb71}
+      \strng{authorbibnamehash}{98dca74dbbcc1bbd27b5f39fc5afbb71}
+      \strng{authornamehash}{98dca74dbbcc1bbd27b5f39fc5afbb71}
+      \strng{authorfullhash}{98dca74dbbcc1bbd27b5f39fc5afbb71}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Smarter applications are making better use of the insights gleaned from data, having an impact on every industry and research discipline. At the core of this revolution lies the tools and the methods that are driving it, from processing the massive piles of data generated each day to learning from and taking useful action. Deep neural networks, along with advancements in classical machine learning and scalable general-purpose graphics processing unit (GPU) computing, have become critical components of artificial intelligence, enabling many of these astounding breakthroughs and lowering the barrier to adoption. Python continues to be the most preferred language for scientific computing, data science, and machine learning, boosting both performance and productivity by enabling the use of low-level libraries and clean high-level APIs. This survey offers insight into the field of machine learning with Python, taking a tour through important topics to identify some of the core hardware and software paradigms that have enabled it. We cover widely-used libraries and concepts, collected together for holistic comparison, with the goal of educating the reader and driving the field of Python machine learning forward.}
+      \field{issn}{2078-2489}
+      \field{issue}{4}
+      \field{journaltitle}{Information}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{4}
+      \field{shorttitle}{Machine {{Learning}} in {{Python}}}
+      \field{title}{Machine {{Learning}} in {{Python}}: {{Main Developments}} and {{Technology Trends}} in {{Data Science}}, {{Machine Learning}}, and {{Artificial Intelligence}}}
+      \field{urlday}{8}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{volume}{11}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{193}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/info11040193
+      \endverb
+      \verb{file}
+      \verb C:\Users\simon\Zotero\storage\A8TV6MPE\Raschka et al_2020_Machine Learning in Python.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2078-2489/11/4/193
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2078-2489/11/4/193
+      \endverb
+      \keyw{data science,deep learning,GPU computing,machine learning,neural networks,Python}
+    \endentry
+    \entry{RestrictedBoltzmannMachine}{online}{}
+      \list{organization}{1}{%
+        {scikit-learn}%
+      }
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labeltitlesource}{title}
+      \field{abstract}{For greyscale image data where pixel values can be interpreted as degrees of blackness on a white background, like handwritten digit recognition, the Bernoulli Restricted Boltzmann machine model ( ...}
+      \field{langid}{english}
+      \field{title}{Restricted {{Boltzmann Machine}} Features for Digit Classification}
+      \field{urlday}{10}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb C:\Users\simon\Zotero\storage\KZ4Q4B4G\plot_rbm_logistic_classification.html
+      \endverb
+      \verb{urlraw}
+      \verb https://scikit-learn/stable/auto_examples/neural_networks/plot_rbm_logistic_classification.html
+      \endverb
+      \verb{url}
+      \verb https://scikit-learn/stable/auto_examples/neural_networks/plot_rbm_logistic_classification.html
+      \endverb
+    \endentry
     \entry{robertMetropolisHastingsAlgorithm2016}{online}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=0a257fbe5a59f3a17cc4e1089b887257}{%
@@ -5493,6 +5972,32 @@
       \verb https://ieeexplore.ieee.org/abstract/document/9770931
       \endverb
       \keyw{Biological system modeling,Data models,Hardware,Microcontrollers,Program processors,Software,System-on-chip}
+    \endentry
+    \entry{SklearnDatasetsLoad_digits}{online}{}
+      \list{organization}{1}{%
+        {scikit-learn}%
+      }
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{url}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Examples using sklearn.datasets.load\_digits: Recognizing hand-written digits Recognizing hand-written digits A demo of K-Means clustering on the handwritten digits data A demo of K-Means clustering...}
+      \field{langid}{english}
+      \field{title}{Sklearn.Datasets.Load\_digits}
+      \field{urlday}{10}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb C:\Users\simon\Zotero\storage\YB9N6MCW\sklearn.datasets.load_digits.html
+      \endverb
+      \verb{urlraw}
+      \verb https://scikit-learn/stable/modules/generated/sklearn.datasets.load_digits.html
+      \endverb
+      \verb{url}
+      \verb https://scikit-learn/stable/modules/generated/sklearn.datasets.load_digits.html
+      \endverb
     \endentry
     \entry{spechtProbabilisticNeuralNetworks1990}{article}{}
       \name{author}{1}{}{%
