@@ -1743,6 +1743,73 @@
       \endverb
       \keyw{dual filaments,hydroxide,in situ TEM,memristors,RRAM,Ta2O5}
     \endentry
+    \entry{charithaTypeIIDiabetesPrediction2022a}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=1156d7a56f8726d833a7dab12d6d1860}{%
+           family={Charitha},
+           familyi={C\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4cb2d3497f0e95448cea2f8d2d84774a}{%
+           family={Devi\bibnamedelima Chaitrasree},
+           familyi={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Amuluru},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0d2c229ef6710121f9b5da0c5eb727f7}{%
+           family={Varma},
+           familyi={V\bibinitperiod},
+           given={Penmetsa\bibnamedelima Chidananda},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7f7104fe50fa88a65636cc04855b657c}{%
+           family={Lakshmi},
+           familyi={L\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{bc29e8b63b9a0a1ecf9d1e9cfcf85b11}
+      \strng{fullhash}{64ed04ae87f7c00138a5e2b43454f27a}
+      \strng{bibnamehash}{64ed04ae87f7c00138a5e2b43454f27a}
+      \strng{authorbibnamehash}{64ed04ae87f7c00138a5e2b43454f27a}
+      \strng{authornamehash}{bc29e8b63b9a0a1ecf9d1e9cfcf85b11}
+      \strng{authorfullhash}{64ed04ae87f7c00138a5e2b43454f27a}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Non-Insulin Dependent Diabetes Mellitus or Type2 Diabetes is one of the critical diseases and many people are suffering from it. Every year, approximately 2 to 5 million people are losing their lives as Diabetics. If Diabetes is predicted earlier, it can be controlled and also, deadly risks such as diabetes cardiac stroke, nephropathy and other disorders associated with it can be prevented. Therefore, early prediction of diabetes helps in maintaining good health. With the recent development in machine learning (ML), it is being applied to various aspects of the medical health. The Pima Indian Diabetes data set (PID), which was used in this paper, was acquired from the UCI repository. In this study, after undergoing a thorough data pre-processing and Feature engineering with feature importance models like Random Forest Importance and RFE, we used many Machine Learning models such as KNN, Logistic Regression, SVM, Random Forest, LightGBM and XGBoost for train-test splits like 60–40, 70–30 and 80–20 to predict Type-II diabetes mellitus. Among all models, the highest accuracy is obtained as 91.47\% from lightGBM model for 80–20 train test split.}
+      \field{booktitle}{2022 {{International Conference}} on {{Computer Communication}} and {{Informatics}} ({{ICCCI}})}
+      \field{eventtitle}{2022 {{International Conference}} on {{Computer Communication}} and {{Informatics}} ({{ICCCI}})}
+      \field{issn}{2329-7190}
+      \field{month}{1}
+      \field{title}{Type-{{II Diabetes Prediction Using Machine Learning Algorithms}}}
+      \field{urlday}{12}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1\bibrangedash 5}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/ICCCI54379.2022.9740844
+      \endverb
+      \verb{file}
+      \verb C\:\\Users\\simon\\Zotero\\storage\\67PJ6Y2N\\Charitha et al_2022_Type-II Diabetes Prediction Using Machine Learning Algorithms.pdf;C\:\\Users\\simon\\Zotero\\storage\\U4U3FZKE\\9740844.html
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/9740844
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/9740844
+      \endverb
+      \keyw{Computational modeling,Data models,Data Preprocessing,Diabetes,Diabetes Mellitus,Feature Engineering,Informatics,LightGBM,Machine Learning,Machine learning algorithms,Predictive models,Support vector machines}
+    \endentry
     \entry{chenApplicationVoltageComparator2021}{inproceedings}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=d001bce88e27fe293cfaf3708133e2ec}{%
@@ -6115,6 +6182,77 @@
       \verb https://doi.org/10.1063/1.5037835
       \endverb
       \keyw{ungelesen}
+    \endentry
+    \entry{supriAsianStockIndex2023}{article}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=2eefcc8d7fc4d15bc13d62a28ad0344d}{%
+           family={Supri},
+           familyi={S\bibinitperiod},
+           given={Baharman},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8f5c9324ea051d6fb599ed5756eb44df}{%
+           family={Rudianto},
+           familyi={R\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=eb7296319e6481d7f4560ef76a811ef6}{%
+           family={Abdurohim},
+           familyi={A\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=d493e65e6be93fc5b8ff486f75dfce40}{%
+           family={Mawadah},
+           familyi={M\bibinitperiod},
+           given={Badriatul},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0e6f08c9a05edc8a2c1ffe6561f8fec2}{%
+           family={Ali},
+           familyi={A\bibinitperiod},
+           given={Helmi},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dd3b29a3c6d14f0308c440ef4c74a9dd}
+      \strng{fullhash}{4ec2cd5db7157d2ad57b83bad03732e1}
+      \strng{bibnamehash}{4ec2cd5db7157d2ad57b83bad03732e1}
+      \strng{authorbibnamehash}{4ec2cd5db7157d2ad57b83bad03732e1}
+      \strng{authornamehash}{dd3b29a3c6d14f0308c440ef4c74a9dd}
+      \strng{authorfullhash}{4ec2cd5db7157d2ad57b83bad03732e1}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This study implements stock index price predictions using the LSTM method, where one of the processes in data management before running with the LSTM method is data split. This study also looks for the most appropriate split data ratio in predicting stock index prices to minimize error rates and differences in forecasted prices and original prices because in previous studies there were several rules of thumb in dividing data, so it is necessary to compare the most appropriate ratios in this research. Based on the evaluation process, the error value was found from nine split data ratios that were run by five ratios which produced a predictive graph line shape that resembled the validation line. Three datasets, namely split data ratios of 80:20, 70:30, and 60:40, are the ratios that get the lowest error values based on the RMSE, MSE, MAPE, and MAE values in the five stock index datasets. The three ratios are then compared again by looking at the average percentage difference between the validation price and the predicted price for the next working day, and it is found that the ratio of 80:20 is the most suitable split data ratio for predicting the stock index price for the next working day, with a level of difference in the average value between the original price and the predicted price on the stock index of 1.3\%. While the ratio of 70:30 has an average predicted value of five stock index datasets of 1.9\% and a ratio of 60:40 of 1.8\%.}
+      \field{day}{1}
+      \field{issn}{2579-5635}
+      \field{issue}{4}
+      \field{journaltitle}{JEMSI (Jurnal Ekonomi, Manajemen, dan Akuntansi)}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{4}
+      \field{title}{Asian {{Stock Index Price Prediction Analysis Using Comparison}} of {{Split Data Training}} and {{Data Testing}}}
+      \field{urlday}{12}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{volume}{9}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1403\bibrangedash 1408}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.35870/jemsi.v9i4.1339
+      \endverb
+      \verb{file}
+      \verb C:\Users\simon\Zotero\storage\6DD8AJ2T\Supri et al_2023_Asian Stock Index Price Prediction Analysis Using Comparison of Split Data.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://journal.lembagakita.org/index.php/jemsi/article/view/1339
+      \endverb
+      \verb{url}
+      \verb http://journal.lembagakita.org/index.php/jemsi/article/view/1339
+      \endverb
+      \keyw{data split,datasets,original price,stock index}
     \endentry
     \entry{tanahashiApplicationIsingMachines2019}{article}{}
       \name{author}{4}{}{%

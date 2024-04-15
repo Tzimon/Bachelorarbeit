@@ -99,50 +99,44 @@ With set requirements it is now possible to begin the iterative design and evalu
 
 \section{First Design and Evaluation phase}
 
-This \textbf{Design phase} includes the establishment of a prototype that impelments all requirements of the digital computer.
-The first step is to perform in prototyping is the systemic analysis of the desired prototype used for categorization.
-Hereby, the type of prototype(1) is computational, the fidelity level(2) is high since all functionalities should be modelled and be close to reality. 
-Furthermore, the complexity(3) is considered sub since not every single hardware component can be modelled in software. 
-Last but not least, the scale(4) stays the same the number of iterations(5) are multiple that are executed sequential in order to train and interfer the \ac{RBM}.
-Well-suited for the implementation of a \ac{RBM} in python are machine learning libraries. 
-In this case scikit learn is chosen since it is one of the industry standards for classical machine learning, has a broad variety of features in terms of \ac{RBM}s
+This \textbf{Design phase} has the goal of implementing all requirements of the digital computer resulting in a first prototyp iteration.
+The first step in the described prototyping methodology within 3.3 is to perform the systemic analysis to categorize the prototype.
+In the realm of prototyping, the following categorizations are made: the prototype type (1) is computational, and its fidelity level (2) is high, as it aims to model all functionalities closely to reality.
+Furthermore, the complexity (3) is considered moderate because not all hardware components can be modeled in software.
+Additionally, the scale (4) remains constant, and there are multiple iterations (5) executed sequentially to train and infer the \ac{RBM}.
+The first step, is to chose one of the machine learning libraries like Ternsorflow, Pytorch or Scikit Learn. In this case Scikit Learn is chosen since it is one of the industry standards for classical machine learning, has a broad variety of features in terms of \ac{RBM}s
 and has a lower learning curve compared with e.g. Tensorflow.\footcite[cf.][5-6]{raschkaMachineLearningPython2020}
-The implementation of the \ac{RBM} is inspired by the example of the official scikit learn documentation.\footcite[cf.][1]{RestrictedBoltzmannMachine}
-Here, the RBM model is modelled as the feature extractor in combination with a logistic regression classifier.
+This allows fast development with already well balanced hyperparameters within the library that can be used. 
+Another reason is that the available workloads of datasets are popular and devliver results that are comparable with literature.
+This is useful to answer the research question in a timely manner with already available functionalities for \ac{RBM}s.
+Especially, the implementation of the \ac{RBM} is inspired by an example of the official scikit learn documentation.\footcite[cf.][1]{RestrictedBoltzmannMachine}
+In general, the RBM model is modelled as the feature extractor in combination with a logistic regression classifier for the prediction.
 
-\begin{lstlisting}
-    logistic = linear_model.LogisticRegression(solver="newton-cg", tol=1)
-    rbm = BernoulliRBM(random_state=0, verbose=True)
-\end{lstlisting}
 Scikit learn offers a variety of datasets that are already in a polished format, ready to use. 
 The decision is to use a classification workload of handrwritten digits.
-This load digits dataset is similar to the well known MNIST dataset but has a smaller resolution of 8x8 pixels and features around 1800 samples that can be categorized in 10 classes (integers 0-9).\footcite[cf.][1]{SklearnDatasetsLoad_digits}
-The dataset can be changed as desired with for example a breast cancer classification workload; in general all datasets that have two states like the activation of neurons in the neural network are compatible.
-In this case additionally a nudging of the data is happening to create more samples, by a factor of five, and to bring more complexity. 
-The dataset was divided into 80\% training data and 20\% test data.
+One reason for this is that the load digits dataset is similar to the well known MNIST dataset but has a smaller resolution of 8x8 pixels and features around 1800 samples that can be categorized in 10 classes (integers 0-9).\footcite[cf.][1]{SklearnDatasetsLoad_digits}
+The second reason is that the workload is already optimized and therefore can deliver relevant data for the research question.
+Also, the dataset can be changed as desired with for example a breast cancer classification workload; in general all datasets that have two states like the activation of neurons in the neural network are compatible.
+In this case additionally a nudging of the data is chosen to create more samples, by a factor of five, and to bring more complexity in the workload. 
+The split in the dataset is selected to be divided into the conventional 80\% training data and 20\% test data.\footnote{cf.\cite{charithaTypeIIDiabetesPrediction2022a}, p. 1-2; cf.\cite{supriAsianStockIndex2023}, p. 1}
 
-Parameters like the learning rate, iterations, size of the hidden layer need to be set. 
+The following task is to set parameters like the learning rate, iterations, size of the hidden layer. 
 With having a look in the literature and through testing a learning rate of \(0.2\), 10 training epochs with 72 iterations in one epoch, and an hidden layer of 100 neurons is chosen.
-The size of the visible layer is automatically recognized by scikit learn and set to 64 since the resolution 8x8 requires that amount to pricess the input.
+Noteworthy, the size of the visible layer is automatically recognized by scikit learn but since the resolution of the pictures is 8x8 it requires 64 visible neurons to process an input.
 
-The training of the \ac{RBM} works with the 
-\texttt{.fit} method and for the possibility to select the preferred sampling algorithm 
-an additional parameter \texttt{sampling\_method} is added. 
-\begin{lstlisting}
-    if sampling_method == SamplingMethod.GIBBS:
-    v_neg = self._sample_visibles(self.h_samples_, rng)
-    h_neg = self._mean_hiddens(v_neg)
-    
-    elif sampling_method == SamplingMethod.METROPOLIS_HASTING:
-    h_neg,v_neg=mcmc_sample(10000,len(self.components_))
-\end{lstlisting}
-This process includes radically changing the \texttt{\_rbm.py} file in the scikit learn library within the \texttt{neural\_network} folder.
+The training of the \ac{RBM} is performed in the \texttt{.fit} method and for the functionality to select the preferred sampling algorithm an additional sampling method need to be added.
+This process includes modifying the \texttt{\_rbm.py} file in the basic scikit learn library.
 The predefined sampling method is gibbs sampling and there is no option to access metropolis hasting within the basic library. 
 Therefore, the metropolis hasting alhorithm, explained in 2.2.3 needs to be manually implemented.
-The according adjustments are inspired and modified by the code availability of a paper, which was published in Nature Communiations.\footcite[cf.][11-12]{bohmNoiseinjectedAnalogIsing2022}
-Another promising approach to evaluate the performance of the neural network is to predict on the test data after every iteration.
-A complete code overview of the metropolis hastings sampling algorithm can be found in the \texttt{mcmc2.py} file with all
-the adjusted methods for the training of the \ac{RBM} are made in \texttt{\_rbm.py}, while the overall execution takes place in the \texttt{playground.py}.
+The according adjustments are included from the code availability of a paper, which are published in Nature Communiations.\footcite[cf.][11-12]{bohmNoiseinjectedAnalogIsing2022}
+This decision was made because the algorithm used there is the original metropolis algorithm by Metropolis et.al..\footcite[cf.][1087-1092]{metropolisEquationStateCalculations1953}
+Furtherore, the implementation is performant with many numpy functions. 
+To utilize this sampling method, some minor adjustments are made for the user friendliness. 
+First, one function is fixed that has a small error, which produced many zero arrays at the beginning of the sampling. 
+The user friendliness is achieved by introducing a new parameter \texttt{sampling\_method} that dynamically allows to change the sampling method. 
+Another change is the approach of evaluating the performance of the neural network after an x amount of iterations to meassure its performance on the test data while training.
+A complete code overview of the metropolis hastings sampling algorithm can be found in the \texttt{mcmc2.py} file as part of the digital delivery with all
+adjusted methods for the training of the \ac{RBM} in \texttt{\_rbm.py}, while the overall execution takes place in the \texttt{playground.py}.
 
 Hence, the possibility of different sampling methods are possible and the training of the \ac{RBM} is possible.
 To evaluate the results and functionalities the \textbf{Evaluation phase} in this iteration validates the functionalities through a training of the \ac{RBM} with each sampling method and extract their prediction accuracy 
@@ -154,12 +148,11 @@ and negative likelihood for each iteration. Following figure\ref{CD_baselines} s
     \caption{Gibbs sampling baselines}
     \label{CD_baselines}
 \end{figure}
-The right plot clearly shows that the initial prediction accuracy starts at 75\%, akin to that of a linear regression model.
+The right plot shows that the initial prediction accuracy starts at 75\%, akin to that of a linear regression model.
 This suggests that without training a linear regression alone could account for this level of accuracy when an untrained \ac{RBM} is included in the pipeline.
 Data points are colected after every iteration across the span of 720 iterations. 
 It is noteworthy that after 650 iterations the accuracy tagnated and had a maximum prediction accuracy
 of 92.29\%. 
-
 In the left plot picturing the negative likelihood, which is a measure of how well a statistical model represents the observed data.
 When training a model the aim is to minimize the negative log-likelihood, which means that the model maximizes the probability of generating the observed data.
 Hence, it is visible that in the beginning the model learns more rapidly and in steadily grows its knowledge with some smaller break-ins at the end.
@@ -176,25 +169,27 @@ Here, the maximum prediction accuracy already returned 94.15\%.
 The negative likelohood is also growing faster than in gibbs sampling and has less spikes in the beginning showing a more continuously learning rate.
 Here, the best negative likelihood value is -21.80.
 The gathered data can later on be used as baseline against the desired new updating mehtod of sampling with a Hopfield Network.
+Furthermore, the data is comparable and show similar results to those from the literature and are therefore to be considered correct.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022a}, p. 5; cf.\cite{RestrictedBoltzmannMachine}, p. 1}
 As a result, with each sampling method successfully undergoing a training, all the functionalities can be proven right and the prototype can be passed 
 into the next design iteration.
 
 
 \section{Second Design and Evaluation phase}
 
-This \textbf{design phase} iteration lays its focus on the implementation of correctly using the Hopfield Network update algorithm. 
+This \textbf{design phase} iteration has the goal of implementating the noisy Hofpield Network as described in the chapter 2.4.4. 
+The functionilities of a \ac{RBM} can be reproduced by the Hopfield Neural Network by correctly tuning the noise.
 Following subfunctionalities need to be established: imitating the \ac{RBM} activation function, drawing random neurons to update,
 correct injection of the gaussian noise scale, calculating the weighted sum,
 comparing the weighted sum + bias + noise agaisnt the threshold and saving the new neuron configuration.
 Hence, this iteration is accessing new ground since the implementation of the simulator pipline is not validated yet. 
 
-First, a new \texttt{\_hopfield\_network\_v1.py} is created that aims to establish a noisy Hopfield Network with a single neuron 
+First, a new file \texttt{\_hopfield\_network\_v1.py} is created that aims to first establish a noisy Hopfield Network with a single neuron 
 and meassure its activation function.
 Like mentioned in 2.4.4, a Hopfield Network has a binary activation function that needs to be made compatible with the sigmoid activation function of the \ac{RBM}.
 The Hopfield Network is initialized with a size of just one neuron and an sampling iteration counter of \(1500\) iterations with a thermalization of \(100\) sampling steps before 
 the neuron is updated.
-A thermalization is used so that the internal network can get into a flow and do some sampling steps to be statistical independent in order to have un unbiased sampling.
-The threshold as defined in the Hopfield Network update formula is \(0\). 
+The reason for the thermalization is, so that the internal network can get into a flow and do some sampling steps to be statistical independent in order to have un unbiased sampling.
+The threshold as defined in the update formula is \(0\). 
 As experimented the update formula for implementation of the Hopfield Network looks the following:
 
 \begin{lstlisting}
@@ -223,48 +218,158 @@ In the beginnig a random neuron is drawn to be updated, which currently everytim
 This allows to meassure the activation probability and fast iteration time with a clear result on how the network behaves. 
 Calculating the weighted sum can be seen as the core of the update formula and is done first.
 Afterwards to compare against the threshold an bias is added.
-The value of the bias ranges from \(-6; 6\) in step sizes of \(0.025\). After completing all samplin iterations beginning with \(-6\) the step size is added to that value until all iterations are made.
+The value of the bias ranges from \(-6; 6\) in step sizes of \(0.025\). After completing all samplin iterations beginning with \(-6\) the step size is added to the bias until all iterations are made.
 This is sufficient for the neuron activation function of an ordinary Hopfield Network and results in the binary step. 
 The resulting activation function is obtained by summing all configurations within a single bias configuration.
 In a next step, the configurations counted are divided by the number of total sampling iterations within the bias configuration (in this case 1500 iterations).
-That following figure \ref{Noisy_acitivation_function_bad} \textbf{evaluates} the resulting activation probability of the single neurons. 
+That following figure \ref{Noisy_acitivation_function_bad} \textbf{Evaluates} the resulting activation probability of the single neurons. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{graphics/combined_noise_activation_plots.png}
-    \caption{Modification of the binary step activation function of the Hopfield Network}
+    \caption{Modification of the the Hopfield Network binary step activation function}
     \label{Noisy_acitivation_function_bad}
 \end{figure}
 In the left plot, visualized in blue, the activation probability of the neuron is shown without adding noise to the plot. 
 The behaviour is like sme would expect it; once the bias reaches 0 the neuron is activated all the time.
 Far more interesting is the red plot on the right side, which introduces some noise into the binary step function, bringing it closer to the logistic sigmoid activation function used in the \ac{RBM}.
-To achieve this behavior, injecting noise through a Gaussian normal distribution can modify the activation function, making it compatible with the sigmoid function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}"
+To achieve this behavior, injecting noise through a Gaussian normal distribution can modify the activation function, making it compatible with the sigmoid function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
 Technically this is performed by adding \texttt{np.random.normal(0, scale=1.75)} to the weighted sum and the bias, with 0 beeing the mean of the distribuion and the scale representing the standard deviation. 
 Hereby, it is important to find a standard deviation that is very close to the true activation probability is important, otherwise the training of the RBM would not work.
 In addition to that, the standard deviation changes with neuron size and needs to be readjusted if changes are made to the networks structure.
-So what is visible in the right plot that the sigmoid function is not correctly imitated but proves that the
+
+The right plot shows that the noise injection works, even though it doesn't perfectly copy the sigmoid function.
 Concluding from this the sigmoid function is not achieved and the trainig of an \ac{RBM} probably fails. 
 Therefore, to completely evaluate and ensure that the injected noise fits to the logistic sigmoid function, the function itself is plotted 
-too, to have a visual comparision. Afterwards, finding the correct standard deviation is the goal. 
-In following figure\ref{Noisy_acitivation_function_good} the compatibility is verifired:
+as index, to have a visual comparision. 
+Now, finding the correct standard deviation is the goal. 
+In following figure\ref{Noisy_acitivation_function_good} the hyperparameter is tuned and the resulting scale is visualized.
+It verifys that a noisy activation function of a Hopfield Network can imitate the sigmoid function of a \ac{RBM} correctly:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{graphics/Noisy_HNN_2.png}
     \caption{Noisy activation function of the Hopfield Network imitating the \ac{RBM}}
     \label{Noisy_acitivation_function_good}
 \end{figure}
-
-
 \section{Third Design and Evaluation phase}
 
-Using any \ac{RBM} as input
-Return sampled output of the neuron configurations 
-Correctly using the Hopfield Neural Network as sampling method 
+Now, that the proof of concept has been validated, this \textbf{Desing Phase} has the goal of connecting the 
+Hopfield Network as a sampling method to the \ac{RBM} and therefore enable a complete training. 
+This includes using the weights and biases of the \ac{RBM} as an input and performing the sampling with the input.
+Finally, the sampled output of the visible and hidden neuron configurations need to be returned, so that the digital computer can update the weights.
+With these subgoals the total goal is to enable a complete training of the \ac{RBM} with the sampling method of the Hopfield Network. 
+Furthemrore, if the training is successful, the possibility of the N/2 half updating method instead of asynchronously updating of the states should be implemented.
+The first technical step is to extend the \texttt{\_rbm.py} to fit the new sampling method: 
+\begin{lstlisting}
+        if sampling_method == SamplingMethod.GIBBS:
+                v_neg = self._sample_visibles(self.h_samples_, rng)
+                h_neg = self._mean_hiddens(v_neg)
 
+        elif sampling_method == SamplingMethod.METROPOLIS_HASTING:
+            h_neg,v_neg=mcmc_sample(10000,len(self.components_))
 
-\section{Fourth Design and Evaluation phase}
+        elif sampling_method == SamplingMethod.HOPFIELD_NETWORK:  
+            # Hopfield Network Sampling
+            v_neg, h_neg = interface_hopfield_sampling(self.components_, self.intercept_visible_, self.intercept_hidden_, iterations_per_theta, N2_HALF=False)    
+\end{lstlisting}
+Here, the compontents represent the weights of the neurons in the network, while intercept\_visible and intercept\_hidden represent the bias of the neurons. 
+Within the, hopfield\_network\_interface\_v2.py, the parameters are taken and an object of the class is initiated. 
 
-Possibility to use N/2 half updating method instead of asynchronously update of states
-% Component for measuring the parameters required for evaluation: Speed (throughput) and energy consumption
+\begin{lstlisting}
+    def interface_hopfield_sampling(components_, intercept_visible_, intercept_hidden_):
+   
+        H_net = Hopfield_Net(components_, intercept_visible_, intercept_hidden_)
+        H_net.update_network_state()
+        
+        return H_net.v_neg , H_net.h_neg
+\end{lstlisting}
+Inside the class, the initialization of all the parameters and weights are performed. 
+The update formula needs to calculate the weighted sum, which necessarily requires to know all the weights between the neuron itself, to all the other neurons. 
+The decision is to create a weight matrix shown in \ref{attachement:weight_matrix}. 
+The function begins by defining the total number of hidden and visible neurons based on the class properties parameters used as input.
+These quantities dictate the dimensions of the weight matrix, which, in this instance, results in a matrix of size (100, 64).
+This square matrix represents the fully interconnected network, where each neuron can potentially connect to every other neuron, including itself.
+As mentioned in 2.2.3, the diagonal elements (self-connections) are set to zero in \ac{RBM}s.
+
+Another important aspect is to maintain the model's symmetry, which is crucial for the energy-based nature of RBMs and the dynamics of Hopfield networks.
+Hence, for this reason and simplicity, the weight matrix is initialized as a symmetric matrix using NumPy's np.zeros function.
+This ensures that all initial weights are set to zero before being explicitly defined through the components weights.
+Scikit Learn randomly initializes the weights by default close to zero, while the biases are set to zero. 
+This small weights allow to support an effective gradient distribution which protects against rapid saturation or inefficient learning,
+while the bias set to zero allows the network to begin in a neutral position and learn on its own. 
+
+The subsequent nested loops iterates over the indices for hidden and visible neurons to fill the weight matrix.
+For each pair of hidden and visible neurons, the corresponding weights are extracted from the components matrix.
+This matrix essentially serves as the template for the interactions between hidden and visible layers.
+Indexing within the weight matrix is handled carefully, to respect the structure of the RBM. 
+Therefore, the decision is to set weights between a hidden neuron i and a visible neuron j at positions \texttt{[i, j+num\_hidden]} and \texttt{[j+num\_hidden, i]} to ensure symmetry.
+
+With some more adjustments necessary to the code the first training of the \ac{RBM} with the sampling method of the Hopfield Network can begin. 
+The Hyperparmeters first are set to the same scale(1.75) and same thermalization(100) as for a single neuron but with more sampling steps (5000 sampling steps) than before. 
+The results of the traning are visualized in figure\ref{HNN_training}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{graphics/HNN_combined_plot.png}
+    \caption{Hopfield Network sampling baselines}
+    \label{HNN_training}
+\end{figure}
+First of all, it can be recognized that the training was successful, which was uncertain. 
+Noteworthy, that with this method the output had to be transposed to be able to parse the data Scikit Learn.
+In a second look it can be seen that the negative likelihood is far more stable as gibbs sampling and rather has similarities with metropolis hastings sampling.
+Here, the best value is a likelihood of -22.3, so slightly worse than metropolis hastings and gibbs sampling. 
+The right plot showing the prediction accuracy has the highest ascent of all the three graphs, which proofs that the 
+less iterations are required to receive good results compared to the other two methods.
+Still, The best prediction value is 90.81\% and therefore worse than gibbs and metropolis hastings. 
+The reason for this can be the hyperparameter tuning.
+Since the noisy Hopfield Network method can become instable fast or is not adjusted correctly 
+for this amount of neurons in the network, receiving this result without further adjustments already looks promissing. 
+
+As a result, the following hyperparameters are tuned to possibly received better outcomes. 
+Specifically, the scale, which represents the standard deviation and is used as noise is tuned. 
+In addition to that the amount of sampling iterations within a single training iteration is tuned.
+One extended parameter could be the learning rate and the total iterations but to have an appropriate benchmark against the other two 
+sampling methods these parameters are locked in. 
+Last but not least, the possibility of tuning the thermalization could help out too even if slightly less significant than the other two hyperparameters.
+Since the training takes around 40 minutes to complete tuning too many hypaerparameters takes too much time for the period of this thesis. 
+First hyperparameter researched is the influence of the standard deviation (scale) to the maximum prediction accuracy. 
+Especially the maximum prediction accuracy of the last 50 training iterations are gathered since this is the relevant area for inference.
+Given that the Hopfield Network operates as a statistical sampling method, the standard deviation is also calculated for these final 50 training iterations.
+This is done for the scale range of 1.0 to 2.0 within step sizes of 0.05, totalling to 21 single trainings done.
+The result is illustrated in figure\ref{Hyperparamers_Scale_ohne}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{graphics/NEW_Scale_Ohne_N2_Half_Pred_Acc.png}
+    \caption{Hopfield Network scale sampling baselines}
+    \label{Hyperparamers_Scale_ohne}
+\end{figure}
+The result shows that beginning with a scale of 1.0 the prediction accuracy slowly rises until the scale of 1.6
+Here, the maximum value is 94.77\% and with that surpasses the performance of both metropolis hastings and gibbs sampling. 
+After a scale of 1.75 the prediction accuracy falls off a cliff indicating that the activation function of the \ac{RBM} is not modelled correctly anymore.
+This shows that depending an network size and workload the adjustment within this method is important to achieve good results. 
+The standard deviation follows the maxmimum prediction accuracy pretty closely and has no outliers indicating that the prediction accuracy is only a lucky random training.
+Close to the sclae of 1.0 the deivation is slightly lower compared to the rest of the plot, showing that the scale could be too low to model the sigmoid function correctly. 
+
+In a next step, the best fit with a scale of 1.6 is used for the second hyperparameters. 
+The sampling iterations within one training iterations are now tuned.
+Hence, the decision is to begin with 1000 sampling iteration continiunig with an increase of 1000 iterations until 15000 iterations are reached. 
+With that the training showed that the interesting are is around 1000 to 4000 iteration and that the step size of 1000 is too big for that. 
+To be more granular two extra trainings with iterations 1500 ad 2500 werde completed, totalling to 17 trainings performed.
+The values are extracted as before, by considering the last 50 iterations and then calculating both the maximum value and the standard deviation from this subset.
+The visualized results can be found in following figure\ref{Hyperparamers_Iteraions_ohne}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{graphics/Iterations_Ohne_N2_Half_Pred_Acc.png}
+    \caption{Hopfield Network iteration sampling baselines}
+    \label{Hyperparamers_Iteraions_ohne}
+\end{figure}
+The line of maximum prediction accuracy starts at the first iteration with a value close to 0.3 and rises rapidly to reach a value just above 0.92 after around 2500 iterations.
+From the point of 4000 iterations onwards, the accuracy remains largely constant with slight fluctuations.
+The best value is at 15000 iterations with an prediction accuracy of 94.5\%.
+The error bars indicating the standard deviation are large at the beginning of the graph, which indicates that not enough neurons were updated in the sampling process.
+However, with the number of iterations increasing, the error bars become smaller resulting in a more stable accuracy.
+Key take away is that after 4000 iterations no there are no significant changes to the outcome of the prediction accuracy.
+
+N/2 now
+
 
 \section{Final Evaluation phase}
 
