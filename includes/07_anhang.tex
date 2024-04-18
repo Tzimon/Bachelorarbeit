@@ -16,6 +16,28 @@
   morekeywords={anhang, anhangteil}
 }
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  morecomment=[l]{\#} % This line tells 'listings' that '#' introduces a single-line comment
+}
+
 
 Um den Anforderungen der Zitierrichtlinien nachzukommen, wird das Paket \verb|tocloft| verwendet. Jeder Anhang wird mit dem (neu definierten) Befehl \lstinline|\anhang{Bezeichnung}| begonnen, der insbesondere dafür sorgt, dass ein Eintrag im Anhangsverzeichnis erzeugt wird. Manchmal ist es wünschenswert, auch einen Anhang noch weiter zu unterteilen. Hierfür wurde der Befehl \lstinline|\anhangteil{Bezeichnung}| definiert.
 
@@ -54,3 +76,18 @@ def initialize_weights_and_biases(self, components):
   return self.weights
 \end{lstlisting}
 
+\anhang{Autocorrelation function within the prototype}\label{attachement:autocorrelation}
+\begin{lstlisting}
+def autocorr(self, x):
+        # print("das ist das shape:", x.shape)
+        # print("das ist das shape:", x.shape[1])
+        average = 60
+        leng= 8999-average
+        autocorr = np.zeros(leng)
+        
+        for i in range(0, leng):
+            for k in range (0, average):
+                autocorr[i] += np.dot(x[:, k]-np.mean(x[:,k]), x[:, k+i]-np.mean(x[:,k+1])) 
+
+        return autocorr / autocorr[0]
+\end{lstlisting}
