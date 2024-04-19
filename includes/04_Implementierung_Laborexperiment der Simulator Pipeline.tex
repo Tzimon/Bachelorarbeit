@@ -492,7 +492,13 @@ Furthermore, the methods correlation time in the left plot shows that it is by f
 When setting this into perspective even with a conservative average of 5 iterations as correlation time, N2/Half updating therefore
 performs \textbf{40x better}, than the single neuron Hopfield Network and \textbf{20x better} than Metropolis Hastings.
 When comparing the correlation at the end of the traing iterations, the performance even increases: \textbf{34x better} than the single neuron Hopfield Network (correlation time value of 170) and \textbf{46,6x better} than Metropolis Hastings (correlatin time value of 233).
- 
+Surprisingly for this updating method large statistical dependency could be seen in two out of the 720 training iterations.
+This means that for these two iterations the autocorrelation \textbf{doesn not fall under the threshold} of \(1/\mathrm{e}\).
+The training was attempted three times, and in each instance, the phenomenon occurred between iterations 300 and 500.
+Still, this has no impact on the performance of the training and therefore can be seen as outlier.
+It is open for further research to identify why this doesn not happen with the other two approeaches and what is the cause.
+Since the correct value for not falling under the threshold would be infinity the scale in the plot would be too large. 
+Therefore, the same plot with these two outliers can be found in the attachment\ref{attachement:autocorrelation_errors}.
 
 After identifying the autocorrelation of the desired metric, "throughput," it can be calculated by combining the autocorrelation with the cycle speed of the \ac{mem-HNN}.
 This is done by taking the autocorrelation time of both Hopfield Network approaches (with N/2 Half and without) and mutlitplying them with the cycle time of the \ac{mem-HNN}.
@@ -502,7 +508,7 @@ Because the network in this thesis has 164 neurons, the time used for the calcul
 The subsequent visualization\ref{Throughput comparison} shows the throughput for the Hopfield Network:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{graphics/Visualisierungen_throughput_log_2.png}
+    \includegraphics[width=0.8\linewidth]{graphics/Visualisierungen_throughput_log_2.png}
     \caption{throughput}
     \label{Throughput comparison}
 \end{figure}
@@ -512,10 +518,77 @@ samples per second. This suggests a stable and predictable behavior.
 The N2 Half Hopfield Network (red line) exhibits significant variability in throughput. 
 While it generally hovers around \(\mathbf{10^8}\) \textbf{to} \(\mathbf{10^9}\) the throughput is more sensitive and fluctuates more compared to the single update approach. 
 To get a better feeling of the data, the average of the throughput is calculated: N/2 Half Hopfield Network has
-an average of \textbf{144,114,642.30 samples/second}, while the
-Normal Hopfield Network has an average of: \textbf{2,297,707.33 samples/second}. 
-This means that the computation speed of the N/2 Half method \textbf{is faster} by a factor of \textbf{62,72x}.
+an average of \textbf{144 megasamples/second}, while the
+Normal Hopfield Network has an average of: \textbf{2,3 megasamples/second}. 
+This means that the computation speed of the N/2 Half method \textbf{is faster} by a factor of \textbf{62.72x}.
+Also in the attachment\ref{attachement:throughput_errors} is a version with the outliers included symolizing a throughput of zero for these two iterations.
 
 The results of the autocorrelation implies a low computing time and low energy consumption than with conventional hardware.
 To confirm this theory, the second metric to simulate is the \textbf{energy consumption} in energy/operation. 
-Hence, the mentioned energy model needs to be implemented into the Hopfield Network interface. 
+Hence, the mentioned energy model needs to be implemented into the Hopfield Network interface.
+The first adaptation is to \textbf{intialize the energy model} with the size of the neural network (164) as it impacts the size of the crossbar array and influences the overall energy consumption.
+An increase in the number of neurons causes a higher energy consumption due to the enlarged crossbar structure.
+
+Afterwards, the two parameters ``a\_pattern'' and ``a\_WL'' need to be calculated.
+Hereby, a\_pattern refers to the currents that flow through the respective bitlines.
+The current for each bitline is determined by the average of the weighted sum and is accumulated with each iteration.
+Subsequently, it is divided by the number of sampling iterations to obtain an average for the respective training iteration.
+For an correct calculation and imitation of the \ac{mem-HNN}, there is one more restriction to solve. 
+The digital computer generates negative and positive weights and biases, which is not possible in the hardware.
+Therefore, the weight matrix needs to be adjusted to handle positive and negastive weights seperately. 
+Specifically, the weight matrix is discretized to the according bit resolution of the \ac{mem-HNN}, which is 5bit.
+In the ealier design phases, the values were calculated with perfect resolution but for the energy model of the accelerator this is possible. 
+Despite the low bit resolution there are many papers that proof that even with a small resolution a good performance can be achieved.\footnote{cf.\cite{maEra1bitLLMs2024}, p. 1; cf.\cite{GitHubHtqinQuantSR}, p. 1; cf.\cite{rouhaniMicroscalingDataFormats2023}, p. 1; cf.\cite{rouhaniSharedMicroexponentsLittle2023}, p. 1}
+Since only positive weights can exist within the accelerator, these are separated and written into their own matrix.
+This modification is essential to accommodate the hardware constraints that prevent the use of negative weights.
+
+On the other hand, A\_Wl is the average configuration change.
+This means This parameter tracks the average changes in configuration within the wordline.
+Each time the state changes from 0 (no current) to 1 (current flows), energy is consumed to initially let the metal ions flow.
+Therefore, every position in the configuration must be compared with the following configuration position wise.
+Subsequently, an average change rate is calculated by dividing by the number of iterations.
+This approach quantifies the energy cost associated with state transitions within the network configuration.
+An estimate for this, especially for N/2 half is that 25\% of the neurons are updated in one training iteration (50\% randomly drawn and 50\% of that updated).
+All the adjustments for the energy model to the interface can be found in the version 5 of the hopfield interface as part of the digital delivery.
+The result of the energy consimption is illustrated in following figure\ref{Energy output_2}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{graphics/energy_and_averages_plot_4.png}
+    \caption{Energy consumption of the \ac{mem-HNN}}
+    \label{Energy output_2}
+\end{figure}
+The left plot shows the energy consumed per sampling iteration (eq.\ to 1 clock cylce of the \ac{mem-HNN}) in piko Joules.
+In the beginning of the training the average clock cycle has an total energy consumption of around 45 piko Joules.
+Further in the training at atround 100 training iterations the consumption drops to around 35 piko Joules. 
+In the end of the training the value falls just below the 20 piko Joules mark. 
+The decrease of the energy consumption over the time comes from the weights of the neural netowotk that get better and better configured over time.
+Noteworthy, the Memcrossbar energy is the only variable energy consumer that actively changes, while the digital-to-analog converter and the pseudo-random number generator stay horizontal.
+A composition of the energy consumption is shown in the right plot.
+Here 85\% of the energy is consumed entirely by the Memristor Crossbar and the support entities consume around 15\% of the energy.
+The results of the energy model an the energy consumption can be verified by the following paper.\footcite[cf.][4]{hizzaniMemristorbasedHardwareAlgorithms2023}
+
+Finally, it is important to mention that not all hardware components are included. and especially the communication and updating of 
+For example the memory and the controller of the \ac{mem-HNN} and are not included in the plot.
+Also to consider are the weights in the digital computer, that probably consume 10x the energy of the training on the analog \ac{mem-HNN}. 
+
+In a next step the power consumption of the training is targeted as this delivers a good comparison to other
+hardware components like \ac{CPU}s, \ac{GPU}, \ac{ASIC}s or \ac{FPGA}s.
+Therefore, the energy per sampling iteration is divided by the time of one clock cycle (2ns) since \(P = \frac{\Delta E}{\Delta t}\).
+Furthermore, the right plot is based on the power and cumulates the power multiplied with the sampling iteration to vissualize how much energy the training the neural network consumes for this workload.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{graphics/energy_consumption_cumulative_plot.png}
+    \caption{Power consumption of the \ac{mem-HNN}}
+    \label{Power consumption}
+\end{figure}
+As shown in figure\ref{Power consumption} the power required to train is around 22.5 mW, which compared to a basic CPU(20-40W)
+is significant less. 
+Again with training iterations continuing to grow the power consumption decreases. 
+At the end of the training around 620 iterations, an power consumption of around 10mW is reached. 
+The entire power consumption is mostly stable with some larger fluctuatins in the beginning of the training areound 0 to 70 iterations.
+When looking at the right plot, which symbolizes the cumulative energy required for the training in mJ.
+Here, it is visible that a complete training with 720 iterations requires around 6.2 mJ. 
+Again it is important to keep in mind that these numbers consist of only the \ac{mem-HNN} and do not include the digital computer.                                                                  	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+With that the evaluation phase can successfully verify that the models purpose of the simulation, which is to answer the reasearch question, is achieved.
+Therefore, Boltzmann Machines can indeed be efficiently implemented on the physics-inspired Hardware accelerator by analog noise injection. 
