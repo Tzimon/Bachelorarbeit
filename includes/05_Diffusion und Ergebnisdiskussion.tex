@@ -82,8 +82,12 @@ The 144 megsamples/samples equal \textbf{6,94ns per sweep} and therefore, which 
 multiple TPU (no exact value). Still it needs to be kept in mind that these numbers are for a different workload and are only carefully comparable. 
 On the other hand, the \ac{mem-HNN} is faster than all the other listed probablistic NVIDIA \ac{GPU}s and around \(\mathbf{5000x}\) faster than a graph-colored \ac{CPU} (Table 1) and about \(\mathbf{50000x}\) faster than a standard \ac{CPU}.\footcite[cf.][2]{aaditAcceleratingAdaptiveParallel2023}.
 A visual representation of the comparison with the additional entry can be seen in following figure:
-
-BILD FEHLT, LARS PHOTOSHOP
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{graphics/Comparison_throughput_energy.jpg}
+    \caption{Comparison throughput literature}
+    \label{Comparison_throughput_literature}
+\end{figure}
 
 \section{Energy consumption}
 
@@ -102,18 +106,12 @@ Since the aim is to achive new application for more sustainable AI models on thi
 this can be seen as great achievement.
 
 \section{diffusion}
-Inspiration, kann ähnlich sein
-Veröffentlichung in den Labs, Paper veröffnetlichung, auf messen gehen mit Ergebnissen,
-Weiterentwicklung für Komplette umsetzung des Modells auf dem richtigen hardwarebeschleuniger,
-und Einreichung der Bachelorarbeit an die DHBW
-
-With the given background, the following central research question for this theis arises:
-1. Can Boltzmann Machines be efficiently implemented on physics-inspired Hardware accel-
-erators by analog noise injection?
-
- What is the accuracy of the AI-model on the hardware accelerator?
-- Metric: Prediction accuracy and negative Likelihood
-
- Comparison between other hardware accelerators, FPGA, GPU, or CPU within the
-literature in terms of energy efficiency and computing speed.
-- Metrics: Throughput (Samples/Sec), Energy usage (Energy/Operation)
+Now that the results exist and have been processed, the diffusion phase of the \ac{DSR} framework 
+requires that the results are generally made available to the public. 
+The results and the implementation are handed over to HP Labs and are used as 
+bases for further research.
+The goal is to further develop the complete implementation of the model on the physical hardware accelerato.
+Furhtermore, it is planned to take the results and add them to an upcoming paper that is presented
+at TechCon, which is an HPE internal research fair. 
+In addition to that, the results can be shown at public fairs that HPE plans on going in near future.
+Lastly, this bachelor thesis is submitted to the DHBW-Stuttgart for assessment. 
