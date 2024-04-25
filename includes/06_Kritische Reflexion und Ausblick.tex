@@ -1,4 +1,113 @@
-\chapter{Mission of the work}
+\chapter{Critical reflexion and outlook}
+This chapter concludes the research work by summarizing the key findings and provide a critical reflection on these outcomes.
+The goal is to retrospectively evaluate the core structure and methodology of this study, discussing how effectively it addressed the posed research question.
+Additionally, this section aims to illustrate the practical and theoretical consequences of the artifacts and insights developed through this work.
+By doing so, it underscores the relevance of the study’s contributions to both academic research and real-world applications.
+Lastly, this chpaer offers an outlook on future research, improvements and implications in general.
+
+\section{Mission of the work}
+The general mission of the work is the implementation of Boltzmann Machines on a physics-inspired 
+hardware accelerator by analog noise injection. 
+Especially, the possibility of modelling the Boltzmann Machines and afterwards meassuring the performance are the focus of the implementation.
+This research is motivated by ever increasing energy consumption for artificial intelligence models and stagnating computing speeds.
+Therefore, the currently developed \ac{mem-HNN} \ac{ASIC} hardware accelerator, which HPE developed and researches on 
+should be further researched for the new aplication of efficiently modelling this neural network.
+
+This thesis first explains all the relevant fields in chapter two.
+Here, topics like Neural Networks and sustainability is handled and within the concepts of energy-based models,
+Boltzmann Machines and \ac{RBM}s are processed. 
+After discussing neural networks, the focus shifts to the hardware accelerator, providing a comparison of current developments and research that lead to the functioning of the targeted \ac{mem-HNN} accelerator.
+Hence, the concept of Hopfield Networks that are inspired out of physics, and technical parts like the crossbars are explained to 
+finally bring the idea of noise injection to the reader. 
+This idea makes it possible to train and interfer the Boltzmann Machines on the \ac{ASIC} accelerator.
+
+The theoretical research theory is to be implemented in the practical part of the thesis.
+This is done by following the scientific \ac{DSR} process by Österle et al. to create an \ac{IT}-artifact,
+which is developed iteratively and consists out of three design and evaluation phases. 
+The design phase itself follows the methodology of a prototyping implementation by G.A. Mihram that allows rapid and explorative proceed.
+In the beginning the prototyping established a function catalog and divided the single functions, 
+which simulate the functions of the developed overall solution, into the single design phases. 
+The focus lays on using the Hopfield Network as sampling method to train the Boltzmann Machine
+and therefore show the possibility of the realizability on the physics-inspirated \ac{mem-HNN} accelerator.
+The implementation of the prototyp matches well with the \ac{DSR} framework and is done icrementally to develop the prototyp further and use the previous output as
+the new input for the next iterative phase.   
+The last evaluation phase uses the finished prototype with desirable all functionalities as input and 
+aims at meassuring the performance of the successful implementation of the Boltzmann Machines compared to the earlier established intrinsic baselines
+of the conventialnal approaches Gibbs sampling and Metropolis Hastings.
+Specifically, this is done by performing the methodology simulation by Kellner/Madachy/Raffo and setting the focus on 
+the metrics throughput and energy consumption. 
+All the single methodologies were chosen to fit well into the iterative \ac{DSR} framework in order to best 
+create the desired \ac{IT}-artifact with a high scientific procedure.
+The desired result is a functioning representation of the \ac{mem-HNN} with all the functionalities included, 
+evaluated and meassured performance with additional information about the Hyperparamter tuning.
+
 \section{Critical reflection on the results and methodology}
+
+This thesis represents a significant advancement in the field of energy-efficient AI models by introducing the first-ever simulator pipeline designed for Boltzmann Machines.
+The existing proof of concenpts are taken further and the research question is answered.
+Furthermore, an intrinsic comparison between the \ac{mem-HNN} \ac{ASIC} and the conventional methods of Gibbs Sampling and Metropolis Hastings is established.
+The results of this thesis, while promising, warrant a thoughtful examination in terms of applied methodologies and meassured results.
+
+\textbf{Reflection on Results:} The introduction of the simulator pipeline has not only demonstrated the possibility 
+of the implementation of Boltzmann Machines with a Hopfield Network as sampling method but also the results regarding
+in modeling energy efficiency and computational throughput in the Simulator Pipeline is very positive.
+Therefore, the overall posed research question is successfully answered and results in a tool that has never been explored in previous studies but also
+provides a new tool that can be adapted for different workloads in future research. 
+In an second part looking at meassuring the energy efficiency, especially the energy based model has been partially addressed.
+This is because the metric energy consumption does not include all hardware compontents, already mentioned in chapter 4.6.
+Hence, the energy usage of the bus system to the digital computer, the controller and the memory on the \ac{mem-HNN} 
+are not currently not included.
+The digital computer that updates the weights would require the highest energy consumption is also not included due to missing energy values.
+An more correct energy consumption of the overall solution architecture is part of future work with approximately two years develoment time.
+Therefore the current energy model for the \ac{mem-HNN} is considered a first attempt but with the Simulator Pipeline
+the energy model can be extended trouble-free for example a bus system, controller or digital computer.
+Still before the Hopfield Network could be used as sampling method, conventional options like \ac{MCMC} 
+require higher amounts of sampling iterations, and even if mapped on accelerators consume around 15x more energy.
+When looking at another paper with a complete energy model comparing electronical with analog hardware, the energy required is 
+higher than this thesis results but the analog solution with our missing part only increases the energy consumption by 30\% and in comparison to
+the digital solution in total 5x more energy efficient.\footcite[cf.][12-13]{demirkiranElectroPhotonicSystemAccelerating2023}
+
+Furthermore, the resolution of the weights are set perfect in this thesis, which does not represent the
+exact representation of the \ac{mem-HNN}. In the energy model the resolution is considered but
+not for the results of the prediciton accuracy. 
+Despite this, many indicators have performed well even with low bit resolution suggesting that even minimalistic settings can yield substantial results.\footnote{cf.\cite{maEra1bitLLMs2024}, p. 1; cf.\cite{GitHubHtqinQuantSR}, p. 1; cf.\cite{rouhaniMicroscalingDataFormats2023}, p. 1; cf.\cite{rouhaniSharedMicroexponentsLittle2023}, p. 1}
+Lastly, the \ac{RBM} was chosen as simpler AI-model to collect meaningful baselines but also general Boltzmann Machines can be implemented on more complex workloads. 
+
+\textbf{Reflection on Methodology:} 
+Utilizing \ac{DSR} as the applied research methodology facilitates the incremental and continuous progress of the Simulator Pipeline as \ac{IT}-artifact.
+This approach is well-suited for the implementation of the novel Simulator Pipeline especially since it requires agility.
+Despite the result being specific for the \ac{mem-HNN} the \ac{DSR} procedure can be generalized for other AI-models or other data sets on different \ac{ASIC} or 
+even \ac{FPGA} accelerators. 
+The protyping methodology enables a rapid and explorative implementation and therefore as well suits the thesis's goal. 
+Although, since performance is no criteria of prototyping and the training of the model is performed on a notebook with a CPU\footnote{\texttt{Intel i7-10610U, 1.80GHz, 2304 Mhz, 4 Core(s), 8 Logical Processor(s)}} that takes around 30-40min. per training,
+optimization can be seen as critics and furhter implementation goal.
+However, the simulation only estimates the actual hardwares capabilities.
+Once the hardware is available real-world results can be different making it essential to build and validate a physical hardware accelerator based on these initial analyses.
+These difference can be energy effciency, throughput and prediction accuracy. 
+Still, the functionalities are modelled with great effort and are an indication on how the Pipeline behaves and already delivered close to real-world results in another paper.
+
 \section{Extrusion of results for theory and practice}
+The resulting Simulator Pipeline for the \ac{mem-HNN} established in this thesis achieved 
+promising results of relevance for the scientific community and practical applications. 
+The intrinsic comparison with other analog probabilistic accelerators revealed that the \ac{mem-HNN} offers competitive throughput while enhancing energy efficiency,
+thereby highlighting its potential as a transformative tool in the realm of energy-efficient computing.
+Also, a first estimation is done by reviewing other analog probalistic accelerators and comparing the energy efficiency and throughput which result in promising and competitive estimates. 
+Additionally, as the Simlator Pipeline is generalizable, in the furure different workloads can be chosen as starting point for research with AI-models 
+for Boltzmann Machines. 
+Hence, even greater improvements could be achieved for these worklaods.
+Of course the results themselves as part of the intrinsic comparison deliver important insights and close a research gap of this novel sampling method 
+and give confidence in the Solution, hyperparameters tuning and perforance. 
+As the tool was developed using a scientific method, it is easy to track why a program section, for example, has certain properties and ensures fewer errors after iteratively correcting them.
+For further research within HPE the results validate that training for Boltzmann Machines is possible and that in 
+a next step this it is planned to research further with other workloads, architectures and changing from \ac{RBM} to a general Boltzmann Machine.
+Furthermore, the current plan is to collect the result of this thesis and include them into a paper 
+proposed and submitted to TechCon, which is an HPE internal research fair laying the ground for HPE's future investments.
+Lastly, the results are also planned to be presented at public fairs HP Labs is visiting as presenter. 
+
 \section{Outlook}
+The outlook for the \ac{mem-HNN} Simulator Pipeline is the improvement of missing functionalities to achieve better and more correct results. 
+Here topics like the bit resolution of the \ac{ASIC} is planned to be integrated but at the same time the energy model is planned
+to be modified in further research to gather a nearly real-world energy consumption of the Simulator Pipeline.
+The overall desired outlook is to test and verify more complex worklaods on the tool and as an underlying model use Boltzmann Machines 
+instead of the simpler form with a \ac{RBM}.
+Furthermore, there are suggestions for future work to improve the generalizability and scalability of the solution architecture to make Boltzmann Machines scalable.
