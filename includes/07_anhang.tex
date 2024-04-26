@@ -8,9 +8,7 @@
 
 \listofanhang
 \clearpage
-\spezialkopfzeile{Attachement} % damit in der Kopfzeile das Wort "Anhang" angezeigt wird
-
-\anhang{So funktioniert's}
+\spezialkopfzeile{Attachment} % damit in der Kopfzeile das Wort "Anhang" angezeigt wird
 
 \lstset{language=TeX, % hervorzuhebende Keywords definieren
   morekeywords={anhang, anhangteil}
@@ -37,9 +35,6 @@
   tabsize=3,
   morecomment=[l]{\#} % This line tells 'listings' that '#' introduces a single-line comment
 }
-
-
-Um den Anforderungen der Zitierrichtlinien nachzukommen, wird das Paket \verb|tocloft| verwendet. Jeder Anhang wird mit dem (neu definierten) Befehl \lstinline|\anhang{Bezeichnung}| begonnen, der insbesondere dafür sorgt, dass ein Eintrag im Anhangsverzeichnis erzeugt wird. Manchmal ist es wünschenswert, auch einen Anhang noch weiter zu unterteilen. Hierfür wurde der Befehl \lstinline|\anhangteil{Bezeichnung}| definiert.
 
 \anhang{House of Prototyping Guidelines: Prototyping Dimensions}\label{attachement:prototyping_dimensions}
 \begin{figure}[htb]
