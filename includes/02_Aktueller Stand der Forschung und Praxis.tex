@@ -1,14 +1,5 @@
 \chapter{Current state of research and practice}
 
-\section{Ressourcenverbrauch bei KI-Modellen}
-\subsection{Ressourcenverbrauch bei KI-Modellen}
-
-substantial challenges in high consumption of computational, memory, energy, and financial resources, especially in environments with limited resource capabilities\footcite[cf.][1-2]{baiEfficiencySystematicSurvey2024}
-
-\subsubsection{Nachhaltigkeit}
-\subsubsection{Stromverbrauch}
-\subsubsection{Rechenleistung begrenzt, KI-Modelle wachsen schneller als verfügbare Leistung}
-
 \section{Neural Networks and Sustainability}
 
 Over the past few years, the emergence of artificial neural networks has transformed
@@ -42,6 +33,18 @@ Some examples for regression tasks within a \ac{DNN} in the field of acomputer v
 Nowadays, verly large neural networks with millions of parameters can be created due to the research achievements made in the field of neural networks and deep learning leading to highly performing models.\footcite[cf.][152]{marinoDeepNeuralNetworks2023}
 Nonetheless, such models often have a negative effect on the environment in terms of unnecessary energy consumption and a limitation to their deployment on low-resource devices because they are excessively oversized and redundant.\footcite[cf.][152]{marinoDeepNeuralNetworks2023}
 
+Currently, the exponential growth in model sizes presents substantial challengesm which includes high consumption of computational, energy, and financial resources.\footcite[cf.][1-2]{baiEfficiencySystematicSurvey2024}
+The worldwide energy consumption of data centers increases annually by approximately 20-40\%.\footcite[cf.][1]{hintemannDataCenters20212022} 
+The International Energy Agency estimates that global energy consumption attributed to data centers will double to approximately 6\% between 2022 and 2026 due to the field of AI, cryptocurrencies, and digitization.\footnote{cf.\cite{anon.Electricity2024Analysis2024}, p. 31-37; cf.\cite{jacksonAIBoomWill2024}, p. 1}
+Not only the energy consumption is a problem, but also the water footprint of AI-models consumption, which refers to the volume of fresh water used to run and train the models.\footcite[cf.][92-93]{georgeEnvironmentalImpactAI2023}
+Hence, the water foorprint includes the water used for production (hardware, semiconductors), operation (cooling the data center), and maintenance (cooling the data center) of AI-models.
+The result of this is created wastewater, which contains a range of pollutants and therefore has negative environmental influences.\footcite[cf.][94-96]{georgeEnvironmentalImpactAI2023}
+For example, the training process of ChatGPT-3 consumed approximately 700.000 liters of fresh water, equivalent to the water usage of an average American household over 20 years.
+In the iterference process, 500ml of fresh water are used for every 50 questions asked to the model.\footnote{cf.\cite{georgeEnvironmentalImpactAI2023}, p. 94-96; cf.\cite{anon.AIProgramsConsume}, p. 1}
+Despite the difficulty in calculating CO2 emissions for AI-models like ChatGPT, due to the lack of publicly available data, conservative estimates can still be made.
+Initially, training GPT-3 required an estimated 522 tons of CO2, with conservative daily emissions ranging between 35 and 43.2 tons for current interference.\footnote{cf.\cite{anon.CloserLookCarbon2023}, p. 1; cf.\cite{chienReducingCarbonImpact2023}, p. 2; cf.\cite{tomlinsonCarbonEmissionsWriting2024}, p. 3}
+Furthermore, text classification emits less CO2 compared to image classification, with image generation accounting for the highest emissions.\footcite[cf.][1-14]{luccioniPowerHungryProcessing2023}
+All these factors motivate to use tailored neural networks designed for a specific purpose, which consume less energy and water and emit less CO2.\footcite[ibid cf.][1-14]{luccioniPowerHungryProcessing2023}
 
 \subsection{Energy-based models}
 
@@ -81,8 +84,8 @@ A practical method to achieve this goal is to use the KL divergence. KL divergen
     G = \sum_x P_{\text{data}}(x) \ln \left( \frac{P_{\text{data}}(x)}{P_{\text{model}}(x)} \right)
 \end{equation}
 Here, \( P_{\text{data}} \) is the probability distribution when the network receives a speicific data input from the environmnet, while \( P_{\text{model}} \) represents the internal network running freely, also referred to as ``dreaming''.\footcite[cf.][154-155]{ackleyLearningAlgorithmBoltzmann1985}
-In the training process the asymmetric divergence \( G \) needs to be miminized and therefore the probabiliies of the model converge close to the ones in reality.
-To optimise the KL divergence the energy is adjusted, whereby data is assigned to low energy states (according to 2.1) and the training data receives high energy and therefore low probabiliies.\footcite[cf.][2-3]{zhaiDeepStructuredEnergy2016}
+In the training process the asymmetric divergence \( G \) needs to be miminized and therefore the probabilities of the model converge close to the ones in reality.
+To optimise the KL divergence the energy is adjusted, whereby data is assigned to low energy states (according to 2.1) and the training data receives high energy and therefore low probabilities.\footcite[cf.][2-3]{zhaiDeepStructuredEnergy2016}
 
 NACH UNTEN
 As a side note it is worth mentioning that using the maximum likelihood estimator for \( Z \) is intractable due to the requirement of summing over all possible states, which leads to an exponential increase in the number of states for larger systems.\footcite[cf.][2-3]{zhaiDeepStructuredEnergy2016}
@@ -141,7 +144,7 @@ A specific example to demonstrate why it is intractable to calculate an activiat
 To put this into perspective, the total atoms that exist on earth are only estimated to be around \( 1.33 \times 10^{50}\).\footnote{cf.\cite{helmenstineHowManyAtoms2022}, p. 478-480; cf.\cite{schlammingerCoolWayMeasure2014}, p. 1}
 That means even if it would be possible to store one information per atom it would just not be enough. 
 
-As a result, instead of directly trying to train the model sampling methods are used that are able to estimate these activation probabiliies.
+As a result, instead of directly trying to train the model sampling methods are used that are able to estimate these activation probabilities.
 This enables the training of \ac{BM}s and \ac{RBM}s.
 \subsection{Restriced Boltzmann Machines}
 
