@@ -25,7 +25,7 @@ Furthermore, Scikit Learn is chosen as machine learning library since it is one 
 and has a lower learning curve compared with e.g. Tensorflow.\footcite[cf.][5-6]{raschkaMachineLearningPython2020}
 For simplicity and to save time, an \ac{RBM} is used as a test case with handwritten digit classification as workload.
 
-The complete \ac{mem-HNN} is beeing simulated based on a design that has been developed by the Forschungszentrum Jülich and HPE.\footcite[cf.][3-4]{hizzaniMemristorbasedHardwareAlgorithms2023}  
+The complete \ac{mem-HNN} is being simulated based on a design that has been developed by the Forschungszentrum Jülich and HPE.\footcite[cf.][3-4]{hizzaniMemristorbasedHardwareAlgorithms2023}  
 This design describes an \ac{ASIC} design that realizes the noisy Hopfield Network shown in figure\ref{ModellHMM}.
 It includes an energy model based on low-level circuit-simulations, which can derive the average energy consumption per clock cycle of the \ac{mem-HNN}.
 In addition to that, the model includes latency estimations of the \ac{mem-HNN} to perform a full iteration. 
@@ -226,7 +226,7 @@ Therefore, the weight matrix is selected (indexed by the random drawn neuron) an
 the weighted sum that also ignores the weights connected from the drawn neurons.
 Afterwards for the comparison against the threshold the according bias of the neuron is added together with the injected noise (scale).
 To achieve the injection of noise, a Gaussian normal distribution is added which can modify the activation function, making it compatible with the sigmoid function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
-Technically this is performed by adding \texttt{np.random.normal(0, scale=1.75)} to the weighted sum and the bias, with 0 beeing the mean of the distribuion and the scale representing the standard deviation. 
+Technically this is performed by adding \texttt{np.random.normal(0, scale=1)} to the weighted sum and the bias, with 0  the mean of the distribuion and the scale representing the standard deviation. 
 Hereby, it is important to find a standard deviation that is very close to the true activation probability is important, otherwise the training of the RBM would not work.
 In addition to that, the standard deviation changes with neuron size and needs to be readjusted if changes are made to the networks structure.
 Next, if the weighted sum plus bias and noise exceeds the threshold, the corresponding neuron state is set to 1; otherwise, it is set to 0.
@@ -277,13 +277,11 @@ In the left plot, visualized in blue, the activation probability of the neuron i
 The behaviour is like one would expect it; once the bias reaches 0 the neuron is activated all the time.
 In the right figure with the the red line a noise of \(sigma=0.3\) is added.
 The resulting activation is probabilistic and follows a rudimentary sigmoid shape, very similar to the activation function of a \ac{BM} shown in fig.\ref{logistic_sigmoid}.
-The right plot shows that the noise injection works, even though it doesn't perfectly copy the sigmoid function.
-Concluding from this the sigmoid function is not achieved and the trainig of an \ac{RBM} probably fails. 
-Therefore, to completely evaluate and ensure that the injected noise fits to the logistic sigmoid function, the function itself is plotted 
-as index, to have a visual comparison. 
-Now, finding the correct standard deviation is the goal. 
-In following figure\ref{Noisy_acitivation_function_good} the hyperparameter is tuned and the resulting scale is visualized.
-It verifys that a noisy activation function of a Hopfield Network can imitate the sigmoid function of a \ac{RBM} correctly:
+Is is visible that the noise injection works, even though it doesn't perfectly copy the sigmoid function.
+Hence, the standard deviation of the noise has a direct influence on the shape of the activation function, similar to the temperature in eq.2.12. 
+To correctly mimic the behavior of a \ac{BM}, it is therefore important to select the noise strength such that it corresponds the temparature of a BM, which is \(T=1\).\footcite[cf.][3]{hintonBoltzmannMachines2014}
+In following fig.\ref{Noisy_acitivation_function_good} the standard deviation of the noise injection is optimized \(scale=1.75\) and compared to the sigmoid activation function of a \ac{BM}.
+The result verifys that the \ac{mem-HNN} can correctly imitate the behaviour of a \ac{BM} and its activation function:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{graphics/Noisy_HNN_2.png}
@@ -292,12 +290,12 @@ It verifys that a noisy activation function of a Hopfield Network can imitate th
 \end{figure}
 \section{Third Design and Evaluation phase}
 
-Now, that the proof of concept has been validated, this \textbf{Desing Phase} has the goal of connecting the 
-Hopfield Network as a sampling method to the \ac{RBM} and therefore enable a complete training. 
-This includes using the weights and biases of the \ac{RBM} as an input and performing the sampling with the input.
+Now, that the proof of concept has been validated, the third \textbf{Desing Phase} has the goal
+integrating the \ac{mem-HNN} simulator into Scikit Learn. 
+This integration enables the execution of the full Simulator Pipeline shown in fig.\ref{Overall architecture} and allow for the simulation of training a \ac{BM}.
+This includes using the weights and biases of the \ac{BM} as an input and performing the sampling with the input.
 Finally, the sampled output of the visible and hidden neuron configurations need to be returned, so that the digital computer can update the weights.
-With these subgoals the total goal is to enable a complete training of the \ac{RBM} with the sampling method of the Hopfield Network. 
-Furthemrore, if the training is successful, the possibility of the N/2 half updating method instead of asynchronously updating of the states should be implemented.
+With these subgoals the total goal is to enable a complete training of the \ac{BM} with the sampling method ``Hopfield Network''. 
 The first technical step is to extend the \texttt{\_rbm.py} to fit the new sampling method: 
 \begin{lstlisting}
         if sampling_method == SamplingMethod.GIBBS:
@@ -312,8 +310,8 @@ The first technical step is to extend the \texttt{\_rbm.py} to fit the new sampl
             v_neg, h_neg = interface_hopfield_sampling(self.components_, self.intercept_visible_, self.intercept_hidden_, iterations_per_theta, N2_HALF=False)    
 \end{lstlisting}
 Here, the compontents represent the weights of the neurons in the network, while intercept\_visible and intercept\_hidden represent the bias of the neurons. 
-Within the, hopfield\_network\_interface\_v2.py, the parameters are taken and an object of the class is initiated. 
-
+Within the, \texttt{hopfield\_network\_interface\_v2.py}, the parameters are taken and an object of the class is initiated. 
+Furthermore, the boolean N2\_HALF can be assigned to determine which updating approach is desired. 
 \begin{lstlisting}
     def interface_hopfield_sampling(components_, intercept_visible_, intercept_hidden_):
    
@@ -324,15 +322,15 @@ Within the, hopfield\_network\_interface\_v2.py, the parameters are taken and an
 \end{lstlisting}
 Inside the class, the initialization of all the parameters and weights are performed. 
 The update formula needs to calculate the weighted sum, which necessarily requires to know all the weights between the neuron itself, to all the other neurons. 
-The decision is to create a weight matrix shown in \ref{attachement:weight_matrix}. 
+The decision is to create a weight matrix shown in attachment \ref{attachement:weight_matrix}. 
 The function begins by defining the total number of hidden and visible neurons based on the class properties parameters used as input.
 These quantities dictate the dimensions of the weight matrix, which, in this instance, results in a matrix of size (100, 64).
 This square matrix represents the fully interconnected network, where each neuron can potentially connect to every other neuron, including itself.
-As mentioned in 2.2.3, the diagonal elements (self-connections) are set to zero in \ac{RBM}s.
+Again the \ac{RBM} is used as simple test case and therefore as mentioned in 2.2.3, the diagonal elements (self-connections) are set to zero.
 
-Another important aspect is to maintain the model's symmetry, which is crucial for the energy-based nature of RBMs and the dynamics of Hopfield networks.
-Hence, for this reason and simplicity, the weight matrix is initialized as a symmetric matrix using NumPy's np.zeros function.
-This ensures that all initial weights are set to zero before being explicitly defined through the components weights.
+It is important to maintain the model's symmetry in the weight matrix, which is crucial for the energy-based nature of \ac{RBM}s and the dynamics of Hopfield networks.
+Hence, for this reason matrix is initialized as a symmetric matrix using NumPy's np.zeros function.
+This ensures all initial weights are set to zero before explicitly being defined through the components weights.
 Scikit Learn randomly initializes the weights by default close to zero, while the biases are set to zero. 
 This small weights allow to support an effective gradient distribution which protects against rapid saturation or inefficient learning,
 while the bias set to zero allows the network to begin in a neutral position and learn on its own. 
@@ -340,12 +338,13 @@ while the bias set to zero allows the network to begin in a neutral position and
 The subsequent nested loops iterates over the indices for hidden and visible neurons to fill the weight matrix.
 For each pair of hidden and visible neurons, the corresponding weights are extracted from the components matrix.
 This matrix essentially serves as the template for the interactions between hidden and visible layers.
-Indexing within the weight matrix is handled carefully, to respect the structure of the RBM. 
+Indexing within the weight matrix is handled carefully, to respect the structure of the \ac{BM}. 
 Therefore, the decision is to set weights between a hidden neuron i and a visible neuron j at positions \texttt{[i, j+num\_hidden]} and \texttt{[j+num\_hidden, i]} to ensure symmetry.
 
-With some more adjustments necessary to the code the first training of the \ac{RBM} with the sampling method of the Hopfield Network can begin. 
-The Hyperparmeters first are set to the same scale(1.75) and same thermalization(100) as for a single neuron but with more sampling steps (5000 sampling steps) than before. 
-The results of the traning are visualized in figure\ref{HNN_training}.
+With some more adjustments necessary to the code like transposing the returned neuron configurations, the first training with the sampling method of the Hopfield Network can begin. 
+As in the Design Phase 1 the same test case of \ac{RBM} predicting on handwritten digits classification is chosen to make results comparable with the earlier established baselines.
+The Hyperparmeters first are set to a scale of 1.75 and thermalization of 100 as used for the single neuron in fig.\ref{Noisy_acitivation_function_good} but with more sampling steps (5000) than before. 
+The results of the training are visualized in fig.\ref{HNN_training}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{graphics/HNN_combined_plot.png}
