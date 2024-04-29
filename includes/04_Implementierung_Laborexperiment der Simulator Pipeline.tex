@@ -1,157 +1,159 @@
 \chapter{Implementation of the mem-HNN}
 
-\section{Zielsetzung und Forschungsmethodik}
-Upon establishing the precise research methodology, this chapter delves into the practical application of the previously mentioned methods.
-First, the analysis phase of the \ac{DSR} process is executed with the goal to establish a model of the research plan 
-which the requirements and framework conditions of the \ac{IT}-solution can be derived from. 
-Next, the practical implementation is performed during the iterative design phase and uses the method of prototyping.
-In the end of the design phase is a functional \ac{IT}-artifact, which fulfills the set requirements.
-The evaluation phase in this chapter uses the method of simulation to answer the second part of the research question; to see how efficient 
-the \ac{mem-HNN} can utilize the AI-model in terms of throughput and energy usage.
+\section{Objectives and research methodology}
+Upon establishing the precise research methodology, this chapter delves into the implementaiton of the simualtor pipeline.
+First, the analysis phase of the \ac{DSR} process is executed with the goal to establish a model of the simulator pipeline,
+which the requirements and conditions can be derived from. 
+Next, a practical prototype is developed in iterative design cycles to fulfill the target requirements.
+In the evaluation phase, the simulator pipeline is used to assess the performance of the \ac{mem-HNN} 
+in the training of an examplary machine learning workload. 
+This thesis utilizes performance metrics collected from the simulation to address the central research question, which explores potential speed and efficiency enhancements of the \ac{mem-HNN} compared to digital computers.
+
 
 \section{Analysis phase}
 \subsection{General conditions}
-The first phase of the \ac{DSR}-cycle has the goal of specifying the objective and establishing an according research outline and the requirements of the artifact.
-Additionally, the research outline should be visualized as a model of the overall solution concept.\footcite[cf.][278-279]{oesterleKonsortialforschung2010}
-The objective of the practical part is already specified in chapter 3.1.
+
+Following the first phase of the \ac{DSR}-cycle described in Chapter 3, the research outline is initially established from which the requirements for the simulator pipeline are derived.\footcite[cf.][278-279]{oesterleKonsortialforschung2010}
+This analysis begins by describing the general conditions specified in Section 3.1.
+Hereby, general conditions are permanent design decisions that are used as foundation for the implementation of the simulator pipleine.
 The underlying motivation hereby is to research if the known proof of concepts are feasible on the complete \ac{mem-HNN}
 and evaluate if that brings an actual acceleration, which is equivalent to answering the research question of this thesis. 
-This is tested by implementing the concept in software that is also part of the ASIC design process.\footnote{cf.\cite{raoUltimateGuideASIC}, p. 1; cf.\cite{ASICDesignFlow}, p. 1}
 
 The implementaton is executed in the programming language Python since it offers a variety of third party libraries that are useful 
 for machine learning that are state of the art, like pytorch, scikit learn etc..\footcite[cf.][306-307]{DiscreteContinuousModels}
-Furthermore, scikit learn is chosen as machine learning library since it is one of the industry standards for classical machine learning, has a broad variety of features in terms of \ac{RBM}s
+Furthermore, Scikit Learn is chosen as machine learning library since it is one of the industry standards for classical machine learning, has a broad variety of features in terms of \ac{BM}s
 and has a lower learning curve compared with e.g. Tensorflow.\footcite[cf.][5-6]{raschkaMachineLearningPython2020}
+For simplicity and to save time, an \ac{RBM} is used as a test case with handwritten digit classification as workload.
 
-It should also be clarified that the hardware, which the analog \ac{mem-HNN}-accelerator consists of, is implemented in software. 
-This design decision is made out of time constraints of this thesis and part of the ASIC design process before buildng an actual accelerator. 
-Nonetheless, the complete hardware is realizable in software without taking compromisses within their functionality.
-The simulation data gathered later on is close to the real energy efficiency and throughput.\footcite[cf.][3-4]{hizzaniMemristorbasedHardwareAlgorithms2023} 
-
-
-Lastly, the energy model used in the simulation can, depending on a specific input, calculate the amount of energy required from the hardware to perform computations.
-This energy model is developed by HPE and the Forschungszentrum Jülich.
-The explanation for this model is out of scope for this thesis but core parameters are explained to understand the data generation for the energy values.
-A seperate paper will be published about the energy model in the near future but kindly for this thesis the model can be used in advance.
+The complete \ac{mem-HNN} is beeing simulated based on a design that has been developed by the Forschungszentrum Jülich and HPE.\footcite[cf.][3-4]{hizzaniMemristorbasedHardwareAlgorithms2023}  
+This design describes an \ac{ASIC} design that realizes the noisy Hopfield Network shown in figure\ref{ModellHMM}.
+It includes an energy model based on low-level circuit-simulations, which can derive the average energy consumption per clock cycle of the \ac{mem-HNN}.
+In addition to that, the model includes latency estimations of the \ac{mem-HNN} to perform a full iteration. 
+This simualtion approach is chosen as the device is still under development and hardware devices are not available yet.
+Nonetheless, the complete hardware can be realized in software without compromising its functionality.
+Such a simulation based performance evaluation is quite common in the \ac{ASIC} design flow.\footnote{cf.\cite{raoUltimateGuideASIC}, p. 1; cf.\cite{ASICDesignFlow}, p. 1}
+A in-depth explanation of this model is out of scope for this thesis but core parameters are explained to understand the gathered energy values.
+Lastly, the simulation is performed on a notebook.
+Due to the limitations of the built in \ac{CPU}\footnote{\texttt{Intel i7-10610U, 1.80GHz, 2304 MHz, 4 Cores, 8 Logical Processors}}, efficient coding is required to ensure simulations are performed within an acceptable timeframe.
 
 \subsection{Requirements}
 
-In order to set requirements for the IT-artifact an ideal overall solution architecture is of importance. 
-Hence, a complete solution is modelled, which surpasses both proof of concepts introduced in 2.4.4.
-It shows the components required for an acceleration of a \ac{BM} in hardware with the statistical sampling performed by an Hopfield Network, which was never done and tested before.
-Furthermore, the following figure\ref{Overall architecture} contains the interaction between the digital computer and the analog mem-HNN Accelerator with five different steps. 
+To evaluate the performance of \ac{mem-HNN}s in training and inference of \ac{BM}s, a full simulator pipeline has to be modeled.
+In Fig.\ref{Overall architecture} the envisioned model is shown, in which an \ac{mem-HNN} chip can be used to implement \ac{BM}s.
+Here, a digital computer is used to implement and train machine learning models on vairous datasets.
+The \ac{mem-HNN} chip is then used to perform the sampling during the \ac{BM} inference or training.
+Training and inference on this system then involves the following five steps, which are handled by different components and desribe the iteraction between the digital computer and the analog \ac{mem-HNN} chip:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.80\linewidth]{graphics/Analysemodell.JPG}
     \caption{proposed solution architecture}
     \label{Overall architecture}
 \end{figure}
-\textbf{1.} contains the initialization of the neural network. 
-Hence, the weights and biases are assigned and the structure is build.
+\textbf{1.} initializes the machine larning model (neural network) including setting the weights and biases of the \ac{BM}. 
 
 \textbf{2.} starts with the transfer of the weigths and biases to the \ac{mem-HNN} accelerator via a bus-system. 
 The local memory saves the data and forwards them to the controller. 
-The controller is able to programm the memristors in the crossbar array, communicates with the computer and sets a counter and reset for the amount of sampling steps. 
+The controller is able to programm the memristors in the crossbar array. 
 
 \textbf{3.} is the Hopfield Neural Network (HNN), which contains the memristor crossbar array and the state register (SR).
-The state register includes the current neuron configuration.\footcite[cf.][18]{caiHarnessingIntrinsicNoise2019}
-For each of the neurons a \ac{TIA} and comparator are required in the hardware.
-Furthermore, the state register can lock und unlock specific neurons, so that it is possible to update neurons synchronously.
+Here, \ac{mem-HNN} performs a pre-defined amount of iterations, where a sample configuration is stored in the on-chip memory after each iteration.\footcite[cf.][18]{caiHarnessingIntrinsicNoise2019}
+The state register includes the current neuron configuration and can lock und unlock specific neurons, so that it is possible to update neurons synchronously.\footcite[cf.][18]{caiHarnessingIntrinsicNoise2019}
 This enables the possibility of the promissing N/2 update strategy.
 
-\textbf{4.} After iterating over steps two and three multiple times until enough sampling are executed the, all the configurations
-of the visible neurons \(v_{neg}\) and the  hidden neurons \(h_{neg}\) are transferred from the controller via the bus-system to
-the digital computer. 
+\textbf{4.} After the \ac{mem-HNN} has performed all iterations, the stored sample configurations
+of the visible \(v_{neg}\) and the hidden \(h_{neg}\) neurons are transferred back to the digital computer via the bus-system.
 
-\textbf{5.} contains the update of the weights and biases. 
+\textbf{5.} With the sample configurations, the digital computer calcualtes the activation probabilities and performs
+the updates to the weights and biases according to the trainign rule in equation\ref{Update_weights}.
+These training updates are repeatley performed starting again from step 2 until the model achieves sufficient performance.
 Furthermore, the model can be evaluated in its performance in terms of chosen metrics like prediction accuracy or the negative likelihood etc..
-In this case a logistic regression is used for the classification task and the \ac{RBM} is used for the trainng of the neural network. 
-After the evaluation the iteration is completed and the new weghts and biases can be transmitted for the following training iteration.
 
-Since such chips do not yet exist, the objective is to construct a simulator pipeline that integrates these individual steps into a simulator, effectively replicating this hardware platform.
-Only the bus system, the memory and the controller are not mappable since the local machine already has the hardware.
-With this underlying model deriving the requirements is the next step in establishing the research outline.
-The aim of generating requirements is to generate good quality, not perfect, requirements that offers an acceptable level of risk to start the project.\footcite[cf.][11]{ebertSystematischesRequirementsEngineering2008}
-Hence, these requirements need to cover the functions of the \ac{mem-HNN}, which then must be implemented by the respective software components.
-Despite this, requirements may evolve over time and occasionally require adjustments when outcomes differ from initial expectations.
-As a result, the analysis of the model in conjunction with the reasearch question and under thought of the defined objective, the following requirements for the software emerged:
+In the simulator pipeline the behavior of the \ac{mem-HNN} in fig.\ref{Overall architecture} is mimicked, where the simulator acts as a drop-in replacement until hardware devices become availbale.
+The simulator models the behavior of the chip, so that performance predictions are possible long before a hardware device can eventually be used.
+Here, it is important to stress that the current hardware model described in the previous section currently does not contain modeling results for the on-chip memory, the controller and the bus system.
+The simualtor is therefore solely focused on modeling the sampling step 3.
+With more modeling results becoming available, accurate simualtions of step 2 and 4 can be added to the simualtor.
+The next step is to derive the requirements and to establish the research outline.
+The aim of generating requirements is to generate good quality, requirements that offers an acceptable level of risk to start the project.\footcite[cf.][11]{ebertSystematischesRequirementsEngineering2008}
+These requirements need to cover the functions of the \ac{mem-HNN}, which then must be implemented by the respective software components.
+Also, requirements may evolve over time and require adjustments when outcomes differ from initial expectations.
+As a result, considering the research question and objectives, the following software requirements emerged:
 
 \textbf{Digital Computer}
 \begin{itemize}
-    \item Defining a \ac{RBM}
+    \item Initialize a \ac{BM}
     \item Utilization of any training data
-    \item Training a \ac{RBM}
-    \item Establishing a pipeline for the classification
-    \item Possibility of conventional sampling algorithms: gibbs sampling and metropolis hasting
-    \item Setting individual parameters: sampling steps, training iterations 
+    \item Initializing of other ML models that are used in conjucntion with the \ac{BM} for evaluation
+    \item Training of the \ac{BM} with either Gibbs Sampling or Metropolis Hasting
+    \item Setting individual parameters: sampling steps, training iterations, noise level, learning rate 
+    \item Evaluation of the model's performance using prediction accuracy and negative likelihood
 \end{itemize}
 \textbf{Simulated Mem-HNN Accelerator}
 \begin{itemize}
-    \item Using any \ac{RBM} as input
-    \item Correctly using the Hopfield Network update algorithm
+    \item Using any \ac{BM} as input
+    \item Implementing the noisy Hopfield Neural Network update mechanism described in \ref{noisy_update_HNN_formula}
     \item Return sampled output of the neuron configurations 
-    \item Correctly using the Hopfield Neural Network as sampling method 
-    \item Possibility to use N/2 half updating method instead of asynchronously update of states
-    \item Component for measuring the parameters required for evaluation: Speed (throughput) and energy consumption
+    \item Selectively switching between the N/2 half updating method instead of single spin updates described in 2.4
+    \item Simulation of computation speed (throughput) and energy consumption of the \ac{mem-HNN} chip
 \end{itemize}
-Fruthermore, the python program should be split logically into the different modules and components to enable well structured code. 
+Furthermore, the python program should be split logically into the different modules and components to enable well structured code. 
 With set requirements it is now possible to begin the iterative design and evaluation cycle with focusing on some requirements per iteration.
 
 \section{First Design and Evaluation phase}
 
-This \textbf{Design phase} has the goal of implementing all requirements of the digital computer resulting in a first prototyp iteration.
+This \textbf{Design phase} has the goal of implementing the parts of the simulator pipeline that is executed 
+on the digital compuer in fig.\ref{Overall architecture} requirements.
+Accordingly the resulting prototyp of this iteration has to satisfy all requirements listed under digital computer in section 4.2.
+The implementation is verfied with a test case based on classification of handwritten digits.
 The first step in the described prototyping methodology within 3.3 is to perform the systemic analysis to categorize the prototype.
 In the realm of prototyping, the following categorizations are made: the prototype type (1) is computational, and its fidelity level (2) is high, as it aims to model all functionalities closely to reality.
 Furthermore, the complexity (3) is considered moderate because not all hardware components can be modeled in software.
 Additionally, the scale (4) remains constant, and there are multiple iterations (5) executed sequentially to train and infer the \ac{RBM}.
-The first step, is to chose one of the machine learning libraries like Ternsorflow, Pytorch or Scikit Learn. In this case Scikit Learn is chosen since it is one of the industry standards for classical machine learning, has a broad variety of features in terms of \ac{RBM}s
-and has a lower learning curve compared with e.g. Tensorflow.\footcite[cf.][5-6]{raschkaMachineLearningPython2020}
-This allows fast development with already well balanced hyperparameters within the library that can be used. 
-Another reason is that the available workloads of datasets are popular and devliver results that are comparable with literature.
-This is useful to answer the research question in a timely manner with already available functionalities for \ac{RBM}s.
-Especially, the implementation of the \ac{RBM} is inspired by an example of the official scikit learn documentation.\footcite[cf.][1]{RestrictedBoltzmannMachine}
-In general, the RBM model is modelled as the feature extractor in combination with a logistic regression classifier for the prediction.
-
-Scikit learn offers a variety of datasets that are already in a polished format, ready to use. 
-The decision is to use a classification workload of handrwritten digits.
-One reason for this is that the load digits dataset is similar to the well known MNIST dataset but has a smaller resolution of 8x8 pixels and features around 1800 samples that can be categorized in 10 classes (integers 0-9).\footcite[cf.][1]{SklearnDatasetsLoad_digits}
-The second reason is that the workload is already optimized and therefore can deliver relevant data for the research question.
-Also, the dataset can be changed as desired with for example a breast cancer classification workload; in general all datasets that have two states like the activation of neurons in the neural network are compatible.
-In this case additionally a nudging of the data is chosen to create more samples, by a factor of five, and to bring more complexity in the workload. 
-The split in the dataset is selected to be divided into the conventional 80\% training data and 20\% test data.\footnote{cf.\cite{charithaTypeIIDiabetesPrediction2022a}, p. 1-2; cf.\cite{supriAsianStockIndex2023}, p. 1}
+This process of categorizing the protoype helps to make prototypes comporable as prototyping can be used very vague.
+The second step, is to set up the Scikit Learn machine learning library as explained in 4.2.
+Scikit Learn includes built-in models for \ac{BM}s that enable rapid development also includung popular datasets, delivering results that are comparable with those found in literature.
+This is useful to answer the research question in a timely manner.
+Especially, the test case used for the \ac{BM} is based on an example of the official scikit learn documentation.\footcite[cf.][1]{RestrictedBoltzmannMachine}
 
 The following task is to set parameters like the learning rate, iterations, size of the hidden layer. 
-With having a look in the literature and through testing a learning rate of \(0.2\), 10 training epochs with 72 iterations in one epoch, and an hidden layer of 100 neurons is chosen.
-Noteworthy, the size of the visible layer is automatically recognized by scikit learn but since the resolution of the pictures is 8x8 it requires 64 visible neurons to process an input.
+With having a look in the literature and through testing a learning rate of \(0.2\), 10 training epochs with 72 iterations in one epoch, and an hidden layer of 100 neurons is chosen.\footnote{cf.\cite{hintonPracticalGuideTraining2012}, p. 11-12; cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1}
+The size of the visible layer is automatically recognized by Scikit Learn, so for example to 64 to correspond with 8x8 images of a dataset.
+Also, the dataset implementation can be customized as needed, such as for a breast cancer classification workload.
 
 The training of the \ac{RBM} is performed in the \texttt{.fit} method and for the functionality to select the preferred sampling algorithm an additional sampling method need to be added.
 This process includes modifying the \texttt{\_rbm.py} file in the basic scikit learn library.
 The predefined sampling method is gibbs sampling and there is no option to access metropolis hasting within the basic library. 
 Therefore, the metropolis hasting alhorithm, explained in 2.2.3 needs to be manually implemented.
-The according adjustments are included from the code availability of a paper, which are published in Nature Communiations.\footcite[cf.][11-12]{bohmNoiseinjectedAnalogIsing2022}
-This decision was made because the algorithm used there is the original metropolis algorithm by Metropolis et.al..\footcite[cf.][1087-1092]{metropolisEquationStateCalculations1953}
-Furtherore, the implementation is performant with many numpy functions. 
+The according adjustments are included from the code availability of a paper.\footcite[cf.][11-12]{bohmNoiseinjectedAnalogIsing2022}
+This decision is made because the algorithm used there is the original metropolis algorithm by Metropolis et.al..\footcite[cf.][1087-1092]{metropolisEquationStateCalculations1953}
+Furthermore, the implementation is performant with many numpy functions. 
 To utilize this sampling method, some minor adjustments are made for the user friendliness. 
-First, one function is fixed that has a small error, which produced many zero arrays at the beginning of the sampling. 
+First, one function is fixed that has a small error, which produced an erroneous empty configuration as the first sampling iteration. 
 The user friendliness is achieved by introducing a new parameter \texttt{sampling\_method} that dynamically allows to change the sampling method. 
 Another change is the approach of evaluating the performance of the neural network after an x amount of iterations to meassure its performance on the test data while training.
 A complete code overview of the metropolis hastings sampling algorithm can be found in the \texttt{mcmc2.py} file as part of the digital delivery with all
 adjusted methods for the training of the \ac{RBM} in \texttt{\_rbm.py}, while the overall execution takes place in the \texttt{playground.py}.
 
-Hence, the possibility of different sampling methods are possible and the training of the \ac{RBM} is possible.
-To evaluate the results and functionalities the \textbf{Evaluation phase} in this iteration validates the functionalities through a training of the \ac{RBM} with each sampling method and extract their prediction accuracy 
-and negative likelihood for each iteration. Following figure\ref{CD_baselines} shows the training results using the gibbs sampling approach. 
+To evaluate the results and functionalities the \textbf{Evaluation phase} in this iteration validates the functionalities through a training of the \ac{RBM}. with each sampling method and extract their prediction accuracy.
+Scikit learn offers a variety of datasets that are already in a polished format, ready to use. 
+The decision is to use a classification workload of handrwritten digits as a test case for validating the implementation.
+One reason for this is that the ``load digits dataset'' is similar to the well known MNIST dataset representing an industry standard problem, but has a smaller resolution of 8x8 pixels and features around 1800 samples that can be categorized in 10 classes (integers 0-9).\footcite[cf.][1]{SklearnDatasetsLoad_digits}
+The second reason is that the workload is already optimized and therefore can deliver relevant data for the research question.
+In this case additionally a nudging of the data is chosen to create more samples, by a factor of five, and to bring more complexity in the workload. 
+The split in the dataset is selected to be divided into the conventional 80\% training data and 20\% test data.\footnote{cf.\cite{charithaTypeIIDiabetesPrediction2022a}, p. 1-2; cf.\cite{supriAsianStockIndex2023}, p. 1}
+For training, an \ac{RBM} is selected as the feature extractor and paired with a logistic regression classifier for prediction, thereby establishing a cohesive pipeline.
+Following figure\ref{CD_baselines} shows the training results using the gibbs sampling approach. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{graphics/CD_combined_plot.png}
+    \includegraphics[width=0.9\linewidth]{graphics/CD_combined_plot.png}
     \caption{Gibbs sampling baselines}
     \label{CD_baselines}
 \end{figure}
-The right plot shows that the initial prediction accuracy starts at 75\%, akin to that of a linear regression model.
-This suggests that without training a linear regression alone could account for this level of accuracy when an untrained \ac{RBM} is included in the pipeline.
+The right plot shows that the initial prediction accuracy starts at 75\%, akin to that of just a single linear regression model.
+This suggests that the untrained \ac{RBM} at the input of the classifier initially does not effect the model's classification performance.
 Data points are colected after every iteration across the span of 720 iterations. 
-It is noteworthy that after 650 iterations the accuracy tagnated and had a maximum prediction accuracy
+After 650 iterations the accuracy slowly stagnates and has a maximum prediction accuracy
 of 92.29\%. 
 In the left plot picturing the negative likelihood, which is a measure of how well a statistical model represents the observed data.
 When training a model the aim is to minimize the negative log-likelihood, which means that the model maximizes the probability of generating the observed data.
@@ -159,38 +161,40 @@ Hence, it is visible that in the beginning the model learns more rapidly and in 
 The best value is a negative likelihood of -22.01.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{graphics/metropolis_combined_plot.png}
+    \includegraphics[width=0.9\linewidth]{graphics/metropolis_combined_plot.png}
     \caption{Metropolis sampling baselines}
     \label{metropolis_baselines}
 \end{figure}
-In contrast, the figure\ref{metropolis_baselines} used the sampling algorithm of metropolis hasting to train the \ac{RBM}.
+In contrast, the fig.\ref{metropolis_baselines} used the sampling algorithm of metropolis hasting to train the \ac{RBM}.
 Noteworthy is that the prediction accuracy in the right plot has a faster increase in the beginning but already starts to stagnate at around 400 iterations. 
-Here, the maximum prediction accuracy already returned 94.15\%. 
-The negative likelohood is also growing faster than in gibbs sampling and has less spikes in the beginning showing a more continuously learning rate.
+Here, the maximum prediction accuracy achieves 94.15\%. 
+The negative likelohood is also growing faster than in Gibbs sampling and exhibits less variablitiy showing a more continuously learning rate.
 Here, the best negative likelihood value is -21.80.
-The gathered data can later on be used as baseline against the desired new updating mehtod of sampling with a Hopfield Network.
-Furthermore, the data is comparable and show similar results to those from the literature and are therefore to be considered correct.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022a}, p. 5; cf.\cite{RestrictedBoltzmannMachine}, p. 1}
+Furthermore, to validate the accuracy of the results, they are compared against similar results to those from the literature.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022a}, p. 5; cf.\cite{RestrictedBoltzmannMachine}, p. 1}
+Therefore, a good agreement is visible, suggesting that the implementation produces valid results and can thus be considered correct.
 As a result, with each sampling method successfully undergoing a training, all the functionalities can be proven right and the prototype can be passed 
 into the next design iteration.
+The gathered data can later on be used as baseline against the desired new updating mehtod of sampling with a Hopfield Network.
 
 
 \section{Second Design and Evaluation phase}
 
-This \textbf{design phase} iteration has the goal of implementating the noisy Hofpield Network as described in the chapter 2.4.4. 
-The functionilities of a \ac{RBM} can be reproduced by the Hopfield Neural Network by correctly tuning the noise.
-Following subfunctionalities need to be established: imitating the \ac{RBM} activation function, drawing random neurons to update,
+This \textbf{design phase} iteration has the goal of implementating the simulator for \ac{mem-HNN} chip shown in fig.\ref{Overall architecture}.
+The functionality of this chip is that of a noisy Hopfield Neural Network, which has previously been described in 2.4.4.
+The update mechanism is based of he update formula in eq.\ref{noisy_update_HNN_formula}, where noise is injected to imitate the stochastic behaviour of the neurons.
+Hence, a \ac{BM} can be modelled by correctly tuning the noise of the Hopfield Neural Network.
+Following subfunctionalities need to be established: drawing random neurons to update,
 correct injection of the gaussian noise scale, calculating the weighted sum,
-comparing the weighted sum + bias + noise agaisnt the threshold and saving the new neuron configuration.
-Hence, this iteration is accessing new ground since the implementation of the simulator pipline is not validated yet. 
+comparing the weighted sum + bias + noise against the threshold and saving the new neuron configuration.
+Furthermore, the possibility of selectively switching between the N/2 half updating method instead of single spin updates
+is to be included in this design phase. 
+Hence, this iteration aims to break new ground as it involves implementing the Simulator Pipeline, which has not yet been validated, and integrates the noisy Hopfield Network with the capability for N/2 half updating.
 
-First, a new file \texttt{\_hopfield\_network\_v1.py} is created that aims to first establish a noisy Hopfield Network with a single neuron 
-and meassure its activation function.
-Like mentioned in 2.4.4, a Hopfield Network has a binary activation function that needs to be made compatible with the sigmoid activation function of the \ac{RBM}.
 The Hopfield Network is initialized with a size of just one neuron and an sampling iteration counter of \(1500\) iterations with a thermalization of \(100\) sampling steps before 
 the neuron is updated.
-The reason for the thermalization is, so that the internal network can get into a flow and do some sampling steps to be statistical independent in order to have un unbiased sampling.
+Thermalization is included to allow the network to perform independent sampling steps and get into a flow to ensure unbiased sampling steps.
 The threshold as defined in the update formula is \(0\). 
-As experimented the update formula for implementation of the Hopfield Network looks the following:
+As experimented the update formula for the implementation of the Hopfield Network looks the following:
 
 \begin{lstlisting}
     for x in range(self.iterations_per_theta):
@@ -214,15 +218,55 @@ As experimented the update formula for implementation of the Hopfield Network lo
     self.activationProbabilityPerNeuronDict[self.bias] = self.divide_array_elements(self.summedConfigurations, self.iterationcounter)
     self.bias += 0.025
 \end{lstlisting}
-In the beginnig a random neuron is drawn to be updated, which currently everytime is neuron number one because the network size is one. 
-This allows to meassure the activation probability and fast iteration time with a clear result on how the network behaves. 
-Calculating the weighted sum can be seen as the core of the update formula and is done first.
-Afterwards to compare against the threshold an bias is added.
-The value of the bias ranges from \(-6; 6\) in step sizes of \(0.025\). After completing all samplin iterations beginning with \(-6\) the step size is added to the bias until all iterations are made.
-This is sufficient for the neuron activation function of an ordinary Hopfield Network and results in the binary step. 
-The resulting activation function is obtained by summing all configurations within a single bias configuration.
+
+The code represented here shows the update meachnism for the single spin update. 
+In the beginnig a random neuron is drawn to be updated, which currently everytime is neuron number one because the network size is initialized with one neuron. 
+Calculating the weighted sum can be seen as the core of the update formula and is executed first.
+Therefore, the weight matrix is selected (indexed by the random drawn neuron) and multiplied by the current configuration resulting in 
+the weighted sum that also ignores the weights connected from the drawn neurons.
+Afterwards for the comparison against the threshold the according bias of the neuron is added together with the injected noise (scale).
+To achieve the injection of noise, a Gaussian normal distribution is added which can modify the activation function, making it compatible with the sigmoid function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
+Technically this is performed by adding \texttt{np.random.normal(0, scale=1.75)} to the weighted sum and the bias, with 0 beeing the mean of the distribuion and the scale representing the standard deviation. 
+Hereby, it is important to find a standard deviation that is very close to the true activation probability is important, otherwise the training of the RBM would not work.
+In addition to that, the standard deviation changes with neuron size and needs to be readjusted if changes are made to the networks structure.
+Next, if the weighted sum plus bias and noise exceeds the threshold, the corresponding neuron state is set to 1; otherwise, it is set to 0.
+Lastly, after enough iterations when the thermalization is exceeded the new configurations
+are summed up to enable calculating the activation probability of the neurons. 
+
+For the sake of readability the N/2 half update mechaism is seperated but the used selective method with an according parameter is available in attachment \ref{attachement:HNN_N/2Half Code}.
+Hence, in a next step the possibility of the N/2 half updating methdod should be implemented as already mentioned in 2.4.3 and 3.1.
+N/2 half is updating neurons synchronously instead of the conventional asynchronously (only one neuron is chosen and updated) used in the Hopfield Network updating mechanism.\footcite[cf.][23-24]{caiHarnessingIntrinsicNoise2019}
+Following adsjustments are made in the code to achieve this behaviour:
+\begin{lstlisting}
+    self.neuron_index = np.random.randint(0, 2, self.size) #pick complete random neurons in the network, result [0,1,1,0,...]
+
+                weighted_sum = np.dot(self.weights[:, :], self.configuration)   
+                self.new_configuration = deepcopy(self.configuration)
+                bias = self.bias 
+
+                for i in range(len(self.neuron_index)):              
+                    #updating function comparing against threshold
+                    if self.neuron_index[i] > 0:
+                        if (weighted_sum[i] + bias[i] + np.random.normal(0, scale=self.scale)) >= self.threshold_theta:          
+                            self.new_configuration[i] = 1
+                        else:
+                            self.new_configuration[i] = 0
+\end{lstlisting}
+The randomly drawn neuron index now assigns either a 1 or a 0 for each neuron over the size of the network.
+Hereby, a 1 means that the sum of this neuron is calculated and will be compared against the threshold. 
+As a result, in a completely random process this would lead to about 25\% of all neurons updated (\(50\% drawn * 50\% updated\)).
+
+Coming back to the last two lines of the first code block, the resulting activation function is obtained by summing all configurations within a single bias configuration.
 In a next step, the configurations counted are divided by the number of total sampling iterations within the bias configuration (in this case 1500 iterations).
-That following figure \ref{Noisy_acitivation_function_bad} \textbf{Evaluates} the resulting activation probability of the single neurons. 
+
+With the resulting file \texttt{\_hopfield\_network\_v1.py} the aim is to \textbf{Evaluate} the establihed noisy Hopfield Network with a single neuron 
+and meassure its activation function.
+Like mentioned in 2.4.4, a Hopfield Network has a binary activation function that needs to be made compatible with the sigmoid activation function of the \ac{RBM}.
+The decision to use a single neuron enables fast iteration times and clear results on how the network behaves, facilitating the measurement of activation probability.
+Once the noise injection proves stable and effective for a single neuron, it proves that it will work for coupled neurons.
+The value of the bias ranges from \(-6; 6\) in step sizes of \(0.025\). After completing all sampling iterations beginning with \(-6\) the step size is added to the bias until all iterations are made.
+This is sufficient to completely cover an ordinary Hopfield Network with its range of the neuron activation function. 
+That following figure \ref{Noisy_acitivation_function_bad} visualizes the resulting activation probability of the single neurons. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{graphics/combined_noise_activation_plots.png}
@@ -230,13 +274,9 @@ That following figure \ref{Noisy_acitivation_function_bad} \textbf{Evaluates} th
     \label{Noisy_acitivation_function_bad}
 \end{figure}
 In the left plot, visualized in blue, the activation probability of the neuron is shown without adding noise to the plot. 
-The behaviour is like sme would expect it; once the bias reaches 0 the neuron is activated all the time.
-Far more interesting is the red plot on the right side, which introduces some noise into the binary step function, bringing it closer to the logistic sigmoid activation function used in the \ac{RBM}.
-To achieve this behavior, injecting noise through a Gaussian normal distribution can modify the activation function, making it compatible with the sigmoid function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
-Technically this is performed by adding \texttt{np.random.normal(0, scale=1.75)} to the weighted sum and the bias, with 0 beeing the mean of the distribuion and the scale representing the standard deviation. 
-Hereby, it is important to find a standard deviation that is very close to the true activation probability is important, otherwise the training of the RBM would not work.
-In addition to that, the standard deviation changes with neuron size and needs to be readjusted if changes are made to the networks structure.
-
+The behaviour is like one would expect it; once the bias reaches 0 the neuron is activated all the time.
+In the right figure with the the red line a noise of \(sigma=0.3\) is added.
+The resulting activation is probabilistic and follows a rudimentary sigmoid shape, very similar to the activation function of a \ac{BM} shown in fig.\ref{logistic_sigmoid}.
 The right plot shows that the noise injection works, even though it doesn't perfectly copy the sigmoid function.
 Concluding from this the sigmoid function is not achieved and the trainig of an \ac{RBM} probably fails. 
 Therefore, to completely evaluate and ensure that the injected noise fits to the logistic sigmoid function, the function itself is plotted 
@@ -368,26 +408,6 @@ The error bars indicating the standard deviation are large at the beginning of t
 However, with the number of iterations increasing, the error bars become smaller resulting in a more stable accuracy.
 Key take away is that after 4000 iterations there are no significant changes to the outcome of the prediction accuracy.
 
-With the successful training and tuned hypaerparameters in the next step the possbility of the N/2 half updating methdod should be researched already mentioned in 2.4.3 and 3.1.
-N/2 half is updating neurons synchronously instead of the conventional asynchronously (only one neuron is chosen and updated) used in the Hopfield Network updating mechanism.\footcite[cf.][23-24]{caiHarnessingIntrinsicNoise2019}
-Following adsjustments are made in the code to achieve this behaviour:
-\begin{lstlisting}
-    self.neuron_index = np.random.randint(0, 2, self.size) #pick complete random neurons in the network, result [0,1,1,0] and so on for size of the network
-
-                weighted_sum = np.dot(self.weights[:, :], self.configuration)   
-                self.new_configuration = deepcopy(self.configuration)
-                bias = self.bias 
-
-                for i in range(len(self.neuron_index)):              
-                    #updating function comparing against threshold
-                    if self.neuron_index[i] > 0:
-                        if (weighted_sum[i] + bias[i] + np.random.normal(0, scale=self.scale)) >= self.threshold_theta:          
-                            self.new_configuration[i] = 1
-                        else:
-                            self.new_configuration[i] = 0
-\end{lstlisting}
-The neuron index now assigns either a 1 or a 0 to each neuron, with 1 meaning that the sum of this neuron is calculated and will be compared against the threshold. 
-In a completely random process this would about lead to 25\% of all neurons updated (\(50\% drawn * 50\% updated\)).
 To create a good comparison, the same parameters scale and sampling iterations are tuned for this updating method. 
 In this method, 21 complete training sessions are also carried out for this purpose.
 Beginning with the scale the result is visualized in figure\ref{Hyperparamers_Scale_mit} :

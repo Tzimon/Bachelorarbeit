@@ -129,6 +129,7 @@ It progressively acquires the gradient of the energy function, methodically adva
 Consequently, this leads to the specific learning rule\footcite[cf.][5]{hintonPracticalGuideTraining2012}:
 \begin{equation}
     \Delta w_{ij} = \epsilon ( \langle v_i h_j \rangle_{\text{data}} - \langle v_i h_j \rangle_{\text{model}} )
+    \label{Update_weights}
 \end{equation}
 
 The network can now update the weights ``W'' that exist between the neurons through the training rule based on the observations that served as input. \footcite[cf.][1-2]{barraEquivalenceHopfieldNetworks2012}
@@ -577,6 +578,7 @@ Effectively the new noisy hopfield network updating function now looks like the 
     +1 & \text{if } \sum_j w_{ij}  + b + \mathbf{n} \geq \theta_i, \\
     -1 & \text{otherwise}.
     \end{cases}
+    \label{noisy_update_HNN_formula}
 \end{equation}
 with \(n\) representing the noise.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020} 
 Besides aiding optimization tasks, noise also creates an interesting link to \c{BM}s.

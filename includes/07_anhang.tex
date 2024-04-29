@@ -100,3 +100,49 @@ def autocorr(self, x):
   \includegraphics[width=0.8\linewidth]{graphics/Visualisierungen_throughput_log_3.png}
   \caption{Throughput with outliers}
 \end{figure}
+
+
+\anhang{Code for Hopfield Networking upate mechanism with possbility for N/2 Half with outliers for all sampling methods}\label{attachement:HNN_N/2Half Code}
+\begin{lstlisting}
+  for x in range(self.iterations_per_theta):
+              
+      if self.N2_Half == False:
+          self.neuron_index = np.random.randint(0, self.size) #pick a random neuron in the network
+          # Calculate the weighted sum for the neuron, excluding its own state
+          weighted_sum = np.dot(self.weights[self.neuron_index, :], self.configuration)               
+  
+          self.new_configuration = deepcopy(self.configuration)   #copying the old configuration to create a new one and update it
+          bias = self.bias[self.neuron_index]
+  
+          if (weighted_sum + bias + np.random.normal(0, scale=self.scale)) >= self.threshold_theta:           
+              self.new_configuration[self.neuron_index] = 1
+          else:
+              self.new_configuration[self.neuron_index] = 0
+  
+      else: 
+          self.neuron_index = np.random.randint(0, 2, self.size) #pick complete random neurons in the network, result [0,1,1,0] and so on for size of the network
+          weighted_sum = np.dot(self.weights[:, :], self.configuration)   
+  
+          self.new_configuration = deepcopy(self.configuration)
+          bias = self.bias 
+  
+          for i in range(len(self.neuron_index)):
+              
+              #updating function comparing against threshold
+              if self.neuron_index[i] > 0:
+                  if (weighted_sum[i] + bias[i] + np.random.normal(0, scale=self.scale)) >= self.threshold_theta:          
+                      self.new_configuration[i] = 1
+                  else:
+                      self.new_configuration[i] = 0
+  
+      self.configuration = deepcopy(self.new_configuration)   #Saving the new configuration as basic configuration, so for the next iteration it works
+  
+      if x >= self.thermalization:  
+          self.v_neg[:, self.iterationcounter]= self.new_configuration[100:]
+          self.h_neg[:, self.iterationcounter]= self.new_configuration[:100]
+  
+          self.iterationcounter += 1
+  
+      self.activationProbabilityPerNeuronDict[self.bias] = self.divide_array_elements(self.summedConfigurations, self.iterationcounter)
+      self.bias += 0.025
+  \end{lstlisting}
