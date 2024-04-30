@@ -51,7 +51,7 @@ Training and inference on this system then involves the following five steps, wh
 \end{figure}
 \textbf{1.} initializes the machine larning model (neural network) including setting the weights and biases of the \ac{BM}. 
 
-\textbf{2.} starts with the transfer of the weigths and biases to the \ac{mem-HNN} accelerator via a bus-system. 
+\textbf{2.} starts with the transfer of the weights and biases to the \ac{mem-HNN} accelerator via a bus-system. 
 The local memory saves the data and forwards them to the controller. 
 The controller is able to programm the memristors in the crossbar array. 
 
@@ -341,9 +341,9 @@ This matrix essentially serves as the template for the interactions between hidd
 Indexing within the weight matrix is handled carefully, to respect the structure of the \ac{BM}. 
 Therefore, the decision is to set weights between a hidden neuron i and a visible neuron j at positions \texttt{[i, j+num\_hidden]} and \texttt{[j+num\_hidden, i]} to ensure symmetry.
 
-With some more adjustments necessary to the code like transposing the returned neuron configurations, the first training with the sampling method of the Hopfield Network can begin. 
-As in the Design Phase 1 the same test case of \ac{RBM} predicting on handwritten digits classification is chosen to make results comparable with the earlier established baselines.
-The Hyperparmeters first are set to a scale of 1.75 and thermalization of 100 as used for the single neuron in fig.\ref{Noisy_acitivation_function_good} but with more sampling steps (5000) than before. 
+With some more adjustments necessary to the code like transposing the returned neuron configurations, the first training with the sampling method of the Hopfield Network is possible. 
+As in the Design Phase 1 the same test case of \ac{RBM} predicting on a handwritten digits classification dataset is chosen to make results comparable with the earlier established baselines.
+The Hyperparmeters first are set to a scale of 1.75, thermalization of 100 as used for the single neuron in fig.\ref{Noisy_acitivation_function_good} but with more sampling steps (5000) than before. 
 The results of the training are visualized in fig.\ref{HNN_training}.
 \begin{figure}[H]
     \centering
@@ -351,29 +351,25 @@ The results of the training are visualized in fig.\ref{HNN_training}.
     \caption{Hopfield Network sampling baselines}
     \label{HNN_training}
 \end{figure}
-First of all, it can be recognized that the training was successful, which was uncertain. 
-Noteworthy, that with this method the output had to be transposed to be able to parse the data Scikit Learn.
-In a second look it can be seen that the negative likelihood is far more stable as gibbs sampling and rather has similarities with metropolis hastings sampling.
-Here, the best value is a likelihood of -22.3, so slightly worse than metropolis hastings and gibbs sampling. 
-The right plot showing the prediction accuracy has the highest ascent of all the three graphs, which proofs that the 
-less iterations are required to receive good results compared to the other two methods.
-Still, The best prediction value is 90.81\% and therefore worse than gibbs and metropolis hastings. 
-The reason for this can be the hyperparameter tuning.
-Since the noisy Hopfield Network method can become sensitive fast or is not adjusted correctly 
-for this amount of neurons in the network, receiving this result without further adjustments already looks promissing. 
+It can be seen that the negative likelihood is far more stable as Gibbs sampling and rather has similarities with Metropolis Hastings sampling.
+Here, the best value is a likelihood of -22.3, which is slightly worse than Metropolis Hastings and Gibbs sampling. 
+The right plot, which displays the prediction accuracy, shows the steepest ascent among the three graphs.
+This suggests that good results can be achieved with fewer iterations compared to the other two methods.
+The best prediction value is 90.81\% but no hyperparameter tuning has been done yet. 
 
 As a result, the following hyperparameters are tuned to possibly received better outcomes. 
-Specifically, the scale, which represents the standard deviation and is used as noise is tuned. 
+Specifically, the standard deviation used for noise injection requires tuning.
 In addition to that the amount of sampling iterations within a single training iteration is tuned.
-One extended parameter could be the learning rate and the total iterations but to have an appropriate benchmark against the other two 
-sampling methods these parameters are locked in. 
-Last but not least, the possibility of tuning the thermalization could help out too even if slightly less significant than the other two hyperparameters.
-Since the training takes around 40 minutes to complete tuning too many hypaerparameters takes too much time for the period of this thesis. 
-First hyperparameter researched is the influence of the standard deviation (scale) to the maximum prediction accuracy. 
-Especially the maximum prediction accuracy of the last 50 training iterations are gathered since this is the relevant area for inference.
-Given that the Hopfield Network operates as a statistical sampling method, the standard deviation is also calculated for these final 50 training iterations.
-This is done for the scale range of 1.0 to 2.0 within step sizes of 0.05, totalling to 21 single trainings done.
-The result is illustrated in figure\ref{Hyperparamers_Scale_ohne}:
+Additional hyperparameters that can be tuned are the learning rate, the total amount of sampling/training iterations and the thermalization.
+These are not optimized as part of this study because otherwise there is no appropriate benchmark against the other two 
+sampling methods. 
+First the single neuron update Hopfield Network's hyperparameter are tuned. 
+Since, the training takes around 40 minutes to complete tuning too many hypaerparameters takes too much time for the period of this thesis. 
+The first hyperparameter researched is the influence of the standard deviation (scale) to the maximum prediction accuracy. 
+Given that the Hopfield Network operates as a statistical sampling method, the standard deviation, average and maximum are analyzed for the last 50 training iteations, as the training has stagnated at this point.
+To optimze the standard deviation, it is swept from sigma=1 to sigma=2 with a stepsize of 0.05, totalling to 21 single trainings.
+Lastl, only the prediction accuracy is analyzed because the negative likelihood, which represents the learning rate, is significantly steeper than the other sampling methods, and the model's final performance is of greater interest.
+The result is shown in figure\ref{Hyperparamers_Scale_ohne}:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/NEW_Scale_Ohne_N2_Half_Pred_Acc.png}
@@ -382,55 +378,49 @@ The result is illustrated in figure\ref{Hyperparamers_Scale_ohne}:
 \end{figure}
 The result shows that beginning with a scale of 1.0 the prediction accuracy slowly rises until the scale of 1.6
 Here, the maximum value is 94.77\% and with that surpasses the performance of both metropolis hastings and gibbs sampling. 
-After a scale of 1.75 the prediction accuracy falls off a cliff indicating that the activation function of the \ac{RBM} is not modelled correctly anymore.
-This shows that depending an network size and workload the adjustment within this method is important to achieve good results. 
-The standard deviation follows the maxmimum prediction accuracy pretty closely and has no outliers indicating that the prediction accuracy is only a lucky random training.
-Close to the sclae of 1.0 the deivation is slightly lower compared to the rest of the plot, showing that the scale could be too low to model the sigmoid function correctly. 
+After a scale of 1.75 the prediction accuracy rapidly declines.
+This shows that with adjustments to the standard deviation a good prediction accuracy is achievable. 
+The average standard deviation follows the maximum prediction accuracy pretty closely and has no outliers.
+Close to the sclae of 1.0 the deviation is slightly higher compared to the rest of the plot, indicating that the scale does not model the sigmoid function correctly. 
 
-In a next step, the best fit with a scale of 1.6 is used for the second hyperparameters. 
-The sampling iterations within one training iterations are now tuned.
+In a next step, the best fit with a scale of 1.6 is fixed as for the optimization of the number of sampling steps, as the two parameters are independent of each other. 
 Hence, the decision is to begin with 1000 sampling iteration continiunig with an increase of 1000 iterations until 15000 iterations are reached. 
-With that the training showed that the interesting are is around 1000 to 4000 iteration and that the step size of 1000 is too big for that. 
-To be more granular two extra trainings with iterations 1500 ad 2500 werde completed, totalling to 17 trainings performed.
+With that the training shows that the interesting range is around 1000 to 4000 iteration and that the step size of 1000 is too big for that. 
+Therefore, additional trainings at sampling iterations 1500 ad 2500 are completed, totalling to 17 trainings performed.
 The values are extracted as before, by considering the last 50 iterations and then calculating both the maximum value and the standard deviation from this subset.
 The visualized results can be found in following figure\ref{Hyperparamers_Iteraions_ohne}:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{graphics/Iterations_Ohne_N2_Half_Pred_Acc.png}
+    \includegraphics[width=0.8\linewidth]{graphics/Iterations_Ohne_N2_Half_Pred_Acc.png}
     \caption{Hopfield Network Hyperparametertuning sampling iterations}
     \label{Hyperparamers_Iteraions_ohne}
 \end{figure}
 The line of maximum prediction accuracy starts at the first iteration with a value close to 0.3 and rises rapidly to reach a value just above 0.92 after around 2500 iterations.
 From the point of 4000 iterations onwards, the accuracy remains largely constant with slight fluctuations.
 The best value is at 15000 iterations with an prediction accuracy of 94.5\%, while at 4000 iterations the accuracy is at 93.35\%.
-The error bars indicating the standard deviation are large at the beginning of the graph, which indicates that not enough neurons were updated in the sampling process.
-However, with the number of iterations increasing, the error bars become smaller resulting in a more stable accuracy.
-Key take away is that after 4000 iterations there are no significant changes to the outcome of the prediction accuracy.
-
-To create a good comparison, the same parameters scale and sampling iterations are tuned for this updating method. 
-In this method, 21 complete training sessions are also carried out for this purpose.
-Beginning with the scale the result is visualized in figure\ref{Hyperparamers_Scale_mit} :
+The error bars indicating the standard deviation are large at the beginning of the graph.
+With the number of iterations increasing, the error bars become smaller resulting in a more stable accuracy.
+From this, it can be concludeded that increasing the number of iterations beyond 4000 has no additional benefit to the prediction accuracy. 
+In a second step the scale of N/2 Half update mechanism is analyzed visualized in figure\ref{Hyperparamers_Scale_mit} :
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\linewidth]{graphics/NEW_Scale_MIT_N2_Half_Pred_Acc.png}
+    \includegraphics[width=0.8\linewidth]{graphics/NEW_Scale_MIT_N2_Half_Pred_Acc.png}
     \caption{Hopfield Network Hyperparametertuning scale for N/2}
     \label{Hyperparamers_Scale_mit}
 \end{figure}
+In this method, 21 complete training sessions are also carried out for this purpose
 On a first glance, the prediction accuracy beginning from left to right is constantly rising until it reaches the scale of 1.6.
 Here, the maximum prediction accuracy tops out at 94.76\%.
 What is interesting, that in \ref{Hyperparamers_Scale_ohne} the exact same scale has also the best performance. 
-With increasing the scale after the top of 1.6, the accuracy falls off a cliff. 
+With increasing the scale after the top of 1.6, the accuracy declines rapidly. 
 Noteworthy, is that in comparison with \ref{Hyperparamers_Scale_ohne} the N/2 half updating method has nearly equal prediction accuracy
 but is more sensitive. 
-This means that the configuration of the hyperparameters is tougher for this updating method and results can get worse more easily. 
-The standard deviation represented in the error bars is high at the lower scale values validating that the sigmoid function is not properly mapped. 
-This is similar for too high values beginning at a scale of 1.8.
+This means that the performance decreases more rapidly as the noise is detuned from its optimum value. 
+The standard deviation represented in the error bars is high at the lower scale values but also similar for too high values beginning at a scale of 1.8.
 
-The second hyperparameter are the amount of sampling iterations required to achieve good results. 
-In the training process the plan is to begin with the same step sizes like earlier on. Soon it was clear,
-that the granularity needs to be much finer too achieve good results. 
-Therefore, the decision is to start at iteration 201 (1st iteration after the 200 thermaliation steps) and ending with a sampling iteration of 250 with a step size of 1.
-This totals to 50 complete training sessions. The new results are illustrated in figure\ref{Hyperparamers_Iteraions_mit}:
+The second hyperparameter tuned for the N/2 Half update mechanism are the amount of sampling iterations. 
+The decision is to start at iteration 201 (1st iteration after the 200 thermaliation steps) and ending with a sampling iteration of 250 with a step size of 1.
+This totals to 50 complete training sessions. The results are illustrated in figure\ref{Hyperparamers_Iteraions_mit}:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/Iterations_MIT_N2_Half_Pred_Acc.png}
@@ -439,20 +429,23 @@ This totals to 50 complete training sessions. The new results are illustrated in
 \end{figure}
 The figure shows that with only 10 sampling iterations after the thermalization good prediction accuracies of 94\% can be achieved. 
 The maximum prediction value is 95.10\% at 221 sampling iterations, which surpasses the earlier achieved results.
-Nonetheless, the key message here is that far less sampling iterations are needed within one big training iteration of the \ac{RBM}
+Nonetheless, the key result is, that far less sampling iterations are required within one big training iteration of the \ac{RBM}
 to achieve good results. 
 When comparing the number of 221 to the around 4000 sampling iterations required in \ref{Hyperparamers_Iteraions_ohne} it would be more efficient by a factor of 
-\(18.09x\). In return, this updating methods saves time and also has less energy consumption required.
+\(18.09x\).
+These results of the third design and evaluation pase validate that the \ac{BM}, including its weights and biases, are used as 
+input to perform a complete training. 
+Furthermore, the neuron configuration is returned to the digital computer to evaluate and predict the performance while updating weights and biases. 
+Hence, all the functionalities of the prototype are implemented and the prototype itself is complete and detailed code is available within the digital delivery. 
 
-With this third design and evaluation phase ending all the functionalities of the prototype are implemented and the prototype itself is complete. 
-
-\section{Final Evaluation phase}
-In this final evaluation phase the functional prototype should now be validated within the evaluation phase of the \ac{DSR} framework.
-The goal is to answer the research question ``Can Boltzmann Machines be \textbf{efficiently} implemented on physics-inspired
+\section{Fourth Design and Evaluation phase}
+In this final Design and Evaluation phase the goal is to enhance the \ac{mem-HNN} simulator to
+predict the performance of a future \ac{mem-HNN} chip.
+This equals with the goal ultimately answer the research question ``Can Boltzmann Machines be \textbf{efficiently} implemented on physics-inspired
 Hardware accelerators by analog noise injection?''.
-Since the key word here is efficiently, a simulation will be performed to meassure the parameters required for evaluation.
+The \textbf{Design} phase enables this by implementing the energy model and an autocorrelation metric on top of the functional Simulator.
+Since the key word is efficiently, this happens in the methodology of a simulation, which requires to specify the parameters meassured for evaluation.
 With the model purpose set, the model scope(time frame) of the simulation introduced in 3.4 is to be considered as short with only mutliple weeks and only one person working on the simulation. 
-
 The next step is to define the result variables. The two variables that are of interest in literature to meassure the performance of the
 \ac{mem-HNN} accelerator are troughput (samples/sec) and energy consumption (energy/operation). 
 These two metrics are widely used in literature and can create a good comparison.\footnote{cf.\cite{bellettiJanusFPGABasedSystem2009}, p. 54-55; cf.\cite{aaditAcceleratingAdaptiveParallel2023}, p. 1-2; cf.\cite{ortega-zamoranoFPGAHardwareAcceleration2016}, p. 16-17}
@@ -465,7 +458,8 @@ For the throughput knowledge about the autocorrelation of the sampling is requir
 Autocorrelation is a statistical measure that captures the degree of correlation between successive configurations generated by timeseries, in this case sampling algorithm for the training of a \ac{RBM}.\footcite[cf.][1-6]{tanakaReductionAutocorrelationHMC2017}
 Long correlations between configurations can reduce the effective sample size and lead to inefficiency impacting the precision of the model.
 This is important for the result variable ``troughput'' because it allows to know when the sampling is statistically independent and ready to use and therefore how many sampling iterations neeed to be done for an effective training. 
-The equation to calculate the statistical dependency of 2 successive samples is the auto-covariance function: 
+Combined with the specifications of the chip it can be calculated what the resulting throughput is.
+Here, covariance is implemented and used to measure the correlation between two successive samples:
 \begin{equation}
     K_{XX}(t_1, t_2) = \mathbb{E}[(X_{t_1} - \mu_{t_1})(X_{t_2} - \mu_{t_2})] = \mathbb{E}[X_{t_1} X_{t_2}] - \mu_{t_1}\mu_{t_2},
 \end{equation}
@@ -473,141 +467,133 @@ with \(t_1,t_2\) being two distinct points in time and \(X_{t1},X_{t2}\) are ran
 \(\mu_1,\mu_2\) are the mean (expected) values of the random variables \(X_{t1},X_{t2}\). 
 The \(\mathbb{E}\) is an expectation operator and is used to calculate the expected value of the expression within the brackets.
 Also, the cycle speed of the \ac{mem-HNN} accelerator is needed. 
-The clock frequency is around 700MHz and therefore can sample 700 million samples per second, which is about 1.44ns for a single clock cylce.\footcite[cf. table1][7-8]{caiPowerefficientCombinatorialOptimization2020} 
-Noteworthy, these numbers are takem from a neural network with 111 neurons. 
-On the other hand, the only input variable for the energy consumption is the energy model of the \ac{mem-HNN}, which is introduced in 4.2.1 and is developed by HPE in combination with the Forschungszentrum Jülich.
-This allows to meassure each of the individual energy consumptions that are configured to the specifications of the \ac{mem-HNN} hardware accelerator.\footcite[cf.][1-5]{hizzaniMemristorbasedHardwareAlgorithms2023}
-For both of the methods one input of course is the finished prototype, that mirrors the functionalities of the \ac{ASIC} on a high level.
+The clock frequency is 700MHz and therefore can sample 700 million times per second, which is 1.44ns for a single clock cylce.\footcite[cf. table1][7-8]{caiPowerefficientCombinatorialOptimization2020} 
+With the simulation model specified, the autocorrelation is implemented into the prototype. 
+The changes made for the implementation of the autocorrelation is available in the interface version 5 and part of the digital delivery. 
 
-With the simulation model specified, the autocorrelation can be implemented into the prototype. 
-The decision is to average the values of the output configurations from row to row to an average of 60.
-This allows to extract a smoother autocorrelation plot that is not too biased in terms of the statistical approach.
+Next, the only input variable to meassure the second metric \textbf{energy consumption} is the energy model, which is introduced in 4.2.1 and is developed by HPE in combination with the Forschungszentrum Jülich.
+The implementation of it allows to meassure each of the individual energy consumptions that are configured to the specifications of the \ac{mem-HNN} hardware accelerator.\footcite[cf.][1-5]{hizzaniMemristorbasedHardwareAlgorithms2023}
+The energy function is provided in the form of a python library, that returns the average energy consumed for a single clock cycle.
+Specifically, it includes functions to calculate the energy usage of the probabilistic random number generator, the register, the crossbar and the digital analog converter that generates the noise signal.
+These functions are based on circuit simulations that were performed on a 28nm technology node commercial manufacturial.
+As input, the energy model requires the number of neurons, the average activation rate and the output pattern rate during a single clock cycle.
+Hence, the mentioned energy model needs to be implemented into the Hopfield Network interface.
+The first implementation is to \textbf{intialize the energy model} with the size of 164 neurons as this impacts the size of the crossbar array and influences the overall energy consumption.
+An increase in the number of neurons causes a higher energy consumption due to the enlarged crossbar structure.
+
+Afterwards, the two parameters ``a\_pattern'' and ``a\_WL'' need to be calculated.
+Hereby, a\_pattern refers to the currents that flow through the respective bitlines (output pattern rate).
+The current for each bitline is determined by the average of the weighted sum and is accumulated with each iteration.
+Subsequently, it is divided by the number of sampling iterations to obtain an average for the respective training iteration.
+For an correct calculation and imitation of the \ac{mem-HNN}, there is one more restriction to solve. 
+The digital computer generates negative and positive weights and biases, which is not possible in the hardware.
+Therefore, the weight matrix is adjusted to handle positive and negative weights seperately. 
+Lastly, the memristors can be tuned to a limited amount of discrete conductance levels.
+For the \ac{mem-HNN} design, the memristors can be set to around 32 different levels, which correspond to a 5-bit resolution. 
+Due to this, the coupling matrix of the \ac{BM} is descretized to this resolution, where the lowest conductance level corresponds to the highest weight value.
+In earlier design phases, the values are calculated with perfect resolution but for the energy model this is not possible anymore. 
+A\_Wl is the average configuration change (average activation rate).
+This parameter tracks the average changes in configuration within the wordline.
+Each time the state changes from 0 (no current) to 1 (current flows), energy is consumed by the switching process.
+To calculate the average energy consumed by such switching processes, the average number of rising bits is measured between subsequent iterations.
+Subsequently, an average change rate is calculated by dividing by the number of iterations.
+This approach quantifies the energy cost associated with state transitions within the network configuration.
+All the implementations for the energy model within the interface can be found in the version 5 of the hopfield interface as part of the digital delivery.
+
+Of course, for both the energy model and the autocorrelation the methods one input is the finished prototype, that mirrors the functionalities of the \ac{ASIC} on a high level.
+The first \textbf{Evaluation} focuses on the throughput, which is decided to average the values of the output configurations from row to row to an average of 60.
+This allows to extract a smoother autocorrelation plot.
 In the attachment\ref{attachement:autocorrelation} the full implementation of the autocorrelation function is available.
-To compare the performance of the individual sampling methods in terms of the autocorrelation a threshold is required. 
-Here, \(1/\mathrm{e}\) is chosen since it is inspired by many fields, like physics(diffusion length), chemistry and mathematics(half-life as a threshold) etc..\footnote{cf.\cite{archieStatisticalAnalysisHeterozygosity1985}, p. 624-630; cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 7-13}
-Folliwng results are visualized in following figure\ref{Autocorr comparison}:
+To compare the performance of the sampling methods in terms of the autocorrelation a threshold is required. 
+Here, \(1/\mathrm{e}\) is chosen since it is inspired by many fields, like physics(diffusion length), chemistry(half-life as a threshold) etc..\footnote{cf.\cite{archieStatisticalAnalysisHeterozygosity1985}, p. 624-630; cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 7-13}
+Following results can be \textbf{evaluated} and are shown in following figure\ref{Autocorr comparison}:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{graphics/Visualisierungen_Autocorr_individual_7.png}
+    \includegraphics[width=0.95\linewidth]{graphics/Visualisierungen_Autocorr_individual_7.png}
     \caption{Autocorrelation for the three sampling methods}
     \label{Autocorr comparison}
 \end{figure}
-
 The first row shows the conventional \textbf{Metropolis Hastings} sampling method. On the right plot the autocorrelation
-and the according sampling steps are visualized. It can be seen, that the value falls below the threshold at around \textbf{100 sampling steps}, 
+and the according sampling steps are visualized for the first training iteration.
+It can be seen, that the value falls below the threshold at around \textbf{100 sampling steps}.
 Falling below the threshold of \(1/\mathrm{e}\) symbolizes that statistical independent samples are generated.
-The left plot therefore meassures the first sampling step within each training iteration that falls below this threshold. 
-Here, named correlation time. It can be seen that the the scale on the x-axis in the left plot is higher compared to the other two sampling approaches, 
+The left plot therefore meassures the correlation time time within each training iteration, where these samples are first generated. 
+It can be seen that the the scale on the x-axis in the left plot is higher compared to the other two sampling approaches, 
 meaning that metropolis hastings is \textbf{more sensitive}. 
-
-The second row is the \textbf{single neuron Hopfield Network} sampling approach. 
+The second row is the \textbf{single update Hopfield Network} sampling approach. 
 In the right plot it shows that the autocorrelation threshold is reached around after around \textbf{200 sampling steps}.
 Even if the value is \textbf{2x worse} than with metropolis Hastings the correlation time for the whole training is \textbf{more stable}.
 So even if the initial autocorrelation takes longer over a whole training period the end result has an \textbf{better average} than Metropolis Hastings.
 
 The last approach is the \textbf{N/2 half Hopfield Network}. 
-The result verifys the new methods right to exist with only about \textbf{3 iterations} to surpass the threshold in the right plot.
+This method only needs about \textbf{3 iterations} to surpass the threshold in the right plot.
 Furthermore, the methods correlation time in the left plot shows that it is by far more \textbf{stable} than the other 2 approaches.
 When setting this into perspective even with a conservative average of 5 iterations as correlation time, N2/Half updating therefore
 performs \textbf{40x better}, than the single neuron Hopfield Network and \textbf{20x better} than Metropolis Hastings.
-When comparing the correlation at the end of the traing iterations, the performance even increases: \textbf{34x better} than the single neuron Hopfield Network (correlation time value of 170) and \textbf{46,6x better} than Metropolis Hastings (correlatin time value of 233).
+When comparing the correlation at the end of the training iterations, the performance even increases: \textbf{34x better} than the single neuron Hopfield Network (correlation time value of 170) and \textbf{46,6x better} than Metropolis Hastings (correlatin time value of 233).
 Surprisingly for this updating method large statistical dependency could be seen in two out of the 720 training iterations.
 This means that for these two iterations the autocorrelation \textbf{doesn not fall under the threshold} of \(1/\mathrm{e}\).
 The training was attempted three times, and in each instance, the phenomenon occurred between iterations 300 and 500.
 Still, this has no impact on the performance of the training and therefore can be seen as outlier.
 It is open for further research to identify why this doesn not happen with the other two approeaches and what is the cause.
-Since the correct value for not falling under the threshold would be infinity the scale in the plot would be too large. 
-Therefore, the same plot with these two outliers can be found in the attachment\ref{attachement:autocorrelation_errors}.
+As the corresponding correlation time for the outliers is infinite, the scale has been reduced here for better visualzation of other the other datapoints.
 
-After identifying the autocorrelation of the desired metric, "throughput," it can be calculated by combining the autocorrelation with the cycle speed of the \ac{mem-HNN}.
-This is done by taking the autocorrelation time of both Hopfield Network approaches (with N/2 Half and without) and mutlitplying them with the cycle time of the \ac{mem-HNN}.
-In addition to that the inverse of the result is calculated resulting in the desired throughput metrics `` samples/second''.
-Noteworthy, the cycle time for the \ac{mem-HNN} is 1.44ns for 111 neurons in the network. 
+Based on this implementation, the desired ``throughput'' of the simulator, which reflects the rate at which statistical independent samples are generated, is calculated.
+This is done by combining the autocorrelation time of both Hopfield Network approaches (with N/2 Half and without) and mutlitplying them with the cycle speed of the \ac{mem-HNN}.
+Then, the inverse of the result is calculated resulting in the desired throughput metrics `` samples/second''.
+The cycle time is based on the simulation shown in ref\footcite[cf.][4]{hizzaniMemristorbasedHardwareAlgorithms2023}, where a single Hopfield update cycle is performed in a single clock cycle with a frequency of 700 MHz, resulting in a cycle time of 1.44ns.
+The simulation was conducted using a network of 111 neurons.
+However, it is assumed that for the 164 neurons utilized in this thesis, the clock frequency is reduced.
+This is because a larger crossbar has a longer delay.
+As a first assumption the cycle time scales linearly with the number of neurons and therefore reaches a clock frequency around \textbf{2ns} for 164 neurons.
 Because the network in this thesis has 164 neurons, the time used for the calculation is estimated to be about 2ns, which can be seen as conservative estimate.
 The subsequent visualization\ref{Throughput comparison} shows the throughput for the Hopfield Network:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{graphics/Visualisierungen_throughput_log_2.png}
+    \includegraphics[width=0.7\linewidth]{graphics/Visualisierungen_throughput_log_2.png}
     \caption{throughput}
     \label{Throughput comparison}
 \end{figure}
-The following results can be gathered when comparing the two lines in terms of efficiency and stability:
-The Normal Hopfield Network (green line) displays a stable throughput performance throughout the iterations, consistently above \(\mathbf{10^6}\)
-samples per second. This suggests a stable and predictable behavior.
-The N2 Half Hopfield Network (red line) exhibits significant variability in throughput. 
-While it generally hovers around \(\mathbf{10^8}\) \textbf{to} \(\mathbf{10^9}\) the throughput is more sensitive and fluctuates more compared to the single update approach. 
-To get a better feeling of the data, the average of the throughput is calculated: N/2 Half Hopfield Network has
-an average of \textbf{144 megasamples/second}, while the
-Normal Hopfield Network has an average of: \textbf{2,3 megasamples/second}. 
+The following results of two networks show that the Hopfield Network (green line) maintains stable throughput at over \(\mathbf{10^6}\) samples per second, indicating predictable performance.
+In contrast, the N2 Half Hopfield Network (red line) shows greater variability, typically ranging from \(\mathbf{10^8}\) \textbf{to} \(\mathbf{10^9}\) samples, but fluctuates more than the single update approach.
+Calculating the average throughput, the N/2 Half Hopfield Network achieves \textbf{144 megasamples/second}, significantly outperforming the Hopfield Network's \textbf{2,3 megasamples/second}.
 This means that the computation speed of the N/2 Half method \textbf{is faster} by a factor of \textbf{62.72x}.
-Also in the attachment\ref{attachement:throughput_errors} is a version with the outliers included symolizing a throughput of zero for these two iterations.
-
-The results of the autocorrelation implies a low computing time and low energy consumption than with conventional hardware.
-To confirm this theory, the second metric to simulate is the \textbf{energy consumption} in energy/operation. 
-Hence, the mentioned energy model needs to be implemented into the Hopfield Network interface.
-The first adaptation is to \textbf{intialize the energy model} with the size of the neural network (164) as it impacts the size of the crossbar array and influences the overall energy consumption.
-An increase in the number of neurons causes a higher energy consumption due to the enlarged crossbar structure.
-
-Afterwards, the two parameters ``a\_pattern'' and ``a\_WL'' need to be calculated.
-Hereby, a\_pattern refers to the currents that flow through the respective bitlines.
-The current for each bitline is determined by the average of the weighted sum and is accumulated with each iteration.
-Subsequently, it is divided by the number of sampling iterations to obtain an average for the respective training iteration.
-For an correct calculation and imitation of the \ac{mem-HNN}, there is one more restriction to solve. 
-The digital computer generates negative and positive weights and biases, which is not possible in the hardware.
-Therefore, the weight matrix needs to be adjusted to handle positive and negastive weights seperately. 
-Specifically, the weight matrix is discretized to the according bit resolution of the \ac{mem-HNN}, which is 5bit.
-In the ealier design phases, the values were calculated with perfect resolution but for the energy model of the accelerator this is possible. 
-Despite the low bit resolution there are many papers that proof that even with a small resolution a good performance can be achieved.\footnote{cf.\cite{maEra1bitLLMs2024}, p. 1; cf.\cite{GitHubHtqinQuantSR}, p. 1; cf.\cite{rouhaniMicroscalingDataFormats2023}, p. 1; cf.\cite{rouhaniSharedMicroexponentsLittle2023}, p. 1}
-Since only positive weights can exist within the accelerator, these are separated and written into their own matrix.
-This modification is essential to accommodate the hardware constraints that prevent the use of negative weights.
-
-On the other hand, A\_Wl is the average configuration change.
-This means This parameter tracks the average changes in configuration within the wordline.
-Each time the state changes from 0 (no current) to 1 (current flows), energy is consumed to initially let the metal ions flow.
-Therefore, every position in the configuration must be compared with the following configuration position wise.
-Subsequently, an average change rate is calculated by dividing by the number of iterations.
-This approach quantifies the energy cost associated with state transitions within the network configuration.
-An estimate for this, especially for N/2 half is that 25\% of the neurons are updated in one training iteration (50\% randomly drawn and 50\% of that updated).
-All the adjustments for the energy model to the interface can be found in the version 5 of the hopfield interface as part of the digital delivery.
-The result of the energy consimption is illustrated in following figure\ref{Energy output_2}:
+In general, this shows that the N/2 Half update can considerably increase the computing speed in the sampling of neuron activation probabilities and
+implies a low energy consumption.
+The next \textbf{evaluation} focuses on the energy consumption, which is shown in following fig.\ref{Energy output_2}:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{graphics/energy_and_averages_plot_4.png}
+    \includegraphics[width=0.9\linewidth]{graphics/energy_and_averages_plot_4.png}
     \caption{Energy consumption of the \ac{mem-HNN}}
     \label{Energy output_2}
 \end{figure}
-The left plot shows the energy consumed per sampling iteration (eq.\ to 1 clock cylce of the \ac{mem-HNN}) in piko Joules.
+The left plot shows the energy consumed per sampling iteration in piko Joules.
 In the beginning of the training the average clock cycle has an total energy consumption of around 45 piko Joules.
 Further in the training at atround 100 training iterations the consumption drops to around 35 piko Joules. 
 In the end of the training the value falls just below the 20 piko Joules mark. 
-The decrease of the energy consumption over the time comes from the weights of the neural netowotk that get better and better configured over time.
-Noteworthy, the Memcrossbar energy is the only variable energy consumer that actively changes, while the digital-to-analog converter and the pseudo-random number generator stay horizontal.
+This decrease may be attributed to the network's weights reducing on average, impacting a\_pattern.
+The Memcrossbar is the primary variable energy consumer, while the digital-to-analog converter and pseudo-random number generator remain constant. 
 A composition of the energy consumption is shown in the right plot.
-Here 85\% of the energy is consumed entirely by the Memristor Crossbar and the support entities consume around 15\% of the energy.
-The results of the energy model an the energy consumption can be verified by the following paper.\footcite[cf.][4]{hizzaniMemristorbasedHardwareAlgorithms2023}
-
-Finally, it is important to mention that not all hardware components are included. and especially the communication and updating of 
-For example the memory and the controller of the \ac{mem-HNN} and are not included in the plot.
-Also to consider are the weights in the digital computer, that probably consume 10x the energy of the training on the analog \ac{mem-HNN}. 
+It is important to note that the plot does not include all hardware components,
+specifically the communication with the memory, the controller of the \ac{mem-HNN}, and the updating of weights in the digital computer.
+While the sampling is the computationally most demanding task in the training, it can still be expected that these components consume additional energy.
 
 In a next step the power consumption of the training is targeted as this delivers a good comparison to other
 hardware components like \ac{CPU}s, \ac{GPU}, \ac{ASIC}s or \ac{FPGA}s.
 Therefore, the energy per sampling iteration is divided by the time of one clock cycle (2ns) since \(P = \frac{\Delta E}{\Delta t}\).
-Furthermore, the right plot is based on the power and cumulates the power multiplied with the sampling iteration to vissualize how much energy the training the neural network consumes for this workload.
+Furthermore, the right plot in fig.\ref{Power consumption} is based on the power and cumulates the power multiplied with the sampling iteration to vissualize how much energy the training the neural network consumes for this workload.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{graphics/energy_consumption_cumulative_plot.png}
+    \includegraphics[width=0.9\linewidth]{graphics/energy_consumption_cumulative_plot.png}
     \caption{Power consumption of the \ac{mem-HNN}}
     \label{Power consumption}
 \end{figure}
-As shown in figure\ref{Power consumption} the power required to train is around 22.5 mW, which compared to a basic CPU(20-40W)
-is significant less. 
+Figure \ref{Power consumption} reveals that training requires a maximum of 22.5 mW, substantially less than a basic CPU (20-40W); but for an accurate comparison, OS overhead should be excluded and measurements conducted using tools like Powertop.\footcite[cf.][1]{PowertopArchWiki} 
 Again with training iterations continuing to grow the power consumption decreases. 
 At the end of the training around 620 iterations, an power consumption of around 10mW is reached. 
-The entire power consumption is mostly stable with some larger fluctuatins in the beginning of the training areound 0 to 70 iterations.
-When looking at the right plot, which symbolizes the cumulative energy required for the training in mJ.
+The power consumption is mostly stable with some minor fluctuations in the beginning.
+When looking at the right plot, which shows the cumulative energy required for the training in mJ.
 Here, it is visible that a complete training with 720 iterations requires around 6.2 mJ. 
-Again it is important to keep in mind that these numbers consist of only the \ac{mem-HNN} and do not include the digital computer.                                                                  	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-
-With that the evaluation phase can successfully verify that the models purpose of the simulation, which is to answer the reasearch question, is achieved.
-Therefore, Boltzmann Machines can indeed be efficiently implemented on the physics-inspired Hardware accelerator by analog noise injection. 
+With that the evaluation phase can successfully verify the models purpose of the simulation, which is to meassure the performance of the \ac{mem-HNN}.
+The gathered data can be used in the next chapter to compare the efficiency with conventional hardware but the
+first part of the research question is already answered within the iterative design and evaluation phases of the \ac{DSR} framwork.
