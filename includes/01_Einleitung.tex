@@ -6,24 +6,27 @@
 In the research and development of generative AI-models, the computing speed and energy efficiency
 are increasingly becoming the center of attention.\footcite[cf.][1]{luccioniPowerHungryProcessing2023}
 The authors of Open AI confirm, that the growth rate of machine learning models 
-surpassed the growth of efficiency within computerchips.
+surpassed the growth of computing power within computerchips.
 The required computing power of the models double each 3-4 months but the power of computerchips, after Moore’s Law 
-double only every 2 years.\footcite[cf.][1]{darioamodeiAICompute}
-Focusing on current problems like rising energy consumption of datacenters and the associated
-greenhouse gas emissions, the search for more efficient solutions is essential for the future.
+the amount of transistorson a computerchip double only every 2 years.\footcite[cf.][1]{darioamodeiAICompute}
+Focussing on current problems like rising energy consumption of datacenters and the associated
+greenhouse gas emissions due to implemented AI-systems, the search for more efficient solutions is essential for the future.
 Worldwide energy consumption of data centers increases annually by approximately 20-40\%.\footcite[cf.][1]{hintemannDataCenters20212022} 
 The International Energy Agency anticipates that by 2026, global energy consumption of data centers will double to 6\%, driven by factors such as AI, cryptocurrencies, and digitization.\footnote{cf.\cite{anon.Electricity2024Analysis2024}, p. 31-37; cf.\cite{jacksonAIBoomWill2024}, p. 1}
-However, the specific contribution of AI to these total numbers remains unclear.
 
 \section{Problem statement}
 
 A well-known, more energy-efficient approach for AI workloads involves the use of AI accelerators based on \ac{ASIC}s.
-These circuits are designed specifically for certain applications, such as Google's \ac{TPU}s.\footcite[cf.][39]{wittpahlKuenstlicheIntelligenzTechnologie2019} 
+These circuits are designed specifically for computationally demanding tasks, such as linear algebra operation. A common example for such an accelerator is Google's \ac{TPU}.\footcite[cf.][39]{wittpahlKuenstlicheIntelligenzTechnologie2019} 
 This is useful because the usage of multimodels for discirminating tasks compared to
 task specific models are more energy intense.\footcite[cf.][5]{luccioniPowerHungryProcessing2023}
-One promissing alternative concept in research is the usage on physics-inspired hardware accelerators, that are primarly used for optimization problems
-because of their ability to solve problems faster and more efficient than GPUs.\footcite[cf.][1]{mohseniIsingMachinesHardware2022}
-A scalable physics-inspired hardware accelerator (also called Ising-machine),
+One promissing accelerator concept in research is the usage on physics-inspired hardware accelerators.
+Physics-based accelerators exploit natural phenomena to perform highly efficient computation.
+Examples of this are the use of slime models to design train networks and search for shortest travel routes with self-assembling DNA strings.\footnote{cf.\cite{adlemanMolecularComputationSolutions1994}, p.1021; cf.\cite{teroRulesBiologicallyInspired2010}, p. 439}
+These accelerators work completely different from conventional digital computing systems and have demonstrated that they can considerbaly accelerate computation at greatly reduced energy consumption.\footcite[cf.][1]{mohseniIsingMachinesHardware2022}
+For example, for solving difficult optimizaiton problems, so called Ising machines can be up to 100x more energy than \ac{GPU}s.\footcite[cf.][409-418]{caiPowerefficientCombinatorialOptimization2020}
+This is achieved by mimicking the behavior of networks of magnets, whose behavior minimize their overall energy and thereby find solutions to optimization problems.
+Hence, a scalable physics-inspired hardware accelerator (also called Ising-machine),
 that surpasses the power of existing standard digital computers, could have a large influence
 on practical applications for a variety of optimization problems.\footcite[cf.][1]{mohseniIsingMachinesHardware2022}
 
@@ -35,21 +38,18 @@ On top of that, the implementation on dedicated hardware offers the possibility 
 of digitwal hardware accelerators and analog computation.\footcite[cf.][4]{mohseniIsingMachinesHardware2022}
 
 Interesting enough, despite their different applications, the energy function of the hardware accelerator that is used
-in Ising-machines shows big parallels to those used in \ac{BM}s, therefore it can be suggested that Ising-machines could work well for AI.\footcite[cf.][10]{caiHarnessingIntrinsicNoise2019}
-Ising-machines strive to minimize their energy, which is defined by the pairwise 
-interaction of binary variables (Spins).\footcite[cf.][1]{wangOscillatorbasedIsingMachine2017} 
-In contrast, \ac{BM}s are energy-based neuronal networks that are used for classification tasks by 
+in Ising-machines is analogous to ceraitn AI-models, such as \ac{BM}s and could therefore be used to accelerate the computation in AI-workloads.\footcite[cf.][10]{caiHarnessingIntrinsicNoise2019}
+\ac{BM}s are energy-based neuronal networks that are used for classification tasks by 
 acllocating a skalar energy for each configuration of variables.
-Minimizing the total network energy is therefore equal with the solution of a optimization problem.\footcite[cf.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
-Current problems with \ac{BM}s are the high complexity and high requirements for the all-to-allcommunication between the processing units,
-which causes the implemention on conventional digital computers to be inefficient, but also 
-an inherently slow convergence in certain processes such as simulated annealing.\footcite[cf.][1]{nazmbojnordiMemristiveBoltzmannMachine2016} 
-These challenges complicate the training and the usage of \ac{BM}s, especially for large data volumes and complex optimization tasksl.\footcite[cf.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+During training, the energy associated with the training data is minimized and therefore equal with the solution of a optimization problem.\footcite[cf.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+\ac{BM}s have shown to be performant AI models in a variety of AI workloads, however, their training is known to be computationally demanding.\footcite[cf.][1]{nazmbojnordiMemristiveBoltzmannMachine2016} 
+For large-scale \ac{BM}s, the convergence to energy minima can become prohibitively slow.
+These challenges complicate the training and the usage of \ac{BM}s, especially for large data volumes and complex optimization tasks.\footcite[cf.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
 Nevertheless the similarities of both models implicate, that Ising-machines could be able to execute this 
 specific AI-model with higher energy efficiency and with higher computing speed.
-Currently there are only few concepts that exists on how to achieve a implementation of a \ac{BM} on a Ising-machine.
-The paper of the authors Mahdi, Nazm, BojnordiEngin and Engin Ipek developed promissing proof of concept.
-However it could not be shown how a implementation on a real accelerator chip could function.
+Currently there are a few concepts that demonstrate how to achieve a implementation of a \ac{BM} on a Ising-machine.
+However, these concepts remain primarily theoretical, with only limited analysis available that quantifies model performance, computing speed, and energy efficiency of a practical Ising machine when implementing a \ac{BM}.
+It has not yet been demonstrated how an implementation on a real accelerator chip could function.
 
 With the given background, the following central research question and two sub-questions arise for this thesis:
 \begin{enumerate}
@@ -72,34 +72,35 @@ machines and whether the solution is efficient or not.
 
 \section{Objective}
 
-The primary objective of this bachelor thesis is the research and extension of a existing physics-inspired
-hardware accelerator(Ising machine) for the implementation and evaluation of \ac{BM}s as an energy based 
-AI-model. The aim is to answer the posed research question. 
+The primary objective of this bachelor thesis is is to
+enable and perform a detailed study that quantifies the potential performance gains when implementing \ac{BM}s with Ising machines
+Therefore, the extension of a existing physics-inspired
+hardware accelerator is executed with the aim of evaluating the performance of \ac{BM}s as an energy based 
+AI-model and therefore to answer the posed research question. 
 In addition to that, it would be beneficial if rules for the influence of hyperparameters could be established
 since there is no data available for this new method.
 
-To initially accomplish this objective it is necessary to establish a simulator pipeline to the
-hardware accelerator that translates \ac{BM} on top of it.
-The simulator pipeline consists of an existing machine learning library and an existing hardware accelerator
+To initially accomplish this objective a Simulator Pipeline needs to be developed that models an Ising machine device in connection with a machine learning library running on a digital computer.
+Such a simulator pipeline is needed, as Ising machines are still under development and meassurements on physical devices is often not possible yet.
+Hence, the Simulator Pipeline consists of an existing machine learning library and an existing hardware accelerator
 that need to be connected to each other.
-First the simulator pipeline needs to verify that it is possible for the hardware accelerator
+First the Simulator Pipeline needs to verify that it is possible for the hardware accelerator
 to realize \ac{BM}s. 
-Within the simulator pipeline, the activation probabilities of individual neurons are measured on the simulated hardware.
+Within the Simulator Pipeline, the activation probabilities of individual neurons are measured on the simulated hardware.
 If this process proves successful, it is then expanded to simulate a complete neuronal network.
-The final step is that the hardware accelerator can be used for training and iterference
-and is comparable to conventional machine learning libraries.
+The final step is that the hardware accelerator can be compared against training methods running on digital computers.
+The Simultor includes hardware modelling results based on circuit designs that were recently developed by Hewlett Packard Labs and Forschungszentrum Jülich.
 This phase includes a carefully adjustment and possibly extension of the existing accelerator to be compliant 
 with the specific requirements of \ac{BM}s.
 
-If the simulator pipeline can be validated a workload consisting of a standard data set
-to recognize handwritten digits is tested on it.
+If the Simulator Pipeline is validated, performance should be evaluated using a well-known AI workload: the recognition of handwritten digits.
 The prediction accuracy and negative likelihood are investigated to answer the first research question.
 In a next step, the throughput (samples/sec) and energy consumption (energy/operation) of the \ac{BM} on the Ising hardware accelerator is to be collected.
 These metrics aim to address the second part of the research questions posed.
 
 \section{Research method}
 
-The applied research methodology for this thesis is \ac{DSR} by Österle et al..\footnote{cf.\cite{oesterleMemorandumZurGestaltungsorientierten2010}, p.1-6; cf.\cite{oesterleKonsortialforschung2010}, p. 273-274}
+The applied research methodology in this thesis is \ac{DSR} by Österle et al..\footnote{cf.\cite{oesterleMemorandumZurGestaltungsorientierten2010}, p.1-6; cf.\cite{oesterleKonsortialforschung2010}, p. 273-274}
 \ac{DSR} is chosen because it supports the generation of new knowledge and ensures that research results are both theoretically and practically
 applicable, while they also are in line with the objectives of the project.
 Furthermore, this allows to find a solution for practical problems through the iterative approach adding more functionalities over time but also leaving room for fixing errors and general improvements.

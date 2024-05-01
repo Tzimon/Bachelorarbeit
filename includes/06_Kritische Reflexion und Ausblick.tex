@@ -6,28 +6,27 @@ By doing so, it underscores the relevance of the study’s contributions to both
 Lastly, this chpaer offers an outlook on future research, improvements and implications in general.
 
 \section{Mission of the work}
-The general mission of the work is the implementation of Boltzmann Machines on a physics-inspired 
+The general mission of the work is the implementation of \ac{BM}s on a physics-inspired 
 hardware accelerator by analog noise injection. 
-Especially, the possibility of modelling the Boltzmann Machines and afterwards meassuring the performance are the focus of the implementation.
+For that purpose, a simulation framework is developed that, that for the first time, enables a detailed study of the performance of such accelerators in AI workloads.
 This research is motivated by ever increasing energy consumption for artificial intelligence models and stagnating computing speeds.
 
 Therefore, the newly developed \ac{mem-HNN} \ac{ASIC} hardware accelerator, currently being developed and studied by HPE,
-should be further researched to explore its potential in efficiently modeling this neural network.
-
+should be further researched to explore its potential in efficiently implementing this neural network during training and inference tasks.
 This thesis first explains all the relevant concepts.
 Here, topics like Neural Networks and sustainability is tackled and within these energy-based models,
-Boltzmann Machines and \ac{RBM}s are at the center of attention. 
-After discussing neural networks, the focus shifts to the hardware accelerator, providing a comparison of current developments and research that lead to how the \ac{mem-HNN} accelerator works.
+\ac{BM}s and \ac{RBM}s are at the center of attention. 
+After discussing neural networks, the focus shifts to the hardware accelerator, providing a comparison of current developments and research that lead to the functionality of the \ac{mem-HNN} accelerator.
 Hence, the concept of Hopfield Networks which originates out of physics, but also technical elements like the crossbars are explained to 
 ultimately bring the idea of noise injection to the reader. 
-The noise jenction makes it possible to train and interfer the Boltzmann Machines on the \ac{ASIC} accelerator.
+The noise jenction makes it possible to train and interfer the \ac{BM}s on the \ac{ASIC} accelerator.
 
 The theoretical research theory is to be implemented in the practical part of the thesis.
 This is done by following the scientific \ac{DSR} process by Österle et al. to create a Simulator Pipeline,
-which is developed iteratively and consists out of three design and evaluation phases. 
+which is developed iteratively and consists out of four design and evaluation phases. 
 The design phase itself follows the methodology of prototyping by G.A. Mihram that allows rapid and explorative proceed.
 Initially, the prototyping process creates a catalog of functions and distributes these across various design phases.
-The focus lays on using the Hopfield Network as sampling method to train the Boltzmann Machine
+The focus lies on using the Hopfield Network as sampling method to train the \ac{BM}
 and therefore show the possibility of the realizability on the physics-inspirated \ac{mem-HNN} accelerator.
 The implementation of the prototype matches well with the \ac{DSR} framework and is done icrementally to develop the prototyp further and use the previous output as
 the new input for the next iterative phase.   
@@ -44,32 +43,30 @@ evaluated and meassured performance with additional information about the Hyperp
 
 \section{Critical reflection on the results and methodology}
 
-This thesis represents a significant advancement in the field of energy-efficient AI models by introducing the first-ever Simulator Pipeline designed for Boltzmann Machines.
+This thesis represents a significant advancement in the field of energy-efficient AI models by introducing the first-ever Simulator Pipeline designed for \ac{BM}s.
 Existing proof of concenpts were taken further and with the succesfully implementation the research question is answered.
 Furthermore, an intrinsic comparison between the \ac{mem-HNN} \ac{ASIC} and the conventional methods of Gibbs Sampling and Metropolis Hastings is established.
 The results of this thesis, while promising, warrant a thoughtful examination in terms of applied methodologies and meassured results.
 
 \textbf{Reflection on Results:} The introduction of the Simulator Pipeline has not only demonstrated the possibility 
-of the implementation of Boltzmann Machines with a Hopfield Network as sampling method but also the results regarding
+of the implementation of \ac{BM}s with a Hopfield Network as sampling method but also the results regarding
 the energy efficiency and computational throughput are very positive.
 Therefore, the overall research question has been successfully answered, resulting in a novel tool that has not been explored in previous studies.
 This tool also offers adaptability for various workloads in future research.
-In an second part, the evaluation of the energy efficiency has been partially addressed due to the energy based model.
+In an second part, the evaluation of the energy efficiency has been partially addressed.
 This is because the metric energy consumption does not include all hardware compontents, already mentioned in chapter 4.6.
-An more correct energy consumption of the overall solution architecture is part of future work with approximately two years development time.
+An more correct energy consumption of the overall solution architecture is part of future work with approximately one year development time.
 Therefore, the current energy model for the \ac{mem-HNN} is considered a first attempt but with the generalizable Simulator Pipeline
 the energy model can be extended trouble-free for example a bus system, controller or digital computer.
-Still before the Hopfield Network could be used as sampling method, conventional options like \ac{MCMC} 
-require higher amounts of sampling iterations, and even if mapped on accelerators consume around 15x more energy.
-A relevant paper with a complete energy model comparing electronical with analog hardware finds out that the energy required is 
-higher than results of this thesis. Still, the analog solution with the currently missing parts only increases the energy consumption by 30\% and compared to
-the digital solution, it is in total 5x more energy efficient.\footcite[cf.][12-13]{demirkiranElectroPhotonicSystemAccelerating2023}
-
-Furthermore, the bit-resolution of the weights have no limitation in the current implementation, which does not represent the
-exact specifications of the \ac{mem-HNN}. 
+Still, these initial results suggest that a \ac{mem-HNN} chip could be more energy efficient (15x), even when compared to sampling methods implemented on specialized hardware acceelrators such as \ac{FPGA}s.
+A relevant study comparing electronic with analog hardware reveals that the energy required by the analog solution, even when accounting for currently missing components such as the bus system, memory, and the controller, remains substantially lower than that of its digital counterparts.\footcite[cf.][12-13]{demirkiranElectroPhotonicSystemAccelerating2023}
+Although the inclusion of these components might raise energy consumption by about 30\%, the analog approach is still estimated to be five times more energy efficient overall, with the additional energy contribution likely being insignificant.
+Furthermore, the current Simulator Pipeline uses double precision for weights and biases, whereas the resolution would be much less in the \ac{mem-HNN} chip.
 In the energy model, the bit-resolution is considered, but not for the results of the prediction accuracy. 
-Despite this, many indicators have performed well even with low bit resolution suggesting that even minimalistic settings can yield substantial results.\footnote{cf.\cite{maEra1bitLLMs2024}, p. 1; cf.\cite{GitHubHtqinQuantSR}, p. 1; cf.\cite{rouhaniMicroscalingDataFormats2023}, p. 1; cf.\cite{rouhaniSharedMicroexponentsLittle2023}, p. 1}
-Lastly, the \ac{RBM} was chosen as simpler AI-model to collect meaningful baselines fast but also general Boltzmann Machines can be implemented on other more complex workloads. 
+Despite this, various studies indicate that the effect of reduced resolution is manageable for a lot of AI workloads and that 5 bit-resolution can still yield sufficient performance.\footnote{cf.\cite{maEra1bitLLMs2024}, p. 1; cf.\cite{GitHubHtqinQuantSR}, p. 1; cf.\cite{rouhaniMicroscalingDataFormats2023}, p. 1; cf.\cite{rouhaniSharedMicroexponentsLittle2023}, p. 1}
+The training of a \ac{RBM} testcase is limited due to its simplicity.
+As stated in chapter 2, the ultimate aim is to harness accelerator technology for more powerful \ac{BM}s.
+Although current findings suggest that \ac{BM}s can be implemented with similar performance gains, a more comprehensive study is required as future work.
 
 \textbf{Reflection on Methodology:} 
 Utilizing \ac{DSR} as the applied research methodology facilitates the incremental and continuous progress of the Simulator Pipeline as \ac{IT}-artifact.
@@ -78,39 +75,40 @@ Despite the result being specific for the \ac{mem-HNN}, the \ac{DSR} procedure c
 The protyping methodology enables a rapid and explorative implementation and therefore as well suits the thesis's goal. 
 Although performance is not a criterion for prototyping, the training of the model is conducted on a notebook with a CPU\footnote{\texttt{Intel i7-10610U, 1.80GHz, 2304 MHz, 4 Cores, 8 Logical Processors}}, which takes approximately 30-40 minutes per training session.
 Therefore, optimization emerges as a critical area for further development.
-Next up, the used simulation only estimates the actual hardwares capabilities.
+Next up, simulations can only provide estimates of the performance of an actual \ac{mem-HNN} chip.
 Once the hardware is available real-world results can be different making it essential to build and validate a physical hardware accelerator based on these initial analyses.
 Differences may arise in energy efficiency, throughput, and prediction accuracy.
-Still, the functionalities are modelled with great effort and are an indication on how the Simulator Pipeline behaves.
+Still, the functionalities are modelled with great effort and the existing pipeline can potentially be adapted to also interface with a \ac{mem-HNN} chip later on.
 
 \section{Extrusion of results for theory and practice}
 The resulting Simulator Pipeline for the \ac{mem-HNN} established in this thesis achieved 
 promising results of relevance for the scientific community and practical applications. 
-The intrinsic comparison with other analog probabilistic accelerators revealed that the \ac{mem-HNN} offers competitive throughput while enhancing energy efficiency,
+The intrinsic comparison with other accelerators revealed that the \ac{mem-HNN} offers competitive throughput while enhancing energy efficiency,
 thereby highlighting its potential as a transformative tool in the realm of energy-efficient computing.
 Also, a first estimation is done by reviewing other analog probalistic accelerators and comparing the energy efficiency and throughput which result in promising and competitive estimates. 
 Additionally, as the Simlator Pipeline is generalizable, in the furure different workloads can be chosen as starting point for research with AI-models 
-for Boltzmann Machines. 
+like \ac{BM}s. 
 Hence, even greater improvements could be achieved for these workloads.
 Certainly, the results from the intrinsic comparison provide valuable insights but also bridge a research gap in this novel sampling method.
 Moreover, they demonstrate the effectiveness of the solution through successful hyperparameter tuning and improved performance.
 As the tool is developed using scientific methods, it is easy to track why a  specific program section, for example, has certain properties.
 Also it ensures fewer errors after iteratively correcting them.
-For further research within HPE the results validate that training for Boltzmann Machines is possible and that in 
-a next step this it is planned to research further with other workloads, architectures and changing from \ac{RBM} to a general Boltzmann Machine.
+For further research within HPE the results validate that training for \ac{BM}s is possible and that in 
+a next step this it is planned to research further with other workloads, architectures and changing from \ac{RBM} to a general \ac{BM}.
 Furthermore, the current plan is to use the results of this thesis and include them into an upcoming paper 
-that will be submitted to TechCon, which is an HPE internal research fair laying the ground for HPE's future investments.
-Lastly, the results are also planned to be presented at public fairs HP Labs is visiting as presenter. 
+that will be submitted to TechCon, which is an HPE internal research conference.
+Lastly, the results are also planned to be presented at public research conferences and to HPE's research partners in the 
+\ac{mem-HNN} research project. 
 
 \section{Outlook}
 The future directions for the \ac{mem-HNN} Simulator Pipeline focuses on the improvement of missing functionalities and refining its accuracy. 
-Key topics are the bit resolution of the \ac{ASIC}, which is planned to be integrated but at the same time the energy model is planned
+Key topics are the bit-resolution of the \ac{ASIC}, which is planned to be integrated, while at the same time the energy model is planned
 to be modified.
 Currently, the energy consumption of the bus system to the digital computer, the controller and the memory on the \ac{mem-HNN} 
 are not included in the energy model.
 The digital computer that updates the weights and possibly require the highest energy consumption is also not modelled due to missing energy values.
 In general, further research plans to gather a nearly real-world energy consumption of the Simulator Pipeline.
-Further research will also extend beyond the current use of the \ac{RBM} to implement the general Boltzmann Machine model and focus on more complex workloads.
+Further research will also extend beyond the current use of the \ac{RBM} to implement the general \ac{BM} model and focus on more complex workloads.
 This allows to research the tools robustness and flexibility in order to verify the performance across a broader range of AI tasks and ensuring scalability.
 Lastly, the planned model should not only support more complex workloads but also streamline the training process to be more time-efficient and enable faster trainings.
 Overall, the ongoing improvements and research into the \ac{mem-HNN} Simulator Pipeline are positioned to solidify its status as a cutting-edge tool in the field of energy-efficient AI technologies.
