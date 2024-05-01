@@ -10,17 +10,20 @@ Therefore, it is fair to say that neural networks are part of various important 
 Particularly in the last two years, artificial intelligence has also garnered widespread interest from the public, especially regarding chatbots like ChatGPT and Google Bard.\footcite[cf.][1-2]{singhChatGPTGoogle2023}  
 An important feature of a neural network-based system that are inspired by our brain, is that they can learn and adapt to data.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
 
-Internally, neural networks are computational models that consist of many simple processing units, called neurons that work together in parallel often structured within interconnected layers.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
-They consist out of a network architecture, which describes the layout and how the neurons are wired. Secondly, they have a optimization function which specifies the goals persued in the learning process.\footcite[cf.][1583]{durstewitzDeepNeuralNetworks2019}
-Lastly, there is a training algorithm that varies all of the hyperparameters, like connection strengths between neurons, training iterations, the learning rate, etc..\footcite[cf.][1583]{durstewitzDeepNeuralNetworks2019}
+Internally, neural networks are computational models that consist of many simple processing units, called neurons.
+These neurons are interconnected, such that data can be passed between them.
+The connections form a network structure, which is often arranged in layers.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
+Neural networks have an optimization function which specifies the goals persued in the learning process.\footcite[cf.][1583]{durstewitzDeepNeuralNetworks2019}
+There is a training algorithm that varies all of the hyperparameters, like connection strengths between neurons and biases, etc..\footcite[cf.][1583]{durstewitzDeepNeuralNetworks2019}
 The following figure 1 shows a typical neural network that consists out of a input layer, a hidden layer and an output layer with dots representig the neurons wirthin the network.
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.55\linewidth]{graphics/Neural_Network.png}}
     \caption{figure of a neural network}
 \end{figure}
-Although, when these interconnected layers are stacked on top of each other, so multiple hidden layers are stacked on top of each other, the network is called deep.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
+When several layer are stacked on top of each other the network is called deep.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
 In general, deep learning methods can be seen as subset of machine learning methods and are today's fundament of artificial intelligence allowing to solve more complex tasks.\footcite[cf.][1583]{durstewitzDeepNeuralNetworks2019}
+Deep networks are considered more intriguing than shallow networks because they are capable of learning more complex patterns and abstract representations, enhancing their ability to perform well on a broader range of complex problems.
 \ac{DNN}s are constantly growing and currently have around 1200 interconnected layers that equal to more than 16 million neurons inside a network .\footcite[cf.][2]{mallComprehensiveReviewDeep2023}
 An example of a deep neural network is presented in figure 2 which shows the stacked layers in the middle of the network.
 \begin{figure}[H]
@@ -29,12 +32,13 @@ An example of a deep neural network is presented in figure 2 which shows the sta
     \caption{figure of a neural network}
 \end{figure}
 
-Some examples for regression tasks within a \ac{DNN} in the field of acomputer vision include object detection, medical image registration, head- and body-pose estimation, age estimation and visual tracking.\footcite[cf.][325-326]{gustafssonEnergyBasedModelsDeep2020}
-Nowadays, verly large neural networks with millions of parameters can be created due to the research achievements made in the field of neural networks and deep learning leading to highly performing models.\footcite[cf.][152]{marinoDeepNeuralNetworks2023}
+Some examples of regression tasks in the field of computer vision where \ac{DNN} are essential include object detection, medical image registration, head and body pose estimation, age estimation, and visual tracking.\footcite[cf.][325-326]{gustafssonEnergyBasedModelsDeep2020}
+As mentioned, those large neural networks with millions of parameters can be created in the field of neural networks leading to highly performing models.\footcite[cf.][152]{marinoDeepNeuralNetworks2023}
 Nonetheless, such models often have a negative effect on the environment in terms of unnecessary energy consumption and a limitation to their deployment on low-resource devices because they are excessively oversized and redundant.\footcite[cf.][152]{marinoDeepNeuralNetworks2023}
 
-Currently, the exponential growth in model sizes presents substantial challengesm which includes high consumption of computational, energy, and financial resources.\footcite[cf.][1-2]{baiEfficiencySystematicSurvey2024}
-The worldwide energy consumption of data centers increases annually by approximately 20-40\%.\footcite[cf.][1]{hintemannDataCenters20212022} 
+Currently, the exponential growth in model sizes presents substantial challenges, which includes high consumption of computational, energy, and financial resources.\footcite[cf.][1-2]{baiEfficiencySystematicSurvey2024}
+The worldwide energy consumption of data centers increases annually by approximately 20-40\% and with \ac{DNN}s only running on high performance computers the future
+consequences are concerning.\footcite[cf.][1]{hintemannDataCenters20212022} 
 The International Energy Agency estimates that global energy consumption attributed to data centers will double to approximately 6\% between 2022 and 2026 due to the field of AI, cryptocurrencies, and digitization.\footnote{cf.\cite{anon.Electricity2024Analysis2024}, p. 31-37; cf.\cite{jacksonAIBoomWill2024}, p. 1}
 Not only the energy consumption is a problem, but also the water footprint of AI-models consumption, which refers to the volume of fresh water used to run and train the models.\footcite[cf.][92-93]{georgeEnvironmentalImpactAI2023}
 Hence, the water foorprint includes the water used for production (hardware, semiconductors), operation (cooling the data center), and maintenance (cooling the data center) of AI-models.
@@ -48,23 +52,23 @@ All these factors motivate to use tailored neural networks designed for a specif
 
 \subsection{Energy-based models}
 
-An \ac{EBM} is a type of neural network that has special characteristics. 
-One characteristic is that an \ac{EBM} is a statistical model.\footcite[cf.][2]{huembeliPhysicsEnergybasedModels2022}
-This probabilistic approach willingly uses uncertainty into the model calculations to draw the models inputs randomly from its underlying distribution.\footcite[cf.][25-27]{uusitaloOverviewMethodsEvaluate2015}
-This is done because the conventional deterministic method of backpropagation is known to potentially convert to local minimas, and requires long computation time.\footcite[cf.][109]{spechtProbabilisticNeuralNetworks1990}
-As a result with conventional backpropagation more frequently incorrect classification would take place.
-The second characteristic is that an \ac{EBM} is determined by an energy function that needs to be minimized in order to find the solution of the optimization problem.\footnote{cf.\cite{huembeliPhysicsEnergybasedModels2022}, p. 2; cf.\cite{ranzatoEfficientLearningSparse2006}, p. 1}
+An \ac{EBM} is a probabilistic type of neural network where the individual neurons exhibit a random behavior.\footcite[cf.][2]{huembeliPhysicsEnergybasedModels2022}
 Since 1982, those statistical neural network models have been continuously emerging in the machine learning field when J.J. Hopfield introduced the Hopfield Network.\footcite[cf.][]{hopfieldNeuralNetworksPhysical1982}
 Current developments include their use in reinforcement learning, potential replacements for discriminators in generative adversarial networks and for quantum \ac{EBM}s.\footnote{cf.\cite{verdonQuantumHamiltonianBasedModels2019}, p. 1; cf.\cite{duModelBasedPlanning2021}, p. 1}
 In addition to that, Open AI showed that \ac{EBM}s are useful models across a wide variety of tasks like achieving state-of-the-art out-of-distribution classification and continual online class learning to name a few.\footcite[cf.][1-2]{duImplicitGenerationGeneralization2020}
+This thesis shows interest in them because \ac{EBM}s are hardware-friendly, can be trained easily and already are succesfully implemented on multiple hardware accelerators.
 The underlying idea behind \ac{EBM}s is to establish a probabilistic physical system that is able to learn and memorize patterns but most importantly generalize it.\footcite[cf.][2]{huembeliPhysicsEnergybasedModels2022} 
-Especially, it involes learning an energy function \(E_{\theta}(x) \in \mathbb{R}\), with \( x \) representing the configuration of the network, and assigning the low energy to observed data \(x_i\) and high energy to other values \(x\).\footcite[cf.][330]{gustafssonEnergyBasedModelsDeep2020}
+This probabilistic approach willingly uses uncertainty into the model calculations to draw the models inputs randomly from its underlying distribution.\footcite[cf.][25-27]{uusitaloOverviewMethodsEvaluate2015}
+This is done because the conventional deterministic method of backpropagation is known to potentially convert to local minimas, and requires long computation time.\footcite[cf.][109]{spechtProbabilisticNeuralNetworks1990}
+As a result with conventional backpropagation more frequently incorrect classification would take place.
+An \ac{EBM} is characterized by an energy function \(E_{\theta}(x) \in \mathbb{R}\), with \( x \) representing the configuration of the network. This function needs to be minimized to find the solution to the optimization problem, assigning low energy to observed data and high energy to other values.\footcite[cf.][330]{gustafssonEnergyBasedModelsDeep2020}
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.4\linewidth]{graphics/energielandschaft.jpg}}
     \caption{Figure of a simplified energy landscape}
+    \label{energy_landscape_1}
 \end{figure}
-In this figure 1 a simplified energy landscape is shown where the local minima corresponds to states that encode an MNIST digit.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022} It is visible that observed data settles in the local minimum of the energy landscape, in this case a clear 0. On the other hand close to the local maxima of the energy landscape the 0 is only barely recognizable and therefore got a higher energy value assigned to it.
+In this figure 1 a simplified energy landscape after the training is shown where the local minima corresponds to states that encode an handwritten digit.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022} It is visible that observed data settles in the local minimum of the energy landscape, in this case a clear 0. On the other hand close to the local maxima of the energy landscape the 0 is only barely recognizable and therefore got a higher energy value assigned to it.
 The assumption of the underlying distribution function \( P(x) \) represents the probability distribution over the input data x,
 indicating how likely different configurations of x are under the models learned patterns:
 \begin{equation}
@@ -75,28 +79,25 @@ that the density function normalizes to a total probability of 1 and \( T \) is 
 The partition function \( Z \) used in 2.1 is given by summing over all possible pairs of visible and hidden vectors\footcite[cf.][4]{hintonPracticalGuideTraining2012}:
 \begin{equation}
     Z = \sum_x \exp\left(-\frac{E(x)}{T}\right)
+    \label{partition_function}
 \end{equation}
 The aim of the training in an \ac{EBM} is to match the true probability distribution \( P_{\text{data}} \) as closely as possible with the internal probability distribution \( P_{\text{model}} \) learned by the model.
-What this means is that the specific aim is to adjust its parameters such that \( P_{\text{model}} \)
+Here, \( P_{\text{data}} \) is the probability distribution when the network receives a speicific data input from the environmnet, while \( P_{\text{model}} \) represents the internal network running freely, also referred to as ``dreaming''.\footcite[cf.][154-155]{ackleyLearningAlgorithmBoltzmann1985}
+The specific aim is to adjust its parameters such that \( P_{\text{model}} \)
 becomes as close to \( P_{\text{data}} \) as possible, which shows the model has learned the distribution of the real world data.
 A practical method to achieve this goal is to use the KL divergence. KL divergence is a mathematical meassure that helps to meassure how close the predictions are by comparing the model's learned distribution to the true distribution of the data:
 \begin{equation}
     G = \sum_x P_{\text{data}}(x) \ln \left( \frac{P_{\text{data}}(x)}{P_{\text{model}}(x)} \right)
 \end{equation}
-Here, \( P_{\text{data}} \) is the probability distribution when the network receives a speicific data input from the environmnet, while \( P_{\text{model}} \) represents the internal network running freely, also referred to as ``dreaming''.\footcite[cf.][154-155]{ackleyLearningAlgorithmBoltzmann1985}
-In the training process the asymmetric divergence \( G \) needs to be miminized and therefore the probabilities of the model converge close to the ones in reality.
 To optimise the KL divergence the energy is adjusted, whereby data is assigned to low energy states (according to 2.1) and the training data receives high energy and therefore low probabilities.\footcite[cf.][2-3]{zhaiDeepStructuredEnergy2016}
 
-NACH UNTEN
-As a side note it is worth mentioning that using the maximum likelihood estimator for \( Z \) is intractable due to the requirement of summing over all possible states, which leads to an exponential increase in the number of states for larger systems.\footcite[cf.][2-3]{zhaiDeepStructuredEnergy2016}
-
-\subsection{concept of Boltzmann Maschines}
+\subsection{Boltzmann Machines within Energy Based Models}
 
 A \ac{BM} is a type of symmetrical \ac{EBM} consisting of binary neurons \{0, 1\}.\footcite[cf.][260]{amariInformationGeometryBoltzmann1992}
-The neurons of the network can be split into two functional groups, a set of visible neurons and a set of hidden neurons.\footcite[cf.][154]{ackleyLearningAlgorithmBoltzmann1985}
+The neurons of the network are split into two functional groups, a set of visible neurons and a set of hidden neurons.\footcite[cf.][154]{ackleyLearningAlgorithmBoltzmann1985}
 Therefore, the \ac{BM} is a two-layer model with a visible layer (``v'') and a hidden layer (``h'').\footcite[cf.][448]{salakhutdinovDeepBoltzmannMachines2009}
 The visible layer is the interface between the network and the environment. It receives data inputs during training and sets the state of a neuron to either \{0, 1\} which represents activated or not activated.
-On the other hand, the hidden units are not connected to the environment and can be used to explain underlying constraints in the internal model of input vectors and they cannot be represented by pairwise constraints.\footcite[cf.][154]{ackleyLearningAlgorithmBoltzmann1985}
+On the other hand, the hidden units are not connected to the environment and can be used to explain underlying constraints in the internal model of input vectors.\footcite[cf.][154]{ackleyLearningAlgorithmBoltzmann1985}
 The connection between the individual neurons is referred to as bidirectional, as each neuron communicates with each other in both directions.\footcite[cf.][149]{ackleyLearningAlgorithmBoltzmann1985}
 As early as 1985, one of the founding fathers of artificial intelligence, Geoffrey Hinton, was aware that an \ac{BM} is able to learn its underlying features by looking at data from a domain and developing a generative internal model.\footcite[cf.][148]{ackleyLearningAlgorithmBoltzmann1985}
 
@@ -104,7 +105,7 @@ Most machine learning models can be categorized in either generative or discrimi
 Discrimivative models estimate the probability distribution based on category labels that are given to specific objects.\footcite[cf.][2]{gmComprehensiveSurveyAnalysis2020}
 On the other hand, a generative model differ as follows. 
 They generate a probabilistic model of the underyling probability distribution for each category, which is assumed as the basis of the data, and in a following step they use Baye's rule to identify which category is very likely to have establihed the object.\footcite[cf.][1]{hsuEffectsGenerativeDiscriminative2010}
-An real world example would be the following: to predict if a movie will be a hit, you could analyze past box office successes to model characteristics shared by hits (generative approach), or assess immediate audience reactions to movie trailers and reviews to predict success without modeling historical data (discriminative approach).
+An real world example would be the following: to predict if a movie will be a hit, one could analyze past box office successes to model characteristics shared by hits (generative approach), or assess immediate audience reactions to movie trailers and reviews to predict success without modeling historical data (discriminative approach).
 Therefore it can be said that \ac{BM}s and \ac{EBM}s are generative models. In the following figure \ref{fig1}, a general \ac{BM} is depicted, where the upper layer embodies a vector of stochastic binary 'hidden' features, while the lower layer embodies a vector of stochastic binary 'visible' variables.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
 
 \begin{figure}[H]
@@ -116,14 +117,15 @@ Therefore it can be said that \ac{BM}s and \ac{EBM}s are generative models. In t
 The model contains a set of visible units \( v \in \{0, 1\} \), and a set of hidden units \( h \in \{0, 1\} \) (see Fig. 1). The energy function of the \ac{BM} with the states \( \{v, h\} \) is defined as:
 \begin{equation}
 E(v, h; \theta) = -\frac{1}{2} v^T L v - \frac{1}{2} h^T J h - v^T W h,
+\label{energy_function_BM}
 \end{equation}
 
 where \( \theta = \{W, L, J\} \) are the model parameters.\footcite[cf.][448]{salakhutdinovDeepBoltzmannMachines2009}
 \( W, L, J \) represent visible-to-hidden, visible-to-visible and hidden-to-hidden weights.
 In \ac{BM} each neurons works towards minimizing the global energy by 
-entering a particular neuron configuration representing a input to the machine and the system will find the minimum energy configuration that is compatible with the given input.\footcite[cf.][150]{ackleyLearningAlgorithmBoltzmann1985}
+entering a particular neuron configuration representing a input to the machine and the system will find the minimum energy configuration that is similar to the given input as shown in fig.\ref{energy_landscape_1}.\footcite[cf.][150]{ackleyLearningAlgorithmBoltzmann1985}
 A simple method to find a local energy minimum involes to switch into wichever of the two states (on or off) of a neuron result in a lower energy given the current state of the other neurons.\footcite[cf.][110]{fahlmanMassivelyParallelArchitectures1983}    
-Integrating the function 2.4 into the earlier introduced KL-divergence 2.2 and doing gradient descend a learning rule to update the weights and biases appers.\footcite[cf.][5]{hintonPracticalGuideTraining2012}
+Inserting equation \eqref{energy_function_BM} into the earlier introduced KL-divergence \eqref{partition_function} and doing gradient descend a learning rule to update the weights and biases appers.\footcite[cf.][5]{hintonPracticalGuideTraining2012}
 The gradient descent algorithm is commonly used in machine learning and is an iterative technique that adjusts the model parameters (weights and biases).\footcite[cf.][11]{wangResearchApplicationGradient2021}
 It progressively acquires the gradient of the energy function, methodically advancing towards the optimal solution and ultimately achieves the minimum loss function along with adjusted parameters.\footcite[cf.][11]{wangResearchApplicationGradient2021}
 Consequently, this leads to the specific learning rule\footcite[cf.][5]{hintonPracticalGuideTraining2012}:
@@ -132,26 +134,24 @@ Consequently, this leads to the specific learning rule\footcite[cf.][5]{hintonPr
     \label{Update_weights}
 \end{equation}
 
-The network can now update the weights ``W'' that exist between the neurons through the training rule based on the observations that served as input. \footcite[cf.][1-2]{barraEquivalenceHopfieldNetworks2012}
+The network can now update the weights \( W_{ij}\) that exist between the neurons through the training rule based on the observations that served as input. \footcite[cf.][1-2]{barraEquivalenceHopfieldNetworks2012}
 In this case, the square brackets represent expected values, as the training is based on the activation probability.
 In addition to that, the step sizes of updates to the weights are influenced by the learning rate \(\epsilon\) within the iterative training process.
 
-Performing exact training in this model is intractable because exact computation of the data predictions and the model predictions takes a time that is exponential in the number of hidden units.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
+Performing exact training in this model is intractable because exact computation of the activation function of \(\langle v_i h_j \rangle_{\text{data}}\) and \(\langle v_i h_j \rangle_{\text{model}}\) takes a time that is exponential in the number of hidden units.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
+The reason for this is using the maximum likelihood estimator for \( Z \) in \eqref{partition_function} is intractable due to the requirement of summing over all possible states, which leads to an exponential increase in the number of states for larger systems.\footcite[cf.][2-3]{zhaiDeepStructuredEnergy2016}
 When the number of hidden units is large compared to the number of visible units it is impossible to achieve a perfect model because of the totally connected network and the resulting \( 2^n \) possbilities.\footcite[cf.][154]{ackleyLearningAlgorithmBoltzmann1985}
 Hereby, \( n\) represents the number of neurons in the network with each neuron being in one of the two states, the total sum of possibilities are \( 2^n \).
-This leads back to the briefly mentioned constraint of equation 2.3, that is needed to calculate an activation probability of a neuron, which is required to update a weight in the training process shown in 2.5.
-
 A specific example to demonstrate why it is intractable to calculate an activiation of a \ac{BM} is the following. A fictional \ac{BM} has 80 visible nodes and 120 hidden nodes and therefore the possbilities of states of neurons are \( 2^{200} \), which is \( 1.61 \times 10^{60}\). 
 To put this into perspective, the total atoms that exist on earth are only estimated to be around \( 1.33 \times 10^{50}\).\footnote{cf.\cite{helmenstineHowManyAtoms2022}, p. 478-480; cf.\cite{schlammingerCoolWayMeasure2014}, p. 1}
 That means even if it would be possible to store one information per atom it would just not be enough. 
-
 As a result, instead of directly trying to train the model sampling methods are used that are able to estimate these activation probabilities.
-This enables the training of \ac{BM}s and \ac{RBM}s.
+
 \subsection{Restriced Boltzmann Machines}
 
 As a simplification of the training problem Hinton and Sejnowski proposed Gibbs sampling as an algorithm to aporoximate both expectations.\footcite[cf.][158-165]{ackleyLearningAlgorithmBoltzmann1985}
 Furthermore, the intralayer connections of the model got removed and the result is the so called \ac{RBM}.
-To transform an \ac{BM} into a \ac{RBM} the diagonal elements \( L \) and \( J \)  introduced earlier, are set to 0 and as a result the well-known model of a \ac{RBM} establishes shown in fig.5.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
+To transform an \ac{BM} into a \ac{RBM} the diagonal elements \( L \) and \( J \)  introduced earlier, are set to 0 and as a result an exemple of an \ac{RBM}s network structure is shown in fig.5.\footcite[cf.][449]{salakhutdinovDeepBoltzmannMachines2009}
 
 \begin{figure}[H]
     \centering
@@ -159,22 +159,22 @@ To transform an \ac{BM} into a \ac{RBM} the diagonal elements \( L \) and \( J \
     \caption{Figure of a \ac{RBM}}
 \end{figure}
 What can be recognized that no more visible-to-visible and hidden-to-hidden connections can be found in the model.
-The configuration of the visible and hidden units \( (v, h) \) therefore has also an updated energy function (Hopfield, 1982) given by:
+The resulting energy function is given by the energy function (Hopfield, 1982):
 \begin{equation}
 E(v, h) = - \sum_{i \in \text{visible}} a_i v_i - \sum_{j \in \text{hidden}} b_j h_j - \sum_{i,j} v_i h_j w_{ij},
 \end{equation}
 where \( v_i, h_j \) are the binary states of a visible unit \( i \) and hidden unit \( j \), \( a_i \) and  \(  b_j \) are their biases and \( w_{ij} \) is the weight between them.\footcite[cf.][3-4]{hintonPracticalGuideTraining2012a}
-Despite, compared to the fully connected \ac{BM}, the \ac{RBM} is less complex but the advantages of training surpasses the loss in expressivity possibilities.\footcite[cf.][4]{huembeliPhysicsEnergybasedModels2022}
+While \ac{RBM}s have been shown to be easier to train, the restricted structure means a loss in expressivitivity compared to fully connected \ac{BM}s.\footcite[cf.][4]{huembeliPhysicsEnergybasedModels2022}
 The \ac{RBM} has recently been drawing attention in the machine learning community beceause of its adaption and extention for various tasks such as representational learning, document modeling, image recognition and for
 serving as foundational components for deep networks including Deep Boltzmann Machines, Deep Belief Networks and hybrid models with CNNs.\footcite[cf.][1186]{zhangOverviewRestrictedBoltzmann2018}
 
-\subsubsection{Training of \ac{RBM}s}
+\subsubsection{Training of \ac{BM}s}
 
-The training of \ac{RBM}s can be established with the use of sampling methods that estimate the activation probabilities, which are needed to update the weights.
-There are currently two methods that can be chosen from: contrastive divergence and the Metropolis-Hastings algorithm. 
+The training of \ac{BM}s can be established with the use of sampling methods that estimate the activation probabilities, which are needed to update the weights.
+Here, we consider two commonly used methods that can be chosen from: contrastive divergence and the Metropolis-Hastings algorithm. 
 The goal of the techniques is to create a sequence of correlated steps from a random walk that, after enough iterations, makes it possible to sample a desired target probability distribution.\footcite[cf.][1]{patronOptimalRelaxationRate2024}
 In the following part both methods will be explained in depth.
-Especially, they are interesting since they serve as baselines to compare against the new sampling method of a hopfield network that is to be achieved in the practical part of the thesis.
+Especially, Metropolis Hastings is interesting since it serve as baseline to compare against the new sampling method of a hopfield network that is to be achieved in the practical part of the thesis.
 
 \textbf{Contrastive Divergence:} Contrastive divergence is a special Gibbs Sampling training method
 developed by Geoffrey Hinton for the efficient training of \ac{RBM}s.\footcite[cf.][4-5]{hintonPracticalGuideTraining2012}
@@ -204,7 +204,7 @@ where $\sigma(x)$ is the logistic sigmoid function with an unbiased sample. The 
 A visual representation is shown in figure 6:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{graphics/logistic_sigmoid.png}
+    \includegraphics[width=0.45\linewidth]{graphics/logistic_sigmoid.png}
     \caption{Figure of a logistic sigmoid function \ac{RBM}}
     \label{logistic_sigmoid}
 \end{figure}
@@ -263,8 +263,8 @@ In the next step a uniform random number $r$ between 0 and 1 is generated.
 After generating $r$ the configuration will be accepted if $r \leq p$ (i.e., $x_{\text{old}}=x_{\text{new}}$).\footcite[cf.][2-3]{patronOptimalRelaxationRate2024}
 Otherwise, a rejection takes place if $r > P$ (i.e., $x_{\text{old}}=x_{\text{old}}$).
 
-Finally, the configuration $x_{\text{old}}$ can be stored and the process repeats beginning from step 2 on.\footcite[cf.][17]{patronOptimalRelaxationRate2024}
-After repeating enough times the activation probability for each neuron can be calculated by summing over all samples $(x_1+x_2+x_3+\ldots)$ and the result is divided by the total number of samples.
+Finally, the configuration $x_{\text{old}}$ is stored and the process repeats beginning with step 2.\footcite[cf.][17]{patronOptimalRelaxationRate2024}
+After repeating enough times the activation probability for each neuron is calculated by summing over all samples $(x_1+x_2+x_3+\ldots)$ and the result is divided by the total number of samples.
 
 \subsection{Current Problems witht BMs and RBMs}
 
@@ -279,7 +279,7 @@ A lower temperature reduces the system's possbility to explore the energy landsc
 Vice versa a too high temperature can cause that the energy landscape is not explored enough and has gaps between it missing some minima or skipping the global maxima. 
 Luckily, the temperature for \ac{RBM}s is expected to be \( 1 \) and only for specific use cases it makes sense to adjust internal temperature.
 
-To accelerate the training process of a \ac{RBM}, it is crucial to address the most computationally demanding aspect: the matrix-vector multiplication involved in the sampling process.
+To accelerate the training process of a \ac{BM} or \ac{RBM}, it is crucial to address the most computationally demanding aspect: the matrix-vector multiplication involved in the sampling process.
 A possbilty of achieving this is using dedicated hardware, so called hardware accelerators for this problem. 
 They are designed to tackle a specific task very efficiently, like matrix vector multiplications, which are widely used within most of the neural networks.\footcite[cf.][3881-3882]{lehnertMostResourceEfficient2023}
 That is the reason why they are significant for the acceleration of this thesis and an interesting technology to look at.  
@@ -319,22 +319,21 @@ The following three accelerator approaches can be categorized into the first cat
 
 \subsection{GPU}
 The \ac{GPU}, is by far the most common accelerator in the market with a focus at computational-complex workloads.
-Also \ac{GPU}s enabled great achievements in \ac{DNN}s due to their massive parallelization potential of computations and their high troughputs compared to \ac{FPGA}s and \ac{ASIC}s.\footcite[cf.][16]{baischerLearningHardwareTutorial2021}
 A \ac{GPU} is a manycore unit that features up to hundreds of multi-processors that consist of in-order cores which are able to exploit massive threadlevel parallelism.\footcite[cf.][2]{peccerilloSurveyHardwareAccelerators2022}
 They excel at performing numerous floating-point arithmetic operations for vector processing on large datasets with high degrees of data-parallelism.
 In practice this works by breaking down workloads into small tasks that can be processed by the enormous amount of cores in parallel.\footcite[cf.][101]{huSurveyConvolutionalNeural2022} 
-With development of real-time graphics \ac{GPU}s became programmable too. The combination of programmability and floating-point performance
+The combination of programmability and floating-point performance
 make them very attractice for machine learning workloads and is the reson for their dominance in the market.\footcite[cf.][42]{dallyEvolutionGraphicsProcessing2021}
 On top of that, the widespread adoption of \ac{GPU}s has led to extensive support across numerous frameworks and high-level APIs commonly used in Machine Learning.\footcite[cf.][16]{baischerLearningHardwareTutorial2021}
 Well-known frameworks would be PyTorch or TensorFlow.
-However, compared to the other two accelerator apporaches the \ac{GPU} is not as flexible and has higher latency and energy consumption.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
+However, compared to more specialized \ac{FPGA} and \ac{ASIC} apporaches the \ac{GPU} is not as flexible and has higher latency and energy consumption.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
 
 \subsection{Field programmable gate arrays}
 In contrast, \ac{FPGA}s have also demonstrated enormous parallelization capabilities due to their fast digital signal processors and on-chip
 memory which result in lower energy cost than GPUs.\footcite[cf.][2693]{ahmadOptimizingHardwareAccelerated2020}
 They work by using reconfigurable logic blocks that can be interconnected using routing tracks with configurable switches at the intersections.\footcite[cf.][144]{babuReconfigurableFPGAArchitectures2021}
-This combined with the use of many digital signal processors and local storage of data in the hardware enables the development of the exact hardware needed for a workload.\footcite[cf.][19]{baischerLearningHardwareTutorial2021}
-As a side note it is worth mentioning that the most energy-consuming task of a workload is the data transfer and not the computation iself.
+This combined with the use of many digital signal processors and local storage of data in the hardware enables the development of custom digital circuits for a specific workload.\footcite[cf.][19]{baischerLearningHardwareTutorial2021}
+As a side note it is worth mentioning that the most energy-consuming task of a workload is often the data transfer and not the computation iself.
 In the context of \ac{FPGA}s, they use their on-chip memory to reduce the data transfer significantly and therefore achieve a sweet spot between computation speed and energy efficiency.\footcite[cf.][101-102]{huSurveyConvolutionalNeural2022}
 Hence, they are utilized to design a specialized processor tailored for executing specific workloads, like machine learning, effectively.\footcite[cf.][322]{sipolaArtificialIntelligenceIoT2022}
 Furthermore, due to their reprogrammable nature they have a lower engineering cost and faster time-to-market compared to \ac{ASIC}s.\footcite[cf.][4]{boutrosFPGAArchitecturePrinciples2021}
@@ -342,70 +341,69 @@ With \ac{FPGA}s the implementation time could only be a matter of weeks and also
 Even though the \ac{FPGA} possesses all these advantages with their high flexibility, latency and low energy consumption, they are sometimes inferior in throughput compared to a \ac{GPU}.\footcite[cf.][100]{huSurveyConvolutionalNeural2022}
 
 \subsection{Application specific integrated circuit}
-\ac{ASIC}s can be distinguished from \ac{FPGA}s because they are not programmable. 
+\ac{ASIC}s can be distinguished from \ac{FPGA}s because they are not programmable and have no limited amount of building blocks. 
 In addition to that, they offer the highest degree of customization and are designed to execute a specific application with the utmost efficiency.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
-So the attributes of \ac{ASIC}s are the focus on specific tasks and the strong design freedom.
-Nowadays, the most common type of \ac{ASIC}s are \ac{TPU}s because of their matrix vector multiplications abilities that are needed within machine learning. But conventional \ac{ASIC}s work by mapping neurons directly to the hardware.\footcite[cf.][104]{huSurveyConvolutionalNeural2022}
+They also have the possibility to implement analog circuits.
+Nowadays, a good example of \ac{ASIC}s are \ac{TPU}s because of their matrix vector multiplications abilities that are needed within machine learning.
+Conventional \ac{ASIC}s work by mapping neurons directly to the hardware.\footcite[cf.][104]{huSurveyConvolutionalNeural2022}
 Their design architecture enables them to outperform \ac{GPU}s and \ac{FPGA}s in terms of their small size, greater computation speed and high power efficiency.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
-Specifically when compared to corresponding \ac{FPGA} circuits  \ac{ASIC}s are 35x smaller and 4x faster. 
-A more current study could show that this gap is reduced but they still are 9x smaller and also faster.\footcite[cf.][5]{boutrosFPGAArchitecturePrinciples2021}
-
-Nonetheless, developing an \ac{ASIC} requires expert knowledge in chip design but also within neural networks and takes a lot of time.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
-Out of the three approaches, they provide the most efficient solution, yet it comes at the expense of lacking reconfigurability, no programmability, and incurring high engineering costs.\footnote{cf. \cite{peccerilloSurveyHardwareAccelerators2022}, p. 4; cf.\cite{huSurveyConvolutionalNeural2022}, p. 100}
-With a sustainability and climate-change aspect in mind, they are the by far the best option since they represent the most power efficient approach with also the best computation speed.
+Specifically when compared to corresponding \ac{FPGA} circuits \ac{ASIC}s a study shows that they are 9x smaller and also around 4x faster.\footcite[cf.][5]{boutrosFPGAArchitecturePrinciples2021}
+Nonetheless, developing an \ac{ASIC} requires expert knowledge in chip design but also to implement neural networks on them, which both takes a lot of time.\footcite[cf.][17]{baischerLearningHardwareTutorial2021}
+Out of the three approaches, they often provide the most efficient solution, yet it comes at the expense of lacking reconfigurability and incurring high engineering costs.\footnote{cf. \cite{peccerilloSurveyHardwareAccelerators2022}, p. 4; cf.\cite{huSurveyConvolutionalNeural2022}, p. 100}
+With a sustainability and climate-change aspect in mind, they are a promising option since they represent the most power efficient approach with the best computation speed.
 
 
 \section{Memristor Hopfield Neural Network}
 
 The so called \ac{mem-HNN} is a a hardware accelerator that uses an emerging approach of combining analog signals and electronical signals to solve complex optimization problems.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}
 It can be categorized into the \ac{ASIC} family of hardware accelerators and its specific purpose is to solve Ising problems. 
-In 1925 Ernst Ising, a german physicist, invented the Ising model which explained the interaction between ferromagnets.\footcite[cf.][253-258]{isingBeitragZurTheorie1925}
-This statistical model focuses on the state of a spin \( s_{i} \) (up and down; \( +1 \) and \( -1 \)) representing their mangetical behaviour. 
-The Ising model calculates the total energy of a system though the following energy function: 
-\begin{equation}
-    E(\mathbf{s}) = \sum_{i } h_i s_i + \sum_{i,j} J_{ij}s_{i}s_{j}, \quad s_i = \pm 1,
-\end{equation}
-where \( i \) is the label of the spins \( s_{i} \), with \( h_{i} \) representing the external magetic field  interacting with each spin, and \( J_{ij} \) is the interaction strength between pairs of spins that are connected by an edge \( (ij) \).\footcite[cf.][2]{tanahashiApplicationIsingMachines2019}
-Both values \( h_{i} \) and  \( J_{ij} \) are real-valued allowing for a wide range of possible magnetic field intensities and vary in interaction strength.\footcite[cf.][1-2]{wangOscillatorbasedIsingMachine2017}
-Nowadays, the Ising modell is also attractive in other fields to describe the energy of a system and to transform them into an Ising problem.\footcite[cf.][2-3]{tanahashiApplicationIsingMachines2019}
-Solving Ising problems is equal to finding the minimum energy state of a system.
-Hence, in practice transforming optimzation probelms into Ising problems, the optimal solution is equal to the minima of the Ising energy function. 
-This transformation works by mapping each variable of the problem to Ising spins and designing an Ising model whose ground state represents the solution.\footcite[cf.][2-3]{lucasIsingFormulationsMany2014}
-
-Equivalence between the energy function of a \ac{mem-HNN} and the energy function of a \ac{RBM} can be shown here.
-The energy function of the \ac{mem-HNN} works by using the binary states of \( +1 \) and \( -1 \) while the \ac{RBM} uses \( +1 \) and \( 0 \) but otherwise they are completely equal.
-To transform the \ac{RBM} into the binary states of the \ac{mem-HNN}, its energy function from 2.6 needs to be modified with \(\frac{x + 1}{2}\) where \( x \) represents the energy function.
-The fact, that both energy functions are equal implies that the neural network of a \ac{RBM} could possibly be trained on this Ising machine.
-Moreover, other artificial intelligence models could be compatible but currently there are no apporaches on how to transform them.
-
-Comming back to the Ising machine itself, the background for the development is the current slow down or failure of Moore's law which causes slow improving computation speed, energy efficiency and computation latency of conventional semiconductor electronical technology.\footcite[cf.][1]{caiHarnessingIntrinsicNoise2019}
-Since the \ac{mem-HNN} is engineered to solve Ising problems, therefore also called Ising machine, it can tackle various problems that fall under the category of Ising problems.\footcite[cf.][363]{mohseniIsingMachinesHardware2022a}
-Originally the mem-HNN was experimental tested by the team of researches to solve nondeterministic polynomial-time hard, or NP-hard for short, Ising problems directly on the hardware.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}
-NP-hard problems are amoung the toughest problems to solve and have an expontential- or even factioral time to solve (\( 2^{n} \), \( n{!} \)) with no efficient solution, slow to solve and to verify.\footcite[cf.][497-500]{izadkhahNPNPCompleteNPHard2022}
-Well-known examples would be the salesman problem, the maximum clique problem or the calculation of the partition function of the \ac{BM} with \( 2^{n} \) possibilities.
-
-In simple terms, this Ising machine is able to efficiently find the global minima of energy functions that are the underlying structure of an Ising problem. 
-The name \ac{mem-HNN} already indicates that the Ising machine is based on the concept of a Hopfield Network.
-All this is possible beause the update formula of the Hopfield Network is directly implemented on the hardware of the accelerator.
 A photograph of the physical \ac{mem-HNN} accelerator (left side) and a microscopic view of it (right side) can be seen in following figure: 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\linewidth]{graphics/Bilder_physische_beschleuniger.jpg}
     \caption{Physical and microscopic view of the mem-HNN}
 \end{figure}
+In 1925 Ernst Ising, a german physicist, invented the Ising model which explained the interaction between ferromagnets.\footcite[cf.][253-258]{isingBeitragZurTheorie1925}
+This statistical model focuses on the state of a spin \( s_{i} \) (up and down; \( +1 \) and \( -1 \)) representing the orientation of the magnetic moment. 
+The Ising model calculates the total energy of a system though the following energy function: 
+\begin{equation}
+    E(\mathbf{s}) = \sum_{i } h_i s_i + \sum_{i,j} J_{ij}s_{i}s_{j}, \quad s_i = \pm 1,
+\end{equation}
+where \( i \) is the label of the spins \( s_{i} \), with \( h_{i} \) representing the external magetic field  interacting with each spin, and \( J_{ij} \) is the interaction strength between pairs of spins that are connected by an edge \( (ij) \).\footcite[cf.][2]{tanahashiApplicationIsingMachines2019}
+Both values \( h_{i} \) and  \( J_{ij} \) are real-valued allowing for a wide range of possible magnetic field intensities and vary in interaction strength.\footcite[cf.][1-2]{wangOscillatorbasedIsingMachine2017}
+The Ising model is also attractive in other fields to describe the energy of a system and to transform them into an Ising problem.\footcite[cf.][2-3]{tanahashiApplicationIsingMachines2019}
+Solving Ising problems is equal to finding the minimum energy state of a system.
+Hence, in practice transforming optimzation probelms into Ising problems, the optimal solution is equal to the minima of the Ising energy function. 
+This transformation works by mapping each variable of the problem to Ising spins and designing an Ising model whose ground state represents the optimal solution.\footcite[cf.][2-3]{lucasIsingFormulationsMany2014}
+
+The background for the development is the current slow down or failure of Moore's law which causes slow improving computation speed, energy efficiency and computation latency of conventional semiconductor electronical technology.\footcite[cf.][1]{caiHarnessingIntrinsicNoise2019}
+Since the \ac{mem-HNN} is engineered to solve Ising problems, therefore also called Ising machine, it can tackle various problems that fall under the category of Ising problems.\footcite[cf.][363]{mohseniIsingMachinesHardware2022a}
+Originally the \ac{mem-HNN} was experimental tested by the team of researches to solve nondeterministic polynomial-time hard, or NP-hard for short, Ising problems directly on the hardware.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}
+NP-hard problems are amoung the toughest problems to solve and have an expontential- or even factioral time to solve (\( 2^{n} \), \( n{!} \)) with no efficient solution, slow to solve and to verify.\footcite[cf.][497-500]{izadkhahNPNPCompleteNPHard2022}
+Well-known examples would be the travelling salesman problem, the maximum clique problem. 
+Here, the \ac{mem-HNN} outperforms both digital computer accelerators \ac{CPU} and \ac{GPU} by at least 10.000x in terms of energy to solution.\footcite[cf.][470]{caiPowerefficientCombinatorialOptimization2020}
+
+Equivalence between the energy function of a \ac{mem-HNN} and the energy function of a \ac{BM} can be shown here.
+The energy function of the \ac{mem-HNN} works by using the binary states of \( 1 \) and \( 0 \) while the \ac{BM} can use \( +1 \) and \( -1 \) but otherwise they are completely equal.
+To transform the \ac{RBM} into the binary states of the \ac{mem-HNN}, its energy function from 2.6 needs to be modified with \(\frac{x + 1}{2}\) where \( x \) represents the state of the spin.
+The fact, that both energy functions are equal implies that the neural network of a \ac{RBM} can possibly be trained on this Ising machine.
+Therefore, this thesis aims to develop tools that utilize \ac{mem-HNN}s for implementing \ac{BM}s, capitalizing on their proven efficiency in computing the Ising model with notable speed and energy savings.
+This will investigate the specific benefits that a \ac{mem-HNN}s accelerator offers for \ac{BM}s.
+The name \ac{mem-HNN} already indicates that the Ising machine is based on the concept of a Hopfield Neural Network.
+All this is possible beause the update formula of the Hopfield Network is directly implemented on the hardware of the accelerator.
+
 \subsection{Hopfield Network}
 
-A Hopfield Network is an \ac{EBM} and belongs to the field of recurrent neural networks.\footcite[cf.][35]{dramschChapterOne702020}
-Because the Hopfield Network is the underlying structure of the physical \ac{mem-HNN} accelerator this model is explained first.
-The structure of the network consists of only one single layer with binary valued neurons inside.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
-Therefore, the neurons state can either be \{1, 0\} or \{1, -1\}.
+A Hopfield Network is a type of \ac{EBM} and belongs to the field of recurrent neural networks.\footcite[cf.][35]{dramschChapterOne702020}
+The main purpose of the \ac{mem-HNN} is to implement Hopfield networks in a hardware accelerator, which is used to find optimal solutions of optimization problems.
+Hence, the operating principle of Hopfield Networks is explained. 
+The structure of the network consists of only one single layer with binary valued neurons.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
+The neurons state can either be \{1, 0\} or \{1, -1\}.
 The connections between the neurons are symmetrical, which means that the weights of the connections are the same in either direction.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
 Initially, the primary applications of this type of network were to serve as storage for associative patterns and to facilitate pattern retrieval.\footcite[cf.][2]{ramsauerHopfieldNetworksAll2021}
 In practive given a query pattern a Hopfield Network can retrive a pattern that is most similar or an is an average of similar patterns.\footcite[cf.][2]{ramsauerHopfieldNetworksAll2021}
-In this paper the Hopfield Network's update function interests us because it possibly could be used to sample the intractable training of a \ac{RBM} mentioned earlier.
-Surprisingly, since Hopfield networks were introduced by J.J Hopfield in 1982 the storage capacity got increased over time but the fundamentals stayed the same.\footnote{cf.\cite{hopfieldNeuralNetworksPhysical1982}, p. 2554-2558; cf.\cite{ramsauerHopfieldNetworksAll2021}, p. 2}
+Since Hopfield networks were introduced by J.J Hopfield in 1982 the storage capacity got increased over time but the fundamentals stayed the same.\footnote{cf.\cite{hopfieldNeuralNetworksPhysical1982}, p. 2554-2558; cf.\cite{ramsauerHopfieldNetworksAll2021}, p. 2}
 In following figure 6 an example of a Hopfield Network can be seen.\footcite[cf.][1-2]{yaoMassivelyParallelAssociative2013}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{graphics/Hopfield_Netzwerk.png}
@@ -414,37 +412,38 @@ In following figure 6 an example of a Hopfield Network can be seen.\footcite[cf.
 The exemplary network has 6 neurons and bidirectional weigths \( W_{ij} \) between the neurons. 
 In addition to that, a Hopfield network has no input or output layer.\footcite[cf.][3]{yaoMassivelyParallelAssociative2013}
 The main goal is to find the values for each neuron in the network given a specific input that minimizes the total energy of the system.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
-The minimum energy is then equal to the state where the network is able to perform as a memory item.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
+Hereby, the input of the network is an initial neuron configuration
+Given an initial input configuration, the neurons will then evolve from this configuration such that the overall energy of the Hopfield network is minimized.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
 This energy state can be calculated with the following energy equation\footcite[cf.][2556]{hopfieldNeuralNetworksPhysical1982}: 
-
 \begin{equation}
     E = -\frac{1}{2} \sum_{i \neq j} T_{ij} V_i V_j .
 \end{equation}
 This energy function invented by Hopfield has big similarities with a \ac{BM} when comparing to the
 equation 2.4. This is one of the reasons why the execution on the \ac{mem-HNN} could work out.
-When comparing a Hopfield Network, they seek to achieve the effect of changing node activation on the overall energy of the network but \ac{BM}s replace this with the probability of a certain node being activated on the network energy.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
-The second important reason to research the hopfield networks is for their updating process.
-Approximately, the activation rule for each neuron is to update its state as if it were a single neuron with the threshold activation function.\footcite[cf.][506]{mackayInformationTheoryInference2003}
+Approximately, the activation rule for each neuron is to update its state as if it were a single neuron with the threshold activation function.
+The energy is minimized in an iterative update process.
+The state of each neuron is updated according to the following rule:\footcite[cf.][506]{mackayInformationTheoryInference2003}
 \begin{equation}
     s_i \leftarrow 
     \begin{cases} 
-    +1 & \text{if } \sum_j w_{ij} s_j + b \geq \theta_i, \\
-    -1 & \text{otherwise}.
+    1 & \text{if } \sum_j w_{ij} s_j + b \geq \theta_i, \\
+    0 & \text{otherwise}.
     \end{cases}
     \label{eq:update_rule}
 \end{equation}
-    
-The state of the neuron will be updated to 1 if the sum over all weights multiplied with the states \{1, -1\} added to a bias \( b \)  is greater than the threshold \( \theta_i \).
+    The state of the neuron will be updated to 1 if the sum over all weights multiplied with the states \{0, 1\} added to a bias \( b \)  is greater than the threshold \( \theta_i \).
 In the case of our accelerator the threshold is set to 0 but in theory can be used as an hyperparameter.
 
 Since every neuron's output is an input to all the other neurons the order of the updates need to be specified.\footcite[cf.][506]{mackayInformationTheoryInference2003}
 There is the possbility to update all neurons synchronous or asynchronous. 
-There is no study that shows what update method leads to better results.
-Therefore, this paper follows the asynchronous option first and ensures to do enough sampling steps, so that every neuron has at least updated once before moving on. 
+In general, it can be highly problem specific which update mechanism performs bettert to achieve faster convergence to energy minima.
+The specific choice of the update method for the intended use is described later.
+When comparing a Hopfield Network, they seek to achieve the effect of changing node activation on the overall energy of the network but \ac{BM}s replace this with the probability of a certain node being activated on the network energy.\footcite[cf.][7]{ahadNeuralNetworksWireless2016}
+The second important reason to research the hopfield networks is for their updating process because it possibly could be used to sample the intractable training of a \ac{RBM} mentioned earlier.
 
 \subsection{Memristor Crossbar Array}
 
-Having set the foundational knowledge about the function of a Hopfield Network the mode of operation can be tackled. 
+Having set the foundational knowledge about the function of a Hopfield Network the mode of operation is explained in the following. 
 Since the \ac{mem-HNN} saw the light of day in 2021, a number of improvements have been made to it and at the end of 2023 the individual components can be seen in following figure\footcite[cf.][2]{hizzaniMemristorbasedHardwareAlgorithms2023}:
 \begin{figure}[H]
     \centering
@@ -452,32 +451,30 @@ Since the \ac{mem-HNN} saw the light of day in 2021, a number of improvements ha
     \caption{Modell of the mem-HNN}
     \label{ModellHMM}
 \end{figure}
-The green square symbolizes the memristor crossbar array, which has the task of performing the in-memory-vector matrix multiplication. 
-This is the core part of the architecture that is built around the update formula of the Hopfield Network. 
-The memristor crossbar array gets his name because it consists of \textbf{memristors} that connect orthogonal \textbf{electric tracks} with each other.
-The \( G_{ij} \) stands for conductance and represents the inverse of the resistance \( R \) of the memristors since \( G = \frac{1}{R}\). On the other hand, \( BL \) (Bitline) and \( WL \) (Wordline) represent the electical tracks.
-All the other parts of the model are handled in subchapter 2.4.3, so for now the spotlight belongs to the memristor crossbar array (green square).
+The green square symbolizes the memristor crossbar array, which has the task of performing the matrix multiplication in eq.\eqref{eq:update_rule}. 
+The memristor crossbar array consists of \textbf{memristors} that connect orthogonal \textbf{electric tracks} with each other.
+The \( G_{ij} \) stands for conductance and represents the inverse of the resistance \( R \) of the memristors since \( G = \frac{1}{R}\).
+\( BL \) (Bitline) and \( WL \) (Wordline) represent the electical tracks, where the \( WL \) is the input and the \( BL \) is the output of the crossbar.
+The other components of the model are explained in subchapter 2.4.3, as for now the focus in on the memristor crossbar array (green square).
 A better perspective of the memristor crossbar array gives following 3D model\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020}:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\linewidth]{graphics/memristor_crossbar_array.png}
     \caption{3D modell of the memristor crossbar array}
 \end{figure}
-To understand how this crossbar array implements the Hopfield network, it helps to have another look at the earlier introduced update formula in equation~\ref{eq:update_rule}.
-
-First of all, on the green Wordline a voltage which either is \( +1 \) or \( -1 \) that represent the state of the neurons in the hopfield network is applied.
-Then, the current is flowing towards the memristors, which is an electronic device that functions as a resistor, but with the ability to dynamically change its resistance while the device is being used.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
-In this model the gray cylinders represent the memristors.
-The memristors are suitable for matrix vector multiplication because they can use their dynamical resistance to act as weigths.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
-In addition to that, this is the reason why this kind of memory has the potential of high switching speeds, high energy efficiency and high endurance.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
+To understand how this crossbar array implements the Hopfield network, it helps to have another look at the earlier introduced update formula in eq.\eqref{eq:update_rule}.
+On the green Wordline a voltage which either is \( 1 \) or \( 0 \) that represent the state of the neurons in the hopfield network is applied.
+Then, the current is flowing towards the BL trough the memristors, which is an electronic device that functions as a resistor.
+Contrary to a resistor, where the electrical resistance is fixed, a memristor can be programmed to change the resistance.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
+In fig.\ref{ModellHMM} the gray cylinders represent the memristors.
 
 In eletrical terminology, if the resistence of a memristor is higher, the conductance is low since the current can barely flow into the lower Bitlane.
 For each of the intersections, when a Wordline meets the crossbar it represents the multiplication of \(w_{ij}\) and \(s_j\) within the update formula.
-After the matrix vector multiplication the single currents flow in the same direction on the Bitline and are summed up together with their individual current strength.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
-The reason for this phenomenon is the 1. Kirchhoff'sche rule, which is not further explained here since it would be out of scope.
-To make an example for each output current \(i_{1}\) has for intput voltages \(V_{1}, V_{2}, V_{3}, V_{4}\).
-The current flowing into the lower Bitlane is now according to Ohm's rule \( i_{out} = \frac{1}{R_{memristor}} * V_{in}\).
-Since \( G = \frac{1}{R}\) and Kirchhoff'sche rule sums up each current \(i\) is \( i_{1} = G_{11}*V_1 + G_{12}*V_2 + \cdots + G_{14}*V_4\)
+After this multiplication, currents from different WLs are combined in the BL, such that all currents are summed according to the first Kirchhoff'sche rule.
+In the following, this is shown for the example crossbar in fig.\ref{ModellHMM}.
+The crossbar has the four input volatages \(i_{1}\) has the four intput voltages \(V_{1}, V_{2}, V_{3}, V_{4}\) that are applied at the WL.
+The current flowing into the lower Bitlane is now calculated according to Ohm's law \( i_{out} = \frac{1}{R_{memristor}} * V_{in}\).
+Since \( G = \frac{1}{R}\) and as the currents flowing into a BL are added, the output current at BL1 is \( i_{1} = G_{11}*V_1 + G_{12}*V_2 + \cdots + G_{14}*V_4\)
 As a result the first first part \(\sum_j w_{ij} s_j\) of the updating formula of the Hopfield Network is established.
 Last but not least, adding the bias \(b\) to the sum is achieved by simply adding an intial current, which is worth the amount of the bias, to the the total Bitline current.
 Each i is the output of the current vector and equal to a neuron within the Hopfield Network with all the memristors on this lane symbolizing the weights that all the other neurons connect to it.
@@ -522,6 +519,8 @@ Presently, the research on the application of memristor crossbar arrays in super
 In the practical part exactly this is put to the test and training data of the \ac{RBM} should be generated to give clearance about the feasibility of this idea.
 A possbility is to use the memristor to set the resistance \(V_{set}\) for one training iteration with the needed weigths, reset them \(-V_{reset}\) and 
 initiate the following training with the new weights that are digitally updated. 
+This is the reason why this kind of memory acting as weights has the potential of high switching speeds, high energy efficiency and high endurance.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
+
 
 \subsection{Output Hopfield Network}
 
