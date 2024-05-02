@@ -465,41 +465,39 @@ A better perspective of the memristor crossbar array gives following 3D model\fo
 To understand how this crossbar array implements the Hopfield network, it helps to have another look at the earlier introduced update formula in eq.\eqref{eq:update_rule}.
 On the green Wordline a voltage which either is \( 1 \) or \( 0 \) that represent the state of the neurons in the hopfield network is applied.
 Then, the current is flowing towards the BL trough the memristors, which is an electronic device that functions as a resistor.
-Contrary to a resistor, where the electrical resistance is fixed, a memristor can be programmed to change the resistance.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
-In fig.\ref{ModellHMM} the gray cylinders represent the memristors.
 
-In eletrical terminology, if the resistence of a memristor is higher, the conductance is low since the current can barely flow into the lower Bitlane.
-For each of the intersections, when a Wordline meets the crossbar it represents the multiplication of \(w_{ij}\) and \(s_j\) within the update formula.
-After this multiplication, currents from different WLs are combined in the BL, such that all currents are summed according to the first Kirchhoff'sche rule.
-In the following, this is shown for the example crossbar in fig.\ref{ModellHMM}.
+Unlike a resistor with fixed electrical resistance, a memristor’s resistance can be programmed to change, as shown by the gray cylinders in fig.\ref{ModellHMM}.\footcite[cf][124]{sungPerspectiveReviewMemristive2018}
+Higher resistance in a memristor results in lower conductance, restricting current flow into the lower Bitlane.
+At each intersection where a Wordline meets the crossbar, it represents the multiplication of \(w_{ij}\) and \(s_j\) 
+in the update formula.
+Following this, currents from different Wordlines are combined in the Bitlane, summing all currents according to Kirchhoff's first law, as demonstrated in the example crossbar in fig.\ref{ModellHMM}.
 The crossbar has the four input volatages \(i_{1}\) has the four intput voltages \(V_{1}, V_{2}, V_{3}, V_{4}\) that are applied at the WL.
 The current flowing into the lower Bitlane is now calculated according to Ohm's law \( i_{out} = \frac{1}{R_{memristor}} * V_{in}\).
 Since \( G = \frac{1}{R}\) and as the currents flowing into a BL are added, the output current at BL1 is \( i_{1} = G_{11}*V_1 + G_{12}*V_2 + \cdots + G_{14}*V_4\)
-As a result the first first part \(\sum_j w_{ij} s_j\) of the updating formula of the Hopfield Network is established.
-Last but not least, adding the bias \(b\) to the sum is achieved by simply adding an intial current, which is worth the amount of the bias, to the the total Bitline current.
-Each i is the output of the current vector and equal to a neuron within the Hopfield Network with all the memristors on this lane symbolizing the weights that all the other neurons connect to it.
+As a result the summation of \(\sum_j w_{ij} s_j\) can be performed by the flow of electical currents.
+Adding the bias \(b\) to the sum is achieved by simply adding an intial current, which is worth the bias amount, to the the total Bitline current.
+Analog signal processing enables vector-matrix multiplication at light speed, significantly speeding up clock cycles, making it ideal for accelerating AI workloads.
 
-The way the memristors work is to imagine them as plate capacitors. 
-The following figure shows how memristors function achieve the dynamically changing resistance.\footnote{\cite{changDirectObservationDualFilament2017}, p. 6; \cite{sungPerspectiveReviewMemristive2018}, p. 2}
+Another advantage of crossbar arrays is the ability to store the matrix weights directly in the crossbar, which avoid slow and energy intensive data movement. 
+Memristors function like plate capacitors, dynamically changing resistance, as depicted in the following figure.\footnote{\cite{changDirectObservationDualFilament2017}, p. 6; \cite{sungPerspectiveReviewMemristive2018}, p. 2}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\linewidth]{graphics/Memristor_filoments.png}
     \caption{Memristor-based learning}
     \label{platecondensator}
 \end{figure}
-
 Essentially, the memristor consists out of two metal electrodes and a dielectric layer that is sandwiched between them.\footcite[cf.][1]{changDirectObservationDualFilament2017}
 In case of the \ac{mem-HNN} it is an oxide memristors that uses tantalum oxide (TaOx) and oxygen atoms as dielectric layer.\footcite[cf.][412]{caiPowerefficientCombinatorialOptimization2020}
 Initially the metal-ions are freely moving within the dielectric layer. 
 A visual representation can be observed in section \(a)\) on the left side of \ref{platecondensator}.
 In \textbf{phase 1}, the programming phase, an electrical field is applied to the plate capacitors which leads to the formation of a conductive filament within the dielectrive layer.\footcite[cf.][3]{changDirectObservationDualFilament2017}
 The conductive filament can be imagined as a string, which is formed out of the metal-ions.
-Therefore, they are able to conduct electricity once they built.\footcite[cf.][5]{changDirectObservationDualFilament2017}
+Therefore, they are able to conduct electricity once they have formed.\footcite[cf.][5]{changDirectObservationDualFilament2017}
 This process, visualized from \(a)-d)\), can be controlled due to the voltage that is aplied to the memristor.
 Wigh a high enough voltage a filament can be established and increasing the voltage from there on ensures that even stronger and thicker filaments are created.
-This in fact is the explanation on how the resistance of the memristor can change dynamically and is able to store the information
-about the preferred conductance. A schematic view of the filament and phase 1 is also shown in the right part of \ref{platecondensator}, where the label is \(V_{set}\) 
-An everyday example would be a water pupe with a valve that can be adjusted to control the water flow. 
+The thickness of the filament determines the conductivity, so that the resistance of the memristor can be controlled by this filament growth.
+A schematic view of the filament and phase 1 is also shown in the right part of \ref{platecondensator}, where the label is \(V_{set}\) 
+An everyday example is a water pipe with a valve that controls the water flow. 
 The vavle symbolizes the memristor and the water flow the current in the electrical tracks.
 On the actual \ac{mem-HNN} there is a controller, which is not shown in the model, that talks to a digital external computer that gives the inforation on hot to chose \(V_{set}\) for each memristor.
 
@@ -509,58 +507,49 @@ The filament connects the top and bottom metal electrodes of the memristor with 
 The enduring presence of a filament in the memristor, even without an applied voltage, embodies its namesake combination of memory and resistor.
 As a result in this phase the workload can be executed and the memristor has the desired conductance.
 
-The final \textbf{phase 3} is the dissolution of the filament to readjust the resistance for the next iteration.
+The final \textbf{phase 3} is the dissolution of the filament to readjust the resistance.
 This process is called bipolar switching and a schematic view of it is shown in the right part of \ref{platecondensator}, where the label is \(-V_{reset}\).
 Filament disonnection is performed through ionic switching, which works by swapping the plus and minus poles around.
 Next up, the filament wants to rearrange and disconnects from top and bottom of the metal electrodes. 
 Since this process of establishing the filaments (setting the desired resistance) and disconnecting them (preparing for new desired resistanc) this process is called bipolar switching.\footcite[cf.][7]{sungPerspectiveReviewMemristive2018}
 
-Presently, the research on the application of memristor crossbar arrays in supervised learning is sparse, indicating a clear necessity for further investigative studies to understand their potential and usability.\footnote{cf.\cite{amirsoleimaniInMemoryVectorMatrixMultiplication2020}, p. 8; cf.\cite{sungPerspectiveReviewMemristive2018}, p. 124}
-In the practical part exactly this is put to the test and training data of the \ac{RBM} should be generated to give clearance about the feasibility of this idea.
-A possbility is to use the memristor to set the resistance \(V_{set}\) for one training iteration with the needed weigths, reset them \(-V_{reset}\) and 
-initiate the following training with the new weights that are digitally updated. 
-This is the reason why this kind of memory acting as weights has the potential of high switching speeds, high energy efficiency and high endurance.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
-
+Research on memristor crossbar arrays in supervised learning is currently limited, underscoring the need for more studies to assess their potential and usability.\footnote{cf.\cite{amirsoleimaniInMemoryVectorMatrixMultiplication2020}, p. 8; cf.\cite{sungPerspectiveReviewMemristive2018}, p. 124}
+In practice, training data for a \ac{BM} is generated to test feasibility.
+Memristors are used by setting the resistance \(V_{set}\) for one training iteration with the necessary weights, resetting them \(-V_{reset}\), and then digitally updating to new weights for subsequent training.
+This approach enables high switching speeds, energy efficiency, and durability.\footcite[cf.][3]{amirsoleimaniInMemoryVectorMatrixMultiplication2020}
 
 \subsection{Output Hopfield Network}
 
-In this subchapter the left over components of the \ac{mem-HNN} shown in \ref{ModellHMM} are adressed.
-To remain in the correct sequence, after the memristor crossbar array the \ac{TIA} is addressed next.
+In this subchapter the other components of the \ac{mem-HNN} shown in \ref{ModellHMM} are adressed.
+At the output of the BLs are \ac{TIA}s.
 The \ac{TIA} is the component that converts the current \(i_j\), which is the output of the memristor crossbar array, into a voltage. \footcite[cf.][3]{hizzaniMemristorbasedHardwareAlgorithms2023}
-Since each output current symbolizes one neuron, there are also that many \ac{TIA}s required.
-
-Subsequently, to fulfill the update formula of the Hopfield Network, that the \ac{mem-HNN} impersonates, is the non-linear threshold.
+Here, each BL has an individual \ac{TIA}.
+Subsequently, to implement the update formula of the Hopfield Network in eq.\eqref{eq:update_rule}, is a nonlinear threshold function on the output of the \ac{TIA}s.
 The non-linear threshold is used to compare the \(\sum_j w_{ij} s_j + b\) against the threshold \(\theta_i\) to determine whether it is \(\geq\) or \(<\).\footcite[cf.][18]{caiHarnessingIntrinsicNoise2019}
 In terms of electrical components the non-linear threshold is a comparator. 
 A voltage comparator is an analog electronical device.
 Comparators are able to compare a input signal, which is the converted voltage of the \ac{TIA}, with a reference voltage, which is the threshold \(\theta_i\).\footcite[cf.][28]{chenApplicationVoltageComparator2021}
-In addition to that, the comparator is the component that transforms the analog voltage into a binary digital signal.
-The digital signal is a binary voltage and either is \(0V\) or if the sum was greater than the threshold it is a specific voltage \(V_{out}\).
+Also, the comparator is the component that transforms the analog voltage into a binary digital signal.
+Now, the digital signal is a binary voltage and either is \(0V\) or if the sum was greater than the threshold it is a specific voltage \(V_{out}\).
 The output represents the new state of a neuron in terms of the Hopfield Network and is now trasmitted to the state register.
 
 The state register is a digital memory that is designed to store the current neuron configuarion (input vector).\footcite[cf.][18]{caiHarnessingIntrinsicNoise2019}
 The binary states of the neurons, which represent the voltage output of the comparator, are sent to the state register and update the old configuration.\footcite[cf.][3]{caiHarnessingIntrinsicNoise2019}
 For each neuron there is one \ac{TIA} and an according comparator required. 
 This not only allows for fast parallel computation but also it allows to exactly map the digital output of the comparator to the correct position within the state register.
-Now, a new sampling step can begin and neurons states can be updated. 
 
 A missing component part in figure\ref{ModellHMM} is a selector that is connected to the state register. 
-Its task is to allow updating through unlockickt the correct positions inside the state registor.  
+Its task is to select specific register states which can the be updated by the output signal of the corresponding comparator.  
 For example the mode of updating can be selected with either one neuron updated at a time asynchronously or multiple neurons synchronous. 
-A promissing and interesting sampling strategy could be to update \(N/2\) of all neurons.\footcite[cf.][3]{hizzaniMemristorbasedHardwareAlgorithms2023}
-So when there are 100 neurons in the neural network with each sampling step 50 neurons are updated.
-
+Currently, the memHNN offers two update strategies: the first updates a single random state, while the \(N/2\) update randomly selects and updates about half of the neurons.\footcite[cf.][3]{hizzaniMemristorbasedHardwareAlgorithms2023}
 The white arrows next to the state register in figure\ref{ModellHMM} represent a Wordline driver. 
-Wordline Drivers are a voltage source that determines the voltage by the state of the state register.
-They are required to enable a parallel activation of Wordlines and to start the new sampling step.\footcite[cf.][18]{caiHarnessingIntrinsicNoise2019}
+Wordline Drivers are a voltage source that determines the voltage by the state of the state register ans supply a voltage to the crossbar's WLs.\footcite[cf.][18]{caiHarnessingIntrinsicNoise2019}
 
-Finally, it is worth to mention one sampling step can happen within one clock cycle of the. 
-There are thousands of sampling iterations that are performed within one training iteration of a neural network.
-After each sampling iteration the neuron configuration in the state register is saved either in a cache directly on the \ac{ASIC} hardware or
-sent to a digital external computer. 
-For example after 10000 sampling iterations the arrays of the hidden- and visible neurons are sent to the computer to perform a prediction after the iteration.
-This completes the explanation of how the \ac{mem-HNN} implements the concept of a Hopfield Network. 
-
+Notably, the \ac{mem-HNN} can perform a full iteration within a single clock cycle.
+Thousands of sampling iterations occur within a single neural network training iteration.
+After each, the neuron configuration from the state register is saved on the \ac{ASIC} hardware's cache and sent to an external digital computer.
+For instance, after 10.000 sampling iterations, the arrays of hidden and visible neurons are sent to the computer for prediction.
+This process illustrates how the \ac{mem-HNN} implements a Hopfield Network concept.
 
 \subsection{Noisy Hopfield Network}
 
@@ -574,20 +563,18 @@ Effectively the new noisy hopfield network updating function now looks like the 
 \begin{equation}
     s_i \leftarrow 
     \begin{cases} 
-    +1 & \text{if } \sum_j w_{ij}  + b + \mathbf{n} \geq \theta_i, \\
-    -1 & \text{otherwise}.
+    1 & \text{if } \sum_j w_{ij}  + b + \mathbf{n} \geq \theta_i, \\
+    0 & \text{otherwise}.
     \end{cases}
     \label{noisy_update_HNN_formula}
 \end{equation}
-with \(n\) representing the noise.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020} 
+with \(n_i\) representing the noise.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020} 
 Besides aiding optimization tasks, noise also creates an interesting link to \c{BM}s.
-Without noise the Hopfield Network is only able to do perform optimization tasks and no sampling, which is needed to train a \ac{RBM}.
 The difference between the \ac{RBM} and the Hopfield Network without noise is the activation function.
-As shown in equation \ref{eq:update_rule}, a simple Hopfield Network has no temperature and has a binary step function as activation function which is completely deterministic.
-In contrast, a \ac{RBM} has a statistical logistic sigmoid function as activation function shown in figure \ref{logistic_sigmoid}, which uses a temperature of \(1\) mentioned in 2.2.4.
+As shown in equation \ref{eq:update_rule}, a simple Hopfield Network and has a binary step function as activation function which is completely deterministic.
+In contrast, a \ac{RBM} has a statistical logistic sigmoid function as activation function shown in figure \ref{logistic_sigmoid}, which uses a temperature of \(1\) mentioned in chapter 2.2.4.
 Therefore, to successfully implement a \ac{RBM} on the \ac{mem-HNN} the activation behavior of the neurons need to be compatible with the activation function of the \ac{mem-HNN}.
-
-A potential solution to address the issue of activation behavior and enhance compatibility involves utilizing noise from an analog noise source.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
+A potential solution to address the issue of activation behavior involves utilizing noise from an analog noise source.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
 One relatively straightforward way to inject noise into the activation function is by adding a normal gaussian distribution \(g(x)\) on top of it\footcite[cf.][3]{bohmNoiseinjectedAnalogIsing2022}:
 \begin{equation}
     f_g(x) = \frac{1}{\sqrt{2\pi\rho^2}} e^{-\frac{(x-\mu)^2}{2\rho^2}},
@@ -597,7 +584,7 @@ The visual representation of a gaussian distribution is shown in following figur
 It illustrates distributions with different parameters of the standard deviation and the mean of the distribution allowing for a better understanding of the flexibility and possbilities of noise injection. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.65\linewidth]{graphics/Gaussian_Normal_Distribution_edited.jpg}
+    \includegraphics[width=0.6\linewidth]{graphics/Gaussian_Normal_Distribution_edited.jpg}
     \caption{Gaussian normal distribution\protect\footnotemark}
     \label{normalGaussianDistribution}
 \end{figure}
@@ -605,7 +592,6 @@ It illustrates distributions with different parameters of the standard deviation
 There have been recent proposals that show a proof of concept on how to inject the noise with a gaussian distribution and make a \ac{RBM} realizable.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
 In the paper by Böhm et al., they used analog singals for the neurons instead of digital signals like the \ac{mem-HNN} uses. 
 Furthermore, they used an opto-electrical Ising machine in combination with an \ac{FPGA} as accelerator which works in a similar fashion to the \ac{mem-HNN}.\footcite[cf.][1-11]{bohmNoiseinjectedAnalogIsing2022}
-
 The second paper by Mahmoodi/Preziosi and Strukov, also created a proof of concept in which they showed an implementation of a \ac{RBM} on a memristor crosbar array.
 Crucially, there is no state registor or comparator involved, so all the calculations of comparing against a threshold, adding a bias and adding the noise were made by an external digital computer. 
 The hardware computes solely the matrix vector multiplication.
@@ -613,3 +599,4 @@ Hence, the additional required interfaces make the system slow and inefficient.\
 
 However, beyond these initial proof of concepts, it is still an open question if the concept
 is feasible on the complete \ac{ASIC} hardware accelerator like the \ac{mem-HNN} and if it does bring an actual acceleration of the training and interference of a \ac{RBM}.
+Therefore, the goal of this thesis is to study in detail the speed and energy consumption of memHNNs when implementing BMs.
