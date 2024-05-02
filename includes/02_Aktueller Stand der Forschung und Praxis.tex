@@ -8,8 +8,8 @@ game strategy development and execution (with examples in playing Atari and Go),
 and optimization of navigation tasks, such as determining the most efficient routes on maps.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
 Therefore, it is fair to say that neural networks are part of various important applications.\footcite[cf.][1513]{gawlikowskiSurveyUncertaintyDeep2023}
 Particularly in the last two years, artificial intelligence has also garnered widespread interest from the public, especially regarding chatbots like ChatGPT and Google Bard.\footcite[cf.][1-2]{singhChatGPTGoogle2023}  
-An important feature of a neural network-based system that is inspired by our brain, is that they can learn and adapt to data.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
 
+An important feature of a neural network-based system that is inspired by our brain, is that they can learn and adapt to data.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
 Internally, neural networks are computational models that consist of many simple processing units, called neurons.
 These neurons are interconnected, such that data can be passed between them.
 The connections form a network structure, which is often arranged in layers.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
@@ -19,7 +19,7 @@ The following figure 1 shows a typical neural network that consists of an input 
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.55\linewidth]{graphics/Neural_Network.png}}
-    \caption{Neural network}
+    \caption{Example of a Neural network}
 \end{figure}
 When several layers are stacked on top of each other the network is called deep.\footcite[cf.][305]{cichyDeepNeuralNetworks2019}
 In general, deep learning methods can be seen as a subset of machine learning methods and are today's fundament of artificial intelligence allowing to solve more complex tasks.\footcite[cf.][1583]{durstewitzDeepNeuralNetworks2019}
@@ -29,7 +29,7 @@ An example of a deep neural network is presented in figure 2 which shows the sta
 \begin{figure}[H]
     \centering
     \fbox{\includegraphics[width=0.6\linewidth]{graphics/Deep_Neural_Network_2.png}}
-    \caption{Deep neural network}
+    \caption{Example of a Deep neural network}
 \end{figure}
 
 Some examples of regression tasks in the field of computer vision where \ac{DNN} are essential include object detection, medical image registration, head and body pose estimation, age estimation, and visual tracking.\footcite[cf.][325-326]{gustafssonEnergyBasedModelsDeep2020}
@@ -68,7 +68,7 @@ An \ac{EBM} is characterized by an energy function \(E_{\theta}(x) \in \mathbb{R
     \caption{Simplified energy landscape}
     \label{energy_landscape_1}
 \end{figure}
-In figure 1 a simplified energy landscape after the training is shown where the local minima correspond to states that encode a handwritten digit.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022} It is visible that observed data settles in the local minimum of the energy landscape, in this case, a clear 0. On the other hand close to the local maxima of the energy landscape 0 is only barely recognizable and therefore has a higher energy value assigned to it.
+In figure \ref{energy_landscape_1} a simplified energy landscape after the training is shown where the local minima correspond to states that encode a handwritten digit.\footcite[cf.][6]{huembeliPhysicsEnergybasedModels2022} It is visible that observed data settles in the local minimum of the energy landscape, in this case, a clear 0. On the other hand close to the local maxima of the energy landscape 0 is only barely recognizable and therefore has a higher energy value assigned to it.
 The assumption of the underlying distribution function \( P(x) \) represents the probability distribution over the input data x,
 indicating how likely different configurations of x are under the model learned patterns:
 \begin{equation}
@@ -147,7 +147,7 @@ To put this into perspective, the total atoms that exist on earth are only estim
 That means even if it would be possible to store one information per atom it would just not be enough. 
 As a result, instead of directly trying to train the model sampling methods are used that are able to estimate these activation probabilities.
 
-\subsection{Restriced Boltzmann Machines}
+\subsection{Restricted Boltzmann Machines}
 
 As a simplification of the training problem Hinton and Sejnowski proposed Gibbs sampling as an algorithm to approximate both expectations.\footcite[cf.][158-165]{ackleyLearningAlgorithmBoltzmann1985}
 Furthermore, the intralayer connections of the model got removed and the result is the so-called \ac{RBM}.
@@ -201,7 +201,7 @@ Given an input data out of the training images, \( v \), the binary state, \( j 
 p(h_j = 1 | \textbf{v}) = \sigma(b_j + \sum_i v_i w_{ij}),
 \end{equation}
 where $\sigma(x)$ is the logistic sigmoid function with an unbiased sample. The sigmoid function is defined as $\sigma(x) = \frac{1}{1 + \exp(-x)}$ and is needed because it is the underlying activation function of each neuron.
-A visual representation is shown in figure 6:
+A visual representation is shown in figure \ref{logistic_sigmoid}:
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\linewidth]{graphics/logistic_sigmoid.png}
@@ -251,7 +251,7 @@ If $E_{\text{new}}$ > $E_{\text{old}}$ then there are some extra steps to be fol
 The flip probability is calculated as $p=\exp\left(-\frac{E_{\text{new}}-E_{\text{old}}}{kT}\right)$.
 \( KT \) is interpreted as the temperature in the network and with a higher temperature it increases
 the activation probability leading to a faster exploration through the landscape but with less details.\footcite[cf.][1-9]{liTemperatureBasedRestricted2016}
-For \ac{RBM}s \( KT \) is assumed to be 1.\footcite[cf.][3]{hintonBoltzmannMachines2014} In the following figure 7 the resulting probability function is shown.
+For \ac{RBM}s \( KT \) is assumed to be 1.\footcite[cf.][3]{hintonBoltzmannMachines2014} In the following figure the resulting probability function is shown.
 
 \begin{figure}[H]
     \centering
@@ -448,7 +448,7 @@ Since the \ac{mem-HNN} saw the light of day in 2021, a number of improvements ha
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.3\linewidth]{graphics/Mem_HNN_Modell.png}
-    \caption{Modell of the mem-HNN}
+    \caption{Model of the mem-HNN}
     \label{ModellHMM}
 \end{figure}
 The green square symbolizes the memristor crossbar array, which has the task of performing the matrix multiplication in eq.\eqref{eq:update_rule}. 
@@ -460,7 +460,7 @@ A better perspective of the memristor crossbar array gives following 3D model\fo
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.65\linewidth]{graphics/memristor_crossbar_array.png}
-    \caption{3D modell of the memristor crossbar array}
+    \caption{3D model of the memristor crossbar array}
 \end{figure}
 To understand how this crossbar array implements the Hopfield network, it helps to have another look at the earlier introduced update formula in eq.\eqref{eq:update_rule}.
 On the green Wordline, a voltage which either is \( 1 \) or \( 0 \) that represents the state of the neurons in the Hopfield network is applied.
@@ -509,7 +509,7 @@ As a result in this phase, the workload can be executed and the memristor has th
 
 The final \textbf{phase 3} is the dissolution of the filament to readjust the resistance.
 This process is called bipolar switching and a schematic view of it is shown in the right part of \ref{platecondensator}, where the label is \(-V_{reset}\).
-Filament disconnection is performed through ionic switching, which works by swapping the plus and minus poles around.
+Filament disconnection is performed through ionic switching, which works by swapping positive and negative poles around.
 Next up, the filament wants to rearrange and disconnect from the top and bottom of the metal electrodes. 
 This process of establishing the filaments (setting the desired resistance) and disconnecting them (preparing for new desired resistance) this process is called bipolar switching.\footcite[cf.][7]{sungPerspectiveReviewMemristive2018}
 
@@ -520,7 +520,7 @@ This approach enables high switching speeds, energy efficiency, and durability.\
 
 \subsection{Output Hopfield Network}
 
-In this subchapter, the other components of the \ac{mem-HNN} shown in \ref{ModellHMM} are addressed.
+In this subchapter, the other components of the \ac{mem-HNN} shown in fig.\ref{ModellHMM} are addressed.
 At the output of the BLs are \ac{TIA}s.
 The \ac{TIA} is the component that converts the current \(i_j\), which is the output of the memristor crossbar array, into a voltage. \footcite[cf.][3]{hizzaniMemristorbasedHardwareAlgorithms2023}
 Here, each BL has an individual \ac{TIA}.
@@ -569,7 +569,7 @@ Effectively the new noisy hopfield network updating function now looks like the 
     \label{noisy_update_HNN_formula}
 \end{equation}
 with \(n_i\) representing the noise.\footcite[cf.][410]{caiPowerefficientCombinatorialOptimization2020} 
-Besides aiding optimization tasks, noise also creates an interesting link to \c{BM}s.
+Besides aiding optimization tasks, noise also creates an interesting link to \ac{BM}s.
 The difference between the \ac{RBM} and the Hopfield Network without noise is the activation function.
 As shown in equation \ref{eq:update_rule}, a simple Hopfield Network has a binary step function as an activation function which is completely deterministic.
 In contrast, a \ac{RBM} has a statistical logistic sigmoid function as an activation function shown in figure \ref{logistic_sigmoid}, which uses a temperature of \(1\) mentioned in chapter 2.2.4.

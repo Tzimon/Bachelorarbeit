@@ -227,7 +227,7 @@ the weighted sum that also ignores the weights connected from the drawn neurons.
 Afterwards for the comparison against the threshold, the according bias of the neuron is added together with the injected noise (scale).
 To achieve the injection of noise, a Gaussian normal distribution is added which can modify the activation function, making it compatible with the sigmoid function.\footnote{cf.\cite{bohmNoiseinjectedAnalogIsing2022}, p. 1-2; cf.\cite{mahmoodiVersatileStochasticDot2019}, p. 2}
 Technically this is performed by adding \texttt{np.random.normal(0, scale=1)} to the weighted sum and the bias, with 0  the mean of the distribution and the scale representing the standard deviation. 
-Hereby, it is important to find a standard deviation that is very close to the true activation probability is important, otherwise, the training of the RBM would not work.
+Hereby, it is important to find a standard deviation that is very close to the true activation probability, otherwise the training of the RBM would not work.
 In addition to that, the standard deviation changes with neuron size and needs to be readjusted if changes are made to the network structure.
 Next, if the weighted sum plus bias and noise exceeds the threshold, the corresponding neuron state is set to 1; otherwise, it is set to 0.
 Lastly, after enough iterations when the thermalization is exceeded the new configurations
@@ -310,7 +310,7 @@ The first technical step is to extend the \texttt{\_rbm.py} to fit the new sampl
             v_neg, h_neg = interface_hopfield_sampling(self.components_, self.intercept_visible_, self.intercept_hidden_, iterations_per_theta, N2_HALF=False)    
 \end{lstlisting}
 Here, the components represent the weights of the neurons in the network, while intercept\_visible and intercept\_hidden represent the bias of the neurons. 
-Within the, \texttt{hopfield\_network\_interface\_v2.py}, the parameters are taken and an object of the class is initiated. 
+Within the Hopfield network interface version 2, the parameters are taken and an object of the class is initiated. 
 Furthermore, the boolean N2\_HALF can be assigned to determine which updating approach is desired. 
 \begin{lstlisting}
     def interface_hopfield_sampling(components_, intercept_visible_, intercept_hidden_):
@@ -550,7 +550,7 @@ The subsequent visualization\ref{Throughput comparison} shows the throughput for
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\linewidth]{graphics/Visualisierungen_throughput_log_2.png}
-    \caption{throughput}
+    \caption{throughput for Hopfield network}
     \label{Throughput comparison}
 \end{figure}
 The following results of the two networks show that the Hopfield Network (green line) maintains stable throughput at over \(\mathbf{10^6}\) samples per second, indicating predictable performance.

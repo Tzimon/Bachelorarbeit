@@ -18,7 +18,7 @@ The International Energy Agency anticipates that by 2026, the global energy cons
 
 A well-known, more energy-efficient approach for AI workloads involves the use of AI accelerators based on \ac{ASIC}s.
 These circuits are designed specifically for computationally demanding tasks, such as linear algebra operations. A common example of such an accelerator is Google's \ac{TPU}.\footcite[cf.][39]{wittpahlKuenstlicheIntelligenzTechnologie2019} 
-This is useful because the usage of multimodels for discirminating tasks compared to
+This is useful because the usage of multimodels for discriminating tasks compared to
 task-specific models are more energy intense.\footcite[cf.][5]{luccioniPowerHungryProcessing2023}
 One promising accelerator concept in research is the usage of physics-inspired hardware accelerators.
 Physics-based accelerators exploit natural phenomena to perform highly efficient computation.
@@ -40,7 +40,7 @@ of digital hardware accelerators and analog computation.\footcite[cf.][4]{mohsen
 Interestingly enough, despite their different applications, the energy function of the hardware accelerator that is used
 in Ising-machines is analogous to certain AI-models, such as \ac{BM}s and could therefore be used to accelerate the computation in AI-workloads.\footcite[cf.][10]{caiHarnessingIntrinsicNoise2019}
 \ac{BM}s are energy-based neuronal networks that are used for classification tasks by 
-allocating a skalar energy for each configuration of variables.
+allocating a scalar energy for each configuration of variables.
 During training, the energy associated with the training data is minimized and therefore equal to the solution of an optimization problem.\footcite[cf.][2]{nazmbojnordiMemristiveBoltzmannMachine2016} 
 \ac{BM}s have shown to be performant AI models in a variety of AI workloads, however, their training is known to be computationally demanding.\footcite[cf.][1]{nazmbojnordiMemristiveBoltzmannMachine2016} 
 For large-scale \ac{BM}s, the convergence to energy minima can become prohibitively slow.
@@ -105,7 +105,7 @@ The applied research methodology in this thesis is \ac{DSR} by Österle et al..\
 applicable, while they also are in line with the objectives of the project.
 Furthermore, this allows finding a solution for practical problems through the iterative approach adding more functionalities over time but also leaving room for fixing errors and general improvements.
 In the initial design phase, the full Simulator Pipeline is outlined, from which the requirements and functionalities for implementation are derived.
-Within the iterative design and evaluation phases of the \ac{DSR} framework prototyping is used exploratively as a fast and explorative way to implement the simulator pipeline according to G. Arthur Mihram's prototyping model.\footcite[cf.][71-72]{mihramSimulationMethodology1976}
+Within the iterative design and evaluation phases of the \ac{DSR} framework prototyping is used exploratively as a fast way to implement the simulator pipeline according to G. Arthur Mihram's prototyping model.\footcite[cf.][71-72]{mihramSimulationMethodology1976}
 Based on the developed Simulator Pipeline, the research questions are then addressed through computer simulations.
 The aim of the simulation is to measure the performance of the solution and to make the hardware accelerator comparable. 
 
@@ -116,7 +116,7 @@ with the novel solution of the physics-inspired hardware accelerator and what re
 In the second chapter, the ``current state of research and practice'' is discussed with 
 existing concepts but moreover, all the required concepts that the hardware accelerator utilizes are explained 
 and set into perspective to lay the foundation for the ongoing practical implementation part of this thesis.
-Next, the third chapter explains the applied research methodologies utilized in this thesis and why the decision is to use them.
+Next, the third chapter explains the applied research methodologies utilized in this thesis and why the decision is taken to use them.
 The fourth chapter covers the implementation of the Simulator pipeline and is structured after the \ac{DSR} phases.
 It ends with a finished prototype, which is used to measure the performance and therefore chapter five focuses on the 
 diffusion and discussion of the results. 
